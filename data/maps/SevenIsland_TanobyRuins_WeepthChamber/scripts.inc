@@ -3,5 +3,53 @@ SevenIsland_TanobyRuins_WeepthChamber_MapScripts::
 	.byte 0
 
 SevenIsland_TanobyRuins_WeepthChamber_OnTransition::
+	call SevenIsland_TanobyRuins_WeepthChamber_EventScript_HideLegend_RAYQUAZA
 	call EventScript_TryDarkenRuins
 	end
+
+SevenIsland_TanobyRuins_WeepthChamber_EventScript_Legend_RAYQUAZA::
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
+	lock
+	faceplayer
+	goto_if_eq VAR_LEGEND_CAUGHT_09, 1, SevenIsland_TanobyRuins_WeepthChamber_EventScript_LegendGone_RAYQUAZA
+	waitse
+	playmoncry SPECIES_RAYQUAZA, CRY_MODE_ENCOUNTER
+	message SevenIsland_TanobyRuins_WeepthChamber_Text_Legend_RAYQUAZA
+	waitmessage
+	waitmoncry
+	delay 20
+	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
+	waitbuttonpress
+	setwildbattle SPECIES_RAYQUAZA, 60
+	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	special StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, SevenIsland_TanobyRuins_WeepthChamber_EventScript_LegendDone_RAYQUAZA
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, SevenIsland_TanobyRuins_WeepthChamber_EventScript_LegendDone_RAYQUAZA
+	release
+	end
+
+SevenIsland_TanobyRuins_WeepthChamber_EventScript_LegendDone_RAYQUAZA::
+	setvar VAR_LEGEND_CAUGHT_09, 1
+	removeobject LOCALID_LEGEND_RAYQUAZA
+	release
+	end
+
+SevenIsland_TanobyRuins_WeepthChamber_EventScript_LegendGone_RAYQUAZA::
+	removeobject LOCALID_LEGEND_RAYQUAZA
+	release
+	end
+
+SevenIsland_TanobyRuins_WeepthChamber_EventScript_HideLegend_RAYQUAZA::
+	goto_if_eq VAR_LEGEND_CAUGHT_09, 1, SevenIsland_TanobyRuins_WeepthChamber_EventScript_DoHideLegend_RAYQUAZA
+	return
+
+SevenIsland_TanobyRuins_WeepthChamber_EventScript_DoHideLegend_RAYQUAZA::
+	removeobject LOCALID_LEGEND_RAYQUAZA
+	return
+
+SevenIsland_TanobyRuins_WeepthChamber_Text_Legend_RAYQUAZA::
+	.string "Rayquaza!$"

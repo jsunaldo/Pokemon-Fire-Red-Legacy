@@ -85,21 +85,21 @@
 // Used by Quest Log.
 #define VAR_QUEST_LOG_MON_COUNTS           0x4027
 #define VAR_WONDER_NEWS_STEP_COUNTER       0x4028
-#define VAR_0x4029                         0x4029
-#define VAR_0x402A                         0x402A
-#define VAR_0x402B                         0x402B
-#define VAR_0x402C                         0x402C
-#define VAR_0x402D                         0x402D
-#define VAR_0x402E                         0x402E
+#define VAR_LEGEND_CAUGHT_00                         0x4029
+#define VAR_LEGEND_CAUGHT_01                         0x402A
+#define VAR_LEGEND_CAUGHT_02                         0x402B
+#define VAR_LEGEND_CAUGHT_03                         0x402C
+#define VAR_LEGEND_CAUGHT_04                         0x402D
+#define VAR_LEGEND_CAUGHT_05                         0x402E
 
-#define VAR_0x402F                         0x402F
+#define VAR_LEGEND_CAUGHT_06                         0x402F
 
 #define VAR_ICE_STEP_COUNT                 0x4030
 #define VAR_STARTER_MON                    0x4031 // 0: Bulbasaur, 1: Squirtle, 2: Charmander
 #define VAR_RESET_RTC_ENABLE               0x4032
 #define VAR_ENIGMA_BERRY_AVAILABLE         0x4033
 
-#define VAR_0x4034                         0x4034
+#define VAR_LEGEND_CAUGHT_07                         0x4034
 #define VAR_RESORT_GOREGEOUS_STEP_COUNTER  0x4035
 #define VAR_RESORT_GORGEOUS_REQUESTED_MON  0x4036
 #define VAR_PC_BOX_TO_SEND_MON             0x4037
@@ -110,9 +110,9 @@
 #define VAR_0x403C                         0x403C // Set to 0x0302, never read
 #define VAR_HERACROSS_SIZE_RECORD          0x403D
 #define VAR_DEOXYS_INTERACTION_NUM         0x403E
-#define VAR_0x403F                         0x403F
+#define VAR_LEGEND_CAUGHT_08                         0x403F
 #define VAR_MAGIKARP_SIZE_RECORD           0x4040
-#define VAR_0x4041                         0x4041
+#define VAR_LEGEND_CAUGHT_09                         0x4041
 #define VAR_TRAINER_CARD_MON_ICON_TINT_IDX 0x4042
 #define VAR_TRAINER_CARD_MON_ICON_1        0x4043
 #define VAR_TRAINER_CARD_MON_ICON_2        0x4044
@@ -126,7 +126,7 @@
 #define VAR_POKELOT_RND2                   0x404C
 #define VAR_QL_ENTRANCE                    0x404D
 #define VAR_NATIONAL_DEX                   0x404E
-#define VAR_LOTAD_SIZE_RECORD              0x404F
+#define VAR_REPEL_LAST_USED                0x404F // FRLG Legacy: repel reuse prompt (was VAR_LOTAD_SIZE_RECORD, unused)
 
 // Map Scene
 #define VAR_MAP_SCENE_PALLET_TOWN_OAK                                          0x4050
@@ -158,17 +158,17 @@
 #define VAR_MAP_SCENE_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM_REVIVE_STATE 0x406A
 #define VAR_MAP_SCENE_ROUTE24                                                  0x406B
 #define VAR_MAP_SCENE_PEWTER_CITY                                              0x406C
-#define VAR_0x406D                                                             0x406D
+#define VAR_LEGEND_CAUGHT_10                                                             0x406D
 #define VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE                        0x406E
 #define VAR_CABLE_CLUB_STATE                                                   0x406F
 #define VAR_MAP_SCENE_PALLET_TOWN_SIGN_LADY                                    0x4070
 #define VAR_MAP_SCENE_CINNABAR_ISLAND                                          0x4071
-#define VAR_0x4072                                                             0x4072
+#define VAR_LEGEND_CAUGHT_11                                                             0x4072
 #define VAR_MAP_SCENE_SAFFRON_CITY_POKEMON_TRAINER_FAN_CLUB                    0x4073
 #define VAR_MAP_SCENE_SEVEN_ISLAND_HOUSE_ROOM1                                 0x4074
 #define VAR_MAP_SCENE_ONE_ISLAND_HARBOR                                        0x4075
 #define VAR_MAP_SCENE_ONE_ISLAND_POKEMON_CENTER_1F                             0x4076
-#define VAR_0x4077                                                             0x4077
+#define VAR_LEGEND_CAUGHT_12                                                             0x4077
 #define VAR_MAP_SCENE_TWO_ISLAND                                               0x4078
 #define VAR_MAP_SCENE_TWO_ISLAND_JOYFUL_GAME_CORNER                            0x4079
 #define VAR_0x407A                                                             0x407A

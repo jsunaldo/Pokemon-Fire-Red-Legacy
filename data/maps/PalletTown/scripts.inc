@@ -447,3 +447,54 @@ PalletTown_EventScript_SignLadyStartShowSign::
 	call PalletTown_EventScript_SignLadyShowSign
 	release
 	end
+
+PalletTown_EventScript_NuzlockeHelper::
+	lock
+	faceplayer
+	msgbox PalletTown_Text_NuzlockeHelperIntro
+	goto PalletTown_EventScript_NuzlockeHelperMenu
+	end
+
+PalletTown_EventScript_NuzlockeHelperMenu::
+	message PalletTown_Text_NuzlockeHelperWhichItem
+	waitmessage
+	multichoice 0, 0, MULTICHOICE_NUZLOCKE_ITEMS, FALSE
+	switch VAR_RESULT
+	case 0, PalletTown_EventScript_NuzlockeGiveRareCandy
+	case 1, PalletTown_EventScript_NuzlockeGiveMasterBall
+	case 2, PalletTown_EventScript_NuzlockeGiveFullRestore
+	case 3, PalletTown_EventScript_NuzlockeGiveMaxRepel
+	case 4, PalletTown_EventScript_NuzlockeGiveMaxElixir
+	case 5, PalletTown_EventScript_NuzlockeHelperDone
+	case 127, PalletTown_EventScript_NuzlockeHelperDone
+	end
+
+PalletTown_EventScript_NuzlockeGiveRareCandy::
+	giveitem ITEM_RARE_CANDY, 99
+	goto PalletTown_EventScript_NuzlockeHelperMenu
+	end
+
+PalletTown_EventScript_NuzlockeGiveMasterBall::
+	giveitem ITEM_MASTER_BALL, 99
+	goto PalletTown_EventScript_NuzlockeHelperMenu
+	end
+
+PalletTown_EventScript_NuzlockeGiveFullRestore::
+	giveitem ITEM_FULL_RESTORE, 99
+	goto PalletTown_EventScript_NuzlockeHelperMenu
+	end
+
+PalletTown_EventScript_NuzlockeGiveMaxRepel::
+	giveitem ITEM_MAX_REPEL, 99
+	goto PalletTown_EventScript_NuzlockeHelperMenu
+	end
+
+PalletTown_EventScript_NuzlockeGiveMaxElixir::
+	giveitem ITEM_MAX_ELIXIR, 99
+	goto PalletTown_EventScript_NuzlockeHelperMenu
+	end
+
+PalletTown_EventScript_NuzlockeHelperDone::
+	msgbox PalletTown_Text_NuzlockeHelperGoodbye
+	release
+	end

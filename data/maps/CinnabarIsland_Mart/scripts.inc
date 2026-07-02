@@ -23,12 +23,13 @@ CinnabarIsland_Mart_EventScript_Clerk::
 	.align 2
 CinnabarIsland_Mart_Items::
 	.2byte ITEM_ULTRA_BALL
-	.2byte ITEM_GREAT_BALL
 	.2byte ITEM_HYPER_POTION
-	.2byte ITEM_REVIVE
-	.2byte ITEM_FULL_HEAL
-	.2byte ITEM_ESCAPE_ROPE
 	.2byte ITEM_MAX_REPEL
+	.2byte ITEM_ESCAPE_ROPE
+	.2byte ITEM_FULL_HEAL
+	.2byte ITEM_REVIVE
+	.2byte ITEM_TM03_WATER_PULSE
+	.2byte ITEM_TM28_DIG
 	.2byte ITEM_NONE
 	release
 	end

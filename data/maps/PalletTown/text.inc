@@ -65,3 +65,18 @@ PalletTown_Text_OakYouEnjoyingTraveling::
     .string "Good for you, good for you.\n"
     .string "Hohoho.$"
 
+
+PalletTown_Text_NuzlockeHelperIntro::
+	.string "Some TRAINERS live by hard rules.\p"
+	.string "One POKéMON per route. Nicknames\n"
+	.string "for every friend. And a fainted\l"
+	.string "partner sleeps forever…\p"
+	.string "For souls that brave, supplies are\n"
+	.string "on me! Take whatever you need!$"
+
+PalletTown_Text_NuzlockeHelperWhichItem::
+	.string "What'll it be?$"
+
+PalletTown_Text_NuzlockeHelperGoodbye::
+	.string "Go on, live dangerously!\n"
+	.string "…And come back any time.$"

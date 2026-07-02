@@ -140,7 +140,23 @@ SaffronCity_Dojo_EventScript_MasterKoichi::
 	end
 
 SaffronCity_Dojo_EventScript_MasterKoichiAlreadyGotHitmon::
+	goto_if_unset FLAG_GOT_BRICK_PIECE, SaffronCity_Dojo_EventScript_GiveBrickPiece
 	msgbox SaffronCity_Dojo_Text_StayAndTrainWithUs
+	release
+	end
+
+SaffronCity_Dojo_EventScript_GiveBrickPiece::
+	msgbox SaffronCity_Dojo_Text_TakeBrickPiece
+	checkitemspace ITEM_BRICK_PIECE
+	goto_if_eq VAR_RESULT, FALSE, SaffronCity_Dojo_EventScript_NoRoomForBrickPiece
+	giveitem_msg SaffronCity_Dojo_Text_ReceivedBrickPiece, ITEM_BRICK_PIECE
+	setflag FLAG_GOT_BRICK_PIECE
+	msgbox SaffronCity_Dojo_Text_BrickPieceExplain
+	release
+	end
+
+SaffronCity_Dojo_EventScript_NoRoomForBrickPiece::
+	msgbox SaffronCity_Dojo_Text_NoRoomForBrickPiece
 	release
 	end
 

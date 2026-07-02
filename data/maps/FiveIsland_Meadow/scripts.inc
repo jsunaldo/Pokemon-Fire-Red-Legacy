@@ -1,4 +1,5 @@
 FiveIsland_Meadow_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, FiveIsland_Meadow_OnTransition
 	map_script MAP_SCRIPT_ON_LOAD, FiveIsland_Meadow_OnLoad
 	.byte 0
 
@@ -49,3 +50,51 @@ FiveIsland_Meadow_EventScript_Rocket3::
 	trainerbattle_single TRAINER_TEAM_ROCKET_GRUNT_51, FiveIsland_Meadow_Text_Rocket3Intro, FiveIsland_Meadow_Text_Rocket3Defeat
 	msgbox FiveIsland_Meadow_Text_Rocket3PostBattle, MSGBOX_AUTOCLOSE
 	end
+
+FiveIsland_Meadow_OnTransition::
+	call FiveIsland_Meadow_EventScript_HideLegend_RAIKOU
+	end
+
+FiveIsland_Meadow_EventScript_Legend_RAIKOU::
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
+	lock
+	faceplayer
+	goto_if_eq VAR_LEGEND_CAUGHT_00, 1, FiveIsland_Meadow_EventScript_LegendGone_RAIKOU
+	waitse
+	playmoncry SPECIES_RAIKOU, CRY_MODE_ENCOUNTER
+	message FiveIsland_Meadow_Text_Legend_RAIKOU
+	waitmessage
+	waitmoncry
+	delay 20
+	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
+	waitbuttonpress
+	setwildbattle SPECIES_RAIKOU, 50
+	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	special StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, FiveIsland_Meadow_EventScript_LegendDone_RAIKOU
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, FiveIsland_Meadow_EventScript_LegendDone_RAIKOU
+	release
+	end
+
+FiveIsland_Meadow_EventScript_LegendDone_RAIKOU::
+	setvar VAR_LEGEND_CAUGHT_00, 1
+	removeobject LOCALID_LEGEND_RAIKOU
+	release
+	end
+
+FiveIsland_Meadow_EventScript_LegendGone_RAIKOU::
+	removeobject LOCALID_LEGEND_RAIKOU
+	release
+	end
+
+FiveIsland_Meadow_EventScript_HideLegend_RAIKOU::
+	goto_if_eq VAR_LEGEND_CAUGHT_00, 1, FiveIsland_Meadow_EventScript_DoHideLegend_RAIKOU
+	return
+
+FiveIsland_Meadow_EventScript_DoHideLegend_RAIKOU::
+	removeobject LOCALID_LEGEND_RAIKOU
+	return

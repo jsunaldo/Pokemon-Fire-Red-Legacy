@@ -121,6 +121,15 @@ void RunTextPrinters(void)
         if (sTextPrinters[i].active)
         {
             u16 renderCmd = RenderFont(&sTextPrinters[i]);
+            if (renderCmd == RENDER_PRINT && sTextPrinters[i].textSpeed == 0)
+            {
+                // FRLG Legacy: FAST text speed renders the whole message in
+                // one frame instead of one glyph per frame
+                do
+                    renderCmd = RenderFont(&sTextPrinters[i]);
+                while (renderCmd == RENDER_PRINT);
+                CopyWindowToVram(sTextPrinters[i].printerTemplate.windowId, COPYWIN_GFX);
+            }
             switch (renderCmd)
             {
             case RENDER_PRINT:

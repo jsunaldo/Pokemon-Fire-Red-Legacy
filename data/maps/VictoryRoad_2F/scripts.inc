@@ -75,3 +75,8 @@ VictoryRoad_2F_EventScript_Vincent::
 	trainerbattle_single TRAINER_TAMER_VINCENT, VictoryRoad_2F_Text_VincentIntro, VictoryRoad_2F_Text_VincentDefeat
 	msgbox VictoryRoad_2F_Text_VincentPostBattle, MSGBOX_AUTOCLOSE
 	end
+
+VictoryRoad_2F_EventScript_Bruce::
+	trainerbattle_single TRAINER_HIKER_BRUCE, VictoryRoad_2F_Text_BruceIntro, VictoryRoad_2F_Text_BruceDefeat
+	msgbox VictoryRoad_2F_Text_BrucePostBattle, MSGBOX_AUTOCLOSE
+	end

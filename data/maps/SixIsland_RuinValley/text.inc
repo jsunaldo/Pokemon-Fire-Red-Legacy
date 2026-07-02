@@ -85,3 +85,6 @@ SixIsland_RuinValley_Text_HectorPostBattle::
     .string "engraved on the outside.\p"
     .string "I don't know what they mean,\n"
     .string "though.$"
+
+SixIsland_RuinValley_Text_Legend_GROUDON::
+	.string "Groudon!$"

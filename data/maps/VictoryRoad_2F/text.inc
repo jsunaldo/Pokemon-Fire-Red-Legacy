@@ -56,3 +56,14 @@ VictoryRoad_2F_Text_GregoryPostBattle::
 VictoryRoad_2F_Text_Gyaoo::
     .string "ギヤーオ！$"
 
+
+VictoryRoad_2F_Text_BruceIntro::
+	.string "I carved my team from these\n"
+	.string "very rocks! Mostly!$"
+
+VictoryRoad_2F_Text_BruceDefeat::
+	.string "Rock bottom!$"
+
+VictoryRoad_2F_Text_BrucePostBattle::
+	.string "An AERODACTYL waits for those\n"
+	.string "who respect old stones.$"

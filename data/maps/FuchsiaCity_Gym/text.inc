@@ -154,3 +154,24 @@ FuchsiaCity_Gym_Text_GymStatuePlayerWon::
     .string "WINNING TRAINERS:\n"
     .string "{RIVAL}, {PLAYER}$"
 
+
+FuchsiaCity_Gym_Text_KogaRematchAsk::
+	.string "KOGA: {PLAYER}! You carry the\n"
+	.string "aura of a CHAMPION now.\p"
+	.string "I've rebuilt my team for this\n"
+	.string "moment. Will you battle me\l"
+	.string "at full strength?$"
+
+FuchsiaCity_Gym_Text_KogaRematchDefeat::
+	.string "Magnificent!\n"
+	.string "You truly are the CHAMPION!$"
+
+FuchsiaCity_Gym_Text_KogaRematchPost::
+	.string "That was a battle worth\n"
+	.string "remembering, {PLAYER}.\p"
+	.string "Come back any time. My team\n"
+	.string "and I will be waiting!$"
+
+FuchsiaCity_Gym_Text_KogaRematchNo::
+	.string "Ha! Don't keep me waiting\n"
+	.string "too long, CHAMPION.$"

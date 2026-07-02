@@ -3,6 +3,7 @@ ThreeIsland_BerryForest_MapScripts::
 	.byte 0
 
 ThreeIsland_BerryForest_OnTransition::
+	call ThreeIsland_BerryForest_EventScript_HideLegend_CELEBI
 	setworldmapflag FLAG_WORLD_MAP_THREE_ISLAND_BERRY_FOREST
 	setescapewarp MAP_THREE_ISLAND_BOND_BRIDGE, 12, 6
 	end
@@ -60,3 +61,48 @@ ThreeIsland_BerryForest_EventScript_WelcomeSign::
 ThreeIsland_BerryForest_EventScript_BewareSign::
 	msgbox ThreeIsland_BerryForest_Text_BewareWildBerryLovingMons, MSGBOX_SIGN
 	end
+
+ThreeIsland_BerryForest_EventScript_Legend_CELEBI::
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
+	lock
+	faceplayer
+	goto_if_unset FLAG_SYS_GAME_CLEAR, EventScript_ReleaseEnd
+	goto_if_eq VAR_LEGEND_CAUGHT_03, 1, ThreeIsland_BerryForest_EventScript_LegendGone_CELEBI
+	waitse
+	playmoncry SPECIES_CELEBI, CRY_MODE_ENCOUNTER
+	message ThreeIsland_BerryForest_Text_Legend_CELEBI
+	waitmessage
+	waitmoncry
+	delay 20
+	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
+	waitbuttonpress
+	setwildbattle SPECIES_CELEBI, 50
+	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	special StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, ThreeIsland_BerryForest_EventScript_LegendDone_CELEBI
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, ThreeIsland_BerryForest_EventScript_LegendDone_CELEBI
+	release
+	end
+
+ThreeIsland_BerryForest_EventScript_LegendDone_CELEBI::
+	setvar VAR_LEGEND_CAUGHT_03, 1
+	removeobject LOCALID_LEGEND_CELEBI
+	release
+	end
+
+ThreeIsland_BerryForest_EventScript_LegendGone_CELEBI::
+	removeobject LOCALID_LEGEND_CELEBI
+	release
+	end
+
+ThreeIsland_BerryForest_EventScript_HideLegend_CELEBI::
+	goto_if_eq VAR_LEGEND_CAUGHT_03, 1, ThreeIsland_BerryForest_EventScript_DoHideLegend_CELEBI
+	return
+
+ThreeIsland_BerryForest_EventScript_DoHideLegend_CELEBI::
+	removeobject LOCALID_LEGEND_CELEBI
+	return

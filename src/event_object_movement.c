@@ -461,6 +461,15 @@ static const u8 gInitialMovementTypeFacingDirections[MOVEMENT_TYPES_COUNT] = {
 #define OBJ_EVENT_PAL_TAG_RS_MOVING_BOX               0x1112
 #define OBJ_EVENT_PAL_TAG_METEORITE                   0x1113
 #define OBJ_EVENT_PAL_TAG_SEAGALLOP                   0x1114
+#define OBJ_EVENT_PAL_TAG_GROUDON 0x1115
+#define OBJ_EVENT_PAL_TAG_KYOGRE 0x1116
+#define OBJ_EVENT_PAL_TAG_RAYQUAZA 0x1117
+#define OBJ_EVENT_PAL_TAG_REGIROCK 0x1118
+#define OBJ_EVENT_PAL_TAG_REGICE 0x1119
+#define OBJ_EVENT_PAL_TAG_REGISTEEL 0x111A
+#define OBJ_EVENT_PAL_TAG_LATIAS 0x111B
+#define OBJ_EVENT_PAL_TAG_LATIOS 0x111C
+#define OBJ_EVENT_PAL_TAG_JIRACHI 0x111D
 #define OBJ_EVENT_PAL_TAG_SS_ANNE                     0x1115
 #define OBJ_EVENT_PAL_TAG_RS_PLAYER_UNDERWATER        0x1116
 #define OBJ_EVENT_PAL_TAG_RS_KYOGRE                   0x1117
@@ -497,6 +506,15 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Meteorite,               OBJ_EVENT_PAL_TAG_METEORITE},
     {gObjectEventPal_SSAnne,                  OBJ_EVENT_PAL_TAG_SS_ANNE},
     {gObjectEventPal_Seagallop,               OBJ_EVENT_PAL_TAG_SEAGALLOP},
+    {gObjectEventPal_Groudon, OBJ_EVENT_PAL_TAG_GROUDON},
+    {gObjectEventPal_Kyogre, OBJ_EVENT_PAL_TAG_KYOGRE},
+    {gObjectEventPal_Rayquaza, OBJ_EVENT_PAL_TAG_RAYQUAZA},
+    {gObjectEventPal_Regirock, OBJ_EVENT_PAL_TAG_REGIROCK},
+    {gObjectEventPal_Regice, OBJ_EVENT_PAL_TAG_REGICE},
+    {gObjectEventPal_Registeel, OBJ_EVENT_PAL_TAG_REGISTEEL},
+    {gObjectEventPal_Latias, OBJ_EVENT_PAL_TAG_LATIAS},
+    {gObjectEventPal_Latios, OBJ_EVENT_PAL_TAG_LATIOS},
+    {gObjectEventPal_Jirachi, OBJ_EVENT_PAL_TAG_JIRACHI},
     {},
 };
 

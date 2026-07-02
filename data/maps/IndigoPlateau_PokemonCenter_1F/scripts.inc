@@ -52,12 +52,18 @@ IndigoPlateau_PokemonCenter_1F_EventScript_Clerk::
 	.align 2
 IndigoPlateau_PokemonCenter_1F_Items::
 	.2byte ITEM_ULTRA_BALL
-	.2byte ITEM_GREAT_BALL
+	.2byte ITEM_HYPER_POTION
 	.2byte ITEM_FULL_RESTORE
-	.2byte ITEM_MAX_POTION
 	.2byte ITEM_REVIVE
 	.2byte ITEM_FULL_HEAL
-	.2byte ITEM_MAX_REPEL
+	.2byte ITEM_ELIXIR
+	.2byte ITEM_TM13_ICE_BEAM
+	.2byte ITEM_TM24_THUNDERBOLT
+	.2byte ITEM_TM35_FLAMETHROWER
+	.2byte ITEM_TM19_GIGA_DRAIN
+	.2byte ITEM_TM22_SOLAR_BEAM
+	.2byte ITEM_TM31_BRICK_BREAK
+	.2byte ITEM_TM39_ROCK_TOMB
 	.2byte ITEM_NONE
 	release
 	end

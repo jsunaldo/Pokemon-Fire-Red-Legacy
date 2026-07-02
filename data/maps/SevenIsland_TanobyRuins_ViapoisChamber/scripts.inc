@@ -3,5 +3,53 @@ SevenIsland_TanobyRuins_ViapoisChamber_MapScripts::
 	.byte 0
 
 SevenIsland_TanobyRuins_ViapoisChamber_OnTransition::
+	call SevenIsland_TanobyRuins_ViapoisChamber_EventScript_HideLegend_JIRACHI
 	call EventScript_TryDarkenRuins
 	end
+
+SevenIsland_TanobyRuins_ViapoisChamber_EventScript_Legend_JIRACHI::
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
+	lock
+	faceplayer
+	goto_if_eq VAR_LEGEND_CAUGHT_12, 1, SevenIsland_TanobyRuins_ViapoisChamber_EventScript_LegendGone_JIRACHI
+	waitse
+	playmoncry SPECIES_JIRACHI, CRY_MODE_ENCOUNTER
+	message SevenIsland_TanobyRuins_ViapoisChamber_Text_Legend_JIRACHI
+	waitmessage
+	waitmoncry
+	delay 20
+	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
+	waitbuttonpress
+	setwildbattle SPECIES_JIRACHI, 50
+	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	special StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, SevenIsland_TanobyRuins_ViapoisChamber_EventScript_LegendDone_JIRACHI
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, SevenIsland_TanobyRuins_ViapoisChamber_EventScript_LegendDone_JIRACHI
+	release
+	end
+
+SevenIsland_TanobyRuins_ViapoisChamber_EventScript_LegendDone_JIRACHI::
+	setvar VAR_LEGEND_CAUGHT_12, 1
+	removeobject LOCALID_LEGEND_JIRACHI
+	release
+	end
+
+SevenIsland_TanobyRuins_ViapoisChamber_EventScript_LegendGone_JIRACHI::
+	removeobject LOCALID_LEGEND_JIRACHI
+	release
+	end
+
+SevenIsland_TanobyRuins_ViapoisChamber_EventScript_HideLegend_JIRACHI::
+	goto_if_eq VAR_LEGEND_CAUGHT_12, 1, SevenIsland_TanobyRuins_ViapoisChamber_EventScript_DoHideLegend_JIRACHI
+	return
+
+SevenIsland_TanobyRuins_ViapoisChamber_EventScript_DoHideLegend_JIRACHI::
+	removeobject LOCALID_LEGEND_JIRACHI
+	return
+
+SevenIsland_TanobyRuins_ViapoisChamber_Text_Legend_JIRACHI::
+	.string "Jirachi!$"

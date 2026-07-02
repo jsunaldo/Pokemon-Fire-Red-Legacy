@@ -46,6 +46,10 @@ struct OakSpeechResources
 
 static EWRAM_DATA struct OakSpeechResources *sOakSpeechResources = NULL;
 
+// FireRed Legacy: difficulty chosen during the intro; applied in NewGameInitData
+// (flags are wiped by ClearSav1, so it can't be a flag yet at this point).
+EWRAM_DATA bool8 gOakSpeechHardMode = FALSE;
+
 static void Task_NewGameScene(u8);
 
 static void ControlsGuide_LoadPage1(void);
@@ -67,6 +71,10 @@ static void Task_OakSpeech_ReturnNidoranFToPokeBall(u8);
 static void Task_OakSpeech_TellMeALittleAboutYourself(u8);
 static void Task_OakSpeech_FadeOutOak(u8);
 static void Task_OakSpeech_AskPlayerGender(u8);
+static void Task_OakSpeechLegacy_AskDifficulty(u8);
+static void Task_OakSpeechLegacy_ShowDifficultyOptions(u8);
+static void Task_OakSpeechLegacy_HandleDifficultyInput(u8);
+static void Task_OakSpeechLegacy_ClearDifficultyWindows(u8);
 static void Task_OakSpeech_ShowGenderOptions(u8);
 static void Task_OakSpeech_HandleGenderInput(u8);
 static void Task_OakSpeech_ClearGenderWindows(u8);
@@ -1326,6 +1334,68 @@ static void Task_OakSpeech_HandleGenderInput(u8 taskId)
 }
 
 static void Task_OakSpeech_ClearGenderWindows(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+    ClearStdWindowAndFrameToTransparent(tMenuWindowId, TRUE);
+    RemoveWindow(tMenuWindowId);
+    tMenuWindowId = WIN_INTRO_TEXTBOX;
+    ClearDialogWindowAndFrame(tMenuWindowId, TRUE);
+    FillBgTilemapBufferRect_Palette0(0, 0, 0, 0, 30, 20);
+    CopyBgTilemapBufferToVram(0);
+    gTasks[taskId].func = Task_OakSpeechLegacy_AskDifficulty;
+}
+
+static const u8 sText_Legacy_AskDifficulty[] = _("And choose how you wish to\nbe challenged!\pHARD MODE caps your POKéMON's\nlevels at each badge, locks the\nSET battle style, and bans items\nin TRAINER battles.");
+static const u8 sText_Legacy_Normal[] = _("NORMAL");
+static const u8 sText_Legacy_Hard[] = _("HARD");
+
+static void Task_OakSpeechLegacy_AskDifficulty(u8 taskId)
+{
+    OakSpeechPrintMessage(sText_Legacy_AskDifficulty, sOakSpeechResources->textSpeed);
+    gTasks[taskId].func = Task_OakSpeechLegacy_ShowDifficultyOptions;
+}
+
+static void Task_OakSpeechLegacy_ShowDifficultyOptions(u8 taskId)
+{
+    if (!IsTextPrinterActive(WIN_INTRO_TEXTBOX))
+    {
+        gTasks[taskId].tMenuWindowId = AddWindow(&sIntro_WindowTemplates[WIN_INTRO_BOYGIRL]);
+        PutWindowTilemap(gTasks[taskId].tMenuWindowId);
+        DrawStdFrameWithCustomTileAndPalette(gTasks[taskId].tMenuWindowId, TRUE, GetStdWindowBaseTileNum(), 14);
+        FillWindowPixelBuffer(gTasks[taskId].tMenuWindowId, PIXEL_FILL(1));
+        sOakSpeechResources->textColor[0] = 1;
+        sOakSpeechResources->textColor[1] = 2;
+        sOakSpeechResources->textColor[2] = 3;
+        AddTextPrinterParameterized3(gTasks[taskId].tMenuWindowId, FONT_NORMAL, 8, 1, sOakSpeechResources->textColor, 0, sText_Legacy_Normal);
+        sOakSpeechResources->textColor[0] = 1;
+        sOakSpeechResources->textColor[1] = 2;
+        sOakSpeechResources->textColor[2] = 3;
+        AddTextPrinterParameterized3(gTasks[taskId].tMenuWindowId, FONT_NORMAL, 8, 17, sOakSpeechResources->textColor, 0, sText_Legacy_Hard);
+        Menu_InitCursor(gTasks[taskId].tMenuWindowId, FONT_NORMAL, 0, 1, GetFontAttribute(FONT_NORMAL, FONTATTR_MAX_LETTER_HEIGHT) + 2, 2, 0);
+        CopyWindowToVram(gTasks[taskId].tMenuWindowId, COPYWIN_FULL);
+        gTasks[taskId].func = Task_OakSpeechLegacy_HandleDifficultyInput;
+    }
+}
+
+static void Task_OakSpeechLegacy_HandleDifficultyInput(u8 taskId)
+{
+    s8 input = Menu_ProcessInputNoWrapAround();
+    switch (input)
+    {
+    case 0:
+        gOakSpeechHardMode = FALSE;
+        break;
+    case 1:
+        gOakSpeechHardMode = TRUE;
+        break;
+    case MENU_B_PRESSED:
+    case MENU_NOTHING_CHOSEN:
+        return;
+    }
+    gTasks[taskId].func = Task_OakSpeechLegacy_ClearDifficultyWindows;
+}
+
+static void Task_OakSpeechLegacy_ClearDifficultyWindows(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
     ClearStdWindowAndFrameToTransparent(tMenuWindowId, TRUE);

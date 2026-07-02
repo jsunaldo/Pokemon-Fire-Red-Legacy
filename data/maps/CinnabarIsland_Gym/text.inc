@@ -188,3 +188,24 @@ CinnabarIsland_Gym_Text_SorryBadCall::
     .string "Sorry!\n"
     .string "Bad call!$"
 
+
+CinnabarIsland_Gym_Text_BlaineRematchAsk::
+	.string "BLAINE: {PLAYER}! You carry the\n"
+	.string "aura of a CHAMPION now.\p"
+	.string "I've rebuilt my team for this\n"
+	.string "moment. Will you battle me\l"
+	.string "at full strength?$"
+
+CinnabarIsland_Gym_Text_BlaineRematchDefeat::
+	.string "Magnificent!\n"
+	.string "You truly are the CHAMPION!$"
+
+CinnabarIsland_Gym_Text_BlaineRematchPost::
+	.string "That was a battle worth\n"
+	.string "remembering, {PLAYER}.\p"
+	.string "Come back any time. My team\n"
+	.string "and I will be waiting!$"
+
+CinnabarIsland_Gym_Text_BlaineRematchNo::
+	.string "Ha! Don't keep me waiting\n"
+	.string "too long, CHAMPION.$"

@@ -751,7 +751,31 @@
 //       only space for 25 additional trainers before trainer flag space overflows.
 //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
-#define NUM_TRAINERS                             743
+#define TRAINER_LEADER_BROCK_REMATCH                   743
+#define TRAINER_LEADER_MISTY_REMATCH                   744
+#define TRAINER_LEADER_LT_SURGE_REMATCH                745
+#define TRAINER_LEADER_ERIKA_REMATCH                   746
+#define TRAINER_LEADER_KOGA_REMATCH                    747
+#define TRAINER_LEADER_SABRINA_REMATCH                 748
+#define TRAINER_LEADER_BLAINE_REMATCH                  749
+
+#define TRAINER_PROF_OAK                         750
+#define TRAINER_COOLTRAINER_SMITH                751
+#define TRAINER_COOLTRAINER_CRAIG                752
+#define TRAINER_BUG_CATCHER_VICTOR               753
+#define TRAINER_BEAUTY_VIOLA                     754
+#define TRAINER_BURGLAR_SID                      755
+#define TRAINER_HIKER_BRUCE                      756
+
+#define TRAINER_LEADER_BROCK_REMATCH2                  757
+#define TRAINER_LEADER_MISTY_REMATCH2                  758
+#define TRAINER_LEADER_LT_SURGE_REMATCH2               759
+#define TRAINER_LEADER_ERIKA_REMATCH2                  760
+#define TRAINER_LEADER_KOGA_REMATCH2                   761
+#define TRAINER_LEADER_SABRINA_REMATCH2                762
+#define TRAINER_LEADER_BLAINE_REMATCH2                 763
+
+#define NUM_TRAINERS                             764
 #define MAX_TRAINERS_COUNT                       768
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

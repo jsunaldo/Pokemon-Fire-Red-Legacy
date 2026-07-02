@@ -991,6 +991,7 @@ static bool8 AccuracyCalcHelper(u16 move)
     gHitMarker &= ~HITMARKER_IGNORE_UNDERWATER;
 
     if ((WEATHER_HAS_EFFECT && (gBattleWeather & B_WEATHER_RAIN) && gBattleMoves[move].effect == EFFECT_THUNDER)
+     || (WEATHER_HAS_EFFECT && (gBattleWeather & B_WEATHER_HAIL) && gBattleMoves[move].effect == EFFECT_BLIZZARD)
      || (gBattleMoves[move].effect == EFFECT_ALWAYS_HIT || gBattleMoves[move].effect == EFFECT_VITAL_THROW))
     {
         JumpIfMoveFailed(7, move);
@@ -1186,6 +1187,7 @@ static void Cmd_critcalc(void)
                 + (gBattleMoves[gCurrentMove].effect == EFFECT_SKY_ATTACK)
                 + (gBattleMoves[gCurrentMove].effect == EFFECT_BLAZE_KICK)
                 + (gBattleMoves[gCurrentMove].effect == EFFECT_POISON_TAIL)
+                + (gBattleMoves[gCurrentMove].effect == EFFECT_LEAF_BLADE)
                 + (holdEffect == HOLD_EFFECT_SCOPE_LENS)
                 + 2 * (holdEffect == HOLD_EFFECT_LUCKY_PUNCH && gBattleMons[gBattlerAttacker].species == SPECIES_CHANSEY)
                 + 2 * (holdEffect == HOLD_EFFECT_STICK && gBattleMons[gBattlerAttacker].species == SPECIES_FARFETCHD);
@@ -1941,6 +1943,19 @@ static void Cmd_resultmessage(void)
     }
     else
     {
+        u8 moveType;
+        GET_MOVE_TYPE(gCurrentMove, moveType);
+        // FRLG Legacy (Emerald Legacy parity): announce Magma Armor blunting a
+        // Water move (its spAttack/8 reduction is otherwise invisible)
+        if (gBattleMons[gBattlerTarget].ability == ABILITY_MAGMA_ARMOR && moveType == TYPE_WATER
+         && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT) && !gBattleStruct->checkedMagmaArmor)
+        {
+            gBattleStruct->checkedMagmaArmor = TRUE;
+            gBattleCommunication[MSG_DISPLAY] = 1;
+            BattleScriptPushCursor();
+            gBattlescriptCurrInstr = BattleScript_MagmaArmorActivated;
+            return;
+        }
         gBattleCommunication[MSG_DISPLAY] = 1;
         switch (gMoveResultFlags & (u8)(~MOVE_RESULT_MISSED))
         {
@@ -3204,7 +3219,7 @@ static void Cmd_getexp(void)
                 gBattleScripting.getexpState = 5;
                 gBattleMoveDamage = 0; // used for exp
             }
-            else if (GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL) == MAX_LEVEL)
+            else if (GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL) >= GetLevelCap())
             {
                 *(&gBattleStruct->sentInPokes) >>= 1;
                 gBattleScripting.getexpState = 5;
@@ -3242,6 +3257,15 @@ static void Cmd_getexp(void)
                     else
                     {
                         i = STRINGID_EMPTYSTRING4;
+                    }
+
+                    // Hard Mode: clamp the gain so the mon can't pass the level cap
+                    {
+                        u32 capExp = gExperienceTables[gSpeciesInfo[GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_SPECIES)].growthRate][GetLevelCap()];
+                        u32 curExp = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_EXP);
+
+                        if (curExp + gBattleMoveDamage > capExp)
+                            gBattleMoveDamage = capExp > curExp ? capExp - curExp : 0;
                     }
 
                     // get exp getter battlerId
@@ -4062,6 +4086,8 @@ static void Cmd_moveend(void)
     u16 *choicedMoveAtk = NULL;
     u8 endMode, endState;
     u16 originallyUsedMove;
+
+    gBattleStruct->checkedMagmaArmor = FALSE; // FRLG Legacy
 
     if (gChosenMove == MOVE_UNAVAILABLE)
         originallyUsedMove = MOVE_NONE;

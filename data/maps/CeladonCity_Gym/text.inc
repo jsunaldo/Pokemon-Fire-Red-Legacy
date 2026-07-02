@@ -150,3 +150,24 @@ CeladonCity_Gym_Text_GymStatuePlayerWon::
     .string "WINNING TRAINERS:\n"
     .string "{RIVAL}, {PLAYER}$"
 
+
+CeladonCity_Gym_Text_ErikaRematchAsk::
+	.string "ERIKA: {PLAYER}! You carry the\n"
+	.string "aura of a CHAMPION now.\p"
+	.string "I've rebuilt my team for this\n"
+	.string "moment. Will you battle me\l"
+	.string "at full strength?$"
+
+CeladonCity_Gym_Text_ErikaRematchDefeat::
+	.string "Magnificent!\n"
+	.string "You truly are the CHAMPION!$"
+
+CeladonCity_Gym_Text_ErikaRematchPost::
+	.string "That was a battle worth\n"
+	.string "remembering, {PLAYER}.\p"
+	.string "Come back any time. My team\n"
+	.string "and I will be waiting!$"
+
+CeladonCity_Gym_Text_ErikaRematchNo::
+	.string "Ha! Don't keep me waiting\n"
+	.string "too long, CHAMPION.$"

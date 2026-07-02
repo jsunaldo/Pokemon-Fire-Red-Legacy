@@ -5,6 +5,7 @@ SaffronCity_Gym_EventScript_Sabrina::
 	famechecker FAMECHECKER_SABRINA, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
 	trainerbattle_single TRAINER_LEADER_SABRINA, SaffronCity_Gym_Text_SabrinaIntro, SaffronCity_Gym_Text_SabrinaDefeat, SaffronCity_Gym_EventScript_DefeatedSabrina, NO_MUSIC
 	goto_if_unset FLAG_GOT_TM04_FROM_SABRINA, SaffronCity_Gym_EventScript_GiveTM04
+	goto_if_set FLAG_SYS_GAME_CLEAR, SaffronCity_Gym_EventScript_SabrinaRematch
 	msgbox SaffronCity_Gym_Text_ExplainTM04
 	release
 	end
@@ -93,4 +94,26 @@ SaffronCity_Gym_EventScript_GymStatue::
 SaffronCity_Gym_EventScript_GymStatuePostVictory::
 	msgbox SaffronCity_Gym_Text_GymStatuePlayerWon
 	releaseall
+	end
+
+SaffronCity_Gym_EventScript_SabrinaRematch::
+	msgbox SaffronCity_Gym_Text_SabrinaRematchAsk, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, SaffronCity_Gym_EventScript_SabrinaRematchDeclined
+	goto_if_set FLAG_SYS_CAN_LINK_WITH_RS, SaffronCity_Gym_EventScript_SabrinaRematch2
+	cleartrainerflag TRAINER_LEADER_SABRINA_REMATCH
+	trainerbattle_no_intro TRAINER_LEADER_SABRINA_REMATCH, SaffronCity_Gym_Text_SabrinaRematchDefeat
+	msgbox SaffronCity_Gym_Text_SabrinaRematchPost
+	release
+	end
+
+SaffronCity_Gym_EventScript_SabrinaRematchDeclined::
+	msgbox SaffronCity_Gym_Text_SabrinaRematchNo
+	release
+	end
+
+SaffronCity_Gym_EventScript_SabrinaRematch2::
+	cleartrainerflag TRAINER_LEADER_SABRINA_REMATCH2
+	trainerbattle_no_intro TRAINER_LEADER_SABRINA_REMATCH2, SaffronCity_Gym_Text_SabrinaRematchDefeat
+	msgbox SaffronCity_Gym_Text_SabrinaRematchPost
+	release
 	end

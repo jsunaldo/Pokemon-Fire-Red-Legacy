@@ -90,3 +90,24 @@ CeruleanCity_Gym_Text_GymStatuePlayerWon::
     .string "WINNING TRAINERS:\n"
     .string "{RIVAL}, {PLAYER}$"
 
+
+CeruleanCity_Gym_Text_MistyRematchAsk::
+	.string "MISTY: {PLAYER}! You carry the\n"
+	.string "aura of a CHAMPION now.\p"
+	.string "I've rebuilt my team for this\n"
+	.string "moment. Will you battle me\l"
+	.string "at full strength?$"
+
+CeruleanCity_Gym_Text_MistyRematchDefeat::
+	.string "Magnificent!\n"
+	.string "You truly are the CHAMPION!$"
+
+CeruleanCity_Gym_Text_MistyRematchPost::
+	.string "That was a battle worth\n"
+	.string "remembering, {PLAYER}.\p"
+	.string "Come back any time. My team\n"
+	.string "and I will be waiting!$"
+
+CeruleanCity_Gym_Text_MistyRematchNo::
+	.string "Ha! Don't keep me waiting\n"
+	.string "too long, CHAMPION.$"

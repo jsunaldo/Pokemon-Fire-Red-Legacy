@@ -39,3 +39,8 @@ Route15_WestEntrance_2F_Text_SmallIslandOnHorizon::
     .string "It looks like a small island on\n"
     .string "the horizon!$"
 
+
+Route15_WestEntrance_2F_Text_OakAskedMeToGiveYouThis::
+	.string "Oh! {PLAYER}, right?\p"
+	.string "PROF. OAK asked me to give\n"
+	.string "you this!$"

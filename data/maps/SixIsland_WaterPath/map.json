@@ -156,6 +156,21 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SixIsland_WaterPath_EventScript_ItemDragonScale",
       "flag": "FLAG_HIDE_SIX_ISLAND_WATER_PATH_DRAGON_SCALE"
+    },
+    {
+      "local_id": "LOCALID_LEGEND_SUICUNE",
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_SUICUNE",
+      "x": 13,
+      "y": 50,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SixIsland_WaterPath_EventScript_Legend_SUICUNE",
+      "flag": "0"
     }
   ],
   "warp_events": [

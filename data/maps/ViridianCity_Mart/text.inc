@@ -24,3 +24,34 @@ ViridianCity_Mart_Text_GotToBuySomePotions::
     .string "You never know when your POKéMON\n"
     .string "will need quick healing.$"
 
+
+ViridianCity_Mart_Text_ImFishingGuruDoYouLikeToFish::
+	.string "I'm the FISHING GURU!\n"
+	.string "I simply Looove fishing!\p"
+	.string "Do you like to fish?$"
+
+ViridianCity_Mart_Text_GrandTakeThisAndFish::
+	.string "Grand! I like your style!\p"
+	.string "Take this and fish, young one!$"
+
+ViridianCity_Mart_Text_ReceivedOldRodFromGuru::
+	.string "{PLAYER} received an OLD ROD\n"
+	.string "from the FISHING GURU!$"
+
+ViridianCity_Mart_Text_FishingIsAWayOfLife::
+	.string "Fishing is a way of life!\p"
+	.string "From the seas to rivers, go out\n"
+	.string "and land the big one!$"
+
+ViridianCity_Mart_Text_OhThatsSoDisappointing::
+	.string "Oh…\n"
+	.string "That's so disappointing…$"
+
+ViridianCity_Mart_Text_HowAreTheFishBiting::
+	.string "Hello there, {PLAYER}!\p"
+	.string "How are the fish biting?$"
+
+ViridianCity_Mart_Text_NoRoomForThisGift::
+	.string "Oh no!\p"
+	.string "You have no room for this\n"
+	.string "nice gift!$"

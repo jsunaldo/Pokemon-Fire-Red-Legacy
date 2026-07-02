@@ -1,6 +1,55 @@
 SevenIsland_SevaultCanyon_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, SevenIsland_SevaultCanyon_OnTransition
 	.byte 0
 
 SevenIsland_SevaultCanyon_EventScript_RouteSign::
 	msgbox SevenIsland_SevaultCanyon_Text_RouteSign, MSGBOX_SIGN
 	end
+
+SevenIsland_SevaultCanyon_OnTransition::
+	call SevenIsland_SevaultCanyon_EventScript_HideLegend_ENTEI
+	end
+
+SevenIsland_SevaultCanyon_EventScript_Legend_ENTEI::
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
+	lock
+	faceplayer
+	goto_if_eq VAR_LEGEND_CAUGHT_01, 1, SevenIsland_SevaultCanyon_EventScript_LegendGone_ENTEI
+	waitse
+	playmoncry SPECIES_ENTEI, CRY_MODE_ENCOUNTER
+	message SevenIsland_SevaultCanyon_Text_Legend_ENTEI
+	waitmessage
+	waitmoncry
+	delay 20
+	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
+	waitbuttonpress
+	setwildbattle SPECIES_ENTEI, 50
+	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	special StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, SevenIsland_SevaultCanyon_EventScript_LegendDone_ENTEI
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, SevenIsland_SevaultCanyon_EventScript_LegendDone_ENTEI
+	release
+	end
+
+SevenIsland_SevaultCanyon_EventScript_LegendDone_ENTEI::
+	setvar VAR_LEGEND_CAUGHT_01, 1
+	removeobject LOCALID_LEGEND_ENTEI
+	release
+	end
+
+SevenIsland_SevaultCanyon_EventScript_LegendGone_ENTEI::
+	removeobject LOCALID_LEGEND_ENTEI
+	release
+	end
+
+SevenIsland_SevaultCanyon_EventScript_HideLegend_ENTEI::
+	goto_if_eq VAR_LEGEND_CAUGHT_01, 1, SevenIsland_SevaultCanyon_EventScript_DoHideLegend_ENTEI
+	return
+
+SevenIsland_SevaultCanyon_EventScript_DoHideLegend_ENTEI::
+	removeobject LOCALID_LEGEND_ENTEI
+	return

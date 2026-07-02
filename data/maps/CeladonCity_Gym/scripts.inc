@@ -5,6 +5,7 @@ CeladonCity_Gym_EventScript_Erika::
 	famechecker FAMECHECKER_ERIKA, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
 	trainerbattle_single TRAINER_LEADER_ERIKA, CeladonCity_Gym_Text_ErikaIntro, CeladonCity_Gym_Text_ErikaDefeat, CeladonCity_Gym_EventScript_DefeatedErika, NO_MUSIC
 	goto_if_unset FLAG_GOT_TM19_FROM_ERIKA, CeladonCity_Gym_EventScript_GiveTM19
+	goto_if_set FLAG_SYS_GAME_CLEAR, CeladonCity_Gym_EventScript_ErikaRematch
 	famechecker FAMECHECKER_ERIKA, 4
 	msgbox CeladonCity_Gym_Text_ErikaPostBattle
 	release
@@ -81,4 +82,26 @@ CeladonCity_Gym_EventScript_GymStatue::
 CeladonCity_Gym_EventScript_GymStatuePostVictory::
 	msgbox CeladonCity_Gym_Text_GymStatuePlayerWon
 	releaseall
+	end
+
+CeladonCity_Gym_EventScript_ErikaRematch::
+	msgbox CeladonCity_Gym_Text_ErikaRematchAsk, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, CeladonCity_Gym_EventScript_ErikaRematchDeclined
+	goto_if_set FLAG_SYS_CAN_LINK_WITH_RS, CeladonCity_Gym_EventScript_ErikaRematch2
+	cleartrainerflag TRAINER_LEADER_ERIKA_REMATCH
+	trainerbattle_no_intro TRAINER_LEADER_ERIKA_REMATCH, CeladonCity_Gym_Text_ErikaRematchDefeat
+	msgbox CeladonCity_Gym_Text_ErikaRematchPost
+	release
+	end
+
+CeladonCity_Gym_EventScript_ErikaRematchDeclined::
+	msgbox CeladonCity_Gym_Text_ErikaRematchNo
+	release
+	end
+
+CeladonCity_Gym_EventScript_ErikaRematch2::
+	cleartrainerflag TRAINER_LEADER_ERIKA_REMATCH2
+	trainerbattle_no_intro TRAINER_LEADER_ERIKA_REMATCH2, CeladonCity_Gym_Text_ErikaRematchDefeat
+	msgbox CeladonCity_Gym_Text_ErikaRematchPost
+	release
 	end

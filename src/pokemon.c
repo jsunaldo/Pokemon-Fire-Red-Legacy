@@ -66,7 +66,7 @@ static EWRAM_DATA struct MonSpritesGfxManager *sMonSpritesGfxManager = NULL;
 static union PokemonSubstruct *GetSubstruct(struct BoxPokemon *boxMon, u32 personality, u8 substructType);
 static u16 GetDeoxysStat(struct Pokemon *mon, s32 statId);
 static bool8 IsShinyOtIdPersonality(u32 otId, u32 personality);
-static u16 ModifyStatByNature(u8 nature, u16 n, u8 statIndex);
+u16 ModifyStatByNature(u8 nature, u16 n, u8 statIndex);
 static u8 GetNatureFromPersonality(u32 personality);
 static bool8 PartyMonHasStatus(struct Pokemon *mon, u32 unused, u32 healMask, u8 battleId);
 static bool8 HealStatusConditions(struct Pokemon *mon, u32 unused, u32 healMask, u8 battleId);
@@ -2477,6 +2477,18 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         defense *= 2;
     if (attackerHoldEffect == HOLD_EFFECT_THICK_CLUB && (attacker->species == SPECIES_CUBONE || attacker->species == SPECIES_MAROWAK))
         attack *= 2;
+    // FRLG Legacy (Emerald Legacy parity): weather defensive boosts and the
+    // Magma Armor water resistance
+    if (WEATHER_HAS_EFFECT)
+    {
+        if ((gBattleWeather & B_WEATHER_HAIL) && (defender->type1 == TYPE_ICE || defender->type2 == TYPE_ICE))
+            defense = (150 * defense) / 100;
+        if ((gBattleWeather & B_WEATHER_SANDSTORM)
+         && (defender->type1 == TYPE_ROCK || defender->type2 == TYPE_ROCK || defender->ability == ABILITY_SAND_VEIL))
+            spDefense = (150 * spDefense) / 100;
+    }
+    if (defender->ability == ABILITY_MAGMA_ARMOR && type == TYPE_WATER)
+        spAttack /= 8;
     if (defender->ability == ABILITY_THICK_FAT && (type == TYPE_FIRE || type == TYPE_ICE))
         spAttack /= 2;
     if (attacker->ability == ABILITY_HUSTLE)
@@ -3766,6 +3778,24 @@ u8 CalculateEnemyPartyCount(void)
     return gEnemyPartyCount;
 }
 
+// FireRed Legacy Hard Mode: the party level cap tracks the next boss ace's
+// level (Yellow Legacy's table). MAX_LEVEL when on Normal mode or post-game.
+u8 GetLevelCap(void)
+{
+    static const u8 sBadgeLevelCaps[NUM_BADGES + 1] = {12, 21, 24, 35, 43, 50, 53, 55, 65};
+    u32 badges = 0;
+    u16 flag;
+
+    if (!FlagGet(FLAG_HARD_MODE) || FlagGet(FLAG_SYS_GAME_CLEAR))
+        return MAX_LEVEL;
+    for (flag = FLAG_BADGE01_GET; flag <= FLAG_BADGE08_GET; flag++)
+    {
+        if (FlagGet(flag))
+            badges++;
+    }
+    return sBadgeLevelCaps[badges];
+}
+
 u8 GetMonsStateToDoubles(void)
 {
     s32 aliveCount = 0;
@@ -4162,7 +4192,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
 
             // Rare Candy
             if ((itemEffect[cmdIndex] & ITEM3_LEVEL_UP)
-             && GetMonData(mon, MON_DATA_LEVEL, NULL) != MAX_LEVEL)
+             && GetMonData(mon, MON_DATA_LEVEL, NULL) < GetLevelCap())
             {
                 data = gExperienceTables[gSpeciesInfo[GetMonData(mon, MON_DATA_SPECIES, NULL)].growthRate][GetMonData(mon, MON_DATA_LEVEL, NULL) + 1];
                 SetMonData(mon, MON_DATA_EXP, &data);
@@ -4652,7 +4682,7 @@ bool8 PokemonItemUseNoEffect(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mo
 
             // Rare Candy
             if ((itemEffect[cmdIndex] & ITEM3_LEVEL_UP)
-             && GetMonData(mon, MON_DATA_LEVEL, NULL) != MAX_LEVEL)
+             && GetMonData(mon, MON_DATA_LEVEL, NULL) < GetLevelCap())
                 retVal = FALSE;
 
             // Cure status
@@ -5401,7 +5431,7 @@ u8 GetTrainerEncounterMusicId(u16 trainerId)
     return TRAINER_ENCOUNTER_MUSIC(trainerId);
 }
 
-static u16 ModifyStatByNature(u8 nature, u16 stat, u8 statIndex)
+u16 ModifyStatByNature(u8 nature, u16 stat, u8 statIndex)
 {
 // Because this is a u16 it will be unable to store the
 // result of the multiplication for any stat > 595 for a

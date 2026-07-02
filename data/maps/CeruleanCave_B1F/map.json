@@ -182,6 +182,20 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "EventScript_RockSmash",
       "flag": "FLAG_TEMP_1A"
+    },
+    {
+      "type": "object",
+      "elevation": 3,
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_M",
+      "x": 7,
+      "y": 12,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "CeruleanCave_B1F_EventScript_Smith",
+      "flag": "0"
     }
   ],
   "warp_events": [

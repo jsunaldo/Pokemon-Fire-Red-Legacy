@@ -59,3 +59,6 @@ FiveIsland_WaterLabyrinth_Text_AlizeDefeat::
 FiveIsland_WaterLabyrinth_Text_AlizePostBattle::
     .string "You know, I think you have the\n"
     .string "talent to be a good BREEDER.$"
+
+FiveIsland_WaterLabyrinth_Text_Legend_KYOGRE::
+	.string "Kyogre!$"

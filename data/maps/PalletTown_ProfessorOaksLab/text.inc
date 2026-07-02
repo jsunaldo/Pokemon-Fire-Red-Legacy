@@ -355,3 +355,31 @@ PalletTown_ProfessorOaksLab_Text_RivalIllCompleteThePokedex::
     .string "ONE ISLAND first…\p"
     .string "Anyways, I'm outta here!$"
 
+
+PalletTown_ProfessorOaksLab_Text_OakMewQuest::
+	.string "OAK: {PLAYER}… 150 POKéMON?!\n"
+	.string "Your POKéDEX is a marvel!\p"
+	.string "And yet… the very first entry\n"
+	.string "ever written remains blank.\p"
+	.string "MEW, the ancestor of POKéMON.\n"
+	.string "Reports place it near CINNABAR…\p"
+	.string "Meet me on the second floor of\n"
+	.string "the POKéMON MANSION!$"
+
+PalletTown_ProfessorOaksLab_Text_OakMeetAtMansion::
+	.string "OAK: The POKéMON MANSION,\n"
+	.string "{PLAYER}! On CINNABAR ISLAND!$"
+
+PalletTown_ProfessorOaksLab_Text_OakGivesRivalEevee::
+	.string "OAK: Hold on, {RIVAL}.\n"
+	.string "Not that one.\p"
+	.string "Trade it here. I've been saving\n"
+	.string "something special for you.\p"
+	.string "A rare POKéMON I caught myself…\n"
+	.string "EEVEE!\p"
+	.string "Its potential is limitless. It can\n"
+	.string "evolve in many different ways.\p"
+	.string "{RIVAL}: Heh, fine by me!\n"
+	.string "A rare POKéMON suits me anyway.\p"
+	.string "Smell that, {PLAYER}? That's the\n"
+	.string "scent of a future CHAMPION!$"

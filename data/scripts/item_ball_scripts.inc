@@ -127,7 +127,7 @@ RocketHideout_B3F_EventScript_ItemTM21::
 	end
 
 RocketHideout_B4F_EventScript_ItemTM49::
-	finditem ITEM_TM49
+	finditem ITEM_TM35_FLAMETHROWER
 	end
 
 RocketHideout_B4F_EventScript_ItemMaxEther::

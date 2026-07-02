@@ -42,3 +42,18 @@ VictoryRoad_1F_EventScript_Rolando::
 	trainerbattle_single TRAINER_COOLTRAINER_ROLANDO, VictoryRoad_1F_Text_RolandoIntro, VictoryRoad_1F_Text_RolandoDefeat
 	msgbox VictoryRoad_1F_Text_RolandoPostBattle, MSGBOX_AUTOCLOSE
 	end
+
+VictoryRoad_1F_EventScript_Victor::
+	trainerbattle_single TRAINER_BUG_CATCHER_VICTOR, VictoryRoad_1F_Text_VictorIntro, VictoryRoad_1F_Text_VictorDefeat
+	msgbox VictoryRoad_1F_Text_VictorPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+VictoryRoad_1F_EventScript_Viola::
+	trainerbattle_single TRAINER_BEAUTY_VIOLA, VictoryRoad_1F_Text_ViolaIntro, VictoryRoad_1F_Text_ViolaDefeat
+	msgbox VictoryRoad_1F_Text_ViolaPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+VictoryRoad_1F_EventScript_Sid::
+	trainerbattle_single TRAINER_BURGLAR_SID, VictoryRoad_1F_Text_SidIntro, VictoryRoad_1F_Text_SidDefeat
+	msgbox VictoryRoad_1F_Text_SidPostBattle, MSGBOX_AUTOCLOSE
+	end

@@ -17,8 +17,8 @@ FuchsiaCity_House2_Text_ReceivedGoodRod::
 FuchsiaCity_House2_Text_GoodRodCanCatchBetterMons::
     .string "Fishing is a way of life!\n"
     .string "It is like the finest poetry.\p"
-    .string "A crummy OLD ROD could only catch\n"
-    .string "MAGIKARP, yes?\p"
+    .string "A crummy OLD ROD can only catch\n"
+    .string "puny little POKéMON, yes?\p"
     .string "But with a GOOD ROD, you can\n"
     .string "catch much better POKéMON.$"
 
@@ -35,3 +35,12 @@ FuchsiaCity_House2_Text_YouHaveNoRoomForGift::
     .string "I had a gift for you, but you have\n"
     .string "no room for it!$"
 
+
+FuchsiaCity_House2_Text_FishedUpOneOfThese::
+	.string "Grand! I like your style!\p"
+	.string "I don't have a spare rod to give\n"
+	.string "you, but I did fish myself up one\l"
+	.string "of these in the SEAFOAM ISLANDS!$"
+
+FuchsiaCity_House2_Text_ObtainedFossilMon::
+	.string "{PLAYER} obtained {STR_VAR_1}!$"

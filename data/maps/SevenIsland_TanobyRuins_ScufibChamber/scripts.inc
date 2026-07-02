@@ -3,5 +3,53 @@ SevenIsland_TanobyRuins_ScufibChamber_MapScripts::
 	.byte 0
 
 SevenIsland_TanobyRuins_ScufibChamber_OnTransition::
+	call SevenIsland_TanobyRuins_ScufibChamber_EventScript_HideLegend_REGISTEEL
 	call EventScript_TryDarkenRuins
 	end
+
+SevenIsland_TanobyRuins_ScufibChamber_EventScript_Legend_REGISTEEL::
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
+	lock
+	faceplayer
+	goto_if_eq VAR_LEGEND_CAUGHT_06, 1, SevenIsland_TanobyRuins_ScufibChamber_EventScript_LegendGone_REGISTEEL
+	waitse
+	playmoncry SPECIES_REGISTEEL, CRY_MODE_ENCOUNTER
+	message SevenIsland_TanobyRuins_ScufibChamber_Text_Legend_REGISTEEL
+	waitmessage
+	waitmoncry
+	delay 20
+	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
+	waitbuttonpress
+	setwildbattle SPECIES_REGISTEEL, 50
+	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	special StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, SevenIsland_TanobyRuins_ScufibChamber_EventScript_LegendDone_REGISTEEL
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, SevenIsland_TanobyRuins_ScufibChamber_EventScript_LegendDone_REGISTEEL
+	release
+	end
+
+SevenIsland_TanobyRuins_ScufibChamber_EventScript_LegendDone_REGISTEEL::
+	setvar VAR_LEGEND_CAUGHT_06, 1
+	removeobject LOCALID_LEGEND_REGISTEEL
+	release
+	end
+
+SevenIsland_TanobyRuins_ScufibChamber_EventScript_LegendGone_REGISTEEL::
+	removeobject LOCALID_LEGEND_REGISTEEL
+	release
+	end
+
+SevenIsland_TanobyRuins_ScufibChamber_EventScript_HideLegend_REGISTEEL::
+	goto_if_eq VAR_LEGEND_CAUGHT_06, 1, SevenIsland_TanobyRuins_ScufibChamber_EventScript_DoHideLegend_REGISTEEL
+	return
+
+SevenIsland_TanobyRuins_ScufibChamber_EventScript_DoHideLegend_REGISTEEL::
+	removeobject LOCALID_LEGEND_REGISTEEL
+	return
+
+SevenIsland_TanobyRuins_ScufibChamber_Text_Legend_REGISTEEL::
+	.string "Registeel!$"

@@ -115,6 +115,7 @@ static u16 GetCaughtMonsCount(void);
 static void PrintPokedexOnCard(void);
 static void PrintTimeOnCard(void);
 static void PrintProfilePhraseOnCard(void);
+static void PrintHardModeOnCard(void);
 static void BufferNameForCardBack(void);
 static void PrintNameOnCardBack(void);
 static void BufferHofDebutTime(void);
@@ -1065,6 +1066,9 @@ static bool8 PrintAllOnCardFront(void)
     case 5:
         PrintProfilePhraseOnCard();
         break;
+    case 6:
+        PrintHardModeOnCard();
+        break;
     default:
         sTrainerCardDataPtr->printState = 0;
         return TRUE;
@@ -1231,6 +1235,15 @@ static void PrintTimeOnCard(void)
 
     ConvertIntToDecimalStringN(buffer, minutes, STR_CONV_MODE_LEADING_ZEROS, 2);
     AddTextPrinterParameterized3(1, sTrainerCardFontIds[1], sTrainerCardTimeMinutesXPositions[sTrainerCardDataPtr->cardType], sTrainerCardTimeMinutesYPositions[sTrainerCardDataPtr->cardType], sTrainerCardTextColors, TEXT_SKIP_DRAW, buffer);
+}
+
+// FireRed Legacy: show the chosen difficulty on the player's own card front.
+static void PrintHardModeOnCard(void)
+{
+    static const u8 sText_HardMode[] = _("HARD MODE");
+
+    if (!sTrainerCardDataPtr->isLink && FlagGet(FLAG_HARD_MODE))
+        AddTextPrinterParameterized3(1, sTrainerCardFontIds[1], 20, 104, sTrainerCardTextColors, TEXT_SKIP_DRAW, sText_HardMode);
 }
 
 static void PrintProfilePhraseOnCard(void)

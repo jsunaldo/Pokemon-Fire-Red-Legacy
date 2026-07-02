@@ -99,3 +99,15 @@ PokemonLeague_ChampionsRoom_Text_OakPlayerComeWithMe::
     .string "{PLAYER}!\n"
     .string "Come with me!$"
 
+
+PokemonLeague_ChampionsRoom_Text_RivalBenchedEevee::
+	.string "{RIVAL}: Notice anything different?\p"
+	.string "The POKéMON GRAMPS gave me is\n"
+	.string "taking a well-earned rest.\p"
+	.string "It carried me all the way here.\n"
+	.string "But a real CHAMPION can't lean\l"
+	.string "on one partner forever!\p"
+	.string "I rebuilt this team myself, from\n"
+	.string "scratch. No handouts, no crutch!\p"
+	.string "Beat THIS team, and I'll admit\n"
+	.string "you've earned that title!$"

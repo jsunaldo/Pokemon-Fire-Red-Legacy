@@ -26,3 +26,6 @@ PokemonMansion_B1F_Text_MewtwoIsFarTooPowerful::
     .string "We have failed to curb its vicious\n"
     .string "tendencies…$"
 
+
+PokemonMansion_B1F_Text_Mew::
+	.string "Mew!$"

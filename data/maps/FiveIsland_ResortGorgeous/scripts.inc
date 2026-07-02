@@ -1,4 +1,5 @@
 FiveIsland_ResortGorgeous_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, FiveIsland_ResortGorgeous_OnTransition
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, FiveIsland_ResortGorgeous_OnWarp
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, FiveIsland_ResortGorgeous_OnFrame
 	.byte 0
@@ -42,3 +43,96 @@ FiveIsland_ResortGorgeous_Movement_SelphyEnterHome::
 FiveIsland_ResortGorgeous_EventScript_SelphysHouseSign::
 	msgbox FiveIsland_ResortGorgeous_Text_SelphysHouse, MSGBOX_SIGN
 	end
+
+FiveIsland_ResortGorgeous_OnTransition::
+	call FiveIsland_ResortGorgeous_EventScript_HideLegend_LATIAS
+	call FiveIsland_ResortGorgeous_EventScript_HideLegend_LATIOS
+	end
+
+FiveIsland_ResortGorgeous_EventScript_Legend_LATIAS::
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
+	lock
+	faceplayer
+	goto_if_eq VAR_LEGEND_CAUGHT_10, 1, FiveIsland_ResortGorgeous_EventScript_LegendGone_LATIAS
+	waitse
+	playmoncry SPECIES_LATIAS, CRY_MODE_ENCOUNTER
+	message FiveIsland_ResortGorgeous_Text_Legend_LATIAS
+	waitmessage
+	waitmoncry
+	delay 20
+	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
+	waitbuttonpress
+	setwildbattle SPECIES_LATIAS, 50
+	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	special StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, FiveIsland_ResortGorgeous_EventScript_LegendDone_LATIAS
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, FiveIsland_ResortGorgeous_EventScript_LegendDone_LATIAS
+	release
+	end
+
+FiveIsland_ResortGorgeous_EventScript_LegendDone_LATIAS::
+	setvar VAR_LEGEND_CAUGHT_10, 1
+	removeobject LOCALID_LEGEND_LATIAS
+	release
+	end
+
+FiveIsland_ResortGorgeous_EventScript_LegendGone_LATIAS::
+	removeobject LOCALID_LEGEND_LATIAS
+	release
+	end
+
+FiveIsland_ResortGorgeous_EventScript_Legend_LATIOS::
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
+	lock
+	faceplayer
+	goto_if_eq VAR_LEGEND_CAUGHT_11, 1, FiveIsland_ResortGorgeous_EventScript_LegendGone_LATIOS
+	waitse
+	playmoncry SPECIES_LATIOS, CRY_MODE_ENCOUNTER
+	message FiveIsland_ResortGorgeous_Text_Legend_LATIOS
+	waitmessage
+	waitmoncry
+	delay 20
+	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
+	waitbuttonpress
+	setwildbattle SPECIES_LATIOS, 50
+	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	special StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, FiveIsland_ResortGorgeous_EventScript_LegendDone_LATIOS
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, FiveIsland_ResortGorgeous_EventScript_LegendDone_LATIOS
+	release
+	end
+
+FiveIsland_ResortGorgeous_EventScript_LegendDone_LATIOS::
+	setvar VAR_LEGEND_CAUGHT_11, 1
+	removeobject LOCALID_LEGEND_LATIOS
+	release
+	end
+
+FiveIsland_ResortGorgeous_EventScript_LegendGone_LATIOS::
+	removeobject LOCALID_LEGEND_LATIOS
+	release
+	end
+
+FiveIsland_ResortGorgeous_EventScript_HideLegend_LATIAS::
+	goto_if_eq VAR_LEGEND_CAUGHT_10, 1, FiveIsland_ResortGorgeous_EventScript_DoHideLegend_LATIAS
+	return
+
+FiveIsland_ResortGorgeous_EventScript_DoHideLegend_LATIAS::
+	removeobject LOCALID_LEGEND_LATIAS
+	return
+
+FiveIsland_ResortGorgeous_EventScript_HideLegend_LATIOS::
+	goto_if_eq VAR_LEGEND_CAUGHT_11, 1, FiveIsland_ResortGorgeous_EventScript_DoHideLegend_LATIOS
+	return
+
+FiveIsland_ResortGorgeous_EventScript_DoHideLegend_LATIOS::
+	removeobject LOCALID_LEGEND_LATIOS
+	return

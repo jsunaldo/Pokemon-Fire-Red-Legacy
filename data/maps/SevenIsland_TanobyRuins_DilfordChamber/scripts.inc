@@ -3,5 +3,53 @@ SevenIsland_TanobyRuins_DilfordChamber_MapScripts::
 	.byte 0
 
 SevenIsland_TanobyRuins_DilfordChamber_OnTransition::
+	call SevenIsland_TanobyRuins_DilfordChamber_EventScript_HideLegend_REGIROCK
 	call EventScript_TryDarkenRuins
 	end
+
+SevenIsland_TanobyRuins_DilfordChamber_EventScript_Legend_REGIROCK::
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
+	lock
+	faceplayer
+	goto_if_eq VAR_LEGEND_CAUGHT_04, 1, SevenIsland_TanobyRuins_DilfordChamber_EventScript_LegendGone_REGIROCK
+	waitse
+	playmoncry SPECIES_REGIROCK, CRY_MODE_ENCOUNTER
+	message SevenIsland_TanobyRuins_DilfordChamber_Text_Legend_REGIROCK
+	waitmessage
+	waitmoncry
+	delay 20
+	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
+	waitbuttonpress
+	setwildbattle SPECIES_REGIROCK, 50
+	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	special StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, SevenIsland_TanobyRuins_DilfordChamber_EventScript_LegendDone_REGIROCK
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, SevenIsland_TanobyRuins_DilfordChamber_EventScript_LegendDone_REGIROCK
+	release
+	end
+
+SevenIsland_TanobyRuins_DilfordChamber_EventScript_LegendDone_REGIROCK::
+	setvar VAR_LEGEND_CAUGHT_04, 1
+	removeobject LOCALID_LEGEND_REGIROCK
+	release
+	end
+
+SevenIsland_TanobyRuins_DilfordChamber_EventScript_LegendGone_REGIROCK::
+	removeobject LOCALID_LEGEND_REGIROCK
+	release
+	end
+
+SevenIsland_TanobyRuins_DilfordChamber_EventScript_HideLegend_REGIROCK::
+	goto_if_eq VAR_LEGEND_CAUGHT_04, 1, SevenIsland_TanobyRuins_DilfordChamber_EventScript_DoHideLegend_REGIROCK
+	return
+
+SevenIsland_TanobyRuins_DilfordChamber_EventScript_DoHideLegend_REGIROCK::
+	removeobject LOCALID_LEGEND_REGIROCK
+	return
+
+SevenIsland_TanobyRuins_DilfordChamber_Text_Legend_REGIROCK::
+	.string "Regirock!$"

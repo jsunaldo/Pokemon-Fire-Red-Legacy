@@ -119,3 +119,20 @@ PowerPlant_EventScript_FoughtElectrode2::
 	setflag FLAG_FOUGHT_POWER_PLANT_ELECTRODE_2
 	goto EventScript_RemoveStaticMon
 	end
+
+PowerPlant_EventScript_Craig::
+	trainerbattle_single TRAINER_COOLTRAINER_CRAIG, PowerPlant_Text_CraigIntro, PowerPlant_Text_CraigDefeat
+	msgbox PowerPlant_Text_CraigPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+PowerPlant_Text_CraigIntro::
+	.string "CRAIG: I've tracked the legendary\n"
+	.string "bird of thunder to this spot.\p"
+	.string "Prove you deserve to face it!$"
+
+PowerPlant_Text_CraigDefeat::
+	.string "Zapped…!$"
+
+PowerPlant_Text_CraigPostBattle::
+	.string "Its cry shakes the very walls.\n"
+	.string "Careful, challenger.$"

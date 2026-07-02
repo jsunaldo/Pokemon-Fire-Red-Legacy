@@ -5,6 +5,7 @@ CeruleanCity_Gym_EventScript_Misty::
 	famechecker FAMECHECKER_MISTY, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
 	trainerbattle_single TRAINER_LEADER_MISTY, CeruleanCity_Gym_Text_MistyIntro, CeruleanCity_Gym_Text_MistyDefeat, CeruleanCity_Gym_EventScript_MistyDefeated, NO_MUSIC
 	goto_if_unset FLAG_GOT_TM03_FROM_MISTY, CeruleanCity_Gym_EventScript_GiveTM03
+	goto_if_set FLAG_SYS_GAME_CLEAR, CeruleanCity_Gym_EventScript_MistyRematch
 	msgbox CeruleanCity_Gym_Text_ExplainTM03
 	release
 	end
@@ -67,4 +68,26 @@ CeruleanCity_Gym_EventScript_GymStatue::
 CeruleanCity_Gym_EventScript_GymStatuePostVictory::
 	msgbox CeruleanCity_Gym_Text_GymStatuePlayerWon
 	releaseall
+	end
+
+CeruleanCity_Gym_EventScript_MistyRematch::
+	msgbox CeruleanCity_Gym_Text_MistyRematchAsk, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, CeruleanCity_Gym_EventScript_MistyRematchDeclined
+	goto_if_set FLAG_SYS_CAN_LINK_WITH_RS, CeruleanCity_Gym_EventScript_MistyRematch2
+	cleartrainerflag TRAINER_LEADER_MISTY_REMATCH
+	trainerbattle_no_intro TRAINER_LEADER_MISTY_REMATCH, CeruleanCity_Gym_Text_MistyRematchDefeat
+	msgbox CeruleanCity_Gym_Text_MistyRematchPost
+	release
+	end
+
+CeruleanCity_Gym_EventScript_MistyRematchDeclined::
+	msgbox CeruleanCity_Gym_Text_MistyRematchNo
+	release
+	end
+
+CeruleanCity_Gym_EventScript_MistyRematch2::
+	cleartrainerflag TRAINER_LEADER_MISTY_REMATCH2
+	trainerbattle_no_intro TRAINER_LEADER_MISTY_REMATCH2, CeruleanCity_Gym_Text_MistyRematchDefeat
+	msgbox CeruleanCity_Gym_Text_MistyRematchPost
+	release
 	end

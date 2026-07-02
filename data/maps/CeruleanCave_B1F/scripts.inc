@@ -56,3 +56,8 @@ CeruleanCave_B1F_EventScript_RanFromMewtwo::
 	setvar VAR_0x8004, SPECIES_MEWTWO
 	goto EventScript_MonFlewAway
 	end
+
+CeruleanCave_B1F_EventScript_Smith::
+	trainerbattle_single TRAINER_COOLTRAINER_SMITH, CeruleanCave_B1F_Text_SmithIntro, CeruleanCave_B1F_Text_SmithDefeat
+	msgbox CeruleanCave_B1F_Text_SmithPostBattle, MSGBOX_AUTOCLOSE
+	end

@@ -107,6 +107,7 @@ PokemonLeague_ChampionsRoom_EventScript_Battle::
 	return
 
 PokemonLeague_ChampionsRoom_EventScript_Rematch::
+	msgbox PokemonLeague_ChampionsRoom_Text_RivalBenchedEevee
 	call_if_eq VAR_STARTER_MON, 2, PokemonLeague_ChampionsRoom_EventScript_RematchSquirtle
 	call_if_eq VAR_STARTER_MON, 1, PokemonLeague_ChampionsRoom_EventScript_RematchBulbasaur
 	call_if_eq VAR_STARTER_MON, 0, PokemonLeague_ChampionsRoom_EventScript_RematchCharmander

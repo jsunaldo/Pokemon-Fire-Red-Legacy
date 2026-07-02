@@ -1,4 +1,5 @@
 SixIsland_RuinValley_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, SixIsland_RuinValley_OnTransition
 	map_script MAP_SCRIPT_ON_LOAD, SixIsland_RuinValley_OnLoad
 	.byte 0
 
@@ -41,3 +42,51 @@ SixIsland_RuinValley_EventScript_IgnoreDottedHoleDoor::
 	msgbox SixIsland_RuinValley_Text_LeftDoorAlone
 	releaseall
 	end
+
+SixIsland_RuinValley_OnTransition::
+	call SixIsland_RuinValley_EventScript_HideLegend_GROUDON
+	end
+
+SixIsland_RuinValley_EventScript_Legend_GROUDON::
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
+	lock
+	faceplayer
+	goto_if_eq VAR_LEGEND_CAUGHT_08, 1, SixIsland_RuinValley_EventScript_LegendGone_GROUDON
+	waitse
+	playmoncry SPECIES_GROUDON, CRY_MODE_ENCOUNTER
+	message SixIsland_RuinValley_Text_Legend_GROUDON
+	waitmessage
+	waitmoncry
+	delay 20
+	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
+	waitbuttonpress
+	setwildbattle SPECIES_GROUDON, 60
+	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	special StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, SixIsland_RuinValley_EventScript_LegendDone_GROUDON
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, SixIsland_RuinValley_EventScript_LegendDone_GROUDON
+	release
+	end
+
+SixIsland_RuinValley_EventScript_LegendDone_GROUDON::
+	setvar VAR_LEGEND_CAUGHT_08, 1
+	removeobject LOCALID_LEGEND_GROUDON
+	release
+	end
+
+SixIsland_RuinValley_EventScript_LegendGone_GROUDON::
+	removeobject LOCALID_LEGEND_GROUDON
+	release
+	end
+
+SixIsland_RuinValley_EventScript_HideLegend_GROUDON::
+	goto_if_eq VAR_LEGEND_CAUGHT_08, 1, SixIsland_RuinValley_EventScript_DoHideLegend_GROUDON
+	return
+
+SixIsland_RuinValley_EventScript_DoHideLegend_GROUDON::
+	removeobject LOCALID_LEGEND_GROUDON
+	return

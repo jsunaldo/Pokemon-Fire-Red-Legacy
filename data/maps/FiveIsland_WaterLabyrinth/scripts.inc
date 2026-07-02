@@ -1,4 +1,5 @@
 FiveIsland_WaterLabyrinth_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, FiveIsland_WaterLabyrinth_OnTransition
 	.byte 0
 
 FiveIsland_WaterLabyrinth_EventScript_EggGentleman::
@@ -64,3 +65,51 @@ FiveIsland_WaterLabyrinth_EventScript_NoRoomForEgg::
 FiveIsland_WaterLabyrinth_EventScript_ReturnForEgg::
 	goto FiveIsland_WaterLabyrinth_EventScript_TryGiveEgg
 	end
+
+FiveIsland_WaterLabyrinth_OnTransition::
+	call FiveIsland_WaterLabyrinth_EventScript_HideLegend_KYOGRE
+	end
+
+FiveIsland_WaterLabyrinth_EventScript_Legend_KYOGRE::
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
+	lock
+	faceplayer
+	goto_if_eq VAR_LEGEND_CAUGHT_07, 1, FiveIsland_WaterLabyrinth_EventScript_LegendGone_KYOGRE
+	waitse
+	playmoncry SPECIES_KYOGRE, CRY_MODE_ENCOUNTER
+	message FiveIsland_WaterLabyrinth_Text_Legend_KYOGRE
+	waitmessage
+	waitmoncry
+	delay 20
+	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
+	waitbuttonpress
+	setwildbattle SPECIES_KYOGRE, 60
+	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	special StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, FiveIsland_WaterLabyrinth_EventScript_LegendDone_KYOGRE
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, FiveIsland_WaterLabyrinth_EventScript_LegendDone_KYOGRE
+	release
+	end
+
+FiveIsland_WaterLabyrinth_EventScript_LegendDone_KYOGRE::
+	setvar VAR_LEGEND_CAUGHT_07, 1
+	removeobject LOCALID_LEGEND_KYOGRE
+	release
+	end
+
+FiveIsland_WaterLabyrinth_EventScript_LegendGone_KYOGRE::
+	removeobject LOCALID_LEGEND_KYOGRE
+	release
+	end
+
+FiveIsland_WaterLabyrinth_EventScript_HideLegend_KYOGRE::
+	goto_if_eq VAR_LEGEND_CAUGHT_07, 1, FiveIsland_WaterLabyrinth_EventScript_DoHideLegend_KYOGRE
+	return
+
+FiveIsland_WaterLabyrinth_EventScript_DoHideLegend_KYOGRE::
+	removeobject LOCALID_LEGEND_KYOGRE
+	return

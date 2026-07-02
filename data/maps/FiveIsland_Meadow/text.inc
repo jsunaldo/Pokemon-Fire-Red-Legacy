@@ -57,3 +57,6 @@ FiveIsland_Meadow_Text_Rocket3PostBattle::
     .string "You won't be able to get in without\n"
     .string "the passwords anyway.$"
 
+
+FiveIsland_Meadow_Text_Legend_RAIKOU::
+	.string "Raikou!$"

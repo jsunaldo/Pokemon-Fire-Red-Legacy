@@ -104,6 +104,8 @@ void ResetMenuAndMonGlobals(void)
     ResetSpecialVars();
 }
 
+extern bool8 gOakSpeechHardMode;
+
 void NewGameInitData(void)
 {
     u8 rivalName[PLAYER_NAME_LENGTH + 1];
@@ -147,6 +149,8 @@ void NewGameInitData(void)
     SetAllRenewableItemFlags();
     WarpToPlayersRoom();
     RunScriptImmediately(EventScript_ResetAllMapFlags);
+    if (gOakSpeechHardMode)
+        FlagSet(FLAG_HARD_MODE);
     StringCopy(gSaveBlock1Ptr->rivalName, rivalName);
     ResetTrainerTowerResults();
 }

@@ -138,3 +138,24 @@ VermilionCity_Gym_Text_OnlyTrashLocksWereReset::
     .string "Hey!\n"
     .string "The electric locks were reset!$"
 
+
+VermilionCity_Gym_Text_LtSurgeRematchAsk::
+	.string "LT. SURGE: {PLAYER}! You carry the\n"
+	.string "aura of a CHAMPION now.\p"
+	.string "I've rebuilt my team for this\n"
+	.string "moment. Will you battle me\l"
+	.string "at full strength?$"
+
+VermilionCity_Gym_Text_LtSurgeRematchDefeat::
+	.string "Magnificent!\n"
+	.string "You truly are the CHAMPION!$"
+
+VermilionCity_Gym_Text_LtSurgeRematchPost::
+	.string "That was a battle worth\n"
+	.string "remembering, {PLAYER}.\p"
+	.string "Come back any time. My team\n"
+	.string "and I will be waiting!$"
+
+VermilionCity_Gym_Text_LtSurgeRematchNo::
+	.string "Ha! Don't keep me waiting\n"
+	.string "too long, CHAMPION.$"

@@ -207,6 +207,7 @@ VermilionCity_Gym_EventScript_LtSurge::
 	famechecker FAMECHECKER_LTSURGE, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
 	trainerbattle_single TRAINER_LEADER_LT_SURGE, VermilionCity_Gym_Text_LtSurgeIntro, VermilionCity_Gym_Text_LtSurgeDefeat, VermilionCity_Gym_EventScript_DefeatedLtSurge, NO_MUSIC
 	goto_if_unset FLAG_GOT_TM34_FROM_SURGE, VermilionCity_Gym_EventScript_GiveTM34
+	goto_if_set FLAG_SYS_GAME_CLEAR, VermilionCity_Gym_EventScript_LtSurgeRematch
 	msgbox VermilionCity_Gym_Text_LtSurgePostBattle
 	release
 	end
@@ -285,4 +286,26 @@ VermilionCity_Gym_EventScript_GymStatue::
 VermilionCity_Gym_EventScript_GymStatuePostVictory::
 	msgbox VermilionCity_Gym_Text_GymStatuePlayerWon
 	releaseall
+	end
+
+VermilionCity_Gym_EventScript_LtSurgeRematch::
+	msgbox VermilionCity_Gym_Text_LtSurgeRematchAsk, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, VermilionCity_Gym_EventScript_LtSurgeRematchDeclined
+	goto_if_set FLAG_SYS_CAN_LINK_WITH_RS, VermilionCity_Gym_EventScript_LtSurgeRematch2
+	cleartrainerflag TRAINER_LEADER_LT_SURGE_REMATCH
+	trainerbattle_no_intro TRAINER_LEADER_LT_SURGE_REMATCH, VermilionCity_Gym_Text_LtSurgeRematchDefeat
+	msgbox VermilionCity_Gym_Text_LtSurgeRematchPost
+	release
+	end
+
+VermilionCity_Gym_EventScript_LtSurgeRematchDeclined::
+	msgbox VermilionCity_Gym_Text_LtSurgeRematchNo
+	release
+	end
+
+VermilionCity_Gym_EventScript_LtSurgeRematch2::
+	cleartrainerflag TRAINER_LEADER_LT_SURGE_REMATCH2
+	trainerbattle_no_intro TRAINER_LEADER_LT_SURGE_REMATCH2, VermilionCity_Gym_Text_LtSurgeRematchDefeat
+	msgbox VermilionCity_Gym_Text_LtSurgeRematchPost
+	release
 	end

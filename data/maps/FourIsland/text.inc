@@ -11,8 +11,8 @@ FourIsland_Text_LoreleiMetLaprasAsChild::
     .string "LORELEI has gone back.\p"
     .string "The LAPRAS she has, I imagine it\n"
     .string "to be the one she met as a child.\p"
-    .string "I believe it was in ICEFALL CAVE\n"
-    .string "that she caught it.\p"
+    .string "I believe it was somewhere on\n"
+    .string "FOUR ISLAND that she caught it.\p"
     .string "Perhaps that POKéMON has been with\n"
     .string "her ever since.$"
 

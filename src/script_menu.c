@@ -502,6 +502,23 @@ static const struct MenuAction sMultichoiceList_Exit[] = {
     { gOtherText_Exit }
 };
 
+
+static const u8 sText_NuzlockeRareCandy[] = _("RARE CANDY x99");
+static const u8 sText_NuzlockeMasterBall[] = _("MASTER BALL x99");
+static const u8 sText_NuzlockeFullRestore[] = _("FULL RESTORE x99");
+static const u8 sText_NuzlockeMaxRepel[] = _("MAX REPEL x99");
+static const u8 sText_NuzlockeMaxElixir[] = _("MAX ELIXIR x99");
+
+// FRLG Legacy: Pallet Town Nuzlocke supply NPC
+static const struct MenuAction sMultichoiceList_NuzlockeItems[] = {
+    { sText_NuzlockeRareCandy },
+    { sText_NuzlockeMasterBall },
+    { sText_NuzlockeFullRestore },
+    { sText_NuzlockeMaxRepel },
+    { sText_NuzlockeMaxElixir },
+    { gText_Exit }
+};
+
 static const struct MultichoiceListStruct sMultichoiceLists[] = {
     [MULTICHOICE_YES_NO]                                     = MULTICHOICE(sMultichoiceList_YesNo),
     [MULTICHOICE_EEVEELUTIONS]                               = MULTICHOICE(sMultichoiceList_Eeveelutions),
@@ -568,6 +585,7 @@ static const struct MultichoiceListStruct sMultichoiceLists[] = {
     [MULTICHOICE_62]                                         = MULTICHOICE(sMultichoiceList_62),
     [MULTICHOICE_JOIN_OR_LEAD]                               = MULTICHOICE(sMultichoiceList_JoinOrLead),
     [MULTICHOICE_TRAINER_TOWER_MODE]                         = MULTICHOICE(sMultichoiceList_TrainerTowerMode),
+    [MULTICHOICE_NUZLOCKE_ITEMS]                             = MULTICHOICE(sMultichoiceList_NuzlockeItems),
 };
 
 // From Cool to Berries goes unused

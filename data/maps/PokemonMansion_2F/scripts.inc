@@ -28,3 +28,20 @@ PokemonMansion_2F_EventScript_Arnie::
 	trainerbattle_single TRAINER_BURGLAR_ARNIE, PokemonMansion_1F_Text_ArnieIntro, PokemonMansion_1F_Text_ArnieDefeat
 	msgbox PokemonMansion_1F_Text_ArniePostBattle, MSGBOX_AUTOCLOSE
 	end
+
+PokemonMansion_2F_EventScript_ProfOak::
+	lock
+	faceplayer
+	msgbox PokemonMansion_2F_Text_OakChallenge
+	trainerbattle_no_intro TRAINER_PROF_OAK, PokemonMansion_2F_Text_OakDefeat
+	msgbox PokemonMansion_2F_Text_OakAfterBattle
+	closemessage
+	fadescreen FADE_TO_BLACK
+	setflag FLAG_HIDE_MANSION_OAK
+	removeobject VAR_LAST_TALKED
+	clearflag FLAG_HIDE_MANSION_MEW
+	clearflag FLAG_HIDE_OAK_IN_HIS_LAB
+	setflag FLAG_DEFEATED_MANSION_OAK
+	fadescreen FADE_FROM_BLACK
+	release
+	end

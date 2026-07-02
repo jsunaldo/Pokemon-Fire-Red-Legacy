@@ -443,7 +443,8 @@ struct BattleStruct
     u8 switchInItemsCounter;
     u8 field_DA; // battle tower related
     u8 turnSideTracker;
-    u8 fillerDC[0xDF-0xDC];
+    u8 checkedMagmaArmor; // FRLG Legacy: one Magma Armor message per attack (was filler)
+    u8 fillerDC[0xDF-0xDD];
     u8 givenExpMons;
     u8 lastTakenMoveFrom[MAX_BATTLERS_COUNT * MAX_BATTLERS_COUNT * 2];
     u16 castformPalette[MAX_BATTLERS_COUNT][16];
@@ -472,8 +473,10 @@ extern struct BattleStruct *gBattleStruct;
         typeArg = gBattleMoves[move].type;                            \
 }
 
-#define IS_TYPE_PHYSICAL(moveType)(moveType < TYPE_MYSTERY)
-#define IS_TYPE_SPECIAL(moveType)(moveType > TYPE_MYSTERY)
+// FRLG Legacy (Emerald Legacy parity): Ghost is special, Dark is physical.
+// Swapped via the category macros to preserve type IDs for trade compatibility.
+#define IS_TYPE_PHYSICAL(moveType)((moveType < TYPE_MYSTERY && moveType != TYPE_GHOST) || moveType == TYPE_DARK)
+#define IS_TYPE_SPECIAL(moveType)((moveType > TYPE_MYSTERY && moveType != TYPE_DARK) || moveType == TYPE_GHOST)
 
 #define TARGET_TURN_DAMAGED ((gSpecialStatuses[gBattlerTarget].physicalDmg != 0 || gSpecialStatuses[gBattlerTarget].specialDmg != 0))
 

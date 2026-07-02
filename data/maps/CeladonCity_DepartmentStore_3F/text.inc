@@ -15,7 +15,7 @@ CeladonCity_DepartmentStore_3F_Text_HaunterEvolvedOnTrade::
     .string "I collect them!\p"
     .string "Huh?\p"
     .string "HAUNTER turned into a different\n"
-    .string "POKéMON while being traded!$"
+    .string "POKéMON after all its training!$"
 
 CeladonCity_DepartmentStore_3F_Text_CanIdentifyTradeMonsByID::
     .string "You can identify POKéMON you get\n"

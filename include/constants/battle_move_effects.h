@@ -215,5 +215,7 @@
 #define EFFECT_CALM_MIND 211
 #define EFFECT_DRAGON_DANCE 212
 #define EFFECT_CAMOUFLAGE 213
+#define EFFECT_BLIZZARD 214   // freeze hit; perfect accuracy in hail (Legacy)
+#define EFFECT_LEAF_BLADE 215 // hit with +1 crit stage (Legacy)
 
 #endif  // GUARD_CONSTANTS_BATTLE_MOVE_EFFECTS_H
