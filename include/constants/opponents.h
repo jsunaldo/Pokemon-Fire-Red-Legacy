@@ -44,13 +44,21 @@
 #define TRAINER_RS_CAMPER                         20
 #define TRAINER_CHAMPION_R3            20 // round-3 rematch
 #define TRAINER_BUG_MANIAC                        21
+#define TRAINER_HOENN_WINONA        21 // Hoenn leader
 #define TRAINER_RS_PSYCHIC_M                      22
+#define TRAINER_HOENN_WATTSON        22 // Hoenn leader
 #define TRAINER_RS_PSYCHIC_F                      23
+#define TRAINER_HOENN_NORMAN        23 // Hoenn leader
 #define TRAINER_RS_GENTLEMAN                      24
+#define TRAINER_HOENN_TATE_LIZA        24 // Hoenn leader
 #define TRAINER_ELITE_FOUR_SIDNEY                 25
+#define TRAINER_HOENN_BRAWLY        25 // Hoenn leader
 #define TRAINER_ELITE_FOUR_PHOEBE                 26
+#define TRAINER_HOENN_ROXANNE        26 // Hoenn leader
 #define TRAINER_LEADER_ROXANNE                    27
+#define TRAINER_HOENN_WALLACE        27 // Hoenn leader
 #define TRAINER_LEADER_BRAWLY                     28
+#define TRAINER_HOENN_FLANNERY        28 // Hoenn leader
 #define TRAINER_LEADER_TATE_LIZA                  29
 #define TRAINER_SCHOOL_KID_M                      30
 #define TRAINER_SCHOOL_KID_F                      31

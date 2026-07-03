@@ -25,3 +25,22 @@ JohtoIsle_Pryce_Text_SailorOnward::
 
 JohtoIsle_Pryce_Text_SailorReturn::
 	.string "Sail back to ONE ISLAND?$"
+
+JohtoIsle_Pryce_Text_HoennWALLACEPre::
+	.string "I'm WALLACE, of the HOENN\n"
+	.string "LEAGUE. This isle tests us both!\p"
+	.string "Show me your power!$"
+
+JohtoIsle_Pryce_Text_HoennWALLACEIntro::
+	.string "Let's go!$"
+
+JohtoIsle_Pryce_Text_HoennWALLACEDefeat::
+	.string "You're every bit the CHAMPION\n"
+	.string "they say you are.$"
+
+JohtoIsle_Pryce_Text_HoennWALLACEAfter::
+	.string "You are a true champion of the ISLES!$"
+
+JohtoIsle_Pryce_Text_HoennWALLACEPostBattle::
+	.string "A rematch would be an honor,\n"
+	.string "another day.$"

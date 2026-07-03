@@ -19,7 +19,11 @@ JohtoIsle_Chuck_EventScript_LeaderPostBattle::
 JohtoIsle_Chuck_EventScript_Sailor::
 	lock
 	faceplayer
-	goto_if_set FLAG_BEAT_JOHTO_CHUCK, JohtoIsle_Chuck_EventScript_SailorOnward
+	goto_if_unset FLAG_BEAT_JOHTO_CHUCK, JohtoIsle_Chuck_EventScript_SailorBlocked
+	goto_if_unset FLAG_BEAT_HOENN_BRAWLY, JohtoIsle_Chuck_EventScript_SailorBlocked
+	goto JohtoIsle_Chuck_EventScript_SailorOnward
+
+JohtoIsle_Chuck_EventScript_SailorBlocked::
 	msgbox JohtoIsle_Chuck_Text_SailorBlocked, MSGBOX_DEFAULT
 	goto JohtoIsle_Chuck_EventScript_SailorReturnPrompt
 
@@ -43,5 +47,20 @@ JohtoIsle_Chuck_EventScript_SailorReturnPrompt::
 	end
 
 JohtoIsle_Chuck_EventScript_SailorBye::
+	release
+	end
+
+JohtoIsle_Chuck_EventScript_HoennBRAWLY::
+	lock
+	faceplayer
+	goto_if_set FLAG_BEAT_HOENN_BRAWLY, JohtoIsle_Chuck_EventScript_HoennBRAWLYPost
+	msgbox JohtoIsle_Chuck_Text_HoennBRAWLYPre, MSGBOX_DEFAULT
+	trainerbattle_single TRAINER_HOENN_BRAWLY, JohtoIsle_Chuck_Text_HoennBRAWLYIntro, JohtoIsle_Chuck_Text_HoennBRAWLYDefeat
+	msgbox JohtoIsle_Chuck_Text_HoennBRAWLYAfter, MSGBOX_DEFAULT
+	release
+	end
+
+JohtoIsle_Chuck_EventScript_HoennBRAWLYPost::
+	msgbox JohtoIsle_Chuck_Text_HoennBRAWLYPostBattle, MSGBOX_DEFAULT
 	release
 	end

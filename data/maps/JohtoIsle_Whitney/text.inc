@@ -25,3 +25,22 @@ JohtoIsle_Whitney_Text_SailorOnward::
 
 JohtoIsle_Whitney_Text_SailorReturn::
 	.string "Sail back to ONE ISLAND?$"
+
+JohtoIsle_Whitney_Text_HoennNORMANPre::
+	.string "I'm NORMAN, of the HOENN\n"
+	.string "LEAGUE. This isle tests us both!\p"
+	.string "Show me your power!$"
+
+JohtoIsle_Whitney_Text_HoennNORMANIntro::
+	.string "Let's go!$"
+
+JohtoIsle_Whitney_Text_HoennNORMANDefeat::
+	.string "You're every bit the CHAMPION\n"
+	.string "they say you are.$"
+
+JohtoIsle_Whitney_Text_HoennNORMANAfter::
+	.string "You are a true champion of the ISLES!$"
+
+JohtoIsle_Whitney_Text_HoennNORMANPostBattle::
+	.string "A rematch would be an honor,\n"
+	.string "another day.$"

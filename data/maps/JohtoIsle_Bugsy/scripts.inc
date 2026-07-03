@@ -19,7 +19,11 @@ JohtoIsle_Bugsy_EventScript_LeaderPostBattle::
 JohtoIsle_Bugsy_EventScript_Sailor::
 	lock
 	faceplayer
-	goto_if_set FLAG_BEAT_JOHTO_BUGSY, JohtoIsle_Bugsy_EventScript_SailorOnward
+	goto_if_unset FLAG_BEAT_JOHTO_BUGSY, JohtoIsle_Bugsy_EventScript_SailorBlocked
+	goto_if_unset FLAG_BEAT_HOENN_WATTSON, JohtoIsle_Bugsy_EventScript_SailorBlocked
+	goto JohtoIsle_Bugsy_EventScript_SailorOnward
+
+JohtoIsle_Bugsy_EventScript_SailorBlocked::
 	msgbox JohtoIsle_Bugsy_Text_SailorBlocked, MSGBOX_DEFAULT
 	goto JohtoIsle_Bugsy_EventScript_SailorReturnPrompt
 
@@ -43,5 +47,20 @@ JohtoIsle_Bugsy_EventScript_SailorReturnPrompt::
 	end
 
 JohtoIsle_Bugsy_EventScript_SailorBye::
+	release
+	end
+
+JohtoIsle_Bugsy_EventScript_HoennWATTSON::
+	lock
+	faceplayer
+	goto_if_set FLAG_BEAT_HOENN_WATTSON, JohtoIsle_Bugsy_EventScript_HoennWATTSONPost
+	msgbox JohtoIsle_Bugsy_Text_HoennWATTSONPre, MSGBOX_DEFAULT
+	trainerbattle_single TRAINER_HOENN_WATTSON, JohtoIsle_Bugsy_Text_HoennWATTSONIntro, JohtoIsle_Bugsy_Text_HoennWATTSONDefeat
+	msgbox JohtoIsle_Bugsy_Text_HoennWATTSONAfter, MSGBOX_DEFAULT
+	release
+	end
+
+JohtoIsle_Bugsy_EventScript_HoennWATTSONPost::
+	msgbox JohtoIsle_Bugsy_Text_HoennWATTSONPostBattle, MSGBOX_DEFAULT
 	release
 	end

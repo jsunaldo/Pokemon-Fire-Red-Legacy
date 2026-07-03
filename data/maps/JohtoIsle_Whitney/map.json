@@ -44,6 +44,21 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "JohtoIsle_Whitney_EventScript_Sailor",
       "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_HOENN_23",
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_M",
+      "x": 14,
+      "y": 22,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "JohtoIsle_Whitney_EventScript_HoennNORMAN",
+      "flag": "0"
     }
   ],
   "warp_events": [],

@@ -25,3 +25,22 @@ JohtoIsle_Clair_Text_SailorOnward::
 
 JohtoIsle_Clair_Text_SailorReturn::
 	.string "Sail back to ONE ISLAND?$"
+
+JohtoIsle_Clair_Text_HoennFLANNERYPre::
+	.string "I'm FLANNERY, of the HOENN\n"
+	.string "LEAGUE. This isle tests us both!\p"
+	.string "Show me your power!$"
+
+JohtoIsle_Clair_Text_HoennFLANNERYIntro::
+	.string "Let's go!$"
+
+JohtoIsle_Clair_Text_HoennFLANNERYDefeat::
+	.string "You're every bit the CHAMPION\n"
+	.string "they say you are.$"
+
+JohtoIsle_Clair_Text_HoennFLANNERYAfter::
+	.string "The ISLES bow to your strength!$"
+
+JohtoIsle_Clair_Text_HoennFLANNERYPostBattle::
+	.string "A rematch would be an honor,\n"
+	.string "another day.$"

@@ -19,7 +19,11 @@ JohtoIsle_Jasmine_EventScript_LeaderPostBattle::
 JohtoIsle_Jasmine_EventScript_Sailor::
 	lock
 	faceplayer
-	goto_if_set FLAG_BEAT_JOHTO_JASMINE, JohtoIsle_Jasmine_EventScript_SailorOnward
+	goto_if_unset FLAG_BEAT_JOHTO_JASMINE, JohtoIsle_Jasmine_EventScript_SailorBlocked
+	goto_if_unset FLAG_BEAT_HOENN_ROXANNE, JohtoIsle_Jasmine_EventScript_SailorBlocked
+	goto JohtoIsle_Jasmine_EventScript_SailorOnward
+
+JohtoIsle_Jasmine_EventScript_SailorBlocked::
 	msgbox JohtoIsle_Jasmine_Text_SailorBlocked, MSGBOX_DEFAULT
 	goto JohtoIsle_Jasmine_EventScript_SailorReturnPrompt
 
@@ -43,5 +47,20 @@ JohtoIsle_Jasmine_EventScript_SailorReturnPrompt::
 	end
 
 JohtoIsle_Jasmine_EventScript_SailorBye::
+	release
+	end
+
+JohtoIsle_Jasmine_EventScript_HoennROXANNE::
+	lock
+	faceplayer
+	goto_if_set FLAG_BEAT_HOENN_ROXANNE, JohtoIsle_Jasmine_EventScript_HoennROXANNEPost
+	msgbox JohtoIsle_Jasmine_Text_HoennROXANNEPre, MSGBOX_DEFAULT
+	trainerbattle_single TRAINER_HOENN_ROXANNE, JohtoIsle_Jasmine_Text_HoennROXANNEIntro, JohtoIsle_Jasmine_Text_HoennROXANNEDefeat
+	msgbox JohtoIsle_Jasmine_Text_HoennROXANNEAfter, MSGBOX_DEFAULT
+	release
+	end
+
+JohtoIsle_Jasmine_EventScript_HoennROXANNEPost::
+	msgbox JohtoIsle_Jasmine_Text_HoennROXANNEPostBattle, MSGBOX_DEFAULT
 	release
 	end

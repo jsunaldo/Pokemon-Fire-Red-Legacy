@@ -19,7 +19,11 @@ JohtoIsle_Pryce_EventScript_LeaderPostBattle::
 JohtoIsle_Pryce_EventScript_Sailor::
 	lock
 	faceplayer
-	goto_if_set FLAG_BEAT_JOHTO_PRYCE, JohtoIsle_Pryce_EventScript_SailorOnward
+	goto_if_unset FLAG_BEAT_JOHTO_PRYCE, JohtoIsle_Pryce_EventScript_SailorBlocked
+	goto_if_unset FLAG_BEAT_HOENN_WALLACE, JohtoIsle_Pryce_EventScript_SailorBlocked
+	goto JohtoIsle_Pryce_EventScript_SailorOnward
+
+JohtoIsle_Pryce_EventScript_SailorBlocked::
 	msgbox JohtoIsle_Pryce_Text_SailorBlocked, MSGBOX_DEFAULT
 	goto JohtoIsle_Pryce_EventScript_SailorReturnPrompt
 
@@ -43,5 +47,20 @@ JohtoIsle_Pryce_EventScript_SailorReturnPrompt::
 	end
 
 JohtoIsle_Pryce_EventScript_SailorBye::
+	release
+	end
+
+JohtoIsle_Pryce_EventScript_HoennWALLACE::
+	lock
+	faceplayer
+	goto_if_set FLAG_BEAT_HOENN_WALLACE, JohtoIsle_Pryce_EventScript_HoennWALLACEPost
+	msgbox JohtoIsle_Pryce_Text_HoennWALLACEPre, MSGBOX_DEFAULT
+	trainerbattle_single TRAINER_HOENN_WALLACE, JohtoIsle_Pryce_Text_HoennWALLACEIntro, JohtoIsle_Pryce_Text_HoennWALLACEDefeat
+	msgbox JohtoIsle_Pryce_Text_HoennWALLACEAfter, MSGBOX_DEFAULT
+	release
+	end
+
+JohtoIsle_Pryce_EventScript_HoennWALLACEPost::
+	msgbox JohtoIsle_Pryce_Text_HoennWALLACEPostBattle, MSGBOX_DEFAULT
 	release
 	end

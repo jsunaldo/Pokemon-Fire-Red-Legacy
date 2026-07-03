@@ -25,3 +25,22 @@ JohtoIsle_Bugsy_Text_SailorOnward::
 
 JohtoIsle_Bugsy_Text_SailorReturn::
 	.string "Sail back to ONE ISLAND?$"
+
+JohtoIsle_Bugsy_Text_HoennWATTSONPre::
+	.string "I'm WATTSON, of the HOENN\n"
+	.string "LEAGUE. This isle tests us both!\p"
+	.string "Show me your power!$"
+
+JohtoIsle_Bugsy_Text_HoennWATTSONIntro::
+	.string "Let's go!$"
+
+JohtoIsle_Bugsy_Text_HoennWATTSONDefeat::
+	.string "You're every bit the CHAMPION\n"
+	.string "they say you are.$"
+
+JohtoIsle_Bugsy_Text_HoennWATTSONAfter::
+	.string "You are a true champion of the ISLES!$"
+
+JohtoIsle_Bugsy_Text_HoennWATTSONPostBattle::
+	.string "A rematch would be an honor,\n"
+	.string "another day.$"

@@ -25,3 +25,22 @@ JohtoIsle_Chuck_Text_SailorOnward::
 
 JohtoIsle_Chuck_Text_SailorReturn::
 	.string "Sail back to ONE ISLAND?$"
+
+JohtoIsle_Chuck_Text_HoennBRAWLYPre::
+	.string "I'm BRAWLY, of the HOENN\n"
+	.string "LEAGUE. This isle tests us both!\p"
+	.string "Show me your power!$"
+
+JohtoIsle_Chuck_Text_HoennBRAWLYIntro::
+	.string "Let's go!$"
+
+JohtoIsle_Chuck_Text_HoennBRAWLYDefeat::
+	.string "You're every bit the CHAMPION\n"
+	.string "they say you are.$"
+
+JohtoIsle_Chuck_Text_HoennBRAWLYAfter::
+	.string "You are a true champion of the ISLES!$"
+
+JohtoIsle_Chuck_Text_HoennBRAWLYPostBattle::
+	.string "A rematch would be an honor,\n"
+	.string "another day.$"

@@ -25,3 +25,22 @@ JohtoIsle_Jasmine_Text_SailorOnward::
 
 JohtoIsle_Jasmine_Text_SailorReturn::
 	.string "Sail back to ONE ISLAND?$"
+
+JohtoIsle_Jasmine_Text_HoennROXANNEPre::
+	.string "I'm ROXANNE, of the HOENN\n"
+	.string "LEAGUE. This isle tests us both!\p"
+	.string "Show me your power!$"
+
+JohtoIsle_Jasmine_Text_HoennROXANNEIntro::
+	.string "Let's go!$"
+
+JohtoIsle_Jasmine_Text_HoennROXANNEDefeat::
+	.string "You're every bit the CHAMPION\n"
+	.string "they say you are.$"
+
+JohtoIsle_Jasmine_Text_HoennROXANNEAfter::
+	.string "You are a true champion of the ISLES!$"
+
+JohtoIsle_Jasmine_Text_HoennROXANNEPostBattle::
+	.string "A rematch would be an honor,\n"
+	.string "another day.$"

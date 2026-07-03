@@ -25,3 +25,22 @@ JohtoIsle_Morty_Text_SailorOnward::
 
 JohtoIsle_Morty_Text_SailorReturn::
 	.string "Sail back to ONE ISLAND?$"
+
+JohtoIsle_Morty_Text_HoennTATELIZAPre::
+	.string "I'm TATE&LIZA, of the HOENN\n"
+	.string "LEAGUE. This isle tests us both!\p"
+	.string "Show me your power!$"
+
+JohtoIsle_Morty_Text_HoennTATELIZAIntro::
+	.string "Let's go!$"
+
+JohtoIsle_Morty_Text_HoennTATELIZADefeat::
+	.string "You're every bit the CHAMPION\n"
+	.string "they say you are.$"
+
+JohtoIsle_Morty_Text_HoennTATELIZAAfter::
+	.string "You are a true champion of the ISLES!$"
+
+JohtoIsle_Morty_Text_HoennTATELIZAPostBattle::
+	.string "A rematch would be an honor,\n"
+	.string "another day.$"

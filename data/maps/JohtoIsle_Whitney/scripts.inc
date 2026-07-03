@@ -19,7 +19,11 @@ JohtoIsle_Whitney_EventScript_LeaderPostBattle::
 JohtoIsle_Whitney_EventScript_Sailor::
 	lock
 	faceplayer
-	goto_if_set FLAG_BEAT_JOHTO_WHITNEY, JohtoIsle_Whitney_EventScript_SailorOnward
+	goto_if_unset FLAG_BEAT_JOHTO_WHITNEY, JohtoIsle_Whitney_EventScript_SailorBlocked
+	goto_if_unset FLAG_BEAT_HOENN_NORMAN, JohtoIsle_Whitney_EventScript_SailorBlocked
+	goto JohtoIsle_Whitney_EventScript_SailorOnward
+
+JohtoIsle_Whitney_EventScript_SailorBlocked::
 	msgbox JohtoIsle_Whitney_Text_SailorBlocked, MSGBOX_DEFAULT
 	goto JohtoIsle_Whitney_EventScript_SailorReturnPrompt
 
@@ -43,5 +47,20 @@ JohtoIsle_Whitney_EventScript_SailorReturnPrompt::
 	end
 
 JohtoIsle_Whitney_EventScript_SailorBye::
+	release
+	end
+
+JohtoIsle_Whitney_EventScript_HoennNORMAN::
+	lock
+	faceplayer
+	goto_if_set FLAG_BEAT_HOENN_NORMAN, JohtoIsle_Whitney_EventScript_HoennNORMANPost
+	msgbox JohtoIsle_Whitney_Text_HoennNORMANPre, MSGBOX_DEFAULT
+	trainerbattle_single TRAINER_HOENN_NORMAN, JohtoIsle_Whitney_Text_HoennNORMANIntro, JohtoIsle_Whitney_Text_HoennNORMANDefeat
+	msgbox JohtoIsle_Whitney_Text_HoennNORMANAfter, MSGBOX_DEFAULT
+	release
+	end
+
+JohtoIsle_Whitney_EventScript_HoennNORMANPost::
+	msgbox JohtoIsle_Whitney_Text_HoennNORMANPostBattle, MSGBOX_DEFAULT
 	release
 	end

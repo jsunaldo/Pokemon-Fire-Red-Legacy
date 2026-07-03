@@ -3790,21 +3790,23 @@ u8 GetLevelCap(void)
         return MAX_LEVEL;
     if (FlagGet(FLAG_SYS_GAME_CLEAR))
     {
-        // Postgame: the Johto Isles continue the Hard Mode cap ladder. The 8
-        // Johto Gym Leaders reuse trainer ids 1-8, so their "beaten" flags are
-        // TRAINER_FLAGS_START+1 .. +8; each raises the cap by one, from
-        // Falkner's ace (Lv 65) up to Clair's (Lv 72). Clearing the whole
-        // circuit uncaps the game for the Round 3 endgame.
-        u32 johto = 0;
+        // Postgame: the Johto Isles continue the Hard Mode cap ladder. Each isle
+        // has two leaders at the isle's cap - a Johto leader (trainer ids 1-8)
+        // and a Hoenn leader (ids 21-28), so their "beaten" flags are
+        // TRAINER_FLAGS_START + {1..8} and + {21..28}. The cap is the current
+        // isle's cap: 65 + fully-cleared isles (Falkner's 65 up to Clair's 72).
+        // Clearing the whole circuit uncaps the game for the Round 3 endgame.
+        u32 isles = 0;
+        u16 i;
 
         if (FlagGet(FLAG_JOHTO_CIRCUIT_CLEARED))
             return MAX_LEVEL;
-        for (flag = TRAINER_FLAGS_START + 1; flag <= TRAINER_FLAGS_START + 8; flag++)
+        for (i = 1; i <= 8; i++)
         {
-            if (FlagGet(flag))
-                johto++;
+            if (FlagGet(TRAINER_FLAGS_START + i) && FlagGet(TRAINER_FLAGS_START + 20 + i))
+                isles++;
         }
-        return 65 + johto;
+        return 65 + isles;
     }
     for (flag = FLAG_BADGE01_GET; flag <= FLAG_BADGE08_GET; flag++)
     {

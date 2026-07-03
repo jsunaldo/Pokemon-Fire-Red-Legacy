@@ -7,7 +7,7 @@ JohtoIsle_Clair_EventScript_Leader::
 	goto_if_set FLAG_BEAT_JOHTO_CLAIR, JohtoIsle_Clair_EventScript_LeaderPostBattle
 	msgbox JohtoIsle_Clair_Text_LeaderPreBattle, MSGBOX_DEFAULT
 	trainerbattle_single TRAINER_JOHTO_CLAIR, JohtoIsle_Clair_Text_LeaderIntro, JohtoIsle_Clair_Text_LeaderDefeat
-	setflag FLAG_JOHTO_CIRCUIT_CLEARED
+	call_if_set FLAG_BEAT_HOENN_FLANNERY, JohtoIsle_Clair_EventScript_SetCircuitCleared
 	msgbox JohtoIsle_Clair_Text_LeaderAfter, MSGBOX_DEFAULT
 	release
 	end
@@ -20,7 +20,11 @@ JohtoIsle_Clair_EventScript_LeaderPostBattle::
 JohtoIsle_Clair_EventScript_Sailor::
 	lock
 	faceplayer
-	goto_if_set FLAG_BEAT_JOHTO_CLAIR, JohtoIsle_Clair_EventScript_SailorOnward
+	goto_if_unset FLAG_BEAT_JOHTO_CLAIR, JohtoIsle_Clair_EventScript_SailorBlocked
+	goto_if_unset FLAG_BEAT_HOENN_FLANNERY, JohtoIsle_Clair_EventScript_SailorBlocked
+	goto JohtoIsle_Clair_EventScript_SailorOnward
+
+JohtoIsle_Clair_EventScript_SailorBlocked::
 	msgbox JohtoIsle_Clair_Text_SailorBlocked, MSGBOX_DEFAULT
 	goto JohtoIsle_Clair_EventScript_SailorReturnPrompt
 
@@ -38,3 +42,23 @@ JohtoIsle_Clair_EventScript_SailorReturnPrompt::
 JohtoIsle_Clair_EventScript_SailorBye::
 	release
 	end
+
+JohtoIsle_Clair_EventScript_HoennFLANNERY::
+	lock
+	faceplayer
+	goto_if_set FLAG_BEAT_HOENN_FLANNERY, JohtoIsle_Clair_EventScript_HoennFLANNERYPost
+	msgbox JohtoIsle_Clair_Text_HoennFLANNERYPre, MSGBOX_DEFAULT
+	trainerbattle_single TRAINER_HOENN_FLANNERY, JohtoIsle_Clair_Text_HoennFLANNERYIntro, JohtoIsle_Clair_Text_HoennFLANNERYDefeat
+	call_if_set FLAG_BEAT_JOHTO_CLAIR, JohtoIsle_Clair_EventScript_SetCircuitCleared
+	msgbox JohtoIsle_Clair_Text_HoennFLANNERYAfter, MSGBOX_DEFAULT
+	release
+	end
+
+JohtoIsle_Clair_EventScript_HoennFLANNERYPost::
+	msgbox JohtoIsle_Clair_Text_HoennFLANNERYPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+JohtoIsle_Clair_EventScript_SetCircuitCleared::
+	setflag FLAG_JOHTO_CIRCUIT_CLEARED
+	return

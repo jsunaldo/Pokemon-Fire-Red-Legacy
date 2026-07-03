@@ -19,7 +19,11 @@ JohtoIsle_Falkner_EventScript_LeaderPostBattle::
 JohtoIsle_Falkner_EventScript_Sailor::
 	lock
 	faceplayer
-	goto_if_set FLAG_BEAT_JOHTO_FALKNER, JohtoIsle_Falkner_EventScript_SailorOnward
+	goto_if_unset FLAG_BEAT_JOHTO_FALKNER, JohtoIsle_Falkner_EventScript_SailorBlocked
+	goto_if_unset FLAG_BEAT_HOENN_WINONA, JohtoIsle_Falkner_EventScript_SailorBlocked
+	goto JohtoIsle_Falkner_EventScript_SailorOnward
+
+JohtoIsle_Falkner_EventScript_SailorBlocked::
 	msgbox JohtoIsle_Falkner_Text_SailorBlocked, MSGBOX_DEFAULT
 	goto JohtoIsle_Falkner_EventScript_SailorReturnPrompt
 
@@ -43,5 +47,20 @@ JohtoIsle_Falkner_EventScript_SailorReturnPrompt::
 	end
 
 JohtoIsle_Falkner_EventScript_SailorBye::
+	release
+	end
+
+JohtoIsle_Falkner_EventScript_HoennWINONA::
+	lock
+	faceplayer
+	goto_if_set FLAG_BEAT_HOENN_WINONA, JohtoIsle_Falkner_EventScript_HoennWINONAPost
+	msgbox JohtoIsle_Falkner_Text_HoennWINONAPre, MSGBOX_DEFAULT
+	trainerbattle_single TRAINER_HOENN_WINONA, JohtoIsle_Falkner_Text_HoennWINONAIntro, JohtoIsle_Falkner_Text_HoennWINONADefeat
+	msgbox JohtoIsle_Falkner_Text_HoennWINONAAfter, MSGBOX_DEFAULT
+	release
+	end
+
+JohtoIsle_Falkner_EventScript_HoennWINONAPost::
+	msgbox JohtoIsle_Falkner_Text_HoennWINONAPostBattle, MSGBOX_DEFAULT
 	release
 	end

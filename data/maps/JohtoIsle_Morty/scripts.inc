@@ -19,7 +19,11 @@ JohtoIsle_Morty_EventScript_LeaderPostBattle::
 JohtoIsle_Morty_EventScript_Sailor::
 	lock
 	faceplayer
-	goto_if_set FLAG_BEAT_JOHTO_MORTY, JohtoIsle_Morty_EventScript_SailorOnward
+	goto_if_unset FLAG_BEAT_JOHTO_MORTY, JohtoIsle_Morty_EventScript_SailorBlocked
+	goto_if_unset FLAG_BEAT_HOENN_TATE_LIZA, JohtoIsle_Morty_EventScript_SailorBlocked
+	goto JohtoIsle_Morty_EventScript_SailorOnward
+
+JohtoIsle_Morty_EventScript_SailorBlocked::
 	msgbox JohtoIsle_Morty_Text_SailorBlocked, MSGBOX_DEFAULT
 	goto JohtoIsle_Morty_EventScript_SailorReturnPrompt
 
@@ -43,5 +47,20 @@ JohtoIsle_Morty_EventScript_SailorReturnPrompt::
 	end
 
 JohtoIsle_Morty_EventScript_SailorBye::
+	release
+	end
+
+JohtoIsle_Morty_EventScript_HoennTATELIZA::
+	lock
+	faceplayer
+	goto_if_set FLAG_BEAT_HOENN_TATE_LIZA, JohtoIsle_Morty_EventScript_HoennTATELIZAPost
+	msgbox JohtoIsle_Morty_Text_HoennTATELIZAPre, MSGBOX_DEFAULT
+	trainerbattle_single TRAINER_HOENN_TATE_LIZA, JohtoIsle_Morty_Text_HoennTATELIZAIntro, JohtoIsle_Morty_Text_HoennTATELIZADefeat
+	msgbox JohtoIsle_Morty_Text_HoennTATELIZAAfter, MSGBOX_DEFAULT
+	release
+	end
+
+JohtoIsle_Morty_EventScript_HoennTATELIZAPost::
+	msgbox JohtoIsle_Morty_Text_HoennTATELIZAPostBattle, MSGBOX_DEFAULT
 	release
 	end
