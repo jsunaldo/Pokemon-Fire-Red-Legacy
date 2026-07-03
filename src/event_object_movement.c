@@ -478,6 +478,18 @@ static const u8 gInitialMovementTypeFacingDirections[MOVEMENT_TYPES_COUNT] = {
 #define OBJ_EVENT_PAL_TAG_HOENN_ROXANNE 0x1125
 #define OBJ_EVENT_PAL_TAG_HOENN_WALLACE 0x1126
 #define OBJ_EVENT_PAL_TAG_HOENN_FLANNERY 0x1127
+#define OBJ_EVENT_PAL_TAG_GENGAR 0x1130
+#define OBJ_EVENT_PAL_TAG_MACHAMP 0x1131
+#define OBJ_EVENT_PAL_TAG_DRAGONITE 0x1132
+#define OBJ_EVENT_PAL_TAG_EEVEE 0x1133
+#define OBJ_EVENT_PAL_TAG_ONIX 0x1134
+#define OBJ_EVENT_PAL_TAG_STARMIE 0x1135
+#define OBJ_EVENT_PAL_TAG_RAICHU 0x1136
+#define OBJ_EVENT_PAL_TAG_VILEPLUME 0x1137
+#define OBJ_EVENT_PAL_TAG_VENOMOTH 0x1138
+#define OBJ_EVENT_PAL_TAG_ALAKAZAM 0x1139
+#define OBJ_EVENT_PAL_TAG_MAGMAR 0x113a
+#define OBJ_EVENT_PAL_TAG_RHYDON 0x113b
 #define OBJ_EVENT_PAL_TAG_SS_ANNE                     0x1115
 #define OBJ_EVENT_PAL_TAG_RS_PLAYER_UNDERWATER        0x1116
 #define OBJ_EVENT_PAL_TAG_RS_KYOGRE                   0x1117
@@ -531,6 +543,18 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_HoennRoxanne, OBJ_EVENT_PAL_TAG_HOENN_ROXANNE},
     {gObjectEventPal_HoennWallace, OBJ_EVENT_PAL_TAG_HOENN_WALLACE},
     {gObjectEventPal_HoennFlannery, OBJ_EVENT_PAL_TAG_HOENN_FLANNERY},
+    {gObjectEventPal_Gengar, OBJ_EVENT_PAL_TAG_GENGAR},
+    {gObjectEventPal_Machamp, OBJ_EVENT_PAL_TAG_MACHAMP},
+    {gObjectEventPal_Dragonite, OBJ_EVENT_PAL_TAG_DRAGONITE},
+    {gObjectEventPal_Eevee, OBJ_EVENT_PAL_TAG_EEVEE},
+    {gObjectEventPal_Onix, OBJ_EVENT_PAL_TAG_ONIX},
+    {gObjectEventPal_Starmie, OBJ_EVENT_PAL_TAG_STARMIE},
+    {gObjectEventPal_Raichu, OBJ_EVENT_PAL_TAG_RAICHU},
+    {gObjectEventPal_Vileplume, OBJ_EVENT_PAL_TAG_VILEPLUME},
+    {gObjectEventPal_Venomoth, OBJ_EVENT_PAL_TAG_VENOMOTH},
+    {gObjectEventPal_Alakazam, OBJ_EVENT_PAL_TAG_ALAKAZAM},
+    {gObjectEventPal_Magmar, OBJ_EVENT_PAL_TAG_MAGMAR},
+    {gObjectEventPal_Rhydon, OBJ_EVENT_PAL_TAG_RHYDON},
     {},
 };
 

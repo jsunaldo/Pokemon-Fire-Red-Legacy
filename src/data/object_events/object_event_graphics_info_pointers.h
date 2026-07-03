@@ -166,6 +166,18 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_HoennBrawly;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_HoennRoxanne;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_HoennWallace;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_HoennFlannery;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Gengar;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Machamp;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Dragonite;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Eevee;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Onix;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Starmie;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Raichu;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Vileplume;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Venomoth;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Alakazam;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Magmar;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Rhydon;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SSAnne;
 
 
@@ -339,4 +351,16 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_HOENN_ROXANNE] = &gObjectEventGraphicsInfo_HoennRoxanne,
     [OBJ_EVENT_GFX_HOENN_WALLACE] = &gObjectEventGraphicsInfo_HoennWallace,
     [OBJ_EVENT_GFX_HOENN_FLANNERY] = &gObjectEventGraphicsInfo_HoennFlannery,
+    [OBJ_EVENT_GFX_GENGAR] = &gObjectEventGraphicsInfo_Gengar,
+    [OBJ_EVENT_GFX_MACHAMP] = &gObjectEventGraphicsInfo_Machamp,
+    [OBJ_EVENT_GFX_DRAGONITE] = &gObjectEventGraphicsInfo_Dragonite,
+    [OBJ_EVENT_GFX_EEVEE] = &gObjectEventGraphicsInfo_Eevee,
+    [OBJ_EVENT_GFX_ONIX] = &gObjectEventGraphicsInfo_Onix,
+    [OBJ_EVENT_GFX_STARMIE] = &gObjectEventGraphicsInfo_Starmie,
+    [OBJ_EVENT_GFX_RAICHU] = &gObjectEventGraphicsInfo_Raichu,
+    [OBJ_EVENT_GFX_VILEPLUME] = &gObjectEventGraphicsInfo_Vileplume,
+    [OBJ_EVENT_GFX_VENOMOTH] = &gObjectEventGraphicsInfo_Venomoth,
+    [OBJ_EVENT_GFX_ALAKAZAM] = &gObjectEventGraphicsInfo_Alakazam,
+    [OBJ_EVENT_GFX_MAGMAR] = &gObjectEventGraphicsInfo_Magmar,
+    [OBJ_EVENT_GFX_RHYDON] = &gObjectEventGraphicsInfo_Rhydon,
 };

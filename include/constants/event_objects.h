@@ -174,8 +174,21 @@
 #define OBJ_EVENT_GFX_HOENN_ROXANNE         166
 #define OBJ_EVENT_GFX_HOENN_WALLACE         167
 #define OBJ_EVENT_GFX_HOENN_FLANNERY        168
+// FRLG Legacy: gym leader / E4 aces standing beside them (pokeemerald-expansion OW sprites)
+#define OBJ_EVENT_GFX_GENGAR                169
+#define OBJ_EVENT_GFX_MACHAMP              170
+#define OBJ_EVENT_GFX_DRAGONITE            171
+#define OBJ_EVENT_GFX_EEVEE                172
+#define OBJ_EVENT_GFX_ONIX                 173
+#define OBJ_EVENT_GFX_STARMIE              174
+#define OBJ_EVENT_GFX_RAICHU               175
+#define OBJ_EVENT_GFX_VILEPLUME            176
+#define OBJ_EVENT_GFX_VENOMOTH             177
+#define OBJ_EVENT_GFX_ALAKAZAM             178
+#define OBJ_EVENT_GFX_MAGMAR               179
+#define OBJ_EVENT_GFX_RHYDON               180
 
-#define NUM_OBJ_EVENT_GFX     169
+#define NUM_OBJ_EVENT_GFX     181
 
 // These are dynamic object gfx ids.
 // They correspond with the values of the VAR_OBJ_GFX_ID_X vars.
