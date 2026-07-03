@@ -3815,13 +3815,10 @@ static void UpdateCurrentMonBufferFromPartyOrBox(struct Pokemon * mon)
 
 static u8 PokeSum_CanForgetSelectedMove(void)
 {
-    u16 move;
-
-    move = GetMonMoveBySlotId(&sMonSummaryScreen->currentMon, sMoveSelectionCursorPos);
-
-    if (IsMoveHm(move) == TRUE && sMonSummaryScreen->mode != PSS_MODE_FORGET_MOVE)
-        return FALSE;
-
+    // FRLG Legacy: HM moves are freely forgettable, exactly as in the other
+    // Legacy games. Vanilla blocked selecting an HM slot while learning a new
+    // move (mode != PSS_MODE_FORGET_MOVE), which is the "HM moves can't be
+    // forgotten!" prompt. Always allow it so HMs can be replaced anywhere.
     return TRUE;
 }
 
