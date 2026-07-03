@@ -11823,7 +11823,7 @@ static const struct TrainerMonItemCustomMoves sParty_JohtoChuck[] = {
     },
     {
         .iv = 250,
-        .lvl = 68,
+        .lvl = 69,
         .species = SPECIES_MACHAMP,
         .heldItem = ITEM_SITRUS_BERRY,
         .moves = {MOVE_CROSS_CHOP, MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_BULK_UP},
@@ -11868,7 +11868,7 @@ static const struct TrainerMonItemCustomMoves sParty_JohtoJasmine[] = {
     },
     {
         .iv = 250,
-        .lvl = 69,
+        .lvl = 70,
         .species = SPECIES_STEELIX,
         .heldItem = ITEM_SITRUS_BERRY,
         .moves = {MOVE_IRON_TAIL, MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_EXPLOSION},
@@ -11913,7 +11913,7 @@ static const struct TrainerMonItemCustomMoves sParty_JohtoPryce[] = {
     },
     {
         .iv = 250,
-        .lvl = 69,
+        .lvl = 71,
         .species = SPECIES_LAPRAS,
         .heldItem = ITEM_LEFTOVERS,
         .moves = {MOVE_SURF, MOVE_ICE_BEAM, MOVE_THUNDERBOLT, MOVE_PSYCHIC},
@@ -11958,7 +11958,7 @@ static const struct TrainerMonItemCustomMoves sParty_JohtoClair[] = {
     },
     {
         .iv = 250,
-        .lvl = 70,
+        .lvl = 72,
         .species = SPECIES_DRAGONITE,
         .heldItem = ITEM_SITRUS_BERRY,
         .moves = {MOVE_DRAGON_DANCE, MOVE_DRAGON_CLAW, MOVE_EARTHQUAKE, MOVE_THUNDERBOLT},
