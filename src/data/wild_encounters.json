@@ -10193,22 +10193,22 @@
               {
                 "min_level": 25,
                 "max_level": 25,
-                "species": "SPECIES_PIDGEY"
+                "species": "SPECIES_BULBASAUR"
               },
               {
                 "min_level": 23,
                 "max_level": 23,
-                "species": "SPECIES_RATTATA"
+                "species": "SPECIES_SQUIRTLE"
               },
               {
                 "min_level": 23,
                 "max_level": 23,
-                "species": "SPECIES_PIDGEY"
+                "species": "SPECIES_CHARMANDER"
               },
               {
                 "min_level": 21,
                 "max_level": 21,
-                "species": "SPECIES_PIDGEY"
+                "species": "SPECIES_EEVEE"
               },
               {
                 "min_level": 27,
@@ -10218,37 +10218,37 @@
               {
                 "min_level": 25,
                 "max_level": 25,
-                "species": "SPECIES_RATTATA"
+                "species": "SPECIES_CHARMANDER"
               },
               {
                 "min_level": 25,
                 "max_level": 25,
-                "species": "SPECIES_RATICATE"
+                "species": "SPECIES_EEVEE"
               },
               {
                 "min_level": 27,
                 "max_level": 27,
-                "species": "SPECIES_PIDGEOTTO"
+                "species": "SPECIES_BULBASAUR"
               },
               {
                 "min_level": 29,
                 "max_level": 29,
-                "species": "SPECIES_PIDGEOTTO"
+                "species": "SPECIES_SQUIRTLE"
               },
               {
                 "min_level": 23,
                 "max_level": 23,
-                "species": "SPECIES_PIDGEY"
+                "species": "SPECIES_EEVEE"
               },
               {
                 "min_level": 30,
                 "max_level": 30,
-                "species": "SPECIES_PIDGEOT"
+                "species": "SPECIES_BULBASAUR"
               },
               {
                 "min_level": 30,
                 "max_level": 30,
-                "species": "SPECIES_PIDGEOT"
+                "species": "SPECIES_SQUIRTLE"
               }
             ]
           },
