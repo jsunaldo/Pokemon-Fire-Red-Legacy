@@ -166,7 +166,16 @@
 #define OBJ_EVENT_GFX_LATIOS 159
 #define OBJ_EVENT_GFX_JIRACHI 160
 
-#define NUM_OBJ_EVENT_GFX     161
+#define OBJ_EVENT_GFX_HOENN_WINONA          161
+#define OBJ_EVENT_GFX_HOENN_WATTSON         162
+#define OBJ_EVENT_GFX_HOENN_NORMAN          163
+#define OBJ_EVENT_GFX_HOENN_LIZA            164
+#define OBJ_EVENT_GFX_HOENN_BRAWLY          165
+#define OBJ_EVENT_GFX_HOENN_ROXANNE         166
+#define OBJ_EVENT_GFX_HOENN_WALLACE         167
+#define OBJ_EVENT_GFX_HOENN_FLANNERY        168
+
+#define NUM_OBJ_EVENT_GFX     169
 
 // These are dynamic object gfx ids.
 // They correspond with the values of the VAR_OBJ_GFX_ID_X vars.

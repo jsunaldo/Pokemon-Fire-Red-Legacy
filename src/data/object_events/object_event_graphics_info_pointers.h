@@ -158,6 +158,14 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Registeel;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Latias;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Latios;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Jirachi;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_HoennWinona;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_HoennWattson;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_HoennNorman;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_HoennLiza;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_HoennBrawly;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_HoennRoxanne;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_HoennWallace;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_HoennFlannery;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SSAnne;
 
 
@@ -323,4 +331,12 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_LATIAS] = &gObjectEventGraphicsInfo_Latias,
     [OBJ_EVENT_GFX_LATIOS] = &gObjectEventGraphicsInfo_Latios,
     [OBJ_EVENT_GFX_JIRACHI] = &gObjectEventGraphicsInfo_Jirachi,
+    [OBJ_EVENT_GFX_HOENN_WINONA] = &gObjectEventGraphicsInfo_HoennWinona,
+    [OBJ_EVENT_GFX_HOENN_WATTSON] = &gObjectEventGraphicsInfo_HoennWattson,
+    [OBJ_EVENT_GFX_HOENN_NORMAN] = &gObjectEventGraphicsInfo_HoennNorman,
+    [OBJ_EVENT_GFX_HOENN_LIZA] = &gObjectEventGraphicsInfo_HoennLiza,
+    [OBJ_EVENT_GFX_HOENN_BRAWLY] = &gObjectEventGraphicsInfo_HoennBrawly,
+    [OBJ_EVENT_GFX_HOENN_ROXANNE] = &gObjectEventGraphicsInfo_HoennRoxanne,
+    [OBJ_EVENT_GFX_HOENN_WALLACE] = &gObjectEventGraphicsInfo_HoennWallace,
+    [OBJ_EVENT_GFX_HOENN_FLANNERY] = &gObjectEventGraphicsInfo_HoennFlannery,
 };

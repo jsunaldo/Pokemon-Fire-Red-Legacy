@@ -48,7 +48,7 @@
     {
       "local_id": "LOCALID_HOENN_22",
       "type": "object",
-      "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
+      "graphics_id": "OBJ_EVENT_GFX_HOENN_WATTSON",
       "x": 3,
       "y": 39,
       "elevation": 3,

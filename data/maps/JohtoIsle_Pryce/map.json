@@ -48,7 +48,7 @@
     {
       "local_id": "LOCALID_HOENN_27",
       "type": "object",
-      "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M_LAND",
+      "graphics_id": "OBJ_EVENT_GFX_HOENN_WALLACE",
       "x": 2,
       "y": 14,
       "elevation": 3,

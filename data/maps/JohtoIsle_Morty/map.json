@@ -48,7 +48,7 @@
     {
       "local_id": "LOCALID_HOENN_24",
       "type": "object",
-      "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_F",
+      "graphics_id": "OBJ_EVENT_GFX_HOENN_LIZA",
       "x": 4,
       "y": 8,
       "elevation": 3,

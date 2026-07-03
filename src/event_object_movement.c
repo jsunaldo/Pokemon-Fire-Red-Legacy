@@ -470,6 +470,14 @@ static const u8 gInitialMovementTypeFacingDirections[MOVEMENT_TYPES_COUNT] = {
 #define OBJ_EVENT_PAL_TAG_LATIAS 0x111B
 #define OBJ_EVENT_PAL_TAG_LATIOS 0x111C
 #define OBJ_EVENT_PAL_TAG_JIRACHI 0x111D
+#define OBJ_EVENT_PAL_TAG_HOENN_WINONA 0x1120
+#define OBJ_EVENT_PAL_TAG_HOENN_WATTSON 0x1121
+#define OBJ_EVENT_PAL_TAG_HOENN_NORMAN 0x1122
+#define OBJ_EVENT_PAL_TAG_HOENN_LIZA 0x1123
+#define OBJ_EVENT_PAL_TAG_HOENN_BRAWLY 0x1124
+#define OBJ_EVENT_PAL_TAG_HOENN_ROXANNE 0x1125
+#define OBJ_EVENT_PAL_TAG_HOENN_WALLACE 0x1126
+#define OBJ_EVENT_PAL_TAG_HOENN_FLANNERY 0x1127
 #define OBJ_EVENT_PAL_TAG_SS_ANNE                     0x1115
 #define OBJ_EVENT_PAL_TAG_RS_PLAYER_UNDERWATER        0x1116
 #define OBJ_EVENT_PAL_TAG_RS_KYOGRE                   0x1117
@@ -515,6 +523,14 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Latias, OBJ_EVENT_PAL_TAG_LATIAS},
     {gObjectEventPal_Latios, OBJ_EVENT_PAL_TAG_LATIOS},
     {gObjectEventPal_Jirachi, OBJ_EVENT_PAL_TAG_JIRACHI},
+    {gObjectEventPal_HoennWinona, OBJ_EVENT_PAL_TAG_HOENN_WINONA},
+    {gObjectEventPal_HoennWattson, OBJ_EVENT_PAL_TAG_HOENN_WATTSON},
+    {gObjectEventPal_HoennNorman, OBJ_EVENT_PAL_TAG_HOENN_NORMAN},
+    {gObjectEventPal_HoennLiza, OBJ_EVENT_PAL_TAG_HOENN_LIZA},
+    {gObjectEventPal_HoennBrawly, OBJ_EVENT_PAL_TAG_HOENN_BRAWLY},
+    {gObjectEventPal_HoennRoxanne, OBJ_EVENT_PAL_TAG_HOENN_ROXANNE},
+    {gObjectEventPal_HoennWallace, OBJ_EVENT_PAL_TAG_HOENN_WALLACE},
+    {gObjectEventPal_HoennFlannery, OBJ_EVENT_PAL_TAG_HOENN_FLANNERY},
     {},
 };
 

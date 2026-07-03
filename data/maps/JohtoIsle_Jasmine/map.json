@@ -48,7 +48,7 @@
     {
       "local_id": "LOCALID_HOENN_26",
       "type": "object",
-      "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
+      "graphics_id": "OBJ_EVENT_GFX_HOENN_ROXANNE",
       "x": 42,
       "y": 40,
       "elevation": 3,
