@@ -236,7 +236,15 @@
     "BirthIsland_Exterior",
     "OneIsland_KindleRoad_EmberSpa",
     "BirthIsland_Harbor",
-    "NavelRock_Harbor"
+    "NavelRock_Harbor",
+    "JohtoIsle_Falkner",
+    "JohtoIsle_Bugsy",
+    "JohtoIsle_Whitney",
+    "JohtoIsle_Morty",
+    "JohtoIsle_Chuck",
+    "JohtoIsle_Jasmine",
+    "JohtoIsle_Pryce",
+    "JohtoIsle_Clair"
   ],
   "gMapGroup_TownsAndRoutes": [
     "PalletTown",

@@ -1,0 +1,47 @@
+JohtoIsle_Bugsy_MapScripts::
+	.byte 0
+
+JohtoIsle_Bugsy_EventScript_Leader::
+	lock
+	faceplayer
+	goto_if_set FLAG_BEAT_JOHTO_BUGSY, JohtoIsle_Bugsy_EventScript_LeaderPostBattle
+	msgbox JohtoIsle_Bugsy_Text_LeaderPreBattle, MSGBOX_DEFAULT
+	trainerbattle_single TRAINER_JOHTO_BUGSY, JohtoIsle_Bugsy_Text_LeaderIntro, JohtoIsle_Bugsy_Text_LeaderDefeat
+	msgbox JohtoIsle_Bugsy_Text_LeaderAfter, MSGBOX_DEFAULT
+	release
+	end
+
+JohtoIsle_Bugsy_EventScript_LeaderPostBattle::
+	msgbox JohtoIsle_Bugsy_Text_LeaderPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+JohtoIsle_Bugsy_EventScript_Sailor::
+	lock
+	faceplayer
+	goto_if_set FLAG_BEAT_JOHTO_BUGSY, JohtoIsle_Bugsy_EventScript_SailorOnward
+	msgbox JohtoIsle_Bugsy_Text_SailorBlocked, MSGBOX_DEFAULT
+	goto JohtoIsle_Bugsy_EventScript_SailorReturnPrompt
+
+JohtoIsle_Bugsy_EventScript_SailorOnward::
+	msgbox JohtoIsle_Bugsy_Text_SailorOnward, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, JohtoIsle_Bugsy_EventScript_SailNext
+	goto JohtoIsle_Bugsy_EventScript_SailorReturnPrompt
+
+JohtoIsle_Bugsy_EventScript_SailNext::
+	warp MAP_JOHTO_ISLE_WHITNEY, 18, 37
+	waitstate
+	release
+	end
+
+JohtoIsle_Bugsy_EventScript_SailorReturnPrompt::
+	msgbox JohtoIsle_Bugsy_Text_SailorReturn, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, JohtoIsle_Bugsy_EventScript_SailorBye
+	warp MAP_ONE_ISLAND_HARBOR, 8, 5
+	waitstate
+	release
+	end
+
+JohtoIsle_Bugsy_EventScript_SailorBye::
+	release
+	end

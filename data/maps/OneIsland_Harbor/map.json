@@ -42,6 +42,21 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "OneIsland_Harbor_EventScript_Sailor",
       "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_ONE_ISLAND_HARBOR_JOHTO_FERRY",
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_SAILOR",
+      "x": 10,
+      "y": 3,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OneIsland_Harbor_EventScript_JohtoFerry",
+      "flag": "0"
     }
   ],
   "warp_events": [
