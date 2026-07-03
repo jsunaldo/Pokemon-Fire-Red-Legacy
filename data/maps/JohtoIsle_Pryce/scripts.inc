@@ -29,7 +29,7 @@ JohtoIsle_Pryce_EventScript_SailorOnward::
 	goto JohtoIsle_Pryce_EventScript_SailorReturnPrompt
 
 JohtoIsle_Pryce_EventScript_SailNext::
-	warp MAP_JOHTO_ISLE_CLAIR, 18, 37
+	warp MAP_JOHTO_ISLE_CLAIR, 0, 91
 	waitstate
 	release
 	end

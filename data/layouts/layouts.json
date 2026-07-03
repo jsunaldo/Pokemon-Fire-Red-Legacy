@@ -4410,6 +4410,102 @@
       "secondary_tileset": "gTileset_SeviiIslands45",
       "border_filepath": "data/layouts/JohtoIsle/border.bin",
       "blockdata_filepath": "data/layouts/JohtoIsle/map.bin"
+    },
+    {
+      "id": "LAYOUT_JOHTO_ISLE_FALKNER",
+      "name": "JohtoIsle_Falkner_Layout",
+      "width": 24,
+      "height": 40,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_SeviiIslands45",
+      "border_filepath": "data/layouts/JohtoIsle_Falkner/border.bin",
+      "blockdata_filepath": "data/layouts/JohtoIsle_Falkner/map.bin"
+    },
+    {
+      "id": "LAYOUT_JOHTO_ISLE_BUGSY",
+      "name": "JohtoIsle_Bugsy_Layout",
+      "width": 54,
+      "height": 69,
+      "border_width": 3,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_ViridianForest",
+      "border_filepath": "data/layouts/JohtoIsle_Bugsy/border.bin",
+      "blockdata_filepath": "data/layouts/JohtoIsle_Bugsy/map.bin"
+    },
+    {
+      "id": "LAYOUT_JOHTO_ISLE_WHITNEY",
+      "name": "JohtoIsle_Whitney_Layout",
+      "width": 24,
+      "height": 40,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_SeviiIslands45",
+      "border_filepath": "data/layouts/JohtoIsle_Whitney/border.bin",
+      "blockdata_filepath": "data/layouts/JohtoIsle_Whitney/map.bin"
+    },
+    {
+      "id": "LAYOUT_JOHTO_ISLE_MORTY",
+      "name": "JohtoIsle_Morty_Layout",
+      "width": 11,
+      "height": 11,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/JohtoIsle_Morty/border.bin",
+      "blockdata_filepath": "data/layouts/JohtoIsle_Morty/map.bin"
+    },
+    {
+      "id": "LAYOUT_JOHTO_ISLE_CHUCK",
+      "name": "JohtoIsle_Chuck_Layout",
+      "width": 24,
+      "height": 40,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_SeviiIslands67",
+      "border_filepath": "data/layouts/JohtoIsle_Chuck/border.bin",
+      "blockdata_filepath": "data/layouts/JohtoIsle_Chuck/map.bin"
+    },
+    {
+      "id": "LAYOUT_JOHTO_ISLE_JASMINE",
+      "name": "JohtoIsle_Jasmine_Layout",
+      "width": 57,
+      "height": 54,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_SeviiIslands123",
+      "border_filepath": "data/layouts/JohtoIsle_Jasmine/border.bin",
+      "blockdata_filepath": "data/layouts/JohtoIsle_Jasmine/map.bin"
+    },
+    {
+      "id": "LAYOUT_JOHTO_ISLE_PRYCE",
+      "name": "JohtoIsle_Pryce_Layout",
+      "width": 20,
+      "height": 20,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_SeafoamIslands",
+      "border_filepath": "data/layouts/JohtoIsle_Pryce/border.bin",
+      "blockdata_filepath": "data/layouts/JohtoIsle_Pryce/map.bin"
+    },
+    {
+      "id": "LAYOUT_JOHTO_ISLE_CLAIR",
+      "name": "JohtoIsle_Clair_Layout",
+      "width": 24,
+      "height": 100,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_SeviiIslands67",
+      "border_filepath": "data/layouts/JohtoIsle_Clair/border.bin",
+      "blockdata_filepath": "data/layouts/JohtoIsle_Clair/map.bin"
     }
   ]
 }

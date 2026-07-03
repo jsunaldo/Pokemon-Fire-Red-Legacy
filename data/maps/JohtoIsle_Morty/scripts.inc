@@ -29,7 +29,7 @@ JohtoIsle_Morty_EventScript_SailorOnward::
 	goto JohtoIsle_Morty_EventScript_SailorReturnPrompt
 
 JohtoIsle_Morty_EventScript_SailNext::
-	warp MAP_JOHTO_ISLE_CHUCK, 18, 37
+	warp MAP_JOHTO_ISLE_CHUCK, 3, 34
 	waitstate
 	release
 	end
