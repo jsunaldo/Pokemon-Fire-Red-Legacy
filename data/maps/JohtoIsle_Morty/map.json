@@ -19,7 +19,7 @@
       "local_id": "LOCALID_JOHTO_MORTY_LEADER",
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_MAN",
-      "x": 8,
+      "x": 7,
       "y": 2,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
