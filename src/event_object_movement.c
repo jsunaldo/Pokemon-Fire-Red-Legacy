@@ -1369,6 +1369,11 @@ static u8 InitObjectEventStateFromTemplate(const struct ObjectEventTemplate *tem
         y3 = template->y;
         mapHeader = Overworld_GetMapHeaderByGroupAndId(mapGroup, mapNum);
         template = &(mapHeader->events->objectEvents[localId - 1]);
+        // FRLG Legacy: a clone mirrors its target object, so honor the target's
+        // spawn flag too. This keeps border cut-tree clones from lingering once
+        // the real tree has been cut (its persistent FLAG_CUT_TREE_xx is set).
+        if (FlagGet(template->flagId))
+            return OBJECT_EVENTS_COUNT;
     }
 
     if (GetAvailableObjectEventId(template->localId, mapNum, mapGroup, &objectEventId))
@@ -2564,6 +2569,18 @@ static u16 GetObjectEventFlagIdByLocalIdAndMap(u8 localId, u8 mapNum, u8 mapGrou
 static u16 GetObjectEventFlagIdByObjectEventId(u8 objectEventId)
 {
     return GetObjectEventFlagIdByLocalIdAndMap(gObjectEvents[objectEventId].localId, gObjectEvents[objectEventId].mapNum, gObjectEvents[objectEventId].mapGroup);
+}
+
+// FRLG Legacy: called by the Cut field-move script once a tree is felled. Cut
+// trees carry a persistent FLAG_CUT_TREE_xx; setting it here keeps the tree from
+// growing back on the next map load (vanilla trees use a FLAG_TEMP that is
+// cleared every reload). Trees that still use a temp flag are left untouched.
+void SetCutTreePermanentlyRemoved(void)
+{
+    u16 flagId = GetObjectEventFlagIdByLocalIdAndMap(gSpecialVar_LastTalked,
+        gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
+    if (flagId > TEMP_FLAGS_END)
+        FlagSet(flagId);
 }
 
 // Unused

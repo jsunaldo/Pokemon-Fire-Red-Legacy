@@ -1165,7 +1165,8 @@ PalletTown_ProfessorOaksLab_EventScript_RivalWalksToBulbasaur::
 PalletTown_ProfessorOaksLab_EventScript_RivalTakesStarter::
 	textcolor NPC_TEXT_COLOR_MALE
 	msgbox PalletTown_ProfessorOaksLab_Text_RivalIllTakeThisOneThen
-	removeobject RIVAL_STARTER_ID
+	@ FRLG Legacy: Oak gives the rival an EEVEE, so he reaches for a ball but
+	@ never takes one — leave the Poke Ball on the table (no removeobject).
 	msgbox PalletTown_ProfessorOaksLab_Text_OakGivesRivalEevee
 	textcolor NPC_TEXT_COLOR_NEUTRAL
 	bufferspeciesname STR_VAR_1, SPECIES_EEVEE

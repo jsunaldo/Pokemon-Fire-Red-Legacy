@@ -26,6 +26,9 @@ EventScript_FldEffCut::
 EventScript_CutTreeDown::
 	applymovement VAR_LAST_TALKED, Movement_CutTreeDown
 	waitmovement 0
+	@ FRLG Legacy: set the tree's persistent flag so it stays cut forever
+	@ (vanilla cut trees carry a FLAG_TEMP and grow back on the next reload).
+	special SetCutTreePermanentlyRemoved
 	removeobject VAR_LAST_TALKED
 	releaseall
 	end

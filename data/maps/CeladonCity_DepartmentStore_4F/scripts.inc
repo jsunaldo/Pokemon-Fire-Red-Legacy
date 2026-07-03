@@ -28,10 +28,21 @@ CeladonCity_DepartmentStore_4F_EventScript_Clerk::
 CeladonCity_DepartmentStore_4F_Items::
 	.2byte ITEM_POKE_DOLL
 	.2byte ITEM_RETRO_MAIL
+	@ FRLG Legacy: the evolution counter stocks EVERY evolution item, not just
+	@ the four elemental stones — Sun/Moon stones plus the old trade-evo items,
+	@ which Emerald Legacy lets you use straight from the bag.
 	.2byte ITEM_FIRE_STONE
 	.2byte ITEM_THUNDER_STONE
 	.2byte ITEM_WATER_STONE
 	.2byte ITEM_LEAF_STONE
+	.2byte ITEM_SUN_STONE
+	.2byte ITEM_MOON_STONE
+	.2byte ITEM_METAL_COAT
+	.2byte ITEM_KINGS_ROCK
+	.2byte ITEM_DRAGON_SCALE
+	.2byte ITEM_UP_GRADE
+	.2byte ITEM_DEEP_SEA_TOOTH
+	.2byte ITEM_DEEP_SEA_SCALE
 	.2byte ITEM_NONE
 	release
 	end

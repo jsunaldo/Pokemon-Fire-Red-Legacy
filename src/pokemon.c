@@ -5986,11 +5986,15 @@ const struct CompressedSpritePalette *GetMonSpritePalStructFromOtIdPersonality(u
 
 bool32 IsHMMove2(u16 move)
 {
+    // FRLG Legacy: HM moves are freely forgettable, exactly as in the other
+    // Legacy games. This function only gates the "can't forget this move"
+    // prompts, so always report FALSE. (Loop retained to keep sHMMoves
+    // referenced; field-move usage is handled separately by IsMoveHm.)
     int i = 0;
     while (sHMMoves[i] != HM_MOVES_END)
     {
         if (sHMMoves[i++] == move)
-            return TRUE;
+            return FALSE;
     }
     return FALSE;
 }
