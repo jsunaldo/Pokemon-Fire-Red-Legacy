@@ -99,6 +99,7 @@ SaffronCity_Gym_EventScript_GymStatuePostVictory::
 SaffronCity_Gym_EventScript_SabrinaRematch::
 	msgbox SaffronCity_Gym_Text_SabrinaRematchAsk, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, SaffronCity_Gym_EventScript_SabrinaRematchDeclined
+	goto_if_set FLAG_JOHTO_CIRCUIT_CLEARED, SaffronCity_Gym_EventScript_SabrinaRematch3
 	goto_if_set FLAG_SYS_CAN_LINK_WITH_RS, SaffronCity_Gym_EventScript_SabrinaRematch2
 	cleartrainerflag TRAINER_LEADER_SABRINA_REMATCH
 	trainerbattle_no_intro TRAINER_LEADER_SABRINA_REMATCH, SaffronCity_Gym_Text_SabrinaRematchDefeat
@@ -114,6 +115,13 @@ SaffronCity_Gym_EventScript_SabrinaRematchDeclined::
 SaffronCity_Gym_EventScript_SabrinaRematch2::
 	cleartrainerflag TRAINER_LEADER_SABRINA_REMATCH2
 	trainerbattle_no_intro TRAINER_LEADER_SABRINA_REMATCH2, SaffronCity_Gym_Text_SabrinaRematchDefeat
+	msgbox SaffronCity_Gym_Text_SabrinaRematchPost
+	release
+	end
+
+SaffronCity_Gym_EventScript_SabrinaRematch3::
+	cleartrainerflag TRAINER_LEADER_SABRINA_R3
+	trainerbattle_no_intro TRAINER_LEADER_SABRINA_R3, SaffronCity_Gym_Text_SabrinaRematchDefeat
 	msgbox SaffronCity_Gym_Text_SabrinaRematchPost
 	release
 	end

@@ -72,7 +72,12 @@ PokemonLeague_BrunosRoom_EventScript_Battle::
 	return
 
 PokemonLeague_BrunosRoom_EventScript_Rematch::
+	goto_if_set FLAG_JOHTO_CIRCUIT_CLEARED, PokemonLeague_BrunosRoom_EventScript_Rematch3
 	trainerbattle_no_intro TRAINER_ELITE_FOUR_BRUNO_2, PokemonLeague_BrunosRoom_Text_Defeat
+	return
+
+PokemonLeague_BrunosRoom_EventScript_Rematch3::
+	trainerbattle_no_intro TRAINER_ELITE_FOUR_BRUNO_R3, PokemonLeague_BrunosRoom_Text_Defeat
 	return
 
 PokemonLeague_BrunosRoom_EventScript_PostBattle::

@@ -20,17 +20,29 @@
 #define TRAINER_RS_TUBER_M                         8
 #define TRAINER_JOHTO_CLAIR                    8 // Johto Isles
 #define TRAINER_RS_COOLTRAINER_M                   9
+#define TRAINER_LEADER_BROCK_R3            9 // round-3 rematch
 #define TRAINER_RS_COOLTRAINER_F                  10
+#define TRAINER_LEADER_MISTY_R3            10 // round-3 rematch
 #define TRAINER_HEX_MANIAC                        11
+#define TRAINER_LEADER_LT_SURGE_R3            11 // round-3 rematch
 #define TRAINER_RS_LADY                           12
+#define TRAINER_LEADER_ERIKA_R3            12 // round-3 rematch
 #define TRAINER_RS_BEAUTY                         13
+#define TRAINER_LEADER_KOGA_R3            13 // round-3 rematch
 #define TRAINER_RICH_BOY                          14
+#define TRAINER_LEADER_SABRINA_R3            14 // round-3 rematch
 #define TRAINER_RS_POKEMANIAC                     15
+#define TRAINER_LEADER_BLAINE_R3            15 // round-3 rematch
 #define TRAINER_RS_SWIMMER_M                      16
+#define TRAINER_ELITE_FOUR_LORELEI_R3            16 // round-3 rematch
 #define TRAINER_RS_BLACK_BELT                     17
+#define TRAINER_ELITE_FOUR_BRUNO_R3            17 // round-3 rematch
 #define TRAINER_GUITARIST                         18
+#define TRAINER_ELITE_FOUR_AGATHA_R3            18 // round-3 rematch
 #define TRAINER_KINDLER                           19
+#define TRAINER_ELITE_FOUR_LANCE_R3            19 // round-3 rematch
 #define TRAINER_RS_CAMPER                         20
+#define TRAINER_CHAMPION_R3            20 // round-3 rematch
 #define TRAINER_BUG_MANIAC                        21
 #define TRAINER_RS_PSYCHIC_M                      22
 #define TRAINER_RS_PSYCHIC_F                      23

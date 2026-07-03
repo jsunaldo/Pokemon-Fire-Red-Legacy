@@ -107,6 +107,7 @@ PokemonLeague_ChampionsRoom_EventScript_Battle::
 	return
 
 PokemonLeague_ChampionsRoom_EventScript_Rematch::
+	goto_if_set FLAG_JOHTO_CIRCUIT_CLEARED, PokemonLeague_ChampionsRoom_EventScript_Rematch3
 	msgbox PokemonLeague_ChampionsRoom_Text_RivalBenchedEevee
 	call_if_eq VAR_STARTER_MON, 2, PokemonLeague_ChampionsRoom_EventScript_RematchSquirtle
 	call_if_eq VAR_STARTER_MON, 1, PokemonLeague_ChampionsRoom_EventScript_RematchBulbasaur
@@ -225,3 +226,7 @@ PokemonLeague_ChampionsRoom_Movement_RivalWatchOakEnter::
 	delay_16
 	walk_in_place_faster_left
 	step_end
+
+PokemonLeague_ChampionsRoom_EventScript_Rematch3::
+	trainerbattle_no_intro TRAINER_CHAMPION_R3, PokemonLeague_ChampionsRoom_Text_Defeat
+	return

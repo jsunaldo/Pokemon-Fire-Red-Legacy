@@ -93,6 +93,7 @@ FuchsiaCity_Gym_EventScript_GymStatuePostVictory::
 FuchsiaCity_Gym_EventScript_KogaRematch::
 	msgbox FuchsiaCity_Gym_Text_KogaRematchAsk, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, FuchsiaCity_Gym_EventScript_KogaRematchDeclined
+	goto_if_set FLAG_JOHTO_CIRCUIT_CLEARED, FuchsiaCity_Gym_EventScript_KogaRematch3
 	goto_if_set FLAG_SYS_CAN_LINK_WITH_RS, FuchsiaCity_Gym_EventScript_KogaRematch2
 	cleartrainerflag TRAINER_LEADER_KOGA_REMATCH
 	trainerbattle_no_intro TRAINER_LEADER_KOGA_REMATCH, FuchsiaCity_Gym_Text_KogaRematchDefeat
@@ -108,6 +109,13 @@ FuchsiaCity_Gym_EventScript_KogaRematchDeclined::
 FuchsiaCity_Gym_EventScript_KogaRematch2::
 	cleartrainerflag TRAINER_LEADER_KOGA_REMATCH2
 	trainerbattle_no_intro TRAINER_LEADER_KOGA_REMATCH2, FuchsiaCity_Gym_Text_KogaRematchDefeat
+	msgbox FuchsiaCity_Gym_Text_KogaRematchPost
+	release
+	end
+
+FuchsiaCity_Gym_EventScript_KogaRematch3::
+	cleartrainerflag TRAINER_LEADER_KOGA_R3
+	trainerbattle_no_intro TRAINER_LEADER_KOGA_R3, FuchsiaCity_Gym_Text_KogaRematchDefeat
 	msgbox FuchsiaCity_Gym_Text_KogaRematchPost
 	release
 	end

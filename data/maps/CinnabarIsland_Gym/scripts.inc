@@ -713,6 +713,7 @@ CinnabarIsland_Gym_EventScript_OpenDoor6::
 CinnabarIsland_Gym_EventScript_BlaineRematch::
 	msgbox CinnabarIsland_Gym_Text_BlaineRematchAsk, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, CinnabarIsland_Gym_EventScript_BlaineRematchDeclined
+	goto_if_set FLAG_JOHTO_CIRCUIT_CLEARED, CinnabarIsland_Gym_EventScript_BlaineRematch3
 	goto_if_set FLAG_SYS_CAN_LINK_WITH_RS, CinnabarIsland_Gym_EventScript_BlaineRematch2
 	cleartrainerflag TRAINER_LEADER_BLAINE_REMATCH
 	trainerbattle_no_intro TRAINER_LEADER_BLAINE_REMATCH, CinnabarIsland_Gym_Text_BlaineRematchDefeat
@@ -728,6 +729,13 @@ CinnabarIsland_Gym_EventScript_BlaineRematchDeclined::
 CinnabarIsland_Gym_EventScript_BlaineRematch2::
 	cleartrainerflag TRAINER_LEADER_BLAINE_REMATCH2
 	trainerbattle_no_intro TRAINER_LEADER_BLAINE_REMATCH2, CinnabarIsland_Gym_Text_BlaineRematchDefeat
+	msgbox CinnabarIsland_Gym_Text_BlaineRematchPost
+	release
+	end
+
+CinnabarIsland_Gym_EventScript_BlaineRematch3::
+	cleartrainerflag TRAINER_LEADER_BLAINE_R3
+	trainerbattle_no_intro TRAINER_LEADER_BLAINE_R3, CinnabarIsland_Gym_Text_BlaineRematchDefeat
 	msgbox CinnabarIsland_Gym_Text_BlaineRematchPost
 	release
 	end

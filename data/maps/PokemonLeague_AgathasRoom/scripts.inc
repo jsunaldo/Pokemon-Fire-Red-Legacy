@@ -73,7 +73,12 @@ PokemonLeague_AgathasRoom_EventScript_Battle::
 	return
 
 PokemonLeague_AgathasRoom_EventScript_Rematch::
+	goto_if_set FLAG_JOHTO_CIRCUIT_CLEARED, PokemonLeague_AgathasRoom_EventScript_Rematch3
 	trainerbattle_no_intro TRAINER_ELITE_FOUR_AGATHA_2, PokemonLeague_AgathasRoom_Text_Defeat
+	return
+
+PokemonLeague_AgathasRoom_EventScript_Rematch3::
+	trainerbattle_no_intro TRAINER_ELITE_FOUR_AGATHA_R3, PokemonLeague_AgathasRoom_Text_Defeat
 	return
 
 PokemonLeague_AgathasRoom_EventScript_PostBattle::

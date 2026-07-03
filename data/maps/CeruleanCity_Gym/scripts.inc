@@ -73,6 +73,7 @@ CeruleanCity_Gym_EventScript_GymStatuePostVictory::
 CeruleanCity_Gym_EventScript_MistyRematch::
 	msgbox CeruleanCity_Gym_Text_MistyRematchAsk, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, CeruleanCity_Gym_EventScript_MistyRematchDeclined
+	goto_if_set FLAG_JOHTO_CIRCUIT_CLEARED, CeruleanCity_Gym_EventScript_MistyRematch3
 	goto_if_set FLAG_SYS_CAN_LINK_WITH_RS, CeruleanCity_Gym_EventScript_MistyRematch2
 	cleartrainerflag TRAINER_LEADER_MISTY_REMATCH
 	trainerbattle_no_intro TRAINER_LEADER_MISTY_REMATCH, CeruleanCity_Gym_Text_MistyRematchDefeat
@@ -88,6 +89,13 @@ CeruleanCity_Gym_EventScript_MistyRematchDeclined::
 CeruleanCity_Gym_EventScript_MistyRematch2::
 	cleartrainerflag TRAINER_LEADER_MISTY_REMATCH2
 	trainerbattle_no_intro TRAINER_LEADER_MISTY_REMATCH2, CeruleanCity_Gym_Text_MistyRematchDefeat
+	msgbox CeruleanCity_Gym_Text_MistyRematchPost
+	release
+	end
+
+CeruleanCity_Gym_EventScript_MistyRematch3::
+	cleartrainerflag TRAINER_LEADER_MISTY_R3
+	trainerbattle_no_intro TRAINER_LEADER_MISTY_R3, CeruleanCity_Gym_Text_MistyRematchDefeat
 	msgbox CeruleanCity_Gym_Text_MistyRematchPost
 	release
 	end
