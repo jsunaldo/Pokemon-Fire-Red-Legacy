@@ -4048,6 +4048,22 @@ bool8 ExecuteTableBasedItemEffect(struct Pokemon *mon, u16 item, u8 partyIndex, 
     }                                                                                                   \
 }
 
+// FRLG Legacy Hard Mode: a Pokemon that has fainted is dead for good. It can
+// never regain HP by any means (revive, Pokemon Center, etc.), so any healing
+// path checks this first and leaves the mon at 0 HP. A fainted mon outside of
+// battle always sits at 0 HP, so that is our "dead" signal. (Rare Candy is safe
+// automatically: CalculateMonStats leaves a 0-HP mon at 0 HP on level up.)
+bool32 IsMonPermanentlyDead(struct Pokemon *mon)
+{
+    if (!FlagGet(FLAG_HARD_MODE))
+        return FALSE;
+    if (GetMonData(mon, MON_DATA_SPECIES, NULL) == SPECIES_NONE)
+        return FALSE;
+    if (GetMonData(mon, MON_DATA_IS_EGG, NULL))
+        return FALSE;
+    return GetMonData(mon, MON_DATA_HP, NULL) == 0;
+}
+
 bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 moveIndex, bool8 usedByAI)
 {
     u32 data;
@@ -4307,6 +4323,13 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                         // If Revive, update number of times revive has been used
                         if (val & (ITEM4_REVIVE >> 2))
                         {
+                            // FRLG Legacy Hard Mode: fainted Pokemon are dead for
+                            // good — a revive does nothing.
+                            if (IsMonPermanentlyDead(mon))
+                            {
+                                idx++;
+                                break;
+                            }
                             if (GetMonData(mon, MON_DATA_HP, NULL) != 0)
                             {
                                 idx++;
@@ -4760,6 +4783,13 @@ bool8 PokemonItemUseNoEffect(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mo
                     case 2: // ITEM4_HEAL_HP
                         if (curEffect & (ITEM4_REVIVE >> 2))
                         {
+                            // FRLG Legacy Hard Mode: a dead Pokemon can't be
+                            // revived, so the item reports no effect (greyed out).
+                            if (IsMonPermanentlyDead(mon))
+                            {
+                                idx++;
+                                break;
+                            }
                             if (GetMonData(mon, MON_DATA_HP, NULL) != 0)
                             {
                                 idx++;

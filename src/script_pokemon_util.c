@@ -23,7 +23,13 @@ void HealPlayerParty(void)
     // restore HP.
     for(i = 0; i < gPlayerPartyCount; i++)
     {
-        u16 maxHP = GetMonData(&gPlayerParty[i], MON_DATA_MAX_HP);
+        u16 maxHP;
+        // FRLG Legacy Hard Mode: a fainted Pokemon is dead for good — the Pokemon
+        // Center (and any scripted heal) leaves it at 0 HP. Swap in a living mon
+        // from the PC to keep going.
+        if (IsMonPermanentlyDead(&gPlayerParty[i]))
+            continue;
+        maxHP = GetMonData(&gPlayerParty[i], MON_DATA_MAX_HP);
         arg[0] = maxHP;
         arg[1] = maxHP >> 8;
         SetMonData(&gPlayerParty[i], MON_DATA_HP, arg);

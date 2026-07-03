@@ -7232,16 +7232,24 @@ static const struct TrainerMonNoItemDefaultMoves sParty_PainterDaisy[] = {
     },
 };
 
+// FRLG Legacy: the three Three Island bikers used to run an identical
+// Sandslash + Machoke team. Each now fields a distinct biker-gang roster so the
+// gauntlet has some variety (the lead goon gets a third mon).
 static const struct TrainerMonNoItemDefaultMoves sParty_BikerGoon[] = {
     {
         .iv = 0,
         .lvl = 30,
-        .species = SPECIES_SANDSLASH,
+        .species = SPECIES_ARBOK,
     },
     {
         .iv = 0,
         .lvl = 30,
-        .species = SPECIES_MACHOKE,
+        .species = SPECIES_GOLBAT,
+    },
+    {
+        .iv = 0,
+        .lvl = 31,
+        .species = SPECIES_MUK,
     },
 };
 
@@ -7249,12 +7257,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_BikerGoon2[] = {
     {
         .iv = 0,
         .lvl = 31,
-        .species = SPECIES_SANDSLASH,
+        .species = SPECIES_PRIMEAPE,
     },
     {
         .iv = 0,
         .lvl = 31,
-        .species = SPECIES_MACHOKE,
+        .species = SPECIES_WEEZING,
     },
 };
 
@@ -7262,12 +7270,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_BikerGoon3[] = {
     {
         .iv = 0,
         .lvl = 31,
-        .species = SPECIES_SANDSLASH,
+        .species = SPECIES_MAROWAK,
     },
     {
         .iv = 0,
         .lvl = 31,
-        .species = SPECIES_MACHOKE,
+        .species = SPECIES_SANDSLASH,
     },
 };
 
