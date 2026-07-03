@@ -1996,6 +1996,18 @@ static void SpawnObjectEventOnReturnToField(u8 objectEventId, s16 x, s16 y)
             SetSubspriteTables(sprite, subspriteTables);
 
         sprite->oam.paletteNum = graphicsInfo->paletteSlot;
+        // FRLG Legacy: reload the ace's unique palette when returning to the field
+        // (e.g. after a battle), otherwise the sprite reverts to a generic NPC
+        // palette until the map is fully reloaded. Mirrors TrySetupObjectEventSprite.
+        if (graphicsInfo->paletteTag >= OBJ_EVENT_PAL_TAG_GENGAR
+         && graphicsInfo->paletteTag <= OBJ_EVENT_PAL_TAG_RHYDON)
+        {
+            u8 acePalSlot;
+            LoadObjectEventPalette(graphicsInfo->paletteTag);
+            acePalSlot = IndexOfSpritePaletteTag(graphicsInfo->paletteTag);
+            if (acePalSlot != 0xFF)
+                sprite->oam.paletteNum = acePalSlot;
+        }
         sprite->coordOffsetEnabled = TRUE;
         sprite->data[0] = objectEventId;
         objectEvent->spriteId = spriteId;
