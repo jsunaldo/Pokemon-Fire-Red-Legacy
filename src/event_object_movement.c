@@ -1647,6 +1647,19 @@ static u8 TrySetupObjectEventSprite(const struct ObjectEventTemplate *objectEven
     sprite->x += 8;
     sprite->y += 16 + sprite->centerToCornerVecY;
     sprite->oam.paletteNum = graphicsInfo->paletteSlot;
+    // FRLG Legacy: the gym-leader / E4 ace sprites carry a unique per-species
+    // palette that isn't part of the preloaded field palette set, so a fixed NPC
+    // slot would show the wrong colors. Load it into a free (non-reserved) sprite
+    // palette slot and point the sprite there so it shows its real colors.
+    if (graphicsInfo->paletteTag >= OBJ_EVENT_PAL_TAG_GENGAR
+     && graphicsInfo->paletteTag <= OBJ_EVENT_PAL_TAG_RHYDON)
+    {
+        u8 acePalSlot;
+        LoadObjectEventPalette(graphicsInfo->paletteTag);
+        acePalSlot = IndexOfSpritePaletteTag(graphicsInfo->paletteTag);
+        if (acePalSlot != 0xFF)
+            sprite->oam.paletteNum = acePalSlot;
+    }
     sprite->coordOffsetEnabled = TRUE;
     sprite->data[0] = objectEventId;
     objectEvent->spriteId = spriteId;
