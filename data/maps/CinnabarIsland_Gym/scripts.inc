@@ -47,7 +47,32 @@ CinnabarIsland_Gym_OnLoadOpenDoor6::
 
 CinnabarIsland_Gym_EventScript_Blaine::
 	famechecker FAMECHECKER_BLAINE, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
+	goto_if_set FLAG_DEFEATED_BLAINE, CinnabarIsland_Gym_EventScript_BlaineAfterBattle
+	@ FRLG Legacy: Blaine's team scales to your badge count (flexible gym order).
+	special GetPlayerGymBadgeCount
+	goto_if_eq VAR_RESULT, 3, CinnabarIsland_Gym_EventScript_BlaineBattleB3
+	goto_if_eq VAR_RESULT, 4, CinnabarIsland_Gym_EventScript_BlaineBattleB4
+	goto_if_eq VAR_RESULT, 5, CinnabarIsland_Gym_EventScript_BlaineBattleB5
 	trainerbattle_single TRAINER_LEADER_BLAINE, CinnabarIsland_Gym_Text_BlaineIntro, CinnabarIsland_Gym_Text_BlaineDefeat, CinnabarIsland_Gym_EventScript_DefeatedBlaine, NO_MUSIC
+	goto CinnabarIsland_Gym_EventScript_BlaineAfterBattle
+	end
+
+CinnabarIsland_Gym_EventScript_BlaineBattleB3::
+	trainerbattle_single TRAINER_LEADER_BLAINE_B3, CinnabarIsland_Gym_Text_BlaineIntro, CinnabarIsland_Gym_Text_BlaineDefeat, CinnabarIsland_Gym_EventScript_DefeatedBlaine, NO_MUSIC
+	goto CinnabarIsland_Gym_EventScript_BlaineAfterBattle
+	end
+
+CinnabarIsland_Gym_EventScript_BlaineBattleB4::
+	trainerbattle_single TRAINER_LEADER_BLAINE_B4, CinnabarIsland_Gym_Text_BlaineIntro, CinnabarIsland_Gym_Text_BlaineDefeat, CinnabarIsland_Gym_EventScript_DefeatedBlaine, NO_MUSIC
+	goto CinnabarIsland_Gym_EventScript_BlaineAfterBattle
+	end
+
+CinnabarIsland_Gym_EventScript_BlaineBattleB5::
+	trainerbattle_single TRAINER_LEADER_BLAINE_B5, CinnabarIsland_Gym_Text_BlaineIntro, CinnabarIsland_Gym_Text_BlaineDefeat, CinnabarIsland_Gym_EventScript_DefeatedBlaine, NO_MUSIC
+	goto CinnabarIsland_Gym_EventScript_BlaineAfterBattle
+	end
+
+CinnabarIsland_Gym_EventScript_BlaineAfterBattle::
 	goto_if_unset FLAG_GOT_TM38_FROM_BLAINE, CinnabarIsland_Gym_EventScript_GiveTM38
 	goto_if_set FLAG_SYS_GAME_CLEAR, CinnabarIsland_Gym_EventScript_BlaineRematch
 	msgbox CinnabarIsland_Gym_Text_BlainePostBattle

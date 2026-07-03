@@ -3,7 +3,32 @@ FuchsiaCity_Gym_MapScripts::
 
 FuchsiaCity_Gym_EventScript_Koga::
 	famechecker FAMECHECKER_KOGA, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
+	goto_if_set FLAG_DEFEATED_KOGA, FuchsiaCity_Gym_EventScript_KogaAfterBattle
+	@ FRLG Legacy: Koga's team scales to your badge count (flexible gym order).
+	special GetPlayerGymBadgeCount
+	goto_if_eq VAR_RESULT, 3, FuchsiaCity_Gym_EventScript_KogaBattleB3
+	goto_if_eq VAR_RESULT, 5, FuchsiaCity_Gym_EventScript_KogaBattleB5
+	goto_if_ge VAR_RESULT, 6, FuchsiaCity_Gym_EventScript_KogaBattleB6
 	trainerbattle_single TRAINER_LEADER_KOGA, FuchsiaCity_Gym_Text_KogaIntro, FuchsiaCity_Gym_Text_KogaDefeat, FuchsiaCity_Gym_EventScript_DefeatedKoga, NO_MUSIC
+	goto FuchsiaCity_Gym_EventScript_KogaAfterBattle
+	end
+
+FuchsiaCity_Gym_EventScript_KogaBattleB3::
+	trainerbattle_single TRAINER_LEADER_KOGA_B3, FuchsiaCity_Gym_Text_KogaIntro, FuchsiaCity_Gym_Text_KogaDefeat, FuchsiaCity_Gym_EventScript_DefeatedKoga, NO_MUSIC
+	goto FuchsiaCity_Gym_EventScript_KogaAfterBattle
+	end
+
+FuchsiaCity_Gym_EventScript_KogaBattleB5::
+	trainerbattle_single TRAINER_LEADER_KOGA_B5, FuchsiaCity_Gym_Text_KogaIntro, FuchsiaCity_Gym_Text_KogaDefeat, FuchsiaCity_Gym_EventScript_DefeatedKoga, NO_MUSIC
+	goto FuchsiaCity_Gym_EventScript_KogaAfterBattle
+	end
+
+FuchsiaCity_Gym_EventScript_KogaBattleB6::
+	trainerbattle_single TRAINER_LEADER_KOGA_B6, FuchsiaCity_Gym_Text_KogaIntro, FuchsiaCity_Gym_Text_KogaDefeat, FuchsiaCity_Gym_EventScript_DefeatedKoga, NO_MUSIC
+	goto FuchsiaCity_Gym_EventScript_KogaAfterBattle
+	end
+
+FuchsiaCity_Gym_EventScript_KogaAfterBattle::
 	goto_if_unset FLAG_GOT_TM06_FROM_KOGA, FuchsiaCity_Gym_EventScript_GiveTM06
 	goto_if_set FLAG_SYS_GAME_CLEAR, FuchsiaCity_Gym_EventScript_KogaRematch
 	msgbox FuchsiaCity_Gym_Text_KogaPostBattle

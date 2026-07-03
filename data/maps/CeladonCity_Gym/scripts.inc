@@ -3,7 +3,33 @@ CeladonCity_Gym_MapScripts::
 
 CeladonCity_Gym_EventScript_Erika::
 	famechecker FAMECHECKER_ERIKA, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
+	goto_if_set FLAG_DEFEATED_ERIKA, CeladonCity_Gym_EventScript_ErikaAfterBattle
+	@ FRLG Legacy: the flexible gyms (Erika/Koga/Sabrina/Blaine) can be cleared in
+	@ any order; Erika fields a team scaled to how many badges you already hold.
+	special GetPlayerGymBadgeCount
+	goto_if_eq VAR_RESULT, 4, CeladonCity_Gym_EventScript_ErikaBattleB4
+	goto_if_eq VAR_RESULT, 5, CeladonCity_Gym_EventScript_ErikaBattleB5
+	goto_if_ge VAR_RESULT, 6, CeladonCity_Gym_EventScript_ErikaBattleB6
 	trainerbattle_single TRAINER_LEADER_ERIKA, CeladonCity_Gym_Text_ErikaIntro, CeladonCity_Gym_Text_ErikaDefeat, CeladonCity_Gym_EventScript_DefeatedErika, NO_MUSIC
+	goto CeladonCity_Gym_EventScript_ErikaAfterBattle
+	end
+
+CeladonCity_Gym_EventScript_ErikaBattleB4::
+	trainerbattle_single TRAINER_LEADER_ERIKA_B4, CeladonCity_Gym_Text_ErikaIntro, CeladonCity_Gym_Text_ErikaDefeat, CeladonCity_Gym_EventScript_DefeatedErika, NO_MUSIC
+	goto CeladonCity_Gym_EventScript_ErikaAfterBattle
+	end
+
+CeladonCity_Gym_EventScript_ErikaBattleB5::
+	trainerbattle_single TRAINER_LEADER_ERIKA_B5, CeladonCity_Gym_Text_ErikaIntro, CeladonCity_Gym_Text_ErikaDefeat, CeladonCity_Gym_EventScript_DefeatedErika, NO_MUSIC
+	goto CeladonCity_Gym_EventScript_ErikaAfterBattle
+	end
+
+CeladonCity_Gym_EventScript_ErikaBattleB6::
+	trainerbattle_single TRAINER_LEADER_ERIKA_B6, CeladonCity_Gym_Text_ErikaIntro, CeladonCity_Gym_Text_ErikaDefeat, CeladonCity_Gym_EventScript_DefeatedErika, NO_MUSIC
+	goto CeladonCity_Gym_EventScript_ErikaAfterBattle
+	end
+
+CeladonCity_Gym_EventScript_ErikaAfterBattle::
 	goto_if_unset FLAG_GOT_TM19_FROM_ERIKA, CeladonCity_Gym_EventScript_GiveTM19
 	goto_if_set FLAG_SYS_GAME_CLEAR, CeladonCity_Gym_EventScript_ErikaRematch
 	famechecker FAMECHECKER_ERIKA, 4

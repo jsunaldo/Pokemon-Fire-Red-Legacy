@@ -51,6 +51,23 @@ void HealPlayerParty(void)
     }
 }
 
+// FRLG Legacy: count the player's Gym Badges into VAR_RESULT. The flexible gyms
+// (Erika/Koga/Sabrina/Blaine) use this to pick a leader team scaled to the
+// player's progress, so those four can be cleared in any order and still fight
+// at an appropriate level.
+void GetPlayerGymBadgeCount(void)
+{
+    u32 flag;
+    u8 count = 0;
+
+    for (flag = FLAG_BADGE01_GET; flag <= FLAG_BADGE08_GET; flag++)
+    {
+        if (FlagGet(flag))
+            count++;
+    }
+    gSpecialVar_Result = count;
+}
+
 u8 ScriptGiveMon(u16 species, u8 level, u16 item, u32 unused1, u32 unused2, u8 unused3)
 {
     u16 nationalDexNum;

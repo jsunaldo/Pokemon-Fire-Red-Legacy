@@ -12851,3 +12851,326 @@ static const struct TrainerMonItemCustomMoves sParty_Hoenn28[] = {
         .moves = {MOVE_FLAMETHROWER, MOVE_SOLAR_BEAM, MOVE_SUNNY_DAY, MOVE_BODY_SLAM},
     },
 };
+
+// FRLG Legacy: order-based scaling teams for the flexible gyms (badge tiers).
+static const struct TrainerMonNoItemDefaultMoves sParty_LeaderErikaT4[] = {
+    {
+        .iv = 130,
+        .lvl = 40,
+        .species = SPECIES_IVYSAUR,
+    },
+    {
+        .iv = 130,
+        .lvl = 41,
+        .species = SPECIES_TANGELA,
+    },
+    {
+        .iv = 130,
+        .lvl = 42,
+        .species = SPECIES_VICTREEBEL,
+    },
+    {
+        .iv = 130,
+        .lvl = 42,
+        .species = SPECIES_EXEGGUTOR,
+    },
+    {
+        .iv = 130,
+        .lvl = 43,
+        .species = SPECIES_VILEPLUME,
+    },
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_LeaderErikaT5[] = {
+    {
+        .iv = 130,
+        .lvl = 48,
+        .species = SPECIES_TANGELA,
+    },
+    {
+        .iv = 130,
+        .lvl = 49,
+        .species = SPECIES_VICTREEBEL,
+    },
+    {
+        .iv = 130,
+        .lvl = 49,
+        .species = SPECIES_EXEGGUTOR,
+    },
+    {
+        .iv = 130,
+        .lvl = 50,
+        .species = SPECIES_VENUSAUR,
+    },
+    {
+        .iv = 130,
+        .lvl = 50,
+        .species = SPECIES_VILEPLUME,
+    },
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_LeaderErikaT6[] = {
+    {
+        .iv = 130,
+        .lvl = 51,
+        .species = SPECIES_TANGELA,
+    },
+    {
+        .iv = 130,
+        .lvl = 52,
+        .species = SPECIES_BELLOSSOM,
+    },
+    {
+        .iv = 130,
+        .lvl = 52,
+        .species = SPECIES_VICTREEBEL,
+    },
+    {
+        .iv = 130,
+        .lvl = 52,
+        .species = SPECIES_EXEGGUTOR,
+    },
+    {
+        .iv = 130,
+        .lvl = 53,
+        .species = SPECIES_VENUSAUR,
+    },
+    {
+        .iv = 130,
+        .lvl = 53,
+        .species = SPECIES_VILEPLUME,
+    },
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_LeaderKogaT3[] = {
+    {
+        .iv = 130,
+        .lvl = 33,
+        .species = SPECIES_KOFFING,
+    },
+    {
+        .iv = 130,
+        .lvl = 33,
+        .species = SPECIES_GOLBAT,
+    },
+    {
+        .iv = 130,
+        .lvl = 34,
+        .species = SPECIES_MUK,
+    },
+    {
+        .iv = 130,
+        .lvl = 35,
+        .species = SPECIES_VENOMOTH,
+    },
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_LeaderKogaT5[] = {
+    {
+        .iv = 130,
+        .lvl = 48,
+        .species = SPECIES_TENTACRUEL,
+    },
+    {
+        .iv = 130,
+        .lvl = 49,
+        .species = SPECIES_WEEZING,
+    },
+    {
+        .iv = 130,
+        .lvl = 49,
+        .species = SPECIES_MUK,
+    },
+    {
+        .iv = 130,
+        .lvl = 50,
+        .species = SPECIES_CROBAT,
+    },
+    {
+        .iv = 130,
+        .lvl = 50,
+        .species = SPECIES_VENOMOTH,
+    },
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_LeaderKogaT6[] = {
+    {
+        .iv = 130,
+        .lvl = 51,
+        .species = SPECIES_ARIADOS,
+    },
+    {
+        .iv = 130,
+        .lvl = 51,
+        .species = SPECIES_TENTACRUEL,
+    },
+    {
+        .iv = 130,
+        .lvl = 52,
+        .species = SPECIES_WEEZING,
+    },
+    {
+        .iv = 130,
+        .lvl = 52,
+        .species = SPECIES_MUK,
+    },
+    {
+        .iv = 130,
+        .lvl = 52,
+        .species = SPECIES_CROBAT,
+    },
+    {
+        .iv = 130,
+        .lvl = 53,
+        .species = SPECIES_VENOMOTH,
+    },
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_LeaderSabrinaT3[] = {
+    {
+        .iv = 130,
+        .lvl = 34,
+        .species = SPECIES_KADABRA,
+    },
+    {
+        .iv = 130,
+        .lvl = 33,
+        .species = SPECIES_MR_MIME,
+    },
+    {
+        .iv = 130,
+        .lvl = 35,
+        .species = SPECIES_HYPNO,
+    },
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_LeaderSabrinaT4[] = {
+    {
+        .iv = 130,
+        .lvl = 41,
+        .species = SPECIES_MR_MIME,
+    },
+    {
+        .iv = 130,
+        .lvl = 42,
+        .species = SPECIES_HYPNO,
+    },
+    {
+        .iv = 130,
+        .lvl = 42,
+        .species = SPECIES_KADABRA,
+    },
+    {
+        .iv = 130,
+        .lvl = 43,
+        .species = SPECIES_ALAKAZAM,
+    },
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_LeaderSabrinaT6[] = {
+    {
+        .iv = 130,
+        .lvl = 51,
+        .species = SPECIES_HYPNO,
+    },
+    {
+        .iv = 130,
+        .lvl = 51,
+        .species = SPECIES_MR_MIME,
+    },
+    {
+        .iv = 130,
+        .lvl = 52,
+        .species = SPECIES_SLOWBRO,
+    },
+    {
+        .iv = 130,
+        .lvl = 52,
+        .species = SPECIES_JYNX,
+    },
+    {
+        .iv = 130,
+        .lvl = 52,
+        .species = SPECIES_KADABRA,
+    },
+    {
+        .iv = 130,
+        .lvl = 53,
+        .species = SPECIES_ALAKAZAM,
+    },
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_LeaderBlaineT3[] = {
+    {
+        .iv = 130,
+        .lvl = 34,
+        .species = SPECIES_GROWLITHE,
+    },
+    {
+        .iv = 130,
+        .lvl = 33,
+        .species = SPECIES_VULPIX,
+    },
+    {
+        .iv = 130,
+        .lvl = 34,
+        .species = SPECIES_PONYTA,
+    },
+    {
+        .iv = 130,
+        .lvl = 35,
+        .species = SPECIES_MAGMAR,
+    },
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_LeaderBlaineT4[] = {
+    {
+        .iv = 130,
+        .lvl = 41,
+        .species = SPECIES_NINETALES,
+    },
+    {
+        .iv = 130,
+        .lvl = 42,
+        .species = SPECIES_RAPIDASH,
+    },
+    {
+        .iv = 130,
+        .lvl = 42,
+        .species = SPECIES_ARCANINE,
+    },
+    {
+        .iv = 130,
+        .lvl = 43,
+        .species = SPECIES_MAGMAR,
+    },
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_LeaderBlaineT5[] = {
+    {
+        .iv = 130,
+        .lvl = 48,
+        .species = SPECIES_NINETALES,
+    },
+    {
+        .iv = 130,
+        .lvl = 49,
+        .species = SPECIES_RAPIDASH,
+    },
+    {
+        .iv = 130,
+        .lvl = 49,
+        .species = SPECIES_ARCANINE,
+    },
+    {
+        .iv = 130,
+        .lvl = 50,
+        .species = SPECIES_CHARIZARD,
+    },
+    {
+        .iv = 130,
+        .lvl = 50,
+        .species = SPECIES_MAGMAR,
+    },
+};
+

@@ -3,7 +3,32 @@ SaffronCity_Gym_MapScripts::
 
 SaffronCity_Gym_EventScript_Sabrina::
 	famechecker FAMECHECKER_SABRINA, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
+	goto_if_set FLAG_DEFEATED_SABRINA, SaffronCity_Gym_EventScript_SabrinaAfterBattle
+	@ FRLG Legacy: Sabrina's team scales to your badge count (flexible gym order).
+	special GetPlayerGymBadgeCount
+	goto_if_eq VAR_RESULT, 3, SaffronCity_Gym_EventScript_SabrinaBattleB3
+	goto_if_eq VAR_RESULT, 4, SaffronCity_Gym_EventScript_SabrinaBattleB4
+	goto_if_ge VAR_RESULT, 6, SaffronCity_Gym_EventScript_SabrinaBattleB6
 	trainerbattle_single TRAINER_LEADER_SABRINA, SaffronCity_Gym_Text_SabrinaIntro, SaffronCity_Gym_Text_SabrinaDefeat, SaffronCity_Gym_EventScript_DefeatedSabrina, NO_MUSIC
+	goto SaffronCity_Gym_EventScript_SabrinaAfterBattle
+	end
+
+SaffronCity_Gym_EventScript_SabrinaBattleB3::
+	trainerbattle_single TRAINER_LEADER_SABRINA_B3, SaffronCity_Gym_Text_SabrinaIntro, SaffronCity_Gym_Text_SabrinaDefeat, SaffronCity_Gym_EventScript_DefeatedSabrina, NO_MUSIC
+	goto SaffronCity_Gym_EventScript_SabrinaAfterBattle
+	end
+
+SaffronCity_Gym_EventScript_SabrinaBattleB4::
+	trainerbattle_single TRAINER_LEADER_SABRINA_B4, SaffronCity_Gym_Text_SabrinaIntro, SaffronCity_Gym_Text_SabrinaDefeat, SaffronCity_Gym_EventScript_DefeatedSabrina, NO_MUSIC
+	goto SaffronCity_Gym_EventScript_SabrinaAfterBattle
+	end
+
+SaffronCity_Gym_EventScript_SabrinaBattleB6::
+	trainerbattle_single TRAINER_LEADER_SABRINA_B6, SaffronCity_Gym_Text_SabrinaIntro, SaffronCity_Gym_Text_SabrinaDefeat, SaffronCity_Gym_EventScript_DefeatedSabrina, NO_MUSIC
+	goto SaffronCity_Gym_EventScript_SabrinaAfterBattle
+	end
+
+SaffronCity_Gym_EventScript_SabrinaAfterBattle::
 	goto_if_unset FLAG_GOT_TM04_FROM_SABRINA, SaffronCity_Gym_EventScript_GiveTM04
 	goto_if_set FLAG_SYS_GAME_CLEAR, SaffronCity_Gym_EventScript_SabrinaRematch
 	msgbox SaffronCity_Gym_Text_ExplainTM04

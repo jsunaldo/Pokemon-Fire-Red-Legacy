@@ -9,6 +9,7 @@
 	.align 2
 gSpecials::
 	def_special SetCutTreePermanentlyRemoved
+	def_special GetPlayerGymBadgeCount
 	def_special HealPlayerParty
 	def_special SetCableClubWarp
 	def_special DoCableClubWarp
