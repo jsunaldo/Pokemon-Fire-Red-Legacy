@@ -9631,14 +9631,29 @@ void TrySpawnFollowerPokemon(void)
     ObjectEventSetHeldMovement(&gObjectEvents[objId], GetFaceDirectionMovementAction(dir));
 }
 
-// The follower is hidden while the player is surfing or on a bike, and re-emerges
-// on the next on-foot step. The object event is kept around (just made invisible)
-// so no reload is needed when returning to foot.
-static bool8 FollowerHiddenForRideState(void)
+// The follower is hidden while the player is surfing, on a bike, or being carried
+// by a warp pad / forced-movement (spin/slide) tile such as the Rocket Hideout
+// arrow pads. It re-emerges on the next normal on-foot step. The object event is
+// kept around (just made invisible) so no reload is needed.
+static bool8 FollowerShouldBeHidden(void)
 {
-    return (gPlayerAvatar.flags & (PLAYER_AVATAR_FLAG_SURFING
-                                 | PLAYER_AVATAR_FLAG_MACH_BIKE
-                                 | PLAYER_AVATAR_FLAG_ACRO_BIKE)) != 0;
+    u8 behavior;
+
+    if (gPlayerAvatar.flags & (PLAYER_AVATAR_FLAG_SURFING
+                             | PLAYER_AVATAR_FLAG_MACH_BIKE
+                             | PLAYER_AVATAR_FLAG_ACRO_BIKE))
+        return TRUE;
+
+    behavior = gObjectEvents[gPlayerAvatar.objectEventId].currentMetatileBehavior;
+    if (MetatileBehavior_IsForcedMovementTile(behavior)
+     || MetatileBehavior_IsWarpPad(behavior)
+     || MetatileBehavior_IsEastArrowWarp(behavior)
+     || MetatileBehavior_IsWestArrowWarp(behavior)
+     || MetatileBehavior_IsNorthArrowWarp(behavior)
+     || MetatileBehavior_IsSouthArrowWarp(behavior))
+        return TRUE;
+
+    return FALSE;
 }
 
 static void HideFollowerPokemon(void)
@@ -9657,7 +9672,7 @@ static void HideFollowerPokemon(void)
 // to surf hides the follower immediately, even while standing still.
 void UpdateFollowerPokemonVisibility(void)
 {
-    if (GetFollowerObject() != NULL && FollowerHiddenForRideState())
+    if (GetFollowerObject() != NULL && FollowerShouldBeHidden())
         HideFollowerPokemon();
 }
 
@@ -9677,7 +9692,7 @@ void MoveFollowerPokemon(u8 direction, u8 speed)
         return;
 
     // While surfing / biking, keep the follower hidden and don't move it.
-    if (FollowerHiddenForRideState())
+    if (FollowerShouldBeHidden())
     {
         HideFollowerPokemon();
         return;
