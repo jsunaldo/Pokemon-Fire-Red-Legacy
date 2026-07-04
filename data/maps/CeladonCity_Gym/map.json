@@ -88,7 +88,7 @@
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_LASS",
-      "x": 7,
+      "x": 8,
       "y": 4,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
@@ -172,7 +172,7 @@
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_VILEPLUME",
-      "x": 8,
+      "x": 7,
       "y": 4,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
