@@ -23,6 +23,9 @@
 #include "constants/trainer_types.h"
 #include "constants/union_room.h"
 
+// Following Pokémon: reserved local id for the follower object event.
+#define LOCALID_FOLLOWER 0xD0
+
 static void MoveCoordsInDirection(u32, s16 *, s16 *, s16, s16);
 static bool8 ObjectEventExecSingleMovementAction(struct ObjectEvent *, struct Sprite *);
 static u8 GetCollisionInDirection(struct ObjectEvent *, u8);
@@ -5011,6 +5014,12 @@ static bool8 DoesObjectCollideWithObjectAt(struct ObjectEvent *objectEvent, s16 
         curObject = &gObjectEvents[i];
         if (curObject->active && curObject != objectEvent)
         {
+            // The following Pokémon is intangible: it never blocks anyone, and
+            // the player never blocks it, so the two can swap tiles freely.
+            if (curObject->localId == LOCALID_FOLLOWER)
+                continue;
+            if (objectEvent->localId == LOCALID_FOLLOWER && curObject == &gObjectEvents[gPlayerAvatar.objectEventId])
+                continue;
             if ((curObject->currentCoords.x == x && curObject->currentCoords.y == y) || (curObject->previousCoords.x == x && curObject->previousCoords.y == y))
             {
                 if (AreElevationsCompatible(objectEvent->currentElevation, curObject->currentElevation))
@@ -9520,10 +9529,9 @@ static void DoRippleFieldEffect(struct ObjectEvent *objectEvent, struct Sprite *
 // Following Pokémon (HGSS-style): the lead party Pokémon trails the player
 // one tile behind, retracing the player's path with a one-step delay.
 // ------------------------------------------------------------------------
-#define LOCALID_FOLLOWER 0xD0
-
 static EWRAM_DATA struct {
     bool8 active;
+    bool8 shown;  // has the follower emerged (become visible) yet
     u8 objectId;
     u8 prevDir;   // the player's previous step direction (drives the 1-tile delay)
     u16 species;
@@ -9561,12 +9569,13 @@ void RemoveFollowerPokemon(void)
     sFollowerPokemon.active = FALSE;
 }
 
-// (Re)create the follower behind the player. Called on every map (re)load.
+// (Re)create the follower on the player's own tile, hidden. It emerges one tile
+// behind the player on the first step (so it walks out of doors after a warp and
+// never spawns on a wall or off the map). Called on every map (re)load.
 void TrySpawnFollowerPokemon(void)
 {
     struct ObjectEvent *player;
     u16 species = GetFollowerPokemonSpecies();
-    s16 x, y;
     u8 dir, objId;
 
     RemoveFollowerPokemon();
@@ -9574,26 +9583,28 @@ void TrySpawnFollowerPokemon(void)
         return;
 
     player = &gObjectEvents[gPlayerAvatar.objectEventId];
-    x = player->currentCoords.x;
-    y = player->currentCoords.y;
     dir = player->facingDirection;
-    MoveCoords(GetOppositeDirection(dir), &x, &y); // one tile behind the player
 
     objId = SpawnSpecialObjectEventParameterized(OBJ_EVENT_GFX_FOLLOWER_POKEMON, MOVEMENT_TYPE_NONE,
-                                                 LOCALID_FOLLOWER, x, y, player->currentElevation);
+                                                 LOCALID_FOLLOWER, player->currentCoords.x,
+                                                 player->currentCoords.y, player->currentElevation);
     if (objId == OBJECT_EVENTS_COUNT)
         return;
 
     sFollowerPokemon.active = TRUE;
+    sFollowerPokemon.shown = FALSE;
     sFollowerPokemon.objectId = objId;
     sFollowerPokemon.species = species;
     sFollowerPokemon.prevDir = dir;
     SetFollowerPokemonGraphics(&gObjectEvents[objId], species);
+    gObjectEvents[objId].invisible = TRUE;              // stay hidden under the player until the first step
+    gSprites[gObjectEvents[objId].spriteId].invisible = TRUE;
     ObjectEventSetHeldMovement(&gObjectEvents[objId], GetFaceDirectionMovementAction(dir));
 }
 
-// Called whenever the player commits a step. The follower walks in the player's
-// PREVIOUS direction, so it lands on the tile the player just left.
+// Called whenever the player commits a step. On the very first step the follower
+// simply emerges on the tile the player just left; after that it walks in the
+// player's PREVIOUS direction, retracing the path one tile behind.
 void MoveFollowerPokemon(u8 direction, u8 speed)
 {
     struct ObjectEvent *follower;
@@ -9603,6 +9614,20 @@ void MoveFollowerPokemon(u8 direction, u8 speed)
         return;
 
     follower = &gObjectEvents[sFollowerPokemon.objectId];
+
+    if (!sFollowerPokemon.shown)
+    {
+        // Emerge: reveal on the player's current tile (which the player is leaving)
+        // and just turn to face the way it's headed — no move this step.
+        sFollowerPokemon.shown = TRUE;
+        follower->invisible = FALSE;
+        gSprites[follower->spriteId].invisible = FALSE;
+        ObjectEventClearHeldMovementIfFinished(follower);
+        ObjectEventSetHeldMovement(follower, GetFaceDirectionMovementAction(direction));
+        sFollowerPokemon.prevDir = direction;
+        return;
+    }
+
     switch (speed)
     {
     case FOLLOWER_SPEED_FAST:
