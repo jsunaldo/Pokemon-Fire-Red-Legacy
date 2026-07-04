@@ -8,6 +8,7 @@
 #include "battle.h"
 #include "battle_anim.h"
 #include "item.h"
+#include "item_use.h"
 #include "event_data.h"
 #include "util.h"
 #include "pokemon_storage_system.h"
@@ -4116,8 +4117,10 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
         battleMonId = MAX_BATTLERS_COUNT;
     }
 
-    // Skip using the item if it won't do anything
-    if (!IS_POKEMON_ITEM(item))
+    // Skip using the item if it won't do anything. Evolution items (Metal Coat,
+    // King's Rock, Dragon Scale, Up-Grade, Deep Sea Tooth/Scale…) sit above the
+    // berry range, so IS_POKEMON_ITEM alone would wrongly reject them from the bag.
+    if (!IS_POKEMON_ITEM(item) && ItemId_GetFieldFunc(item) != FieldUseFunc_EvoItem)
         return TRUE;
     if (gItemEffectTable[item - ITEM_POTION] == NULL && item != ITEM_ENIGMA_BERRY)
         return TRUE;
@@ -4651,8 +4654,10 @@ bool8 PokemonItemUseNoEffect(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mo
         battlerId = MAX_BATTLERS_COUNT;
     }
 
-    // Skip using the item if it won't do anything
-    if (!IS_POKEMON_ITEM(item))
+    // Skip using the item if it won't do anything. Evolution items (Metal Coat,
+    // King's Rock, Dragon Scale, Up-Grade, Deep Sea Tooth/Scale…) sit above the
+    // berry range, so IS_POKEMON_ITEM alone would wrongly reject them from the bag.
+    if (!IS_POKEMON_ITEM(item) && ItemId_GetFieldFunc(item) != FieldUseFunc_EvoItem)
         return TRUE;
     if (gItemEffectTable[item - ITEM_POTION] == NULL && item != ITEM_ENIGMA_BERRY)
         return TRUE;
