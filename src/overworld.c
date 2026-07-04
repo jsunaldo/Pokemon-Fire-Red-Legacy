@@ -2145,12 +2145,14 @@ static void InitObjectEventsLocal(void)
     SetPlayerAvatarTransitionFlags(player->transitionFlags);
     ResetInitialPlayerAvatarState();
     TrySpawnObjectEvents(0, 0);
+    ResetFollowerPokemon(); // clear any stale follower; a fresh one spawns on the first step
     TryRunOnWarpIntoMapScript();
 }
 
 static void ReloadObjectsAndRunReturnToFieldMapScript(void)
 {
     SpawnObjectEventsOnReturnToField(0, 0);
+    ResetFollowerPokemon();
     RunOnReturnToFieldMapScript();
 }
 

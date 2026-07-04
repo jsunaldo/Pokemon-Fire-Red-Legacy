@@ -153,6 +153,7 @@ u8 GetFaceDirectionFastMovementAction(u32);
 u16 GetFollowerPokemonSpecies(void);
 void TrySpawnFollowerPokemon(void);
 void RemoveFollowerPokemon(void);
+void ResetFollowerPokemon(void);
 void MoveFollowerPokemon(u8 direction, u8 speed);
 void UpdateFollowerPokemonVisibility(void);
 void CameraObjectSetFollowedObjectId(u8 objectId);

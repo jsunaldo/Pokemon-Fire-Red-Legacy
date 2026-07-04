@@ -9579,8 +9579,11 @@ static struct ObjectEvent *GetFollowerObject(void)
 {
     struct ObjectEvent *oe;
 
-    if (!sFollowerPokemon.active)
+    if (!sFollowerPokemon.active || sFollowerPokemon.objectId >= OBJECT_EVENTS_COUNT)
+    {
+        sFollowerPokemon.active = FALSE;
         return NULL;
+    }
     oe = &gObjectEvents[sFollowerPokemon.objectId];
     if (!oe->active || oe->localId != LOCALID_FOLLOWER)
     {
@@ -9597,6 +9600,22 @@ void RemoveFollowerPokemon(void)
     if (follower != NULL)
         RemoveObjectEvent(follower);
     sFollowerPokemon.active = FALSE;
+}
+
+// Wipes any lingering follower object AND state so a clean one is created on the
+// next step. Called on every map load (including continuing a saved game) so a
+// stale follower — e.g. one captured in a save state — can never persist on load.
+void ResetFollowerPokemon(void)
+{
+    u8 i;
+
+    for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
+    {
+        if (gObjectEvents[i].active && gObjectEvents[i].localId == LOCALID_FOLLOWER)
+            RemoveObjectEvent(&gObjectEvents[i]);
+    }
+    sFollowerPokemon.active = FALSE;
+    sFollowerPokemon.shown = FALSE;
 }
 
 // (Re)create the follower on the player's own tile, hidden. It emerges one tile
