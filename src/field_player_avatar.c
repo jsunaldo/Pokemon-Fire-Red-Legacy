@@ -842,13 +842,17 @@ void PlayerWalkSlow(u8 direction)
 
 void PlayerWalkNormal(u8 direction)
 {
-    MoveFollowerPokemon(direction, FOLLOWER_SPEED_NORMAL);
+    // Only drive the follower on the frame the player actually commits a new
+    // step (same gate PlayerSetAnimId uses), so the two stay in lockstep.
+    if (!PlayerIsAnimActive())
+        MoveFollowerPokemon(direction, FOLLOWER_SPEED_NORMAL);
     PlayerSetAnimId(GetWalkNormalMovementAction(direction), 2);
 }
 
 void PlayerWalkFast(u8 direction)
 {
-    MoveFollowerPokemon(direction, FOLLOWER_SPEED_FAST);
+    if (!PlayerIsAnimActive())
+        MoveFollowerPokemon(direction, FOLLOWER_SPEED_FAST);
     PlayerSetAnimId(GetWalkFastMovementAction(direction), 2);
 }
 
@@ -864,19 +868,22 @@ void PlayerRideWaterCurrent(u8 direction)
 
 void PlayerWalkFaster(u8 direction)
 {
-    MoveFollowerPokemon(direction, FOLLOWER_SPEED_FASTER);
+    if (!PlayerIsAnimActive())
+        MoveFollowerPokemon(direction, FOLLOWER_SPEED_FASTER);
     PlayerSetAnimId(GetWalkFasterMovementAction(direction), 2);
 }
 
 void PlayerRun(u8 direction)
 {
-    MoveFollowerPokemon(direction, FOLLOWER_SPEED_FAST);
+    if (!PlayerIsAnimActive())
+        MoveFollowerPokemon(direction, FOLLOWER_SPEED_FAST);
     PlayerSetAnimId(GetPlayerRunMovementAction(direction), 2);
 }
 
 void PlayerRunSlow(u8 direction)
 {
-    MoveFollowerPokemon(direction, FOLLOWER_SPEED_NORMAL);
+    if (!PlayerIsAnimActive())
+        MoveFollowerPokemon(direction, FOLLOWER_SPEED_NORMAL);
     PlayerSetAnimId(GetPlayerRunSlowMovementAction(direction), 2);
 }
 
