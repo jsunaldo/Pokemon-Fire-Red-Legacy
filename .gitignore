@@ -12,6 +12,9 @@
 *.gba
 !data/*.gba
 *.sgm
+*.srm
+*.sav
+*.ss[0-9]
 *.sa1
 *.sg1
 *.gbapal
