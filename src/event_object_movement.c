@@ -9533,7 +9533,6 @@ static EWRAM_DATA struct {
     bool8 active;
     bool8 shown;  // has the follower emerged (become visible) yet
     u8 objectId;
-    u8 prevDir;   // the player's previous step direction (drives the 1-tile delay)
     u16 species;
 } sFollowerPokemon = {0};
 
@@ -9605,52 +9604,86 @@ void TrySpawnFollowerPokemon(void)
     sFollowerPokemon.shown = FALSE;
     sFollowerPokemon.objectId = objId;
     sFollowerPokemon.species = species;
-    sFollowerPokemon.prevDir = dir;
     SetFollowerPokemonGraphics(&gObjectEvents[objId], species);
     gObjectEvents[objId].invisible = TRUE;              // stay hidden under the player until the first step
     gSprites[gObjectEvents[objId].spriteId].invisible = TRUE;
     ObjectEventSetHeldMovement(&gObjectEvents[objId], GetFaceDirectionMovementAction(dir));
 }
 
-// Called whenever the player commits a step. On the very first step the follower
-// simply emerges on the tile the player just left; after that it walks in the
-// player's PREVIOUS direction, retracing the path one tile behind.
+// Called whenever the player commits a step. The follower always aims to end on
+// the tile the player is standing on this frame (i.e. the tile the player is
+// about to leave), so it ends one tile behind. This is geometric and therefore
+// self-correcting: if it ever drifts more than one tile (ledge jump, warp,
+// party swap), it snaps back into place instead of desyncing forever.
 void MoveFollowerPokemon(u8 direction, u8 speed)
 {
-    struct ObjectEvent *follower;
-    u8 action;
+    struct ObjectEvent *follower, *player;
+    s16 tx, ty, dx, dy;
+    u8 dir, action;
 
     if (!sFollowerPokemon.active || !gObjectEvents[sFollowerPokemon.objectId].active)
         return;
 
     follower = &gObjectEvents[sFollowerPokemon.objectId];
+    player = &gObjectEvents[gPlayerAvatar.objectEventId];
+    tx = player->currentCoords.x;   // the tile the player is on and about to leave
+    ty = player->currentCoords.y;
 
     if (!sFollowerPokemon.shown)
     {
-        // Emerge: reveal on the player's current tile (which the player is leaving)
-        // and just turn to face the way it's headed — no move this step.
+        // Emerge: snap exactly onto the player's tile and reveal (no drift from a
+        // warp's forced door-step), then just face the travel direction.
         sFollowerPokemon.shown = TRUE;
+        MoveObjectEventToMapCoords(follower, tx, ty);
         follower->invisible = FALSE;
         gSprites[follower->spriteId].invisible = FALSE;
         ObjectEventClearHeldMovementIfFinished(follower);
         ObjectEventSetHeldMovement(follower, GetFaceDirectionMovementAction(direction));
-        sFollowerPokemon.prevDir = direction;
         return;
     }
 
-    switch (speed)
+    dx = tx - follower->currentCoords.x;
+    dy = ty - follower->currentCoords.y;
+
+    if (dx == 0 && dy == 0)
     {
-    case FOLLOWER_SPEED_FAST:
-        action = GetWalkFastMovementAction(sFollowerPokemon.prevDir);
-        break;
-    case FOLLOWER_SPEED_FASTER:
-        action = GetWalkFasterMovementAction(sFollowerPokemon.prevDir);
-        break;
-    default:
-        action = GetWalkNormalMovementAction(sFollowerPokemon.prevDir);
-        break;
+        // Already one tile behind — nothing to walk, just face the way we're headed.
+        ObjectEventClearHeldMovementIfFinished(follower);
+        ObjectEventSetHeldMovement(follower, GetFaceDirectionMovementAction(direction));
+        return;
     }
+
+    if (((dx == 0) + (dy == 0)) == 1 && dx >= -1 && dx <= 1 && dy >= -1 && dy <= 1)
+    {
+        // Exactly one tile away in a cardinal direction — walk toward the player.
+        if (dx == 1)
+            dir = DIR_EAST;
+        else if (dx == -1)
+            dir = DIR_WEST;
+        else if (dy == 1)
+            dir = DIR_SOUTH;
+        else
+            dir = DIR_NORTH;
+
+        switch (speed)
+        {
+        case FOLLOWER_SPEED_FAST:
+            action = GetWalkFastMovementAction(dir);
+            break;
+        case FOLLOWER_SPEED_FASTER:
+            action = GetWalkFasterMovementAction(dir);
+            break;
+        default:
+            action = GetWalkNormalMovementAction(dir);
+            break;
+        }
+        ObjectEventClearHeldMovementIfFinished(follower);
+        ObjectEventSetHeldMovement(follower, action);
+        return;
+    }
+
+    // More than one tile off (ledge jump, warp, teleport) — snap behind the player.
+    MoveObjectEventToMapCoords(follower, tx, ty);
     ObjectEventClearHeldMovementIfFinished(follower);
-    ObjectEventSetHeldMovement(follower, action);
-    sFollowerPokemon.prevDir = direction;
+    ObjectEventSetHeldMovement(follower, GetFaceDirectionMovementAction(direction));
 }

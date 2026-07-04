@@ -916,6 +916,8 @@ void PlayerTurnInPlace(u8 direction)
 
 void PlayerJumpLedge(u8 direction)
 {
+    if (!PlayerIsAnimActive())
+        MoveFollowerPokemon(direction, FOLLOWER_SPEED_NORMAL);
     PlaySE(SE_LEDGE);
     PlayerSetAnimId(GetJump2MovementAction(direction), 8);
 }
