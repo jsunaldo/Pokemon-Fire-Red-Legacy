@@ -9635,25 +9635,23 @@ void TrySpawnFollowerPokemon(void)
 // by a warp pad / forced-movement (spin/slide) tile such as the Rocket Hideout
 // arrow pads. It re-emerges on the next normal on-foot step. The object event is
 // kept around (just made invisible) so no reload is needed.
+static bool8 IsFollowerHidingTile(u8 behavior)
+{
+    return MetatileBehavior_IsForcedMovementTile(behavior)
+        || MetatileBehavior_IsWarpPad(behavior)
+        || MetatileBehavior_IsEastArrowWarp(behavior)
+        || MetatileBehavior_IsWestArrowWarp(behavior)
+        || MetatileBehavior_IsNorthArrowWarp(behavior)
+        || MetatileBehavior_IsSouthArrowWarp(behavior);
+}
+
 static bool8 FollowerShouldBeHidden(void)
 {
-    u8 behavior;
-
     if (gPlayerAvatar.flags & (PLAYER_AVATAR_FLAG_SURFING
                              | PLAYER_AVATAR_FLAG_MACH_BIKE
                              | PLAYER_AVATAR_FLAG_ACRO_BIKE))
         return TRUE;
-
-    behavior = gObjectEvents[gPlayerAvatar.objectEventId].currentMetatileBehavior;
-    if (MetatileBehavior_IsForcedMovementTile(behavior)
-     || MetatileBehavior_IsWarpPad(behavior)
-     || MetatileBehavior_IsEastArrowWarp(behavior)
-     || MetatileBehavior_IsWestArrowWarp(behavior)
-     || MetatileBehavior_IsNorthArrowWarp(behavior)
-     || MetatileBehavior_IsSouthArrowWarp(behavior))
-        return TRUE;
-
-    return FALSE;
+    return IsFollowerHidingTile(gObjectEvents[gPlayerAvatar.objectEventId].currentMetatileBehavior);
 }
 
 static void HideFollowerPokemon(void)
@@ -9687,18 +9685,36 @@ void MoveFollowerPokemon(u8 direction, u8 speed)
     s16 tx, ty, dx, dy;
     u8 dir, action;
 
-    follower = GetFollowerObject();
-    if (follower == NULL)
-        return;
+    player = &gObjectEvents[gPlayerAvatar.objectEventId];
 
-    // While surfing / biking, keep the follower hidden and don't move it.
-    if (FollowerShouldBeHidden())
+    // Hide while surfing/biking, or when standing on / stepping onto a warp pad,
+    // arrow warp, or forced-movement tile (those teleport or slide before the next
+    // step, so we check the tile being stepped onto too). Re-emerges on the next
+    // normal step.
+    tx = player->currentCoords.x;
+    ty = player->currentCoords.y;
+    MoveCoords(direction, &tx, &ty);
+    if (FollowerShouldBeHidden() || IsFollowerHidingTile(MapGridGetMetatileBehaviorAt(tx, ty)))
     {
-        HideFollowerPokemon();
+        if (GetFollowerObject() != NULL)
+            HideFollowerPokemon();
         return;
     }
 
-    player = &gObjectEvents[gPlayerAvatar.objectEventId];
+    // Lazily (re)create the follower on the first normal step — after boot, a map
+    // load, or a warp that reused our object slot. Nothing spawns until the player
+    // actually walks, so there's never a stray or garbled follower on load.
+    follower = GetFollowerObject();
+    if (follower == NULL)
+    {
+        if (GetFollowerPokemonSpecies() == SPECIES_NONE)
+            return;
+        TrySpawnFollowerPokemon();       // spawns hidden on the player's tile
+        follower = GetFollowerObject();
+        if (follower == NULL)
+            return;                      // no free object slot (crowded map)
+    }
+
     tx = player->currentCoords.x;   // the tile the player is on and about to leave
     ty = player->currentCoords.y;
 
