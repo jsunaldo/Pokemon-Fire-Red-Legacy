@@ -1666,7 +1666,14 @@ static u8 TrySetupObjectEventSprite(const struct ObjectEventTemplate *objectEven
         LoadObjectEventPalette(graphicsInfo->paletteTag);
         acePalSlot = IndexOfSpritePaletteTag(graphicsInfo->paletteTag);
         if (acePalSlot != 0xFF)
+        {
             sprite->oam.paletteNum = acePalSlot;
+            // On boot/continue the Quest Log tints & backs up field palettes; the ace
+            // was loaded outside that path, so register it here or it restores to black
+            // when the QL window ends (correct only after a battle reloads it). No-op
+            // when no field tint is active, so normal scenes are unaffected.
+            ApplyGlobalFieldPaletteTint(acePalSlot);
+        }
     }
     sprite->coordOffsetEnabled = TRUE;
     sprite->data[0] = objectEventId;
@@ -2014,7 +2021,11 @@ static void SpawnObjectEventOnReturnToField(u8 objectEventId, s16 x, s16 y)
             LoadObjectEventPalette(graphicsInfo->paletteTag);
             acePalSlot = IndexOfSpritePaletteTag(graphicsInfo->paletteTag);
             if (acePalSlot != 0xFF)
+            {
                 sprite->oam.paletteNum = acePalSlot;
+                // Same Quest-Log tint/backup registration as TrySetupObjectEventSprite.
+                ApplyGlobalFieldPaletteTint(acePalSlot);
+            }
         }
         sprite->coordOffsetEnabled = TRUE;
         sprite->data[0] = objectEventId;

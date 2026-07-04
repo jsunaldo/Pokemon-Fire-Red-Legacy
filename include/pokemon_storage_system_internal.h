@@ -16,9 +16,9 @@
 
 enum
 {
+    OPTION_MOVE_MONS,   // listed first in the PC menu (FRLG Legacy)
     OPTION_WITHDRAW,
     OPTION_DEPOSIT,
-    OPTION_MOVE_MONS,
     OPTION_MOVE_ITEMS,
     OPTION_EXIT,
     OPTIONS_COUNT
