@@ -187,8 +187,9 @@
 #define OBJ_EVENT_GFX_ALAKAZAM             178
 #define OBJ_EVENT_GFX_MAGMAR               179
 #define OBJ_EVENT_GFX_RHYDON               180
+#define OBJ_EVENT_GFX_FOLLOWER_POKEMON     181 // following-Pokémon (species swapped at runtime)
 
-#define NUM_OBJ_EVENT_GFX     181
+#define NUM_OBJ_EVENT_GFX     182
 
 // These are dynamic object gfx ids.
 // They correspond with the values of the VAR_OBJ_GFX_ID_X vars.

@@ -490,6 +490,7 @@ static const u8 gInitialMovementTypeFacingDirections[MOVEMENT_TYPES_COUNT] = {
 #define OBJ_EVENT_PAL_TAG_ALAKAZAM 0x1139
 #define OBJ_EVENT_PAL_TAG_MAGMAR 0x113a
 #define OBJ_EVENT_PAL_TAG_RHYDON 0x113b
+#define OBJ_EVENT_PAL_TAG_FOLLOWER 0x1140 // following Pokémon; its 16 colors are rewritten per species at runtime
 #define OBJ_EVENT_PAL_TAG_SS_ANNE                     0x1115
 #define OBJ_EVENT_PAL_TAG_RS_PLAYER_UNDERWATER        0x1116
 #define OBJ_EVENT_PAL_TAG_RS_KYOGRE                   0x1117
@@ -505,6 +506,7 @@ static const u8 gInitialMovementTypeFacingDirections[MOVEMENT_TYPES_COUNT] = {
 #include "data/object_events/object_event_anims.h"
 #include "data/object_events/base_oam.h"
 #include "data/object_events/object_event_subsprites.h"
+#include "data/object_events/follower_pokemon.h"
 #include "data/object_events/object_event_graphics_info.h"
 
 static const struct SpritePalette sObjectEventSpritePalettes[] = {
@@ -555,6 +557,7 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Alakazam, OBJ_EVENT_PAL_TAG_ALAKAZAM},
     {gObjectEventPal_Magmar, OBJ_EVENT_PAL_TAG_MAGMAR},
     {gObjectEventPal_Rhydon, OBJ_EVENT_PAL_TAG_RHYDON},
+    {sFollowerPal_Bulbasaur, OBJ_EVENT_PAL_TAG_FOLLOWER}, // default; rewritten per species at runtime
     {},
 };
 

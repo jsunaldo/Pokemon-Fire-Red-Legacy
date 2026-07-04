@@ -1,6 +1,10 @@
 OBJEVENTGFXDIR := graphics/object_events/pics
 FLDEFFGFXDIR := graphics/field_effects/pics
 
+# Following-Pokémon overworld sprites: 192x32 sheets of six 32x32 frames.
+$(OBJEVENTGFXDIR)/pokemon_follow/%.4bpp: $(OBJEVENTGFXDIR)/pokemon_follow/%.png
+	$(GFX) $< $@ -mwidth 4 -mheight 4
+
 $(OBJEVENTGFXDIR)/misc/cut_tree.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 2
 

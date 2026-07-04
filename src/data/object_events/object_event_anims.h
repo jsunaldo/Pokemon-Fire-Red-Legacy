@@ -1043,6 +1043,45 @@ static const union AnimCmd *const sAnimTable_Standard[] = {
     [ANIM_RAISE_HAND] = sAnim_RaiseHand,
 };
 
+// Following-Pokémon use a compact 6-frame sheet: 0 face-S, 1 face-N, 2 face-W,
+// 3 walk-S, 4 walk-N, 5 walk-W (east = horizontal flip of west). Each walk anim
+// is a two-step bob between the walk frame and the idle frame for that facing.
+static const union AnimCmd sAnim_FollowFaceSouth[] = { ANIMCMD_FRAME(0, 16), ANIMCMD_JUMP(0) };
+static const union AnimCmd sAnim_FollowFaceNorth[] = { ANIMCMD_FRAME(1, 16), ANIMCMD_JUMP(0) };
+static const union AnimCmd sAnim_FollowFaceWest[]  = { ANIMCMD_FRAME(2, 16), ANIMCMD_JUMP(0) };
+static const union AnimCmd sAnim_FollowFaceEast[]  = { ANIMCMD_FRAME(2, 16, .hFlip = TRUE), ANIMCMD_JUMP(0) };
+static const union AnimCmd sAnim_FollowWalkSouth[] = { ANIMCMD_FRAME(3, 8), ANIMCMD_FRAME(0, 8), ANIMCMD_JUMP(0) };
+static const union AnimCmd sAnim_FollowWalkNorth[] = { ANIMCMD_FRAME(4, 8), ANIMCMD_FRAME(1, 8), ANIMCMD_JUMP(0) };
+static const union AnimCmd sAnim_FollowWalkWest[]  = { ANIMCMD_FRAME(5, 8), ANIMCMD_FRAME(2, 8), ANIMCMD_JUMP(0) };
+static const union AnimCmd sAnim_FollowWalkEast[]  = { ANIMCMD_FRAME(5, 8, .hFlip = TRUE), ANIMCMD_FRAME(2, 8, .hFlip = TRUE), ANIMCMD_JUMP(0) };
+static const union AnimCmd sAnim_FollowRunSouth[]  = { ANIMCMD_FRAME(3, 4), ANIMCMD_FRAME(0, 4), ANIMCMD_JUMP(0) };
+static const union AnimCmd sAnim_FollowRunNorth[]  = { ANIMCMD_FRAME(4, 4), ANIMCMD_FRAME(1, 4), ANIMCMD_JUMP(0) };
+static const union AnimCmd sAnim_FollowRunWest[]   = { ANIMCMD_FRAME(5, 4), ANIMCMD_FRAME(2, 4), ANIMCMD_JUMP(0) };
+static const union AnimCmd sAnim_FollowRunEast[]   = { ANIMCMD_FRAME(5, 4, .hFlip = TRUE), ANIMCMD_FRAME(2, 4, .hFlip = TRUE), ANIMCMD_JUMP(0) };
+
+const union AnimCmd *const sAnimTable_FollowerPokemon[] = {
+    [ANIM_STD_FACE_SOUTH]      = sAnim_FollowFaceSouth,
+    [ANIM_STD_FACE_NORTH]      = sAnim_FollowFaceNorth,
+    [ANIM_STD_FACE_WEST]       = sAnim_FollowFaceWest,
+    [ANIM_STD_FACE_EAST]       = sAnim_FollowFaceEast,
+    [ANIM_STD_GO_SOUTH]        = sAnim_FollowWalkSouth,
+    [ANIM_STD_GO_NORTH]        = sAnim_FollowWalkNorth,
+    [ANIM_STD_GO_WEST]         = sAnim_FollowWalkWest,
+    [ANIM_STD_GO_EAST]         = sAnim_FollowWalkEast,
+    [ANIM_STD_GO_FAST_SOUTH]   = sAnim_FollowRunSouth,
+    [ANIM_STD_GO_FAST_NORTH]   = sAnim_FollowRunNorth,
+    [ANIM_STD_GO_FAST_WEST]    = sAnim_FollowRunWest,
+    [ANIM_STD_GO_FAST_EAST]    = sAnim_FollowRunEast,
+    [ANIM_STD_GO_FASTER_SOUTH] = sAnim_FollowRunSouth,
+    [ANIM_STD_GO_FASTER_NORTH] = sAnim_FollowRunNorth,
+    [ANIM_STD_GO_FASTER_WEST]  = sAnim_FollowRunWest,
+    [ANIM_STD_GO_FASTER_EAST]  = sAnim_FollowRunEast,
+    [ANIM_STD_GO_FASTEST_SOUTH]= sAnim_FollowRunSouth,
+    [ANIM_STD_GO_FASTEST_NORTH]= sAnim_FollowRunNorth,
+    [ANIM_STD_GO_FASTEST_WEST] = sAnim_FollowRunWest,
+    [ANIM_STD_GO_FASTEST_EAST] = sAnim_FollowRunEast,
+};
+
 static const union AnimCmd *const sAnimTable_HoOh[] = {
     [ANIM_STD_FACE_SOUTH] = sAnim_FaceSouth,
     [ANIM_STD_FACE_NORTH] = sAnim_FaceNorth,
