@@ -803,6 +803,9 @@
 #define TRAINER_LEADER_SABRINA_REMATCH2                762
 #define TRAINER_LEADER_BLAINE_REMATCH2                 763
 
+// FRLG Legacy: Janine, KOGA's daughter — optional tribute trainer in Fuchsia Gym.
+#define TRAINER_JANINE                                 764
+
 // FRLG Legacy: scaled flexible-gym leader tiers (repurposed unused RSE trainer slots).
 #define TRAINER_LEADER_ERIKA_B4          TRAINER_SCHOOL_KID_M
 #define TRAINER_LEADER_ERIKA_B5          TRAINER_SCHOOL_KID_F
@@ -817,7 +820,7 @@
 #define TRAINER_LEADER_BLAINE_B4         TRAINER_CYCLING_TRIATHLETE_M
 #define TRAINER_LEADER_BLAINE_B5         TRAINER_CYCLING_TRIATHLETE_F
 
-#define NUM_TRAINERS                             764
+#define NUM_TRAINERS                             765
 #define MAX_TRAINERS_COUNT                       768
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

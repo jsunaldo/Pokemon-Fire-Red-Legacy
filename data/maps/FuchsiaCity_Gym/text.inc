@@ -45,6 +45,24 @@ FuchsiaCity_Gym_Text_KogaExplainTM06::
 FuchsiaCity_Gym_Text_MakeSpaceForThis::
     .string "Make space for this, child!$"
 
+FuchsiaCity_Gym_Text_JanineIntro::
+    .string "I am JANINE, daughter of the\n"
+    .string "GYM LEADER KOGA.\p"
+    .string "One day this GYM will be mine.\n"
+    .string "Prove you're worthy to face my\l"
+    .string "father--face me first!$"
+
+FuchsiaCity_Gym_Text_JanineDefeat::
+    .string "Heh... Not bad at all.\n"
+    .string "You have a ninja's resolve.$"
+
+FuchsiaCity_Gym_Text_JaninePostBattle::
+    .string "My father waits at the back of\n"
+    .string "the GYM.\p"
+    .string "Beware his poison... and his\n"
+    .string "tricks. Nothing here is quite\l"
+    .string "what it seems.$"
+
 FuchsiaCity_Gym_Text_KaydenIntro::
     .string "Strength isn't the key for POKéMON.\n"
     .string "Do you understand this?\p"

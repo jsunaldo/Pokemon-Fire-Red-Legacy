@@ -90,6 +90,12 @@ FuchsiaCity_Gym_EventScript_Nate::
 	msgbox FuchsiaCity_Gym_Text_NatePostBattle, MSGBOX_AUTOCLOSE
 	end
 
+@ FRLG Legacy: Janine, KOGA's daughter — optional tribute battle (Yellow Legacy parity).
+FuchsiaCity_Gym_EventScript_Janine::
+	trainerbattle_single TRAINER_JANINE, FuchsiaCity_Gym_Text_JanineIntro, FuchsiaCity_Gym_Text_JanineDefeat
+	msgbox FuchsiaCity_Gym_Text_JaninePostBattle, MSGBOX_AUTOCLOSE
+	end
+
 FuchsiaCity_Gym_EventScript_GymGuy::
 	lock
 	faceplayer

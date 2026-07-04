@@ -11224,6 +11224,28 @@ static const struct TrainerMonNoItemCustomMoves sParty_BugCatcherVictor[] = {
     },
 };
 
+// FRLG Legacy: Janine, KOGA's daughter — optional Fuchsia Gym tribute trainer (YL parity).
+static const struct TrainerMonNoItemCustomMoves sParty_Janine[] = {
+    {
+        .iv = 150,
+        .lvl = 37,
+        .species = SPECIES_GOLBAT,
+        .moves = {MOVE_WING_ATTACK, MOVE_BITE, MOVE_CONFUSE_RAY, MOVE_TOXIC},
+    },
+    {
+        .iv = 150,
+        .lvl = 37,
+        .species = SPECIES_ARIADOS,
+        .moves = {MOVE_SLUDGE_BOMB, MOVE_LEECH_LIFE, MOVE_PSYBEAM, MOVE_TOXIC},
+    },
+    {
+        .iv = 150,
+        .lvl = 38,
+        .species = SPECIES_VENOMOTH,
+        .moves = {MOVE_PSYCHIC, MOVE_SLUDGE_BOMB, MOVE_SLEEP_POWDER, MOVE_SILVER_WIND},
+    },
+};
+
 static const struct TrainerMonNoItemCustomMoves sParty_BeautyViola[] = {
     {
         .iv = 100,
