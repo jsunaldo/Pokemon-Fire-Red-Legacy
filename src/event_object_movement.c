@@ -1660,7 +1660,7 @@ static u8 TrySetupObjectEventSprite(const struct ObjectEventTemplate *objectEven
     // slot would show the wrong colors. Load it into a free (non-reserved) sprite
     // palette slot and point the sprite there so it shows its real colors.
     if (graphicsInfo->paletteTag >= OBJ_EVENT_PAL_TAG_GENGAR
-     && graphicsInfo->paletteTag <= OBJ_EVENT_PAL_TAG_RHYDON)
+     && graphicsInfo->paletteTag <= OBJ_EVENT_PAL_TAG_FOLLOWER)
     {
         u8 acePalSlot;
         LoadObjectEventPalette(graphicsInfo->paletteTag);
@@ -9556,10 +9556,20 @@ static void SetFollowerPokemonGraphics(struct ObjectEvent *follower, u16 species
 {
     struct Sprite *sprite = &gSprites[follower->spriteId];
 
+    u8 palSlot;
+
     sprite->images = gFollowerMonFrameTable[species];
     sprite->animBeginning = TRUE; // re-copy the frame image for the new species
     sprite->animEnded = FALSE;
-    LoadPalette(gFollowerMonPaletteTable[species], 0x100 + sprite->oam.paletteNum * 16, PLTT_SIZE_4BPP);
+    // Load the species colors into the follower's OWN dynamic palette slot, never
+    // a shared fixed NPC slot, so NPC/player palettes are left untouched.
+    LoadObjectEventPalette(OBJ_EVENT_PAL_TAG_FOLLOWER);
+    palSlot = IndexOfSpritePaletteTag(OBJ_EVENT_PAL_TAG_FOLLOWER);
+    if (palSlot != 0xFF)
+    {
+        sprite->oam.paletteNum = palSlot;
+        LoadPalette(gFollowerMonPaletteTable[species], 0x100 + palSlot * 16, PLTT_SIZE_4BPP);
+    }
 }
 
 void RemoveFollowerPokemon(void)
