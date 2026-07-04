@@ -9610,6 +9610,35 @@ void TrySpawnFollowerPokemon(void)
     ObjectEventSetHeldMovement(&gObjectEvents[objId], GetFaceDirectionMovementAction(dir));
 }
 
+// The follower is hidden while the player is surfing or on a bike, and re-emerges
+// on the next on-foot step. The object event is kept around (just made invisible)
+// so no reload is needed when returning to foot.
+static bool8 FollowerHiddenForRideState(void)
+{
+    return (gPlayerAvatar.flags & (PLAYER_AVATAR_FLAG_SURFING
+                                 | PLAYER_AVATAR_FLAG_MACH_BIKE
+                                 | PLAYER_AVATAR_FLAG_ACRO_BIKE)) != 0;
+}
+
+static void HideFollowerPokemon(void)
+{
+    struct ObjectEvent *follower = &gObjectEvents[sFollowerPokemon.objectId];
+
+    follower->invisible = TRUE;
+    gSprites[follower->spriteId].invisible = TRUE;
+    sFollowerPokemon.shown = FALSE;   // re-emerge on the next on-foot step
+    ObjectEventClearHeldMovementIfFinished(follower);
+}
+
+// Hooked from the player-avatar transition handler so mounting a bike or starting
+// to surf hides the follower immediately, even while standing still.
+void UpdateFollowerPokemonVisibility(void)
+{
+    if (sFollowerPokemon.active && gObjectEvents[sFollowerPokemon.objectId].active
+     && FollowerHiddenForRideState())
+        HideFollowerPokemon();
+}
+
 // Called whenever the player commits a step. The follower always aims to end on
 // the tile the player is standing on this frame (i.e. the tile the player is
 // about to leave), so it ends one tile behind. This is geometric and therefore
@@ -9625,6 +9654,14 @@ void MoveFollowerPokemon(u8 direction, u8 speed)
         return;
 
     follower = &gObjectEvents[sFollowerPokemon.objectId];
+
+    // While surfing / biking, keep the follower hidden and don't move it.
+    if (FollowerHiddenForRideState())
+    {
+        HideFollowerPokemon();
+        return;
+    }
+
     player = &gObjectEvents[gPlayerAvatar.objectEventId];
     tx = player->currentCoords.x;   // the tile the player is on and about to leave
     ty = player->currentCoords.y;

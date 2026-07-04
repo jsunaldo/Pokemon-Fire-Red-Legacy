@@ -706,6 +706,7 @@ static void DoPlayerAvatarTransition(void)
                 sPlayerAvatarTransitionFuncs[i](&gObjectEvents[gPlayerAvatar.objectEventId]);
         }
         gPlayerAvatar.transitionFlags = 0;
+        UpdateFollowerPokemonVisibility(); // hide the follower when surfing/biking
     }
 }
 
