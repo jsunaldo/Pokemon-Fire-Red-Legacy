@@ -9571,10 +9571,31 @@ static void SetFollowerPokemonGraphics(struct ObjectEvent *follower, u16 species
     }
 }
 
+// Returns the follower object event only if our tracked slot still holds it,
+// identified by its reserved localId. A warp resets and repopulates object
+// events and can hand our old slot to a different NPC (e.g. a Rocket grunt on the
+// hideout warp pads) — this makes sure we never remove, move, or hide that NPC.
+static struct ObjectEvent *GetFollowerObject(void)
+{
+    struct ObjectEvent *oe;
+
+    if (!sFollowerPokemon.active)
+        return NULL;
+    oe = &gObjectEvents[sFollowerPokemon.objectId];
+    if (!oe->active || oe->localId != LOCALID_FOLLOWER)
+    {
+        sFollowerPokemon.active = FALSE; // slot was reused by something else
+        return NULL;
+    }
+    return oe;
+}
+
 void RemoveFollowerPokemon(void)
 {
-    if (sFollowerPokemon.active && gObjectEvents[sFollowerPokemon.objectId].active)
-        RemoveObjectEvent(&gObjectEvents[sFollowerPokemon.objectId]);
+    struct ObjectEvent *follower = GetFollowerObject();
+
+    if (follower != NULL)
+        RemoveObjectEvent(follower);
     sFollowerPokemon.active = FALSE;
 }
 
@@ -9622,8 +9643,10 @@ static bool8 FollowerHiddenForRideState(void)
 
 static void HideFollowerPokemon(void)
 {
-    struct ObjectEvent *follower = &gObjectEvents[sFollowerPokemon.objectId];
+    struct ObjectEvent *follower = GetFollowerObject();
 
+    if (follower == NULL)
+        return;
     follower->invisible = TRUE;
     gSprites[follower->spriteId].invisible = TRUE;
     sFollowerPokemon.shown = FALSE;   // re-emerge on the next on-foot step
@@ -9634,8 +9657,7 @@ static void HideFollowerPokemon(void)
 // to surf hides the follower immediately, even while standing still.
 void UpdateFollowerPokemonVisibility(void)
 {
-    if (sFollowerPokemon.active && gObjectEvents[sFollowerPokemon.objectId].active
-     && FollowerHiddenForRideState())
+    if (GetFollowerObject() != NULL && FollowerHiddenForRideState())
         HideFollowerPokemon();
 }
 
@@ -9650,10 +9672,9 @@ void MoveFollowerPokemon(u8 direction, u8 speed)
     s16 tx, ty, dx, dy;
     u8 dir, action;
 
-    if (!sFollowerPokemon.active || !gObjectEvents[sFollowerPokemon.objectId].active)
+    follower = GetFollowerObject();
+    if (follower == NULL)
         return;
-
-    follower = &gObjectEvents[sFollowerPokemon.objectId];
 
     // While surfing / biking, keep the follower hidden and don't move it.
     if (FollowerHiddenForRideState())
