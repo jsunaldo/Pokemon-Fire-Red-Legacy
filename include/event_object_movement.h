@@ -145,6 +145,15 @@ u8 GetWalkSlowerMovementAction(u32 direction);
 u8 GetTrainerFacingDirectionMovementType(u8 direction);
 u8 GetFaceDirectionMovementAction(u32);
 u8 GetFaceDirectionFastMovementAction(u32);
+
+// Following Pokémon
+#define FOLLOWER_SPEED_NORMAL 0
+#define FOLLOWER_SPEED_FAST   1
+#define FOLLOWER_SPEED_FASTER 2
+u16 GetFollowerPokemonSpecies(void);
+void TrySpawnFollowerPokemon(void);
+void RemoveFollowerPokemon(void);
+void MoveFollowerPokemon(u8 direction, u8 speed);
 void CameraObjectSetFollowedObjectId(u8 objectId);
 void UnfreezeObjectEvents(void);
 u8 GetSlideMovementAction(u32);

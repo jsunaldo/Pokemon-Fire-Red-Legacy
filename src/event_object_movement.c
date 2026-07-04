@@ -10,6 +10,8 @@
 #include "fieldmap.h"
 #include "metatile_behavior.h"
 #include "overworld.h"
+#include "pokemon.h"
+#include "palette.h"
 #include "quest_log.h"
 #include "random.h"
 #include "script.h"
@@ -9512,4 +9514,108 @@ static void DoRippleFieldEffect(struct ObjectEvent *objectEvent, struct Sprite *
     gFieldEffectArguments[2] = 151;
     gFieldEffectArguments[3] = 3;
     FieldEffectStart(FLDEFF_RIPPLE);
+}
+
+// ------------------------------------------------------------------------
+// Following Pokémon (HGSS-style): the lead party Pokémon trails the player
+// one tile behind, retracing the player's path with a one-step delay.
+// ------------------------------------------------------------------------
+#define LOCALID_FOLLOWER 0xD0
+
+static EWRAM_DATA struct {
+    bool8 active;
+    u8 objectId;
+    u8 prevDir;   // the player's previous step direction (drives the 1-tile delay)
+    u16 species;
+} sFollowerPokemon = {0};
+
+// First party slot that can walk: not empty, not an egg, and has a follower sprite.
+u16 GetFollowerPokemonSpecies(void)
+{
+    u16 species;
+
+    if (GetMonData(&gPlayerParty[0], MON_DATA_SPECIES) == SPECIES_NONE)
+        return SPECIES_NONE;
+    if (GetMonData(&gPlayerParty[0], MON_DATA_IS_EGG))
+        return SPECIES_NONE;
+    species = GetMonData(&gPlayerParty[0], MON_DATA_SPECIES);
+    if (species >= NUM_SPECIES || gFollowerMonFrameTable[species] == NULL)
+        return SPECIES_NONE;
+    return species;
+}
+
+static void SetFollowerPokemonGraphics(struct ObjectEvent *follower, u16 species)
+{
+    struct Sprite *sprite = &gSprites[follower->spriteId];
+
+    sprite->images = gFollowerMonFrameTable[species];
+    sprite->animBeginning = TRUE; // re-copy the frame image for the new species
+    sprite->animEnded = FALSE;
+    LoadPalette(gFollowerMonPaletteTable[species], 0x100 + sprite->oam.paletteNum * 16, PLTT_SIZE_4BPP);
+}
+
+void RemoveFollowerPokemon(void)
+{
+    if (sFollowerPokemon.active && gObjectEvents[sFollowerPokemon.objectId].active)
+        RemoveObjectEvent(&gObjectEvents[sFollowerPokemon.objectId]);
+    sFollowerPokemon.active = FALSE;
+}
+
+// (Re)create the follower behind the player. Called on every map (re)load.
+void TrySpawnFollowerPokemon(void)
+{
+    struct ObjectEvent *player;
+    u16 species = GetFollowerPokemonSpecies();
+    s16 x, y;
+    u8 dir, objId;
+
+    RemoveFollowerPokemon();
+    if (species == SPECIES_NONE)
+        return;
+
+    player = &gObjectEvents[gPlayerAvatar.objectEventId];
+    x = player->currentCoords.x;
+    y = player->currentCoords.y;
+    dir = player->facingDirection;
+    MoveCoords(GetOppositeDirection(dir), &x, &y); // one tile behind the player
+
+    objId = SpawnSpecialObjectEventParameterized(OBJ_EVENT_GFX_FOLLOWER_POKEMON, MOVEMENT_TYPE_NONE,
+                                                 LOCALID_FOLLOWER, x, y, player->currentElevation);
+    if (objId == OBJECT_EVENTS_COUNT)
+        return;
+
+    sFollowerPokemon.active = TRUE;
+    sFollowerPokemon.objectId = objId;
+    sFollowerPokemon.species = species;
+    sFollowerPokemon.prevDir = dir;
+    SetFollowerPokemonGraphics(&gObjectEvents[objId], species);
+    ObjectEventSetHeldMovement(&gObjectEvents[objId], GetFaceDirectionMovementAction(dir));
+}
+
+// Called whenever the player commits a step. The follower walks in the player's
+// PREVIOUS direction, so it lands on the tile the player just left.
+void MoveFollowerPokemon(u8 direction, u8 speed)
+{
+    struct ObjectEvent *follower;
+    u8 action;
+
+    if (!sFollowerPokemon.active || !gObjectEvents[sFollowerPokemon.objectId].active)
+        return;
+
+    follower = &gObjectEvents[sFollowerPokemon.objectId];
+    switch (speed)
+    {
+    case FOLLOWER_SPEED_FAST:
+        action = GetWalkFastMovementAction(sFollowerPokemon.prevDir);
+        break;
+    case FOLLOWER_SPEED_FASTER:
+        action = GetWalkFasterMovementAction(sFollowerPokemon.prevDir);
+        break;
+    default:
+        action = GetWalkNormalMovementAction(sFollowerPokemon.prevDir);
+        break;
+    }
+    ObjectEventClearHeldMovementIfFinished(follower);
+    ObjectEventSetHeldMovement(follower, action);
+    sFollowerPokemon.prevDir = direction;
 }
