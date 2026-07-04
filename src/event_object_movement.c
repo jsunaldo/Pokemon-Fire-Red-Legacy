@@ -9673,7 +9673,9 @@ static bool8 FollowerShouldBeHidden(void)
     return IsFollowerHidingTile(gObjectEvents[gPlayerAvatar.objectEventId].currentMetatileBehavior);
 }
 
-static void HideFollowerPokemon(void)
+// Hide the follower and mark it to re-emerge on the next step. Public so scripted
+// events (e.g. the Pokémon Center heal) can tuck it away too.
+void HideFollowerPokemon(void)
 {
     struct ObjectEvent *follower = GetFollowerObject();
 

@@ -758,6 +758,7 @@ bool8 FldEff_PokecenterHeal(void)
     u8 nPokemon;
     struct Task *task;
 
+    HideFollowerPokemon(); // tuck the follower away during the heal; it re-emerges on the next step
     nPokemon = CalculatePlayerPartyCount();
     task = &gTasks[CreateTask(Task_PokecenterHeal, 0xFF)];
     task->tNumMons = nPokemon;

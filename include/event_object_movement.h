@@ -156,6 +156,7 @@ void RemoveFollowerPokemon(void);
 void ResetFollowerPokemon(void);
 void MoveFollowerPokemon(u8 direction, u8 speed);
 void UpdateFollowerPokemonVisibility(void);
+void HideFollowerPokemon(void);
 void CameraObjectSetFollowedObjectId(u8 objectId);
 void UnfreezeObjectEvents(void);
 u8 GetSlideMovementAction(u32);
