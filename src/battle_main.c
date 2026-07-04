@@ -554,6 +554,8 @@ const struct TrainerMoney gTrainerMoneyTable[] =
     {TRAINER_CLASS_AQUA_ADMIN, 10},
     {TRAINER_CLASS_AQUA_LEADER, 20},
     {TRAINER_CLASS_BOSS, 25},
+    {TRAINER_CLASS_NURSE, 20},   // FRLG Legacy: secret post-game NURSE JOY
+    {TRAINER_CLASS_OFFICER, 20}, // FRLG Legacy: secret post-game OFFICER JENNY
     { 0xFF, 5},
 };
 

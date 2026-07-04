@@ -148,6 +148,8 @@ const struct MonCoords gTrainerFrontPicCoords[] =
     {.size = 8, .y_offset = 1},
     {.size = 8, .y_offset = 1},
     {.size = 8, .y_offset = 1},
+    {.size = 8, .y_offset = 1}, // TRAINER_PIC_NURSE_JOY (FRLG Legacy)
+    {.size = 8, .y_offset = 1}, // TRAINER_PIC_OFFICER_JENNY (FRLG Legacy)
 };
 
 const struct CompressedSpriteSheet gTrainerFrontPicTable[] =
@@ -243,6 +245,8 @@ const struct CompressedSpriteSheet gTrainerFrontPicTable[] =
     TRAINER_SPRITE(POKEMANIAC, gTrainerFrontPic_PokeManiac, 0x800),
     TRAINER_SPRITE(SUPER_NERD, gTrainerFrontPic_SuperNerd, 0x800),
     TRAINER_SPRITE(HIKER, gTrainerFrontPic_Hiker, 0x800),
+    TRAINER_SPRITE(NURSE_JOY, gTrainerFrontPic_NurseJoy, 0x800),
+    TRAINER_SPRITE(OFFICER_JENNY, gTrainerFrontPic_OfficerJenny, 0x800),
     TRAINER_SPRITE(BIKER, gTrainerFrontPic_Biker, 0x800),
     TRAINER_SPRITE(BURGLAR, gTrainerFrontPic_Burglar, 0x800),
     TRAINER_SPRITE(ENGINEER, gTrainerFrontPic_Engineer, 0x800),
@@ -395,6 +399,8 @@ const struct CompressedSpritePalette gTrainerFrontPicPaletteTable[] =
     TRAINER_PAL(POKEMANIAC, gTrainerPalette_PokeManiac),
     TRAINER_PAL(SUPER_NERD, gTrainerPalette_SuperNerd),
     TRAINER_PAL(HIKER, gTrainerPalette_Hiker),
+    TRAINER_PAL(NURSE_JOY, gTrainerPalette_NurseJoy),
+    TRAINER_PAL(OFFICER_JENNY, gTrainerPalette_OfficerJenny),
     TRAINER_PAL(BIKER, gTrainerPalette_Biker),
     TRAINER_PAL(BURGLAR, gTrainerPalette_Burglar),
     TRAINER_PAL(ENGINEER, gTrainerPalette_Engineer),

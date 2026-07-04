@@ -25,3 +25,14 @@ FuchsiaCity_PokemonCenter_1F_EventScript_CooltrainerF::
 FuchsiaCity_PokemonCenter_1F_EventScript_Youngster::
 	msgbox FuchsiaCity_PokemonCenter_1F_Text_VisitSafariZoneForPokedex, MSGBOX_NPC
 	end
+
+@ FRLG Legacy: secret NURSE JOY post-game boss (Yellow Legacy tribute).
+FuchsiaCity_PokemonCenter_1F_EventScript_NurseJoy::
+	goto_if_set FLAG_SYS_GAME_CLEAR, FuchsiaCity_PokemonCenter_1F_EventScript_NurseJoyBattle
+	msgbox FuchsiaCity_PokemonCenter_1F_Text_NurseJoyGreeting, MSGBOX_NPC
+	end
+
+FuchsiaCity_PokemonCenter_1F_EventScript_NurseJoyBattle::
+	trainerbattle_single TRAINER_NURSE_JOY, FuchsiaCity_PokemonCenter_1F_Text_NurseJoyIntro, FuchsiaCity_PokemonCenter_1F_Text_NurseJoyDefeat
+	msgbox FuchsiaCity_PokemonCenter_1F_Text_NurseJoyPostBattle, MSGBOX_AUTOCLOSE
+	end

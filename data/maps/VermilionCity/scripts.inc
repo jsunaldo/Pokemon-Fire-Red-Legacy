@@ -264,3 +264,14 @@ VermilionCity_EventScript_GymSign::
 VermilionCity_EventScript_HarborSign::
 	msgbox VermilionCity_Text_VermilionHarbor, MSGBOX_SIGN
 	end
+
+@ FRLG Legacy: secret OFFICER JENNY post-game boss (Yellow Legacy tribute).
+VermilionCity_EventScript_OfficerJenny::
+	goto_if_set FLAG_SYS_GAME_CLEAR, VermilionCity_EventScript_OfficerJennyBattle
+	msgbox VermilionCity_Text_OfficerJennyGreeting, MSGBOX_NPC
+	end
+
+VermilionCity_EventScript_OfficerJennyBattle::
+	trainerbattle_single TRAINER_OFFICER_JENNY, VermilionCity_Text_OfficerJennyIntro, VermilionCity_Text_OfficerJennyDefeat
+	msgbox VermilionCity_Text_OfficerJennyPostBattle, MSGBOX_AUTOCLOSE
+	end

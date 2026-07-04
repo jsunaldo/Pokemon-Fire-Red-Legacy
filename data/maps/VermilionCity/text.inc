@@ -129,3 +129,27 @@ VermilionCity_Text_Route2AideHasPackageForYou::
     .string "If you're in the ROUTE 2 area,\n"
     .string "please look for him.$"
 
+
+VermilionCity_Text_OfficerJennyGreeting::
+    .string "This is OFFICER JENNY, keeping\n"
+    .string "the peace in VERMILION CITY.\p"
+    .string "The force trains hard for any\n"
+    .string "trouble. Come find me once you've\l"
+    .string "become the CHAMPION--I'll test\l"
+    .string "how strong you've really gotten.$"
+
+VermilionCity_Text_OfficerJennyIntro::
+    .string "So the new CHAMPION walks my\n"
+    .string "beat! Perfect timing.\p"
+    .string "A CHAMPION should be able to\n"
+    .string "handle the police force. En garde!$"
+
+VermilionCity_Text_OfficerJennyDefeat::
+    .string "Incredible! No wonder you're\n"
+    .string "the CHAMPION. The city's in\l"
+    .string "good hands with you around.$"
+
+VermilionCity_Text_OfficerJennyPostBattle::
+    .string "Stay safe out there, CHAMPION.\p"
+    .string "If you ever want a rematch, you\n"
+    .string "know where to find me.$"

@@ -453,6 +453,17 @@ static const union AnimCmd *const sAnims_Hiker[] =
     sAnim_GeneralFrame0,
 };
 
+// FRLG Legacy: secret post-game bosses.
+static const union AnimCmd *const sAnims_NurseJoy[] =
+{
+    sAnim_GeneralFrame0,
+};
+
+static const union AnimCmd *const sAnims_OfficerJenny[] =
+{
+    sAnim_GeneralFrame0,
+};
+
 static const union AnimCmd *const sAnims_Biker[] =
 {
     sAnim_GeneralFrame0,
@@ -831,6 +842,8 @@ const union AnimCmd *const *const gTrainerFrontAnimsPtrTable[] =
     [TRAINER_PIC_POKEMANIAC]            = sAnims_Pokemaniac,
     [TRAINER_PIC_SUPER_NERD]            = sAnims_SuperNerd,
     [TRAINER_PIC_HIKER]                 = sAnims_Hiker,
+    [TRAINER_PIC_NURSE_JOY]             = sAnims_NurseJoy,
+    [TRAINER_PIC_OFFICER_JENNY]         = sAnims_OfficerJenny,
     [TRAINER_PIC_BIKER]                 = sAnims_Biker,
     [TRAINER_PIC_BURGLAR]               = sAnims_Burglar,
     [TRAINER_PIC_ENGINEER]              = sAnims_Engineer,

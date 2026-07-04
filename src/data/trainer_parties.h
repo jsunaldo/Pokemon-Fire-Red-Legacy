@@ -11246,6 +11246,86 @@ static const struct TrainerMonNoItemCustomMoves sParty_Janine[] = {
     },
 };
 
+// FRLG Legacy: NURSE JOY — secret post-game boss in the Fuchsia Pokémon Center (YL tribute).
+static const struct TrainerMonNoItemCustomMoves sParty_NurseJoy[] = {
+    {
+        .iv = 250,
+        .lvl = 65,
+        .species = SPECIES_KANGASKHAN,
+        .moves = {MOVE_BODY_SLAM, MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_SHADOW_BALL},
+    },
+    {
+        .iv = 250,
+        .lvl = 65,
+        .species = SPECIES_STARMIE,
+        .moves = {MOVE_SURF, MOVE_PSYCHIC, MOVE_ICE_BEAM, MOVE_THUNDERBOLT},
+    },
+    {
+        .iv = 250,
+        .lvl = 65,
+        .species = SPECIES_PORYGON,
+        .moves = {MOVE_TRI_ATTACK, MOVE_PSYCHIC, MOVE_ICE_BEAM, MOVE_RECOVER},
+    },
+    {
+        .iv = 250,
+        .lvl = 65,
+        .species = SPECIES_EXEGGUTOR,
+        .moves = {MOVE_PSYCHIC, MOVE_GIGA_DRAIN, MOVE_SLEEP_POWDER, MOVE_EXPLOSION},
+    },
+    {
+        .iv = 250,
+        .lvl = 66,
+        .species = SPECIES_SNORLAX,
+        .moves = {MOVE_BODY_SLAM, MOVE_EARTHQUAKE, MOVE_REST, MOVE_SHADOW_BALL},
+    },
+    {
+        .iv = 250,
+        .lvl = 68,
+        .species = SPECIES_CHANSEY,
+        .moves = {MOVE_SOFT_BOILED, MOVE_SEISMIC_TOSS, MOVE_THUNDERBOLT, MOVE_ICE_BEAM},
+    },
+};
+
+// FRLG Legacy: OFFICER JENNY — secret post-game boss in Vermilion City (YL tribute).
+static const struct TrainerMonNoItemCustomMoves sParty_OfficerJenny[] = {
+    {
+        .iv = 250,
+        .lvl = 65,
+        .species = SPECIES_PIDGEOT,
+        .moves = {MOVE_AERIAL_ACE, MOVE_QUICK_ATTACK, MOVE_STEEL_WING, MOVE_SAND_ATTACK},
+    },
+    {
+        .iv = 250,
+        .lvl = 65,
+        .species = SPECIES_PARASECT,
+        .moves = {MOVE_SPORE, MOVE_GIGA_DRAIN, MOVE_SLASH, MOVE_BODY_SLAM},
+    },
+    {
+        .iv = 250,
+        .lvl = 65,
+        .species = SPECIES_TANGELA,
+        .moves = {MOVE_GIGA_DRAIN, MOVE_SLEEP_POWDER, MOVE_BODY_SLAM, MOVE_ANCIENT_POWER},
+    },
+    {
+        .iv = 250,
+        .lvl = 66,
+        .species = SPECIES_BLASTOISE,
+        .moves = {MOVE_SURF, MOVE_ICE_BEAM, MOVE_EARTHQUAKE, MOVE_BITE},
+    },
+    {
+        .iv = 250,
+        .lvl = 66,
+        .species = SPECIES_GENGAR,
+        .moves = {MOVE_SHADOW_BALL, MOVE_THUNDERBOLT, MOVE_SLUDGE_BOMB, MOVE_HYPNOSIS},
+    },
+    {
+        .iv = 250,
+        .lvl = 68,
+        .species = SPECIES_ARCANINE,
+        .moves = {MOVE_FLAMETHROWER, MOVE_CRUNCH, MOVE_ROAR, MOVE_EXTREME_SPEED},
+    },
+};
+
 static const struct TrainerMonNoItemCustomMoves sParty_BeautyViola[] = {
     {
         .iv = 100,

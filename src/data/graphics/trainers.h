@@ -442,6 +442,12 @@ const u32 gTrainerPalette_Lady[] = INCBIN_U32("graphics/trainers/palettes/lady.g
 const u32 gTrainerFrontPic_Painter[] = INCBIN_U32("graphics/trainers/front_pics/painter_front_pic.4bpp.lz");
 const u32 gTrainerPalette_Painter[] = INCBIN_U32("graphics/trainers/palettes/painter.gbapal.lz");
 
+// FRLG Legacy: secret post-game bosses (Yellow Legacy tribute); art ported & recolored from YL.
+const u32 gTrainerFrontPic_NurseJoy[] = INCBIN_U32("graphics/trainers/front_pics/nurse_joy_front_pic.4bpp.lz");
+const u32 gTrainerPalette_NurseJoy[] = INCBIN_U32("graphics/trainers/palettes/nurse_joy.gbapal.lz");
+const u32 gTrainerFrontPic_OfficerJenny[] = INCBIN_U32("graphics/trainers/front_pics/officer_jenny_front_pic.4bpp.lz");
+const u32 gTrainerPalette_OfficerJenny[] = INCBIN_U32("graphics/trainers/palettes/officer_jenny.gbapal.lz");
+
 const u8 gTrainerBackPic_Red[] = INCBIN_U8("graphics/trainers/back_pics/red_back_pic.4bpp");
 const u8 gTrainerBackPic_Leaf[] = INCBIN_U8("graphics/trainers/back_pics/leaf_back_pic.4bpp");
 const u8 gTrainerBackPic_Pokedude[] = INCBIN_U8("graphics/trainers/back_pics/pokedude_back_pic.4bpp");
