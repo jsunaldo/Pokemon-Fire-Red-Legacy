@@ -2,7 +2,13 @@ PokemonLeague_ChampionsRoom_MapScripts::
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, PokemonLeague_ChampionsRoom_OnWarp
 	map_script MAP_SCRIPT_ON_RESUME, PokemonLeague_ChampionsRoom_OnResume
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, PokemonLeague_ChampionsRoom_OnFrame
+	map_script MAP_SCRIPT_ON_TRANSITION, PokemonLeague_ChampionsRoom_OnTransition
 	.byte 0
+
+@ FRLG Legacy: draw the rival's ace as the eeveelution that countered your starter.
+PokemonLeague_ChampionsRoom_OnTransition::
+	special SetChampionAceEeveelution
+	end
 
 PokemonLeague_ChampionsRoom_OnResume::
 	setvar VAR_0x8004, 4

@@ -10,6 +10,7 @@
 gSpecials::
 	def_special SetCutTreePermanentlyRemoved
 	def_special GetPlayerGymBadgeCount
+	def_special SetChampionAceEeveelution
 	def_special HealPlayerParty
 	def_special SetCableClubWarp
 	def_special DoCableClubWarp

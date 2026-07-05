@@ -9584,6 +9584,45 @@ static void SetFollowerPokemonGraphics(struct ObjectEvent *follower, u16 species
     }
 }
 
+// FRLG Legacy: the Champion (rival) stands beside his ace, drawn as an Eevee, but
+// his team's Eevee evolved to counter your starter. Swap the Eevee overworld
+// sprite to the matching eeveelution using the follower sprite tables (same 32x32
+// size / Standard anims), recoloring the Eevee palette slot in place. Called as a
+// special from the Champion's Room ON_TRANSITION script, so it runs on every entry
+// while the ace object is present. VAR_STARTER_MON here follows the room's own
+// script mapping: 2 = Squirtle, 1 = Bulbasaur, 0 = Charmander.
+void SetChampionAceEeveelution(void)
+{
+    u16 species;
+    u8 i;
+
+    switch (VarGet(VAR_STARTER_MON))
+    {
+    case 2:  species = SPECIES_VAPOREON; break; // Squirtle -> Vaporeon
+    case 1:  species = SPECIES_JOLTEON;  break; // Bulbasaur -> Jolteon
+    default: species = SPECIES_FLAREON;  break; // Charmander -> Flareon
+    }
+
+    for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
+    {
+        struct ObjectEvent *obj = &gObjectEvents[i];
+
+        if (obj->active && obj->graphicsId == OBJ_EVENT_GFX_EEVEE)
+        {
+            struct Sprite *sprite = &gSprites[obj->spriteId];
+            u8 palSlot;
+
+            sprite->images = gFollowerMonFrameTable[species];
+            sprite->animBeginning = TRUE;
+            sprite->animEnded = FALSE;
+            palSlot = IndexOfSpritePaletteTag(OBJ_EVENT_PAL_TAG_EEVEE);
+            if (palSlot != 0xFF)
+                LoadPalette(gFollowerMonPaletteTable[species], 0x100 + palSlot * 16, PLTT_SIZE_4BPP);
+            break;
+        }
+    }
+}
+
 // Returns the follower object event only if our tracked slot still holds it,
 // identified by its reserved localId. A warp resets and repopulates object
 // events and can hand our old slot to a different NPC (e.g. a Rocket grunt on the
