@@ -141,7 +141,7 @@
     },
     {
       "type": "object",
-      "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
+      "graphics_id": "OBJ_EVENT_GFX_OFFICER_JENNY",
       "x": 20,
       "y": 11,
       "elevation": 3,
