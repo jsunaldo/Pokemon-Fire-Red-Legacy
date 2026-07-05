@@ -154,7 +154,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_LittleBoy = {
 // preloaded NPC_BLUE palette so no extra palette loading is needed.
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_OfficerJenny = {
     .tileTag = TAG_NONE,
-    .paletteTag = OBJ_EVENT_PAL_TAG_NPC_BLUE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_OFFICER_JENNY,
     .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,
     .size = 128,
     .width = 16,

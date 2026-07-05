@@ -446,6 +446,13 @@ static const u8 *GetInteractedObjectEventScript(struct MapPosition *position, u8
             return NULL;
     }
 
+    // FRLG Legacy: the following Pokémon (localId 0xD0 = LOCALID_FOLLOWER) is a
+    // scriptless special object event. Interacting with it would fetch a garbage
+    // script pointer and execute random bytes as script commands (phantom item
+    // pickups, then a crash), so ignore A-presses aimed at the follower.
+    if (gObjectEvents[objectEventId].localId == 0xD0)
+        return NULL;
+
     if (InUnionRoom() == TRUE && !ObjectEventCheckHeldMovementStatus(&gObjectEvents[objectEventId]))
         return NULL;
 
