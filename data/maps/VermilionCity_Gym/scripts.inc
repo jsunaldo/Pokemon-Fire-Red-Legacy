@@ -292,9 +292,11 @@ VermilionCity_Gym_EventScript_LtSurgeRematch::
 	msgbox VermilionCity_Gym_Text_LtSurgeRematchAsk, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, VermilionCity_Gym_EventScript_LtSurgeRematchDeclined
 	goto_if_set FLAG_JOHTO_CIRCUIT_CLEARED, VermilionCity_Gym_EventScript_LtSurgeRematch3
+	goto_if_set FLAG_E4_REMATCH_CLEARED, VermilionCity_Gym_EventScript_LtSurgeRematchChoice
 	goto_if_set FLAG_SYS_NATIONAL_DEX, VermilionCity_Gym_EventScript_LtSurgeRematch2
 	cleartrainerflag TRAINER_LEADER_LT_SURGE_REMATCH
 	trainerbattle_no_intro TRAINER_LEADER_LT_SURGE_REMATCH, VermilionCity_Gym_Text_LtSurgeRematchDefeat
+	setflag FLAG_KANTO_REMATCH_LT_SURGE
 	msgbox VermilionCity_Gym_Text_LtSurgeRematchPost
 	release
 	end
@@ -307,6 +309,7 @@ VermilionCity_Gym_EventScript_LtSurgeRematchDeclined::
 VermilionCity_Gym_EventScript_LtSurgeRematch2::
 	cleartrainerflag TRAINER_LEADER_LT_SURGE_REMATCH2
 	trainerbattle_no_intro TRAINER_LEADER_LT_SURGE_REMATCH2, VermilionCity_Gym_Text_LtSurgeRematchDefeat
+	setflag FLAG_KANTO_REMATCH_LT_SURGE
 	msgbox VermilionCity_Gym_Text_LtSurgeRematchPost
 	release
 	end
@@ -314,6 +317,19 @@ VermilionCity_Gym_EventScript_LtSurgeRematch2::
 VermilionCity_Gym_EventScript_LtSurgeRematch3::
 	cleartrainerflag TRAINER_LEADER_LT_SURGE_R3
 	trainerbattle_no_intro TRAINER_LEADER_LT_SURGE_R3, VermilionCity_Gym_Text_LtSurgeRematchDefeat
+	setflag FLAG_KANTO_REMATCH_LT_SURGE
+	msgbox VermilionCity_Gym_Text_LtSurgeRematchPost
+	release
+	end
+
+@ FRLG Legacy point 6: during the Johto phase, pick a Kanto-only (Tier 1) or
+@ mixed (Tier 2) team. Optional, non-gating.
+VermilionCity_Gym_EventScript_LtSurgeRematchChoice::
+	msgbox VermilionCity_Gym_Text_LtSurgeRematchChoice, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, VermilionCity_Gym_EventScript_LtSurgeRematch2
+	cleartrainerflag TRAINER_LEADER_LT_SURGE_REMATCH
+	trainerbattle_no_intro TRAINER_LEADER_LT_SURGE_REMATCH, VermilionCity_Gym_Text_LtSurgeRematchDefeat
+	setflag FLAG_KANTO_REMATCH_LT_SURGE
 	msgbox VermilionCity_Gym_Text_LtSurgeRematchPost
 	release
 	end

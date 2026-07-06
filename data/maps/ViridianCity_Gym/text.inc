@@ -189,3 +189,9 @@ ViridianCity_Gym_Text_GiovanniRematchPost::
 ViridianCity_Gym_Text_GiovanniRematchNo::
 	.string "GIOVANNI: Come back when you are\n"
 	.string "ready to face me.$"
+
+ViridianCity_Gym_Text_GiovanniRematchChoice::
+	.string "GIOVANNI: Shall we keep this to\n"
+	.string "KANTO POKéMON only?\p"
+	.string "Say no, and I will bring my full\n"
+	.string "team to bear.$"

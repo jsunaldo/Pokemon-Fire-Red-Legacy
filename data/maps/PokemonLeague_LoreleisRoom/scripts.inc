@@ -52,16 +52,37 @@ PokemonLeague_LoreleisRoom_EventScript_Lorelei::
 	faceplayer
 	famechecker FAMECHECKER_LORELEI, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
 	goto_if_set FLAG_DEFEATED_LORELEI, PokemonLeague_LoreleisRoom_EventScript_PostBattle
+	goto_if_set FLAG_SYS_GAME_CLEAR, PokemonLeague_LoreleisRoom_EventScript_RematchGate
 	famechecker FAMECHECKER_LORELEI, 0
 	famechecker FAMECHECKER_LORELEI, 1
-	call_if_unset FLAG_SYS_NATIONAL_DEX, PokemonLeague_LoreleisRoom_EventScript_Intro
-	call_if_set FLAG_SYS_NATIONAL_DEX, PokemonLeague_LoreleisRoom_EventScript_RematchIntro
+	call PokemonLeague_LoreleisRoom_EventScript_Intro
 	setflag FLAG_TEMP_3
 	setflag FLAG_TEMP_5
-	call_if_unset FLAG_SYS_NATIONAL_DEX, PokemonLeague_LoreleisRoom_EventScript_Battle
-	call_if_set FLAG_SYS_NATIONAL_DEX, PokemonLeague_LoreleisRoom_EventScript_Rematch
+	call PokemonLeague_LoreleisRoom_EventScript_Battle
 	clearflag FLAG_TEMP_5
 	goto PokemonLeague_LoreleisRoom_EventScript_DefeatedLorelei
+	end
+
+@ FRLG Legacy: the post-game League only reopens once all eight KANTO GYM LEADERS
+@ have been re-beaten in the current stage (tracked by the FLAG_KANTO_REMATCH_* set).
+@ This single gate serves both the Elite ladder (after E4) and the Tier 3 endgame
+@ (after Johto), since the tracking flags are cleared when the Johto circuit is cleared.
+PokemonLeague_LoreleisRoom_EventScript_RematchGate::
+	special CheckAllKantoGymsRematched
+	goto_if_eq VAR_RESULT, FALSE, PokemonLeague_LoreleisRoom_EventScript_RematchLocked
+	famechecker FAMECHECKER_LORELEI, 0
+	famechecker FAMECHECKER_LORELEI, 1
+	call PokemonLeague_LoreleisRoom_EventScript_RematchIntro
+	setflag FLAG_TEMP_3
+	setflag FLAG_TEMP_5
+	call PokemonLeague_LoreleisRoom_EventScript_Rematch
+	clearflag FLAG_TEMP_5
+	goto PokemonLeague_LoreleisRoom_EventScript_DefeatedLorelei
+	end
+
+PokemonLeague_LoreleisRoom_EventScript_RematchLocked::
+	msgbox PokemonLeague_LoreleisRoom_Text_RematchLocked
+	release
 	end
 
 PokemonLeague_LoreleisRoom_EventScript_Intro::

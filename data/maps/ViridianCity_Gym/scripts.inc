@@ -21,6 +21,7 @@ ViridianCity_Gym_EventScript_GiovanniRematch::
 	msgbox ViridianCity_Gym_Text_GiovanniRematchAsk, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, ViridianCity_Gym_EventScript_GiovanniRematchDeclined
 	goto_if_set FLAG_JOHTO_CIRCUIT_CLEARED, ViridianCity_Gym_EventScript_GiovanniRematch3
+	goto_if_set FLAG_E4_REMATCH_CLEARED, ViridianCity_Gym_EventScript_GiovanniRematchChoice
 	goto_if_set FLAG_SYS_NATIONAL_DEX, ViridianCity_Gym_EventScript_GiovanniRematch2
 	cleartrainerflag TRAINER_LEADER_GIOVANNI_REMATCH
 	trainerbattle_no_intro TRAINER_LEADER_GIOVANNI_REMATCH, ViridianCity_Gym_Text_GiovanniRematchDefeat
@@ -45,6 +46,18 @@ ViridianCity_Gym_EventScript_GiovanniRematch2::
 ViridianCity_Gym_EventScript_GiovanniRematch3::
 	cleartrainerflag TRAINER_LEADER_GIOVANNI_R3
 	trainerbattle_no_intro TRAINER_LEADER_GIOVANNI_R3, ViridianCity_Gym_Text_GiovanniRematchDefeat
+	setflag FLAG_KANTO_REMATCH_GIOVANNI
+	msgbox ViridianCity_Gym_Text_GiovanniRematchPost
+	release
+	end
+
+@ FRLG Legacy point 6: during the Johto phase, pick a Kanto-only (Tier 1) or
+@ mixed (Tier 2) team. Optional, non-gating.
+ViridianCity_Gym_EventScript_GiovanniRematchChoice::
+	msgbox ViridianCity_Gym_Text_GiovanniRematchChoice, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, ViridianCity_Gym_EventScript_GiovanniRematch2
+	cleartrainerflag TRAINER_LEADER_GIOVANNI_REMATCH
+	trainerbattle_no_intro TRAINER_LEADER_GIOVANNI_REMATCH, ViridianCity_Gym_Text_GiovanniRematchDefeat
 	setflag FLAG_KANTO_REMATCH_GIOVANNI
 	msgbox ViridianCity_Gym_Text_GiovanniRematchPost
 	release

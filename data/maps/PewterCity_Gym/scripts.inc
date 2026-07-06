@@ -86,9 +86,11 @@ PewterCity_Gym_EventScript_BrockRematch::
 	msgbox PewterCity_Gym_Text_BrockRematchAsk, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, PewterCity_Gym_EventScript_BrockRematchDeclined
 	goto_if_set FLAG_JOHTO_CIRCUIT_CLEARED, PewterCity_Gym_EventScript_BrockRematch3
+	goto_if_set FLAG_E4_REMATCH_CLEARED, PewterCity_Gym_EventScript_BrockRematchChoice
 	goto_if_set FLAG_SYS_NATIONAL_DEX, PewterCity_Gym_EventScript_BrockRematch2
 	cleartrainerflag TRAINER_LEADER_BROCK_REMATCH
 	trainerbattle_no_intro TRAINER_LEADER_BROCK_REMATCH, PewterCity_Gym_Text_BrockRematchDefeat
+	setflag FLAG_KANTO_REMATCH_BROCK
 	msgbox PewterCity_Gym_Text_BrockRematchPost
 	release
 	end
@@ -101,6 +103,7 @@ PewterCity_Gym_EventScript_BrockRematchDeclined::
 PewterCity_Gym_EventScript_BrockRematch2::
 	cleartrainerflag TRAINER_LEADER_BROCK_REMATCH2
 	trainerbattle_no_intro TRAINER_LEADER_BROCK_REMATCH2, PewterCity_Gym_Text_BrockRematchDefeat
+	setflag FLAG_KANTO_REMATCH_BROCK
 	msgbox PewterCity_Gym_Text_BrockRematchPost
 	release
 	end
@@ -108,6 +111,19 @@ PewterCity_Gym_EventScript_BrockRematch2::
 PewterCity_Gym_EventScript_BrockRematch3::
 	cleartrainerflag TRAINER_LEADER_BROCK_R3
 	trainerbattle_no_intro TRAINER_LEADER_BROCK_R3, PewterCity_Gym_Text_BrockRematchDefeat
+	setflag FLAG_KANTO_REMATCH_BROCK
+	msgbox PewterCity_Gym_Text_BrockRematchPost
+	release
+	end
+
+@ FRLG Legacy point 6: during the Johto phase, pick a Kanto-only (Tier 1) or
+@ mixed (Tier 2) team. Optional, non-gating.
+PewterCity_Gym_EventScript_BrockRematchChoice::
+	msgbox PewterCity_Gym_Text_BrockRematchChoice, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, PewterCity_Gym_EventScript_BrockRematch2
+	cleartrainerflag TRAINER_LEADER_BROCK_REMATCH
+	trainerbattle_no_intro TRAINER_LEADER_BROCK_REMATCH, PewterCity_Gym_Text_BrockRematchDefeat
+	setflag FLAG_KANTO_REMATCH_BROCK
 	msgbox PewterCity_Gym_Text_BrockRematchPost
 	release
 	end

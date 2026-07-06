@@ -44,7 +44,7 @@ OneIsland_Harbor_EventScript_Sailor::
 OneIsland_Harbor_EventScript_JohtoFerry::
 	lock
 	faceplayer
-	goto_if_unset FLAG_SYS_CAN_LINK_WITH_RS, OneIsland_Harbor_EventScript_JohtoFerryClosed
+	goto_if_unset FLAG_E4_REMATCH_CLEARED, OneIsland_Harbor_EventScript_JohtoFerryClosed
 	msgbox OneIsland_Harbor_Text_JohtoFerryAsk, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, OneIsland_Harbor_EventScript_JohtoFerryBye
 	msgbox OneIsland_Harbor_Text_JohtoFerryGo, MSGBOX_DEFAULT
@@ -64,7 +64,7 @@ OneIsland_Harbor_EventScript_JohtoFerryBye::
 
 OneIsland_Harbor_Text_JohtoFerryAsk::
 	.string "Ahoy, CHAMPION! Word is you've\n"
-	.string "conquered every REGION's dex.\p"
+	.string "bested the ELITE FOUR anew.\p"
 	.string "Out west lie the JOHTO ISLES,\n"
 	.string "eight GYM LEADERS, eight trials.\p"
 	.string "Set sail for SKYREACH ISLE?$"
@@ -74,6 +74,6 @@ OneIsland_Harbor_Text_JohtoFerryGo::
 
 OneIsland_Harbor_Text_JohtoFerryClosed::
 	.string "The JOHTO ISLES open only to a\n"
-	.string "TRAINER who's seen it all.\p"
-	.string "Come back when your POKéDEX\n"
-	.string "spans every REGION.$"
+	.string "true CHAMPION.\p"
+	.string "Come back once you've bested the\n"
+	.string "ELITE FOUR a second time.$"

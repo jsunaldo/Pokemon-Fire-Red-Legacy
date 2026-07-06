@@ -61,4 +61,14 @@ JohtoIsle_Clair_EventScript_HoennFLANNERYPost::
 
 JohtoIsle_Clair_EventScript_SetCircuitCleared::
 	setflag FLAG_JOHTO_CIRCUIT_CLEARED
+@ FRLG Legacy: reset the Kanto rematch tracker so the Tier 3 endgame must
+@ re-beat all eight leaders (now at Tier 3 levels) before the Tier 3 E4 opens.
+	clearflag FLAG_KANTO_REMATCH_BROCK
+	clearflag FLAG_KANTO_REMATCH_MISTY
+	clearflag FLAG_KANTO_REMATCH_LT_SURGE
+	clearflag FLAG_KANTO_REMATCH_ERIKA
+	clearflag FLAG_KANTO_REMATCH_KOGA
+	clearflag FLAG_KANTO_REMATCH_SABRINA
+	clearflag FLAG_KANTO_REMATCH_BLAINE
+	clearflag FLAG_KANTO_REMATCH_GIOVANNI
 	return

@@ -31,3 +31,11 @@ PokemonLeague_LoreleisRoom_Text_PostBattle::
     .string "You only got a taste of the\n"
     .string "POKéMON LEAGUE's power.$"
 
+
+PokemonLeague_LoreleisRoom_Text_RematchLocked::
+	.string "LORELEI: So, you wish to challenge\n"
+	.string "the ELITE FOUR once more?\p"
+	.string "You must first prove you still\n"
+	.string "command KANTO.\p"
+	.string "Defeat all eight GYM LEADERS in\n"
+	.string "rematch, then return to us.$"

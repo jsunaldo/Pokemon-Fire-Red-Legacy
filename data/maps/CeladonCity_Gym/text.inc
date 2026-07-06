@@ -171,3 +171,9 @@ CeladonCity_Gym_Text_ErikaRematchPost::
 CeladonCity_Gym_Text_ErikaRematchNo::
 	.string "Ha! Don't keep me waiting\n"
 	.string "too long, CHAMPION.$"
+
+CeladonCity_Gym_Text_ErikaRematchChoice::
+	.string "Shall we keep this to KANTO\n"
+	.string "POKéMON only?\p"
+	.string "Say no, and I will bring my full\n"
+	.string "team.$"

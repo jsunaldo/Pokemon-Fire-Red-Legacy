@@ -111,3 +111,9 @@ CeruleanCity_Gym_Text_MistyRematchPost::
 CeruleanCity_Gym_Text_MistyRematchNo::
 	.string "Ha! Don't keep me waiting\n"
 	.string "too long, CHAMPION.$"
+
+CeruleanCity_Gym_Text_MistyRematchChoice::
+	.string "Shall we keep this to KANTO\n"
+	.string "POKéMON only?\p"
+	.string "Say no, and I will bring my full\n"
+	.string "team.$"

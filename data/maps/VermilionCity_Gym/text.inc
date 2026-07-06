@@ -159,3 +159,9 @@ VermilionCity_Gym_Text_LtSurgeRematchPost::
 VermilionCity_Gym_Text_LtSurgeRematchNo::
 	.string "Ha! Don't keep me waiting\n"
 	.string "too long, CHAMPION.$"
+
+VermilionCity_Gym_Text_LtSurgeRematchChoice::
+	.string "Shall we keep this to KANTO\n"
+	.string "POKéMON only?\p"
+	.string "Say no, and I will bring my full\n"
+	.string "team.$"

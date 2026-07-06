@@ -62,8 +62,8 @@ PokemonLeague_ChampionsRoom_EventScript_EnterRoom::
 	setflag FLAG_TEMP_3
 	setflag FLAG_TEMP_5
 	savebgm MUS_VICTORY_GYM_LEADER
-	call_if_unset FLAG_SYS_NATIONAL_DEX, PokemonLeague_ChampionsRoom_EventScript_Battle
-	call_if_set FLAG_SYS_NATIONAL_DEX, PokemonLeague_ChampionsRoom_EventScript_Rematch
+	call_if_unset FLAG_SYS_GAME_CLEAR, PokemonLeague_ChampionsRoom_EventScript_Battle
+	call_if_set FLAG_SYS_GAME_CLEAR, PokemonLeague_ChampionsRoom_EventScript_Rematch
 	setflag FLAG_TEMP_4
 	clearflag FLAG_TEMP_5
 	setflag FLAG_DEFEATED_CHAMP
@@ -118,6 +118,7 @@ PokemonLeague_ChampionsRoom_EventScript_Rematch::
 	call_if_eq VAR_STARTER_MON, 2, PokemonLeague_ChampionsRoom_EventScript_RematchSquirtle
 	call_if_eq VAR_STARTER_MON, 1, PokemonLeague_ChampionsRoom_EventScript_RematchBulbasaur
 	call_if_eq VAR_STARTER_MON, 0, PokemonLeague_ChampionsRoom_EventScript_RematchCharmander
+	setflag FLAG_E4_REMATCH_CLEARED
 	return
 
 PokemonLeague_ChampionsRoom_EventScript_Intro::
@@ -235,4 +236,5 @@ PokemonLeague_ChampionsRoom_Movement_RivalWatchOakEnter::
 
 PokemonLeague_ChampionsRoom_EventScript_Rematch3::
 	trainerbattle_no_intro TRAINER_CHAMPION_R3, PokemonLeague_ChampionsRoom_Text_Defeat
+	setflag FLAG_E4_TIER3_CLEARED
 	return

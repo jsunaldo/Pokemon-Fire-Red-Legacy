@@ -209,3 +209,9 @@ CinnabarIsland_Gym_Text_BlaineRematchPost::
 CinnabarIsland_Gym_Text_BlaineRematchNo::
 	.string "Ha! Don't keep me waiting\n"
 	.string "too long, CHAMPION.$"
+
+CinnabarIsland_Gym_Text_BlaineRematchChoice::
+	.string "Shall we keep this to KANTO\n"
+	.string "POKéMON only?\p"
+	.string "Say no, and I will bring my full\n"
+	.string "team.$"

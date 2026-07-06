@@ -179,3 +179,9 @@ SaffronCity_Gym_Text_SabrinaRematchPost::
 SaffronCity_Gym_Text_SabrinaRematchNo::
 	.string "Ha! Don't keep me waiting\n"
 	.string "too long, CHAMPION.$"
+
+SaffronCity_Gym_Text_SabrinaRematchChoice::
+	.string "Shall we keep this to KANTO\n"
+	.string "POKéMON only?\p"
+	.string "Say no, and I will bring my full\n"
+	.string "team.$"

@@ -193,3 +193,9 @@ FuchsiaCity_Gym_Text_KogaRematchPost::
 FuchsiaCity_Gym_Text_KogaRematchNo::
 	.string "Ha! Don't keep me waiting\n"
 	.string "too long, CHAMPION.$"
+
+FuchsiaCity_Gym_Text_KogaRematchChoice::
+	.string "Shall we keep this to KANTO\n"
+	.string "POKéMON only?\p"
+	.string "Say no, and I will bring my full\n"
+	.string "team.$"

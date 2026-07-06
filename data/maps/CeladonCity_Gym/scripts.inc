@@ -114,9 +114,11 @@ CeladonCity_Gym_EventScript_ErikaRematch::
 	msgbox CeladonCity_Gym_Text_ErikaRematchAsk, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, CeladonCity_Gym_EventScript_ErikaRematchDeclined
 	goto_if_set FLAG_JOHTO_CIRCUIT_CLEARED, CeladonCity_Gym_EventScript_ErikaRematch3
+	goto_if_set FLAG_E4_REMATCH_CLEARED, CeladonCity_Gym_EventScript_ErikaRematchChoice
 	goto_if_set FLAG_SYS_NATIONAL_DEX, CeladonCity_Gym_EventScript_ErikaRematch2
 	cleartrainerflag TRAINER_LEADER_ERIKA_REMATCH
 	trainerbattle_no_intro TRAINER_LEADER_ERIKA_REMATCH, CeladonCity_Gym_Text_ErikaRematchDefeat
+	setflag FLAG_KANTO_REMATCH_ERIKA
 	msgbox CeladonCity_Gym_Text_ErikaRematchPost
 	release
 	end
@@ -129,6 +131,7 @@ CeladonCity_Gym_EventScript_ErikaRematchDeclined::
 CeladonCity_Gym_EventScript_ErikaRematch2::
 	cleartrainerflag TRAINER_LEADER_ERIKA_REMATCH2
 	trainerbattle_no_intro TRAINER_LEADER_ERIKA_REMATCH2, CeladonCity_Gym_Text_ErikaRematchDefeat
+	setflag FLAG_KANTO_REMATCH_ERIKA
 	msgbox CeladonCity_Gym_Text_ErikaRematchPost
 	release
 	end
@@ -136,6 +139,19 @@ CeladonCity_Gym_EventScript_ErikaRematch2::
 CeladonCity_Gym_EventScript_ErikaRematch3::
 	cleartrainerflag TRAINER_LEADER_ERIKA_R3
 	trainerbattle_no_intro TRAINER_LEADER_ERIKA_R3, CeladonCity_Gym_Text_ErikaRematchDefeat
+	setflag FLAG_KANTO_REMATCH_ERIKA
+	msgbox CeladonCity_Gym_Text_ErikaRematchPost
+	release
+	end
+
+@ FRLG Legacy point 6: during the Johto phase, pick a Kanto-only (Tier 1) or
+@ mixed (Tier 2) team. Optional, non-gating.
+CeladonCity_Gym_EventScript_ErikaRematchChoice::
+	msgbox CeladonCity_Gym_Text_ErikaRematchChoice, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, CeladonCity_Gym_EventScript_ErikaRematch2
+	cleartrainerflag TRAINER_LEADER_ERIKA_REMATCH
+	trainerbattle_no_intro TRAINER_LEADER_ERIKA_REMATCH, CeladonCity_Gym_Text_ErikaRematchDefeat
+	setflag FLAG_KANTO_REMATCH_ERIKA
 	msgbox CeladonCity_Gym_Text_ErikaRematchPost
 	release
 	end

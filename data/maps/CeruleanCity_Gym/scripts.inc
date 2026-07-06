@@ -74,9 +74,11 @@ CeruleanCity_Gym_EventScript_MistyRematch::
 	msgbox CeruleanCity_Gym_Text_MistyRematchAsk, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, CeruleanCity_Gym_EventScript_MistyRematchDeclined
 	goto_if_set FLAG_JOHTO_CIRCUIT_CLEARED, CeruleanCity_Gym_EventScript_MistyRematch3
+	goto_if_set FLAG_E4_REMATCH_CLEARED, CeruleanCity_Gym_EventScript_MistyRematchChoice
 	goto_if_set FLAG_SYS_NATIONAL_DEX, CeruleanCity_Gym_EventScript_MistyRematch2
 	cleartrainerflag TRAINER_LEADER_MISTY_REMATCH
 	trainerbattle_no_intro TRAINER_LEADER_MISTY_REMATCH, CeruleanCity_Gym_Text_MistyRematchDefeat
+	setflag FLAG_KANTO_REMATCH_MISTY
 	msgbox CeruleanCity_Gym_Text_MistyRematchPost
 	release
 	end
@@ -89,6 +91,7 @@ CeruleanCity_Gym_EventScript_MistyRematchDeclined::
 CeruleanCity_Gym_EventScript_MistyRematch2::
 	cleartrainerflag TRAINER_LEADER_MISTY_REMATCH2
 	trainerbattle_no_intro TRAINER_LEADER_MISTY_REMATCH2, CeruleanCity_Gym_Text_MistyRematchDefeat
+	setflag FLAG_KANTO_REMATCH_MISTY
 	msgbox CeruleanCity_Gym_Text_MistyRematchPost
 	release
 	end
@@ -96,6 +99,19 @@ CeruleanCity_Gym_EventScript_MistyRematch2::
 CeruleanCity_Gym_EventScript_MistyRematch3::
 	cleartrainerflag TRAINER_LEADER_MISTY_R3
 	trainerbattle_no_intro TRAINER_LEADER_MISTY_R3, CeruleanCity_Gym_Text_MistyRematchDefeat
+	setflag FLAG_KANTO_REMATCH_MISTY
+	msgbox CeruleanCity_Gym_Text_MistyRematchPost
+	release
+	end
+
+@ FRLG Legacy point 6: during the Johto phase, pick a Kanto-only (Tier 1) or
+@ mixed (Tier 2) team. Optional, non-gating.
+CeruleanCity_Gym_EventScript_MistyRematchChoice::
+	msgbox CeruleanCity_Gym_Text_MistyRematchChoice, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, CeruleanCity_Gym_EventScript_MistyRematch2
+	cleartrainerflag TRAINER_LEADER_MISTY_REMATCH
+	trainerbattle_no_intro TRAINER_LEADER_MISTY_REMATCH, CeruleanCity_Gym_Text_MistyRematchDefeat
+	setflag FLAG_KANTO_REMATCH_MISTY
 	msgbox CeruleanCity_Gym_Text_MistyRematchPost
 	release
 	end

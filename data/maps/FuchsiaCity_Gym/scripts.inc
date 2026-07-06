@@ -125,9 +125,11 @@ FuchsiaCity_Gym_EventScript_KogaRematch::
 	msgbox FuchsiaCity_Gym_Text_KogaRematchAsk, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, FuchsiaCity_Gym_EventScript_KogaRematchDeclined
 	goto_if_set FLAG_JOHTO_CIRCUIT_CLEARED, FuchsiaCity_Gym_EventScript_KogaRematch3
+	goto_if_set FLAG_E4_REMATCH_CLEARED, FuchsiaCity_Gym_EventScript_KogaRematchChoice
 	goto_if_set FLAG_SYS_NATIONAL_DEX, FuchsiaCity_Gym_EventScript_KogaRematch2
 	cleartrainerflag TRAINER_LEADER_KOGA_REMATCH
 	trainerbattle_no_intro TRAINER_LEADER_KOGA_REMATCH, FuchsiaCity_Gym_Text_KogaRematchDefeat
+	setflag FLAG_KANTO_REMATCH_KOGA
 	msgbox FuchsiaCity_Gym_Text_KogaRematchPost
 	release
 	end
@@ -140,6 +142,7 @@ FuchsiaCity_Gym_EventScript_KogaRematchDeclined::
 FuchsiaCity_Gym_EventScript_KogaRematch2::
 	cleartrainerflag TRAINER_LEADER_KOGA_REMATCH2
 	trainerbattle_no_intro TRAINER_LEADER_KOGA_REMATCH2, FuchsiaCity_Gym_Text_KogaRematchDefeat
+	setflag FLAG_KANTO_REMATCH_KOGA
 	msgbox FuchsiaCity_Gym_Text_KogaRematchPost
 	release
 	end
@@ -147,6 +150,19 @@ FuchsiaCity_Gym_EventScript_KogaRematch2::
 FuchsiaCity_Gym_EventScript_KogaRematch3::
 	cleartrainerflag TRAINER_LEADER_KOGA_R3
 	trainerbattle_no_intro TRAINER_LEADER_KOGA_R3, FuchsiaCity_Gym_Text_KogaRematchDefeat
+	setflag FLAG_KANTO_REMATCH_KOGA
+	msgbox FuchsiaCity_Gym_Text_KogaRematchPost
+	release
+	end
+
+@ FRLG Legacy point 6: during the Johto phase, pick a Kanto-only (Tier 1) or
+@ mixed (Tier 2) team. Optional, non-gating.
+FuchsiaCity_Gym_EventScript_KogaRematchChoice::
+	msgbox FuchsiaCity_Gym_Text_KogaRematchChoice, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, FuchsiaCity_Gym_EventScript_KogaRematch2
+	cleartrainerflag TRAINER_LEADER_KOGA_REMATCH
+	trainerbattle_no_intro TRAINER_LEADER_KOGA_REMATCH, FuchsiaCity_Gym_Text_KogaRematchDefeat
+	setflag FLAG_KANTO_REMATCH_KOGA
 	msgbox FuchsiaCity_Gym_Text_KogaRematchPost
 	release
 	end

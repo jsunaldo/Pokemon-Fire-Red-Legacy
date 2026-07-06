@@ -141,3 +141,9 @@ PewterCity_Gym_Text_BrockRematchPost::
 PewterCity_Gym_Text_BrockRematchNo::
 	.string "Ha! Don't keep me waiting\n"
 	.string "too long, CHAMPION.$"
+
+PewterCity_Gym_Text_BrockRematchChoice::
+	.string "Shall we keep this to KANTO\n"
+	.string "POKéMON only?\p"
+	.string "Say no, and I will bring my full\n"
+	.string "team.$"
