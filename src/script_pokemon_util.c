@@ -68,6 +68,24 @@ void GetPlayerGymBadgeCount(void)
     gSpecialVar_Result = count;
 }
 
+// FRLG Legacy: VAR_RESULT = TRUE only if every Kanto gym leader has been re-beaten
+// in the current rematch stage (the 8 contiguous KANTO_REMATCH flags). Gates the
+// Elite Four rematch, and (after the Johto Isles) the Tier 3 Elite Four.
+void CheckAllKantoGymsRematched(void)
+{
+    u32 flag;
+
+    gSpecialVar_Result = TRUE;
+    for (flag = FLAG_KANTO_REMATCH_BROCK; flag <= FLAG_KANTO_REMATCH_GIOVANNI; flag++)
+    {
+        if (!FlagGet(flag))
+        {
+            gSpecialVar_Result = FALSE;
+            break;
+        }
+    }
+}
+
 u8 ScriptGiveMon(u16 species, u8 level, u16 item, u32 unused1, u32 unused2, u8 unused3)
 {
     u16 nationalDexNum;

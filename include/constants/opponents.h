@@ -824,6 +824,12 @@
 #define TRAINER_LEADER_BLAINE_B4         TRAINER_CYCLING_TRIATHLETE_M
 #define TRAINER_LEADER_BLAINE_B5         TRAINER_CYCLING_TRIATHLETE_F
 
+// FRLG Legacy: GIOVANNI's three postgame rematch tiers (repurpose unused RSE
+// triathlete slots, which FRLG never references).
+#define TRAINER_LEADER_GIOVANNI_REMATCH  TRAINER_RUNNING_TRIATHLETE_M
+#define TRAINER_LEADER_GIOVANNI_REMATCH2 TRAINER_RUNNING_TRIATHLETE_F
+#define TRAINER_LEADER_GIOVANNI_R3       TRAINER_SWIMMING_TRIATHLETE_M
+
 #define NUM_TRAINERS                             767
 #define MAX_TRAINERS_COUNT                       768
 

@@ -1294,16 +1294,19 @@
 #define FLAG_CUT_TREE_43                0x4E7
 #define FLAG_CUT_TREE_44                0x4E8
 #define FLAG_CUT_TREE_45                0x4E9
-#define FLAG_0x4EA                      0x4EA
-#define FLAG_0x4EB                      0x4EB
-#define FLAG_0x4EC                      0x4EC
-#define FLAG_0x4ED                      0x4ED
-#define FLAG_0x4EE                      0x4EE
-#define FLAG_0x4EF                      0x4EF
-#define FLAG_0x4F0                      0x4F0
-#define FLAG_0x4F1                      0x4F1
-#define FLAG_0x4F2                      0x4F2
-#define FLAG_0x4F3                      0x4F3
+// FRLG Legacy: postgame rematch-progression tracking. The 8 KANTO_REMATCH flags
+// mark that a Kanto gym leader has been re-beaten in the current stage; they are
+// cleared when the Johto Isles are cleared so Tier 3 re-tracks them.
+#define FLAG_KANTO_REMATCH_BROCK        0x4EA
+#define FLAG_KANTO_REMATCH_MISTY        0x4EB
+#define FLAG_KANTO_REMATCH_LT_SURGE     0x4EC
+#define FLAG_KANTO_REMATCH_ERIKA        0x4ED
+#define FLAG_KANTO_REMATCH_KOGA         0x4EE
+#define FLAG_KANTO_REMATCH_SABRINA      0x4EF
+#define FLAG_KANTO_REMATCH_BLAINE       0x4F0
+#define FLAG_KANTO_REMATCH_GIOVANNI     0x4F1
+#define FLAG_E4_REMATCH_CLEARED         0x4F2 // beat the E4 rematch -> unlocks the Johto Isles
+#define FLAG_E4_TIER3_CLEARED           0x4F3 // beat the E4 Tier 3 (endgame)
 #define FLAG_0x4F4                      0x4F4
 #define FLAG_0x4F5                      0x4F5
 #define FLAG_0x4F6                      0x4F6

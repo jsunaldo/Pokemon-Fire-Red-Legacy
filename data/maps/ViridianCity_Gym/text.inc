@@ -169,3 +169,23 @@ ViridianCity_Gym_Text_GymStatuePlayerWon::
     .string "WINNING TRAINERS:\n"
     .string "{RIVAL}, {PLAYER}$"
 
+
+ViridianCity_Gym_Text_GiovanniRematchAsk::
+	.string "GIOVANNI: So, you return.\p"
+	.string "I have devoted myself to POKéMON\n"
+	.string "since disbanding TEAM ROCKET.\p"
+	.string "Face me again, and see the power\n"
+	.string "of a true GROUND-type master!$"
+
+ViridianCity_Gym_Text_GiovanniRematchDefeat::
+	.string "Defeated again...\n"
+	.string "You are relentless.$"
+
+ViridianCity_Gym_Text_GiovanniRematchPost::
+	.string "GIOVANNI: My training continues.\p"
+	.string "Return whenever you crave a real\n"
+	.string "challenge, {PLAYER}.$"
+
+ViridianCity_Gym_Text_GiovanniRematchNo::
+	.string "GIOVANNI: Come back when you are\n"
+	.string "ready to face me.$"

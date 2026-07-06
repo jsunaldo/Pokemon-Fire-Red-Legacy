@@ -3,13 +3,50 @@ ViridianCity_Gym_MapScripts::
 
 ViridianCity_Gym_EventScript_Giovanni::
 	famechecker FAMECHECKER_GIOVANNI, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
+	goto_if_set FLAG_DEFEATED_LEADER_GIOVANNI, ViridianCity_Gym_EventScript_GiovanniAfterBattle
 	trainerbattle_single TRAINER_LEADER_GIOVANNI, ViridianCity_Gym_Text_GiovanniIntro, ViridianCity_Gym_Text_GiovanniDefeat, ViridianCity_Gym_EventScript_DefeatedGiovanni, NO_MUSIC
+	goto ViridianCity_Gym_EventScript_GiovanniAfterBattle
+	end
+
+@ FRLG Legacy: GIOVANNI no longer dissolves his gym and flees; he stays like the
+@ other Kanto leaders and can be rematched postgame.
+ViridianCity_Gym_EventScript_GiovanniAfterBattle::
 	goto_if_unset FLAG_GOT_TM26_FROM_GIOVANNI, ViridianCity_Gym_EventScript_GiveTM26
+	goto_if_set FLAG_SYS_GAME_CLEAR, ViridianCity_Gym_EventScript_GiovanniRematch
 	msgbox ViridianCity_Gym_Text_GiovanniPostBattle
-	closemessage
-	fadescreen FADE_TO_BLACK
-	removeobject LOCALID_VIRIDIAN_GIOVANNI
-	fadescreen FADE_FROM_BLACK
+	release
+	end
+
+ViridianCity_Gym_EventScript_GiovanniRematch::
+	msgbox ViridianCity_Gym_Text_GiovanniRematchAsk, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, ViridianCity_Gym_EventScript_GiovanniRematchDeclined
+	goto_if_set FLAG_JOHTO_CIRCUIT_CLEARED, ViridianCity_Gym_EventScript_GiovanniRematch3
+	goto_if_set FLAG_SYS_NATIONAL_DEX, ViridianCity_Gym_EventScript_GiovanniRematch2
+	cleartrainerflag TRAINER_LEADER_GIOVANNI_REMATCH
+	trainerbattle_no_intro TRAINER_LEADER_GIOVANNI_REMATCH, ViridianCity_Gym_Text_GiovanniRematchDefeat
+	setflag FLAG_KANTO_REMATCH_GIOVANNI
+	msgbox ViridianCity_Gym_Text_GiovanniRematchPost
+	release
+	end
+
+ViridianCity_Gym_EventScript_GiovanniRematchDeclined::
+	msgbox ViridianCity_Gym_Text_GiovanniRematchNo
+	release
+	end
+
+ViridianCity_Gym_EventScript_GiovanniRematch2::
+	cleartrainerflag TRAINER_LEADER_GIOVANNI_REMATCH2
+	trainerbattle_no_intro TRAINER_LEADER_GIOVANNI_REMATCH2, ViridianCity_Gym_Text_GiovanniRematchDefeat
+	setflag FLAG_KANTO_REMATCH_GIOVANNI
+	msgbox ViridianCity_Gym_Text_GiovanniRematchPost
+	release
+	end
+
+ViridianCity_Gym_EventScript_GiovanniRematch3::
+	cleartrainerflag TRAINER_LEADER_GIOVANNI_R3
+	trainerbattle_no_intro TRAINER_LEADER_GIOVANNI_R3, ViridianCity_Gym_Text_GiovanniRematchDefeat
+	setflag FLAG_KANTO_REMATCH_GIOVANNI
+	msgbox ViridianCity_Gym_Text_GiovanniRematchPost
 	release
 	end
 
