@@ -11224,30 +11224,138 @@ static const struct TrainerMonNoItemCustomMoves sParty_BugCatcherVictor[] = {
 // FRLG Legacy: GIOVANNI postgame rematch teams (Ground, ace Rhydon). He no longer
 // dissolves his gym, so he rematches like the other seven Kanto leaders.
 static const struct TrainerMonItemCustomMoves sParty_LeaderGiovanniRematch[] = {  // Tier 1 (Kanto-only)
-    {.iv = 200, .lvl = 69, .species = SPECIES_DUGTRIO, .heldItem = ITEM_NONE, .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_SAND_TOMB, MOVE_AERIAL_ACE}},
-    {.iv = 200, .lvl = 69, .species = SPECIES_MAROWAK, .heldItem = ITEM_THICK_CLUB, .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_SWORDS_DANCE, MOVE_DOUBLE_EDGE}},
-    {.iv = 200, .lvl = 69, .species = SPECIES_PERSIAN, .heldItem = ITEM_NONE, .moves = {MOVE_RETURN, MOVE_SLASH, MOVE_SHADOW_BALL, MOVE_IRON_TAIL}},
-    {.iv = 200, .lvl = 69, .species = SPECIES_NIDOQUEEN, .heldItem = ITEM_NONE, .moves = {MOVE_EARTHQUAKE, MOVE_SLUDGE_BOMB, MOVE_ICE_BEAM, MOVE_BODY_SLAM}},
-    {.iv = 200, .lvl = 69, .species = SPECIES_NIDOKING, .heldItem = ITEM_NONE, .moves = {MOVE_EARTHQUAKE, MOVE_SLUDGE_BOMB, MOVE_THUNDERBOLT, MOVE_MEGAHORN}},
-    {.iv = 250, .lvl = 70, .species = SPECIES_RHYDON, .heldItem = ITEM_LEFTOVERS, .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_MEGAHORN, MOVE_BRICK_BREAK}},
+    {
+        .iv = 200,
+        .lvl = 69,
+        .species = SPECIES_DUGTRIO,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_SAND_TOMB, MOVE_AERIAL_ACE},
+    },
+    {
+        .iv = 200,
+        .lvl = 69,
+        .species = SPECIES_MAROWAK,
+        .heldItem = ITEM_THICK_CLUB,
+        .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_SWORDS_DANCE, MOVE_DOUBLE_EDGE},
+    },
+    {
+        .iv = 200,
+        .lvl = 69,
+        .species = SPECIES_PERSIAN,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_RETURN, MOVE_SLASH, MOVE_SHADOW_BALL, MOVE_IRON_TAIL},
+    },
+    {
+        .iv = 200,
+        .lvl = 69,
+        .species = SPECIES_NIDOQUEEN,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_EARTHQUAKE, MOVE_SLUDGE_BOMB, MOVE_ICE_BEAM, MOVE_BODY_SLAM},
+    },
+    {
+        .iv = 200,
+        .lvl = 69,
+        .species = SPECIES_NIDOKING,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_EARTHQUAKE, MOVE_SLUDGE_BOMB, MOVE_THUNDERBOLT, MOVE_MEGAHORN},
+    },
+    {
+        .iv = 250,
+        .lvl = 70,
+        .species = SPECIES_RHYDON,
+        .heldItem = ITEM_LEFTOVERS,
+        .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_MEGAHORN, MOVE_BRICK_BREAK},
+    },
 };
 
 static const struct TrainerMonItemCustomMoves sParty_LeaderGiovanniRematch2[] = {  // Tier 2 (mixed)
-    {.iv = 200, .lvl = 69, .species = SPECIES_DUGTRIO, .heldItem = ITEM_NONE, .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_SAND_TOMB, MOVE_AERIAL_ACE}},
-    {.iv = 200, .lvl = 69, .species = SPECIES_STEELIX, .heldItem = ITEM_NONE, .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_IRON_TAIL, MOVE_EXPLOSION}},
-    {.iv = 200, .lvl = 69, .species = SPECIES_DONPHAN, .heldItem = ITEM_NONE, .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_RAPID_SPIN, MOVE_BODY_SLAM}},
-    {.iv = 200, .lvl = 69, .species = SPECIES_NIDOKING, .heldItem = ITEM_NONE, .moves = {MOVE_EARTHQUAKE, MOVE_SLUDGE_BOMB, MOVE_THUNDERBOLT, MOVE_MEGAHORN}},
-    {.iv = 200, .lvl = 69, .species = SPECIES_FLYGON, .heldItem = ITEM_NONE, .moves = {MOVE_EARTHQUAKE, MOVE_DRAGON_CLAW, MOVE_ROCK_SLIDE, MOVE_CRUNCH}},
-    {.iv = 250, .lvl = 70, .species = SPECIES_RHYDON, .heldItem = ITEM_LEFTOVERS, .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_MEGAHORN, MOVE_BRICK_BREAK}},
+    {
+        .iv = 200,
+        .lvl = 69,
+        .species = SPECIES_DUGTRIO,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_SAND_TOMB, MOVE_AERIAL_ACE},
+    },
+    {
+        .iv = 200,
+        .lvl = 69,
+        .species = SPECIES_STEELIX,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_IRON_TAIL, MOVE_EXPLOSION},
+    },
+    {
+        .iv = 200,
+        .lvl = 69,
+        .species = SPECIES_DONPHAN,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_RAPID_SPIN, MOVE_BODY_SLAM},
+    },
+    {
+        .iv = 200,
+        .lvl = 69,
+        .species = SPECIES_NIDOKING,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_EARTHQUAKE, MOVE_SLUDGE_BOMB, MOVE_THUNDERBOLT, MOVE_MEGAHORN},
+    },
+    {
+        .iv = 200,
+        .lvl = 69,
+        .species = SPECIES_FLYGON,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_EARTHQUAKE, MOVE_DRAGON_CLAW, MOVE_ROCK_SLIDE, MOVE_CRUNCH},
+    },
+    {
+        .iv = 250,
+        .lvl = 70,
+        .species = SPECIES_RHYDON,
+        .heldItem = ITEM_LEFTOVERS,
+        .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_MEGAHORN, MOVE_BRICK_BREAK},
+    },
 };
 
 static const struct TrainerMonItemCustomMoves sParty_GiovanniR3[] = {  // Tier 3 (post-Johto)
-    {.iv = 250, .lvl = 91, .species = SPECIES_DUGTRIO, .heldItem = ITEM_NONE, .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_SAND_TOMB, MOVE_AERIAL_ACE}},
-    {.iv = 250, .lvl = 91, .species = SPECIES_GOLEM, .heldItem = ITEM_NONE, .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_EXPLOSION, MOVE_BRICK_BREAK}},
-    {.iv = 250, .lvl = 91, .species = SPECIES_STEELIX, .heldItem = ITEM_NONE, .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_IRON_TAIL, MOVE_CRUNCH}},
-    {.iv = 250, .lvl = 91, .species = SPECIES_NIDOQUEEN, .heldItem = ITEM_NONE, .moves = {MOVE_EARTHQUAKE, MOVE_SLUDGE_BOMB, MOVE_ICE_BEAM, MOVE_SURF}},
-    {.iv = 250, .lvl = 91, .species = SPECIES_NIDOKING, .heldItem = ITEM_NONE, .moves = {MOVE_EARTHQUAKE, MOVE_SLUDGE_BOMB, MOVE_THUNDERBOLT, MOVE_MEGAHORN}},
-    {.iv = 255, .lvl = 92, .species = SPECIES_RHYDON, .heldItem = ITEM_LEFTOVERS, .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_MEGAHORN, MOVE_BRICK_BREAK}},
+    {
+        .iv = 250,
+        .lvl = 91,
+        .species = SPECIES_DUGTRIO,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_SAND_TOMB, MOVE_AERIAL_ACE},
+    },
+    {
+        .iv = 250,
+        .lvl = 91,
+        .species = SPECIES_GOLEM,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_EXPLOSION, MOVE_BRICK_BREAK},
+    },
+    {
+        .iv = 250,
+        .lvl = 91,
+        .species = SPECIES_STEELIX,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_IRON_TAIL, MOVE_CRUNCH},
+    },
+    {
+        .iv = 250,
+        .lvl = 91,
+        .species = SPECIES_NIDOQUEEN,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_EARTHQUAKE, MOVE_SLUDGE_BOMB, MOVE_ICE_BEAM, MOVE_SURF},
+    },
+    {
+        .iv = 250,
+        .lvl = 91,
+        .species = SPECIES_NIDOKING,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_EARTHQUAKE, MOVE_SLUDGE_BOMB, MOVE_THUNDERBOLT, MOVE_MEGAHORN},
+    },
+    {
+        .iv = 255,
+        .lvl = 92,
+        .species = SPECIES_RHYDON,
+        .heldItem = ITEM_LEFTOVERS,
+        .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_SLIDE, MOVE_MEGAHORN, MOVE_BRICK_BREAK},
+    },
 };
 
 // FRLG Legacy: Janine, KOGA's daughter — optional Fuchsia Gym tribute trainer (YL parity).
