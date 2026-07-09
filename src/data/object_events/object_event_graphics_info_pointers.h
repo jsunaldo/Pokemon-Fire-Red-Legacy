@@ -173,6 +173,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Eevee;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Onix;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FollowerPokemon;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_OfficerJenny;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Janine;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Starmie;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Raichu;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Vileplume;
@@ -360,6 +361,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_ONIX] = &gObjectEventGraphicsInfo_Onix,
     [OBJ_EVENT_GFX_FOLLOWER_POKEMON] = &gObjectEventGraphicsInfo_FollowerPokemon,
     [OBJ_EVENT_GFX_OFFICER_JENNY] = &gObjectEventGraphicsInfo_OfficerJenny,
+    [OBJ_EVENT_GFX_JANINE]                   = &gObjectEventGraphicsInfo_Janine,
     [OBJ_EVENT_GFX_STARMIE] = &gObjectEventGraphicsInfo_Starmie,
     [OBJ_EVENT_GFX_RAICHU] = &gObjectEventGraphicsInfo_Raichu,
     [OBJ_EVENT_GFX_VILEPLUME] = &gObjectEventGraphicsInfo_Vileplume,

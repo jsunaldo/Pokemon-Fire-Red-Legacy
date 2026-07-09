@@ -2593,6 +2593,7 @@ extern const u32 gTrainerFrontPic_Lady[];
 extern const u32 gTrainerFrontPic_Painter[];
 extern const u32 gTrainerFrontPic_NurseJoy[];
 extern const u32 gTrainerFrontPic_OfficerJenny[];
+extern const u32 gTrainerFrontPic_Janine[];
 
 extern const u32 gTrainerPalette_AquaLeaderArchie[];
 extern const u32 gTrainerPalette_AquaGruntM[];
@@ -2748,6 +2749,7 @@ extern const u32 gTrainerPalette_Lady[];
 extern const u32 gTrainerPalette_Painter[];
 extern const u32 gTrainerPalette_NurseJoy[];
 extern const u32 gTrainerPalette_OfficerJenny[];
+extern const u32 gTrainerPalette_Janine[];
 
 extern const u8 gMenuInfoElements_Gfx[];
 extern const u16 gMenuInfoElements1_Pal[];

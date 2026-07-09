@@ -188,9 +188,10 @@
 #define OBJ_EVENT_GFX_MAGMAR               179
 #define OBJ_EVENT_GFX_RHYDON               180
 #define OBJ_EVENT_GFX_FOLLOWER_POKEMON     181 // following-Pokémon (species swapped at runtime)
-#define OBJ_EVENT_GFX_OFFICER_JENNY        182 // FRLG Legacy: YL Officer Jenny overworld sprite
+#define OBJ_EVENT_GFX_OFFICER_JENNY        182
+#define OBJ_EVENT_GFX_JANINE                   183 // FRLG Legacy: YL Officer Jenny overworld sprite
 
-#define NUM_OBJ_EVENT_GFX     183
+#define NUM_OBJ_EVENT_GFX     184
 
 // These are dynamic object gfx ids.
 // They correspond with the values of the VAR_OBJ_GFX_ID_X vars.

@@ -206,6 +206,8 @@ const u16 gObjectEventPic_Policeman[] = INCBIN_U16("graphics/object_events/pics/
 // FRLG Legacy: Officer Jenny overworld sprite (Yellow Legacy art, recolored to the NPC_BLUE palette).
 const u16 gObjectEventPic_OfficerJenny[] = INCBIN_U16("graphics/object_events/pics/people/officer_jenny.4bpp");
 const u16 gObjectEventPal_OfficerJenny[] = INCBIN_U16("graphics/object_events/palettes/officer_jenny.gbapal");
+const u16 gObjectEventPic_Janine[] = INCBIN_U16("graphics/object_events/pics/people/janine.4bpp");
+const u16 gObjectEventPal_Janine[] = INCBIN_U16("graphics/object_events/palettes/janine.gbapal");
 const u16 gObjectEventPal_RSQuintyPlump[] = INCBIN_U16("graphics/object_events/palettes/rs_quinty_plump.gbapal");
 const u16 gObjectEventPal_RSQuintyPlumpReflection[] = INCBIN_U16("graphics/object_events/palettes/rs_quinty_plump_reflection.gbapal");
 const u16 gFieldEffectObjectPic_ShadowSmall[] = INCBIN_U16("graphics/field_effects/pics/shadow_small.4bpp");

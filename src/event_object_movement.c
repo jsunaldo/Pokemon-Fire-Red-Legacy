@@ -496,6 +496,7 @@ static const u8 gInitialMovementTypeFacingDirections[MOVEMENT_TYPES_COUNT] = {
 #define OBJ_EVENT_PAL_TAG_MAGMAR 0x113a
 #define OBJ_EVENT_PAL_TAG_RHYDON 0x113b
 #define OBJ_EVENT_PAL_TAG_OFFICER_JENNY 0x113c // FRLG Legacy: dedicated navy-blue OW palette (loaded via the ace hook)
+#define OBJ_EVENT_PAL_TAG_JANINE 0x113d // FRLG Legacy: Janine purple OW palette (loaded via the ace hook)
 #define OBJ_EVENT_PAL_TAG_FOLLOWER 0x1140 // following Pokémon; its 16 colors are rewritten per species at runtime
 #define OBJ_EVENT_PAL_TAG_SS_ANNE                     0x1115
 #define OBJ_EVENT_PAL_TAG_RS_PLAYER_UNDERWATER        0x1116
@@ -564,6 +565,7 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Magmar, OBJ_EVENT_PAL_TAG_MAGMAR},
     {gObjectEventPal_Rhydon, OBJ_EVENT_PAL_TAG_RHYDON},
     {gObjectEventPal_OfficerJenny, OBJ_EVENT_PAL_TAG_OFFICER_JENNY},
+    {gObjectEventPal_Janine, OBJ_EVENT_PAL_TAG_JANINE},
     {sFollowerPal_Bulbasaur, OBJ_EVENT_PAL_TAG_FOLLOWER}, // default; rewritten per species at runtime
     {},
 };
@@ -2017,7 +2019,7 @@ static void SpawnObjectEventOnReturnToField(u8 objectEventId, s16 x, s16 y)
         // (e.g. after a battle), otherwise the sprite reverts to a generic NPC
         // palette until the map is fully reloaded. Mirrors TrySetupObjectEventSprite.
         if (graphicsInfo->paletteTag >= OBJ_EVENT_PAL_TAG_GENGAR
-         && graphicsInfo->paletteTag <= OBJ_EVENT_PAL_TAG_OFFICER_JENNY)
+         && graphicsInfo->paletteTag <= OBJ_EVENT_PAL_TAG_JANINE)
         {
             u8 acePalSlot;
             LoadObjectEventPalette(graphicsInfo->paletteTag);

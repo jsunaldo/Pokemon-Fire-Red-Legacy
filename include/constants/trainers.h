@@ -168,6 +168,7 @@
 #define TRAINER_PIC_PAINTER               147
 #define TRAINER_PIC_NURSE_JOY             148 // FRLG Legacy: secret post-game boss
 #define TRAINER_PIC_OFFICER_JENNY         149 // FRLG Legacy: secret post-game boss
+#define TRAINER_PIC_JANINE                150 // FRLG Legacy: Fuchsia Gym tribute (YL art)
 
 // The player back pics are assumed to alternate according to the gender values (MALE/FEMALE)
 #define TRAINER_BACK_PIC_RED                    0
