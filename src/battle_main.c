@@ -552,7 +552,7 @@ const struct TrainerMoney gTrainerMoneyTable[] =
     {TRAINER_CLASS_RS_SIS_AND_BRO, 3},
     {TRAINER_CLASS_OLD_COUPLE, 10},
     {TRAINER_CLASS_AQUA_ADMIN, 10},
-    {TRAINER_CLASS_AQUA_LEADER, 20},
+    {TRAINER_CLASS_AQUA_LEADER, 9}, // repurposed as NINJA (Janine); Cooltrainer rate
     {TRAINER_CLASS_BOSS, 25},
     {TRAINER_CLASS_NURSE, 20},   // FRLG Legacy: secret post-game NURSE JOY
     {TRAINER_CLASS_OFFICER, 20}, // FRLG Legacy: secret post-game OFFICER JENNY
