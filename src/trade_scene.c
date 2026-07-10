@@ -27,6 +27,7 @@
 #include "save.h"
 #include "load_save.h"
 #include "random.h"
+#include "randomizer.h"
 #include "trade_scene.h"
 #include "constants/items.h"
 #include "constants/easy_chat.h"
@@ -2461,7 +2462,9 @@ static void CreateInGameTradePokemonInternal(u8 playerSlot, u8 inGameTradeIdx)
     u8 metLocation = METLOC_IN_GAME_TRADE;
     struct Pokemon * tradeMon = &gEnemyParty[0];
     u8 mailNum;
-    CreateMon(tradeMon, inGameTrade->species, level, USE_RANDOM_IVS, TRUE, inGameTrade->personality, TRUE, inGameTrade->otId);
+    // Randomizer: the received mon is remapped; the requested species stays vanilla.
+    u16 species = Randomizer_MapSpecies(inGameTrade->species, RCAT_GIFT);
+    CreateMon(tradeMon, species, level, USE_RANDOM_IVS, TRUE, inGameTrade->personality, TRUE, inGameTrade->otId);
     SetMonData(tradeMon, MON_DATA_HP_IV, &inGameTrade->ivs[0]);
     SetMonData(tradeMon, MON_DATA_ATK_IV, &inGameTrade->ivs[1]);
     SetMonData(tradeMon, MON_DATA_DEF_IV, &inGameTrade->ivs[2]);

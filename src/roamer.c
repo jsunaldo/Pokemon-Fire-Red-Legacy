@@ -1,5 +1,6 @@
 #include "global.h"
 #include "random.h"
+#include "randomizer.h"
 #include "overworld.h"
 #include "field_specials.h"
 #include "constants/maps.h"
@@ -99,7 +100,8 @@ void ClearRoamerData(void)
 void CreateInitialRoamerMon(void)
 {
     struct Pokemon * mon = &gEnemyParty[0];
-    u16 species = GetRoamerSpecies();
+    // Remap once at creation; ROAMER->species (SaveBlock1) then stays stable.
+    u16 species = Randomizer_MapSpecies(GetRoamerSpecies(), RCAT_STATIC);
     CreateMon(mon, species, 50, USE_RANDOM_IVS, FALSE, 0, OT_ID_PLAYER_ID, 0);
     ROAMER->species = species;
     ROAMER->level = 50;

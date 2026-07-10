@@ -4,6 +4,7 @@
 #include "mystery_event_script.h"
 #include "event_data.h"
 #include "random.h"
+#include "randomizer.h"
 #include "item.h"
 #include "overworld.h"
 #include "field_screen_effect.h"
@@ -1597,6 +1598,8 @@ bool8 ScrCmd_bufferspeciesname(struct ScriptContext * ctx)
     u8 stringVarIndex = ScriptReadByte(ctx);
     u16 species = VarGet(ScriptReadHalfword(ctx));
 
+    // Randomizer: "received X!" scripts buffer the vanilla gift constant.
+    species = Randomizer_RemapGiftText(species);
     StringCopy(sScriptStringVars[stringVarIndex], gSpeciesNames[species]);
     return FALSE;
 }

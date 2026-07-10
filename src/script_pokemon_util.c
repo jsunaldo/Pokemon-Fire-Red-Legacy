@@ -7,6 +7,7 @@
 #include "overworld.h"
 #include "party_menu.h"
 #include "pokedex.h"
+#include "randomizer.h"
 #include "script_pokemon_util.h"
 #include "constants/items.h"
 #include "constants/pokemon.h"
@@ -91,8 +92,13 @@ u8 ScriptGiveMon(u16 species, u8 level, u16 item, u32 unused1, u32 unused2, u8 u
     u16 nationalDexNum;
     int sentToPc;
     u8 heldItem[2];
+    u16 vanillaSpecies = species;
     struct Pokemon *mon = AllocZeroed(sizeof(struct Pokemon));
 
+    species = Randomizer_MapSpecies(species, RCAT_GIFT);
+    // Gift scripts buffer the vanilla constant right after givemon; remember the
+    // pair so bufferspeciesname can print the species actually received.
+    Randomizer_SetLastGift(vanillaSpecies, species);
     CreateMon(mon, species, level, 32, 0, 0, OT_ID_PLAYER_ID, 0);
     heldItem[0] = item;
     heldItem[1] = item >> 8;
@@ -119,6 +125,8 @@ u8 ScriptGiveEgg(u16 species)
     bool8 isEgg;
     bool8 sentToPc;
 
+    // Remap here, not in CreateEgg — daycare eggs already carry bred species.
+    species = Randomizer_MapSpecies(species, RCAT_GIFT);
     CreateEgg(mon, species, TRUE);
     isEgg = TRUE;
     SetMonData(mon, MON_DATA_IS_EGG, &isEgg);
@@ -170,6 +178,7 @@ void CreateScriptedWildMon(u16 species, u8 level, u16 item)
 {
     u8 heldItem[2];
 
+    species = Randomizer_MapSpecies(species, RCAT_STATIC);
     ZeroEnemyPartyMons();
     CreateMon(&gEnemyParty[0], species, level, 32, 0, 0, OT_ID_PLAYER_ID, 0);
     if (item)

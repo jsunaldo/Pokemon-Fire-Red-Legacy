@@ -14,6 +14,7 @@
 #include "math_util.h"
 #include "overworld.h"
 #include "random.h"
+#include "randomizer.h"
 #include "data.h"
 #include "constants/songs.h"
 
@@ -50,6 +51,10 @@ static EWRAM_DATA struct OakSpeechResources *sOakSpeechResources = NULL;
 // (flags are wiped by ClearSav1, so it can't be a flag yet at this point).
 EWRAM_DATA bool8 gOakSpeechHardMode = FALSE;
 
+// FireRed Legacy: randomizer toggle states while the intro menu is open
+// (rows 0-6; committed to gOakSpeechRandoSettings when START! is chosen).
+static EWRAM_DATA u8 sRandoToggles[7] = {};
+
 static void Task_NewGameScene(u8);
 
 static void ControlsGuide_LoadPage1(void);
@@ -75,6 +80,12 @@ static void Task_OakSpeechLegacy_AskDifficulty(u8);
 static void Task_OakSpeechLegacy_ShowDifficultyOptions(u8);
 static void Task_OakSpeechLegacy_HandleDifficultyInput(u8);
 static void Task_OakSpeechLegacy_ClearDifficultyWindows(u8);
+static void Task_OakSpeechLegacy_AskRandomizer(u8);
+static void Task_OakSpeechLegacy_ShowRandomizerYesNo(u8);
+static void Task_OakSpeechLegacy_HandleRandomizerYesNoInput(u8);
+static void Task_OakSpeechLegacy_ShowRandomizerToggles(u8);
+static void Task_OakSpeechLegacy_HandleRandomizerToggleInput(u8);
+static void Task_OakSpeechLegacy_ClearRandomizerWindows(u8);
 static void Task_OakSpeech_ShowGenderOptions(u8);
 static void Task_OakSpeech_HandleGenderInput(u8);
 static void Task_OakSpeech_ClearGenderWindows(u8);
@@ -712,6 +723,7 @@ void StartNewGameScene(void)
 #define tMenuWindowId               data[13]
 #define tTextboxWindowId            data[14]
 #define tDelta                      data[15]
+#define tRandoAccept                data[12]
 
 static void Task_NewGameScene(u8 taskId)
 {
@@ -1404,7 +1416,233 @@ static void Task_OakSpeechLegacy_ClearDifficultyWindows(u8 taskId)
     ClearDialogWindowAndFrame(tMenuWindowId, TRUE);
     FillBgTilemapBufferRect_Palette0(0, 0, 0, 0, 30, 20);
     CopyBgTilemapBufferToVram(0);
-    gTasks[taskId].func = Task_OakSpeech_LoadPlayerPic;
+    gTasks[taskId].func = Task_OakSpeechLegacy_AskRandomizer;
+}
+
+// FireRed Legacy: save-based randomizer chosen during the intro. A NO/YES
+// prompt, then a granular toggle screen; the result rides EWRAM globals and is
+// committed to save vars in NewGameInitData (after ClearSav1), like Hard Mode.
+static const u8 sText_Legacy_AskRandomizer[] = _("One more thing!\pI can shuffle which POKéMON\nappear across the world!\pEvery journey becomes unique\nto its save file.\pCare to try the RANDOMIZER?");
+static const u8 sText_Legacy_RandoNo[] = _("NO");
+static const u8 sText_Legacy_RandoYes[] = _("YES");
+static const u8 sText_Legacy_RandoOn[] = _("ON");
+static const u8 sText_Legacy_RandoOff[] = _("OFF");
+
+enum
+{
+    RANDO_ROW_WILD,
+    RANDO_ROW_TRAINERS,
+    RANDO_ROW_BOSSES,
+    RANDO_ROW_GIFTS,
+    RANDO_ROW_STATICS,
+    RANDO_ROW_SIMILAR,
+    RANDO_ROW_LEGENDS,
+    RANDO_ROW_START,
+    NUM_RANDO_ROWS
+};
+
+static const u8 sText_Legacy_RandoWild[] = _("WILD PKMN");
+static const u8 sText_Legacy_RandoTrainers[] = _("TRAINERS");
+static const u8 sText_Legacy_RandoBosses[] = _("BOSSES");
+static const u8 sText_Legacy_RandoGifts[] = _("GIFT PKMN");
+static const u8 sText_Legacy_RandoStatics[] = _("LEGENDS");
+static const u8 sText_Legacy_RandoSimilar[] = _("SIMILAR BST");
+static const u8 sText_Legacy_RandoLegendPool[] = _("WILD LEGENDS");
+static const u8 sText_Legacy_RandoStart[] = _("START!");
+
+static const u8 *const sRandoRowLabels[NUM_RANDO_ROWS] =
+{
+    [RANDO_ROW_WILD]     = sText_Legacy_RandoWild,
+    [RANDO_ROW_TRAINERS] = sText_Legacy_RandoTrainers,
+    [RANDO_ROW_BOSSES]   = sText_Legacy_RandoBosses,
+    [RANDO_ROW_GIFTS]    = sText_Legacy_RandoGifts,
+    [RANDO_ROW_STATICS]  = sText_Legacy_RandoStatics,
+    [RANDO_ROW_SIMILAR]  = sText_Legacy_RandoSimilar,
+    [RANDO_ROW_LEGENDS]  = sText_Legacy_RandoLegendPool,
+    [RANDO_ROW_START]    = sText_Legacy_RandoStart,
+};
+
+static const u16 sRandoRowFlags[RANDO_ROW_START] =
+{
+    [RANDO_ROW_WILD]     = RANDO_F_WILD,
+    [RANDO_ROW_TRAINERS] = RANDO_F_TRAINERS,
+    [RANDO_ROW_BOSSES]   = RANDO_F_BOSSES,
+    [RANDO_ROW_GIFTS]    = RANDO_F_GIFTS,
+    [RANDO_ROW_STATICS]  = RANDO_F_STATICS,
+    [RANDO_ROW_SIMILAR]  = RANDO_F_SIMILAR_BST,
+    [RANDO_ROW_LEGENDS]  = RANDO_F_LEGENDS,
+};
+
+// bg0 tile budget: textbox uses blocks 1-420, frame gfx 512-540; the free
+// contiguous run is 544-767, which exactly fits this 16x14 window (224 tiles).
+static const struct WindowTemplate sLegacyRandomizerWinTemplate =
+{
+    .bg = 0,
+    .tilemapLeft = 7,
+    .tilemapTop = 3,
+    .width = 16,
+    .height = 14,
+    .paletteNum = 15,
+    .baseBlock = 544
+};
+
+#define RANDO_ROW_HEIGHT 14
+#define RANDO_VALUE_X    94
+
+static void PrintRandomizerToggleRow(u8 windowId, u8 row)
+{
+    sOakSpeechResources->textColor[0] = 1;
+    sOakSpeechResources->textColor[1] = 2;
+    sOakSpeechResources->textColor[2] = 3;
+    AddTextPrinterParameterized3(windowId, FONT_NORMAL, 10, row * RANDO_ROW_HEIGHT, sOakSpeechResources->textColor, 0, sRandoRowLabels[row]);
+    if (row < RANDO_ROW_START)
+    {
+        FillWindowPixelRect(windowId, PIXEL_FILL(1), RANDO_VALUE_X, row * RANDO_ROW_HEIGHT, 34, RANDO_ROW_HEIGHT);
+        AddTextPrinterParameterized3(windowId, FONT_NORMAL, RANDO_VALUE_X, row * RANDO_ROW_HEIGHT, sOakSpeechResources->textColor, 0,
+                                     sRandoToggles[row] ? sText_Legacy_RandoOn : sText_Legacy_RandoOff);
+    }
+}
+
+static void Task_OakSpeechLegacy_AskRandomizer(u8 taskId)
+{
+    OakSpeechPrintMessage(sText_Legacy_AskRandomizer, sOakSpeechResources->textSpeed);
+    gTasks[taskId].func = Task_OakSpeechLegacy_ShowRandomizerYesNo;
+}
+
+static void Task_OakSpeechLegacy_ShowRandomizerYesNo(u8 taskId)
+{
+    if (!IsTextPrinterActive(WIN_INTRO_TEXTBOX))
+    {
+        gTasks[taskId].tMenuWindowId = AddWindow(&sIntro_WindowTemplates[WIN_INTRO_BOYGIRL]);
+        PutWindowTilemap(gTasks[taskId].tMenuWindowId);
+        DrawStdFrameWithCustomTileAndPalette(gTasks[taskId].tMenuWindowId, TRUE, GetStdWindowBaseTileNum(), 14);
+        FillWindowPixelBuffer(gTasks[taskId].tMenuWindowId, PIXEL_FILL(1));
+        sOakSpeechResources->textColor[0] = 1;
+        sOakSpeechResources->textColor[1] = 2;
+        sOakSpeechResources->textColor[2] = 3;
+        AddTextPrinterParameterized3(gTasks[taskId].tMenuWindowId, FONT_NORMAL, 8, 1, sOakSpeechResources->textColor, 0, sText_Legacy_RandoNo);
+        sOakSpeechResources->textColor[0] = 1;
+        sOakSpeechResources->textColor[1] = 2;
+        sOakSpeechResources->textColor[2] = 3;
+        AddTextPrinterParameterized3(gTasks[taskId].tMenuWindowId, FONT_NORMAL, 8, 17, sOakSpeechResources->textColor, 0, sText_Legacy_RandoYes);
+        Menu_InitCursor(gTasks[taskId].tMenuWindowId, FONT_NORMAL, 0, 1, GetFontAttribute(FONT_NORMAL, FONTATTR_MAX_LETTER_HEIGHT) + 2, 2, 0);
+        CopyWindowToVram(gTasks[taskId].tMenuWindowId, COPYWIN_FULL);
+        gTasks[taskId].func = Task_OakSpeechLegacy_HandleRandomizerYesNoInput;
+    }
+}
+
+static void Task_OakSpeechLegacy_HandleRandomizerYesNoInput(u8 taskId)
+{
+    s8 input = Menu_ProcessInputNoWrapAround();
+    switch (input)
+    {
+    case 0: // NO
+        gOakSpeechRandoSettings = 0;
+        gOakSpeechRandoSeed = 0;
+        gTasks[taskId].tRandoAccept = FALSE;
+        break;
+    case 1: // YES
+        sRandoToggles[RANDO_ROW_WILD] = TRUE;
+        sRandoToggles[RANDO_ROW_TRAINERS] = TRUE;
+        sRandoToggles[RANDO_ROW_BOSSES] = TRUE;
+        sRandoToggles[RANDO_ROW_GIFTS] = TRUE;
+        sRandoToggles[RANDO_ROW_STATICS] = TRUE;
+        sRandoToggles[RANDO_ROW_SIMILAR] = FALSE;
+        sRandoToggles[RANDO_ROW_LEGENDS] = FALSE;
+        gTasks[taskId].tRandoAccept = TRUE;
+        break;
+    case MENU_B_PRESSED:
+    case MENU_NOTHING_CHOSEN:
+        return;
+    }
+    gTasks[taskId].func = Task_OakSpeechLegacy_ClearRandomizerWindows;
+}
+
+static void Task_OakSpeechLegacy_ShowRandomizerToggles(u8 taskId)
+{
+    u32 i;
+
+    gTasks[taskId].tMenuWindowId = AddWindow(&sLegacyRandomizerWinTemplate);
+    PutWindowTilemap(gTasks[taskId].tMenuWindowId);
+    DrawStdFrameWithCustomTileAndPalette(gTasks[taskId].tMenuWindowId, TRUE, GetStdWindowBaseTileNum(), 14);
+    FillWindowPixelBuffer(gTasks[taskId].tMenuWindowId, PIXEL_FILL(1));
+    for (i = 0; i < NUM_RANDO_ROWS; i++)
+        PrintRandomizerToggleRow(gTasks[taskId].tMenuWindowId, i);
+    Menu_InitCursor(gTasks[taskId].tMenuWindowId, FONT_NORMAL, 0, 0, RANDO_ROW_HEIGHT, NUM_RANDO_ROWS, 0);
+    CopyWindowToVram(gTasks[taskId].tMenuWindowId, COPYWIN_FULL);
+    gTasks[taskId].func = Task_OakSpeechLegacy_HandleRandomizerToggleInput;
+}
+
+static void Task_OakSpeechLegacy_HandleRandomizerToggleInput(u8 taskId)
+{
+    s8 input;
+
+    // LEFT/RIGHT toggles the hovered row; handled before the menu call so the
+    // same frame's input isn't double-processed.
+    if (JOY_NEW(DPAD_LEFT | DPAD_RIGHT))
+    {
+        u8 pos = Menu_GetCursorPos();
+
+        if (pos < RANDO_ROW_START)
+        {
+            sRandoToggles[pos] ^= 1;
+            PrintRandomizerToggleRow(gTasks[taskId].tMenuWindowId, pos);
+            CopyWindowToVram(gTasks[taskId].tMenuWindowId, COPYWIN_GFX);
+            PlaySE(SE_SELECT);
+        }
+        return;
+    }
+
+    input = Menu_ProcessInputNoWrapAround();
+    switch (input)
+    {
+    case MENU_B_PRESSED:
+    case MENU_NOTHING_CHOSEN:
+        return;
+    case RANDO_ROW_START:
+    {
+        u32 i;
+        u16 settings = 0;
+
+        for (i = 0; i < RANDO_ROW_START; i++)
+        {
+            if (sRandoToggles[i])
+                settings |= sRandoRowFlags[i];
+        }
+        gOakSpeechRandoSettings = settings;
+        gOakSpeechRandoSeed = ((u32)Random() << 16) | Random();
+        gTasks[taskId].tRandoAccept = FALSE;
+        PlaySE(SE_SELECT);
+        gTasks[taskId].func = Task_OakSpeechLegacy_ClearRandomizerWindows;
+        break;
+    }
+    default: // rows 0-6: A toggles too
+        sRandoToggles[input] ^= 1;
+        PrintRandomizerToggleRow(gTasks[taskId].tMenuWindowId, input);
+        CopyWindowToVram(gTasks[taskId].tMenuWindowId, COPYWIN_GFX);
+        PlaySE(SE_SELECT);
+        break;
+    }
+}
+
+static void Task_OakSpeechLegacy_ClearRandomizerWindows(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+    ClearStdWindowAndFrameToTransparent(tMenuWindowId, TRUE);
+    RemoveWindow(tMenuWindowId);
+    tMenuWindowId = WIN_INTRO_TEXTBOX;
+    ClearDialogWindowAndFrame(tMenuWindowId, TRUE);
+    FillBgTilemapBufferRect_Palette0(0, 0, 0, 0, 30, 20);
+    CopyBgTilemapBufferToVram(0);
+    if (tRandoAccept)
+    {
+        tRandoAccept = FALSE;
+        gTasks[taskId].func = Task_OakSpeechLegacy_ShowRandomizerToggles;
+    }
+    else
+    {
+        gTasks[taskId].func = Task_OakSpeech_LoadPlayerPic;
+    }
 }
 
 static void Task_OakSpeech_LoadPlayerPic(u8 taskId)

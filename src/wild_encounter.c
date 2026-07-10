@@ -1,5 +1,6 @@
 #include "global.h"
 #include "random.h"
+#include "randomizer.h"
 #include "wild_encounter.h"
 #include "event_data.h"
 #include "fieldmap.h"
@@ -223,12 +224,26 @@ static bool8 UnlockedTanobyOrAreNotInTanoby(void)
     return FALSE;
 }
 
+// The Unown letter-slot path is only valid inside a Tanoby chamber; a species
+// randomized to Unown elsewhere must take the normal path (random letter from
+// personality) or sUnownLetterSlots[chamber] would be indexed out of bounds.
+static bool8 IsInTanobyChamber(void)
+{
+    if (gSaveBlock1Ptr->location.mapGroup != MAP_GROUP(MAP_SEVEN_ISLAND_TANOBY_RUINS_MONEAN_CHAMBER))
+        return FALSE;
+    if (gSaveBlock1Ptr->location.mapNum < MAP_NUM(MAP_SEVEN_ISLAND_TANOBY_RUINS_MONEAN_CHAMBER)
+     || gSaveBlock1Ptr->location.mapNum > MAP_NUM(MAP_SEVEN_ISLAND_TANOBY_RUINS_VIAPOIS_CHAMBER))
+        return FALSE;
+    return TRUE;
+}
+
 static void GenerateWildMon(u16 species, u8 level, u8 slot)
 {
     u32 personality;
     s8 chamber;
+    species = Randomizer_MapSpecies(species, RCAT_WILD);
     ZeroEnemyPartyMons();
-    if (species != SPECIES_UNOWN)
+    if (species != SPECIES_UNOWN || !IsInTanobyChamber())
     {
         CreateMonWithNature(&gEnemyParty[0], species, level, USE_RANDOM_IVS, Random() % NUM_NATURES);
     }

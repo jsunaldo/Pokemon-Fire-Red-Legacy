@@ -6,6 +6,7 @@
 #include "overworld.h"
 #include "menu.h"
 #include "event_data.h"
+#include "randomizer.h"
 #include "easy_chat.h"
 #include "money.h"
 #include "strings.h"
@@ -116,6 +117,7 @@ static void PrintPokedexOnCard(void);
 static void PrintTimeOnCard(void);
 static void PrintProfilePhraseOnCard(void);
 static void PrintHardModeOnCard(void);
+static void PrintRandomizerOnCard(void);
 static void BufferNameForCardBack(void);
 static void PrintNameOnCardBack(void);
 static void BufferHofDebutTime(void);
@@ -1069,6 +1071,9 @@ static bool8 PrintAllOnCardFront(void)
     case 6:
         PrintHardModeOnCard();
         break;
+    case 7:
+        PrintRandomizerOnCard();
+        break;
     default:
         sTrainerCardDataPtr->printState = 0;
         return TRUE;
@@ -1244,6 +1249,22 @@ static void PrintHardModeOnCard(void)
 
     if (!sTrainerCardDataPtr->isLink && FlagGet(FLAG_HARD_MODE))
         AddTextPrinterParameterized3(1, sTrainerCardFontIds[1], 20, 104, sTrainerCardTextColors, TEXT_SKIP_DRAW, sText_HardMode);
+}
+
+// FireRed Legacy: show the randomizer seed on the player's own card front, so
+// a randomized save is identifiable and its seed shareable.
+static void PrintRandomizerOnCard(void)
+{
+    static const u8 sText_Random[] = _("RANDOM ");
+    u8 buffer[16];
+    u8 *end;
+
+    if (!sTrainerCardDataPtr->isLink && Randomizer_IsActive())
+    {
+        end = StringCopy(buffer, sText_Random);
+        ConvertIntToHexStringN(end, Randomizer_GetSeed(), STR_CONV_MODE_LEADING_ZEROS, 8);
+        AddTextPrinterParameterized3(1, sTrainerCardFontIds[1], 20, 116, sTrainerCardTextColors, TEXT_SKIP_DRAW, buffer);
+    }
 }
 
 static void PrintProfilePhraseOnCard(void)

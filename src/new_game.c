@@ -29,6 +29,7 @@
 #include "berry_powder.h"
 #include "pokemon_jump.h"
 #include "event_scripts.h"
+#include "randomizer.h"
 
 // this file's functions
 static void ResetMiniGamesResults(void);
@@ -151,6 +152,11 @@ void NewGameInitData(void)
     RunScriptImmediately(EventScript_ResetAllMapFlags);
     if (gOakSpeechHardMode)
         FlagSet(FLAG_HARD_MODE);
+    // Like FLAG_HARD_MODE: must be written after ClearSav1 wipes all vars.
+    VarSet(VAR_RANDOMIZER_SEED_LO, gOakSpeechRandoSeed & 0xFFFF);
+    VarSet(VAR_RANDOMIZER_SEED_HI, gOakSpeechRandoSeed >> 16);
+    VarSet(VAR_RANDOMIZER_SETTINGS, gOakSpeechRandoSettings);
+    Randomizer_BuildTables();
     StringCopy(gSaveBlock1Ptr->rivalName, rivalName);
     ResetTrainerTowerResults();
 }

@@ -35,6 +35,7 @@
 #include "quest_log.h"
 #include "quest_log_objects.h"
 #include "random.h"
+#include "randomizer.h"
 #include "renewable_hidden_items.h"
 #include "roamer.h"
 #include "safari_zone.h"
@@ -1694,6 +1695,9 @@ void CB2_ContinueSavedGame(void)
     StopMapMusic();
     ResetSafariZoneFlag_();
     LoadSaveblockMapHeader();
+    // EWRAM is volatile: rebuild the randomizer permutation from the saved seed
+    // on every continue (also covers soft reset and quest-log reload paths).
+    Randomizer_BuildTables();
     LoadSaveblockObjEventScripts();
     UnfreezeObjectEvents();
     Overworld_ResetStateOnContinue();
