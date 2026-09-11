@@ -1251,18 +1251,39 @@ static void PrintHardModeOnCard(void)
         AddTextPrinterParameterized3(1, sTrainerCardFontIds[1], 20, 104, sTrainerCardTextColors, TEXT_SKIP_DRAW, sText_HardMode);
 }
 
-// FireRed Legacy: show the randomizer seed on the player's own card front, so
-// a randomized save is identifiable and its seed shareable.
+// FireRed Legacy: show the randomizer seed + settings on the player's own card
+// front, so a randomized save is identifiable at a glance. Settings are shown
+// as letters: W wild, T trainers, B bosses, G gifts, L legendary statics,
+// S similar-BST, A legendaries anywhere.
 static void PrintRandomizerOnCard(void)
 {
     static const u8 sText_Random[] = _("RANDOM ");
-    u8 buffer[16];
+    static const u8 sSettingLetters[] = _("WTBGLSA");
+    static const u16 sSettingBits[] =
+    {
+        RANDO_F_WILD, RANDO_F_TRAINERS, RANDO_F_BOSSES, RANDO_F_GIFTS,
+        RANDO_F_STATICS, RANDO_F_SIMILAR_BST, RANDO_F_LEGENDS,
+    };
+    u8 buffer[32];
     u8 *end;
+    u32 seed, settings, i;
 
     if (!sTrainerCardDataPtr->isLink && Randomizer_IsActive())
     {
+        seed = Randomizer_GetSeed();
+        settings = VarGet(VAR_RANDOMIZER_SETTINGS);
         end = StringCopy(buffer, sText_Random);
-        ConvertIntToHexStringN(end, Randomizer_GetSeed(), STR_CONV_MODE_LEADING_ZEROS, 8);
+        // ConvertIntToHexStringN takes an s32 and mangles values >= 0x80000000,
+        // so print the seed as two 16-bit halves.
+        end = ConvertIntToHexStringN(end, seed >> 16, STR_CONV_MODE_LEADING_ZEROS, 4);
+        end = ConvertIntToHexStringN(end, seed & 0xFFFF, STR_CONV_MODE_LEADING_ZEROS, 4);
+        *end++ = CHAR_SPACE;
+        for (i = 0; i < ARRAY_COUNT(sSettingBits); i++)
+        {
+            if (settings & sSettingBits[i])
+                *end++ = sSettingLetters[i];
+        }
+        *end = EOS;
         AddTextPrinterParameterized3(1, sTrainerCardFontIds[1], 20, 116, sTrainerCardTextColors, TEXT_SKIP_DRAW, buffer);
     }
 }

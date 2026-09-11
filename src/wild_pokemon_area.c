@@ -235,15 +235,12 @@ static s32 GetRoamerIndex(u16 species)
 static s32 GetRoamerPokedexAreaMarkers(u16 species, struct Subsprite * subsprites)
 {
     u16 mapSecId;
-    s32 roamerIdx;
     u16 dexArea;
     s32 tableIndex;
 
-    // Make sure that this is a roamer species, and that it corresponds to the player's starter.
-    roamerIdx = GetRoamerIndex(species);
-    if (roamerIdx < 0)
-        return 0;
-    if (sRoamerPairs[roamerIdx].starter != GetStarterSpecies())
+    // FRLG Legacy: compare against the roamer actually released (the randomizer
+    // may have remapped it) rather than the starter-derived vanilla species.
+    if (!gSaveBlock1Ptr->roamer.active || gSaveBlock1Ptr->roamer.species != species)
         return 0;
 
     mapSecId = GetRoamerLocationMapSectionId();

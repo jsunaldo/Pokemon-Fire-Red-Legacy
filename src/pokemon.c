@@ -3781,6 +3781,20 @@ u8 CalculateEnemyPartyCount(void)
 
 // FireRed Legacy Hard Mode: the party level cap tracks the next boss ace's
 // level (Yellow Legacy's table). MAX_LEVEL when on Normal mode or post-game.
+// FRLG Legacy: TRUE once all 8 Kanto leaders have been re-beaten in the current
+// rematch stage (the 8 contiguous KANTO_REMATCH flags).
+static bool8 AllKantoGymsRematched(void)
+{
+    u16 flag;
+
+    for (flag = FLAG_KANTO_REMATCH_BROCK; flag <= FLAG_KANTO_REMATCH_GIOVANNI; flag++)
+    {
+        if (!FlagGet(flag))
+            return FALSE;
+    }
+    return TRUE;
+}
+
 u8 GetLevelCap(void)
 {
     static const u8 sBadgeLevelCaps[NUM_BADGES + 1] = {12, 21, 24, 35, 43, 50, 53, 55, 65};
@@ -3791,23 +3805,18 @@ u8 GetLevelCap(void)
         return MAX_LEVEL;
     if (FlagGet(FLAG_SYS_GAME_CLEAR))
     {
-        // Postgame: the Johto Isles continue the Hard Mode cap ladder. Each isle
-        // has two leaders at the isle's cap - a Johto leader (trainer ids 1-8)
-        // and a Hoenn leader (ids 21-28), so their "beaten" flags are
-        // TRAINER_FLAGS_START + {1..8} and + {21..28}. The cap is the current
-        // isle's cap: 65 + fully-cleared isles (Falkner's 65 up to Clair's 72).
-        // Clearing the whole circuit uncaps the game for the Round 3 endgame.
-        u32 isles = 0;
-        u16 i;
-
-        if (FlagGet(FLAG_JOHTO_CIRCUIT_CLEARED))
+        // Postgame: the cap follows the gated rematch ladder so it always sits
+        // on the next boss's ace level - Kanto gym rematches (ace 70) -> Elite
+        // Four rematch (82) -> Johto Isles (88) -> Kanto Tier 3 (92) -> the
+        // final League, which is uncapped. The Kanto rematch flags are cleared
+        // when the Johto circuit is finished, so the same check re-gates Tier 3.
+        if (FlagGet(FLAG_E4_TIER3_CLEARED))
             return MAX_LEVEL;
-        for (i = 1; i <= 8; i++)
-        {
-            if (FlagGet(TRAINER_FLAGS_START + i) && FlagGet(TRAINER_FLAGS_START + 20 + i))
-                isles++;
-        }
-        return 65 + isles;
+        if (FlagGet(FLAG_JOHTO_CIRCUIT_CLEARED))
+            return AllKantoGymsRematched() ? MAX_LEVEL : 92;
+        if (FlagGet(FLAG_E4_REMATCH_CLEARED))
+            return 88;
+        return AllKantoGymsRematched() ? 82 : 70;
     }
     for (flag = FLAG_BADGE01_GET; flag <= FLAG_BADGE08_GET; flag++)
     {
