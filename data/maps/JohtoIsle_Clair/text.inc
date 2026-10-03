@@ -6,15 +6,13 @@ JohtoIsle_Clair_Text_LeaderIntro::
 	.string "Let's battle!$"
 
 JohtoIsle_Clair_Text_LeaderDefeat::
-	.string "Incredible…\n"
-	.string "You are the real thing.$"
+	.string "I lost? Hmph... Fine. You\nbeat a dragon master.$"
 
 JohtoIsle_Clair_Text_LeaderAfter::
-	.string "You've cleared every Johto Isle!\pWord of your strength will reach\nthe Kanto Gyms and the League…\pSeek them out. They'll be ready\nfor you now.$"
+	.string "Don't think I'll pretend it\ndoesn't sting.\pBut you won fairly. My\ndragons respect you. So do I.$"
 
 JohtoIsle_Clair_Text_LeaderPostBattle::
-	.string "This isle is yours to train on.\n"
-	.string "Come back any time.$"
+	.string "Don't let it go to your head.\nMy dragons are training.$"
 
 JohtoIsle_Clair_Text_SailorBlocked::
 	.string "Ahoy! Beat this isle's GYM LEADER\n"
@@ -35,12 +33,13 @@ JohtoIsle_Clair_Text_HoennFLANNERYIntro::
 	.string "Let's go!$"
 
 JohtoIsle_Clair_Text_HoennFLANNERYDefeat::
-	.string "You're every bit the CHAMPION\n"
-	.string "they say you are.$"
+	.string "Ow... Okay, maybe I got\na little too fired up.$"
 
 JohtoIsle_Clair_Text_HoennFLANNERYAfter::
-	.string "The ISLES bow to your strength!$"
+	.string "Whew! That battle was hotter\nthan any volcano!\pI'll keep my fire burning\nuntil we battle again!$"
 
 JohtoIsle_Clair_Text_HoennFLANNERYPostBattle::
-	.string "A rematch would be an honor,\n"
-	.string "another day.$"
+	.string "Grandpa would've loved that\nbattle! I'll tell him all!$"
+
+JohtoIsle_Clair_Text_CircuitCleared::
+	.string "You've beaten every LEADER of\nthe JOHTO ISLES!\pWord of your strength will\nreach KANTO's GYMS and LEAGUE.\pSeek them out. They'll be\nready for you now.$"

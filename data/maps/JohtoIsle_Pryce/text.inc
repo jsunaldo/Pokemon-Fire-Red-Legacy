@@ -6,15 +6,13 @@ JohtoIsle_Pryce_Text_LeaderIntro::
 	.string "Let's battle!$"
 
 JohtoIsle_Pryce_Text_LeaderDefeat::
-	.string "Incredible…\n"
-	.string "You are the real thing.$"
+	.string "Hm... Fifty winters of\ntraining, and still...$"
 
 JohtoIsle_Pryce_Text_LeaderAfter::
-	.string "A fine battle!\pSail on when you're ready.\nThe next isle's LEADER awaits.$"
+	.string "Fifty years I have trained\nin the cold.\pYou thawed it all in a single\nbattle. Remarkable.$"
 
 JohtoIsle_Pryce_Text_LeaderPostBattle::
-	.string "This isle is yours to train on.\n"
-	.string "Come back any time.$"
+	.string "Winter on GLACIER is long.\nYour fire warms it a little.$"
 
 JohtoIsle_Pryce_Text_SailorBlocked::
 	.string "Ahoy! Beat this isle's GYM LEADER\n"
@@ -35,12 +33,10 @@ JohtoIsle_Pryce_Text_HoennWALLACEIntro::
 	.string "Let's go!$"
 
 JohtoIsle_Pryce_Text_HoennWALLACEDefeat::
-	.string "You're every bit the CHAMPION\n"
-	.string "they say you are.$"
+	.string "Magnificent... Your battle\nwas a true work of art.$"
 
 JohtoIsle_Pryce_Text_HoennWALLACEAfter::
-	.string "You are a true champion of the ISLES!$"
+	.string "Such elegance in your style!\nI'm almost glad I lost.\pAlmost. Let us battle again\nsomeday, my friend.$"
 
 JohtoIsle_Pryce_Text_HoennWALLACEPostBattle::
-	.string "A rematch would be an honor,\n"
-	.string "another day.$"
+	.string "Water and ice, flowing as one.\nGLACIER suits my POKéMON.$"

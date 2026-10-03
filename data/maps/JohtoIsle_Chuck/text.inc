@@ -6,15 +6,13 @@ JohtoIsle_Chuck_Text_LeaderIntro::
 	.string "Let's battle!$"
 
 JohtoIsle_Chuck_Text_LeaderDefeat::
-	.string "Incredible…\n"
-	.string "You are the real thing.$"
+	.string "WAHAHAH! What power!\nYou beat me fair and square!$"
 
 JohtoIsle_Chuck_Text_LeaderAfter::
-	.string "A fine battle!\pSail on when you're ready.\nThe next isle's LEADER awaits.$"
+	.string "Hoo-hah! My muscles are\nscreaming, and I love it!\pThat battle was worth a\nthousand hours under a falls!$"
 
 JohtoIsle_Chuck_Text_LeaderPostBattle::
-	.string "This isle is yours to train on.\n"
-	.string "Come back any time.$"
+	.string "I train here till sundown,\nrain or shine. HWAAH!$"
 
 JohtoIsle_Chuck_Text_SailorBlocked::
 	.string "Ahoy! Beat this isle's GYM LEADER\n"
@@ -35,12 +33,10 @@ JohtoIsle_Chuck_Text_HoennBRAWLYIntro::
 	.string "Let's go!$"
 
 JohtoIsle_Chuck_Text_HoennBRAWLYDefeat::
-	.string "You're every bit the CHAMPION\n"
-	.string "they say you are.$"
+	.string "Whoa, total wipeout!\nYou rode that wave, dude.$"
 
 JohtoIsle_Chuck_Text_HoennBRAWLYAfter::
-	.string "You are a true champion of the ISLES!$"
+	.string "You caught a wave I never\neven saw coming, man.\pI'm gonna train on IRONFIST\ntill I can ride it too!$"
 
 JohtoIsle_Chuck_Text_HoennBRAWLYPostBattle::
-	.string "A rematch would be an honor,\n"
-	.string "another day.$"
+	.string "Big swells out here today.\nCome ride them with me!$"

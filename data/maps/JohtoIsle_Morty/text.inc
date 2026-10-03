@@ -6,15 +6,13 @@ JohtoIsle_Morty_Text_LeaderIntro::
 	.string "Let's battle!$"
 
 JohtoIsle_Morty_Text_LeaderDefeat::
-	.string "Incredible…\n"
-	.string "You are the real thing.$"
+	.string "I foresaw great power...\nI did not foresee this.$"
 
 JohtoIsle_Morty_Text_LeaderAfter::
-	.string "A fine battle!\pSail on when you're ready.\nThe next isle's LEADER awaits.$"
+	.string "The spirits of HOLLOW said\na challenger would come.\pThey never said I would lose.\nPerhaps they were being kind.$"
 
 JohtoIsle_Morty_Text_LeaderPostBattle::
-	.string "This isle is yours to train on.\n"
-	.string "Come back any time.$"
+	.string "The fog is thinning. The\nspirits are at peace with you.$"
 
 JohtoIsle_Morty_Text_SailorBlocked::
 	.string "Ahoy! Beat this isle's GYM LEADER\n"
@@ -35,12 +33,10 @@ JohtoIsle_Morty_Text_HoennTATELIZAIntro::
 	.string "Let's go!$"
 
 JohtoIsle_Morty_Text_HoennTATELIZADefeat::
-	.string "You're every bit the CHAMPION\n"
-	.string "they say you are.$"
+	.string "TATE: Our minds...\nLIZA: ...weren't enough!$"
 
 JohtoIsle_Morty_Text_HoennTATELIZAAfter::
-	.string "You are a true champion of the ISLES!$"
+	.string "TATE: We always know what\nLIZA: ...the other will do.\pTATE: But we couldn't read\nLIZA: ...even one of yours!$"
 
 JohtoIsle_Morty_Text_HoennTATELIZAPostBattle::
-	.string "A rematch would be an honor,\n"
-	.string "another day.$"
+	.string "TATE: Come battle us again!\nLIZA: ...we'll be ready!$"

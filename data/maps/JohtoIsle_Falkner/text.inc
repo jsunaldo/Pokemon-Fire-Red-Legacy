@@ -6,15 +6,13 @@ JohtoIsle_Falkner_Text_LeaderIntro::
 	.string "Let's battle!$"
 
 JohtoIsle_Falkner_Text_LeaderDefeat::
-	.string "Incredible…\n"
-	.string "You are the real thing.$"
+	.string "Grounded... My father's\nbirds deserved better.$"
 
 JohtoIsle_Falkner_Text_LeaderAfter::
-	.string "A fine battle!\pSail on when you're ready.\nThe next isle's LEADER awaits.$"
+	.string "You read the wind better than\nmy birds did.\pI'll train them until we\nride every gust on SKYREACH.$"
 
 JohtoIsle_Falkner_Text_LeaderPostBattle::
-	.string "This isle is yours to train on.\n"
-	.string "Come back any time.$"
+	.string "The updrafts here are perfect.\nMy birds fly higher every day.$"
 
 JohtoIsle_Falkner_Text_SailorBlocked::
 	.string "Ahoy! Beat this isle's GYM LEADER\n"
@@ -35,12 +33,10 @@ JohtoIsle_Falkner_Text_HoennWINONAIntro::
 	.string "Let's go!$"
 
 JohtoIsle_Falkner_Text_HoennWINONADefeat::
-	.string "You're every bit the CHAMPION\n"
-	.string "they say you are.$"
+	.string "You soared above me...\nSuch grace in battle.$"
 
 JohtoIsle_Falkner_Text_HoennWINONAAfter::
-	.string "You are a true champion of the ISLES!$"
+	.string "In battle, as in flight, you\nchose the perfect moment.\pThe skies of SKYREACH are\nyours to share, CHAMPION.$"
 
 JohtoIsle_Falkner_Text_HoennWINONAPostBattle::
-	.string "A rematch would be an honor,\n"
-	.string "another day.$"
+	.string "Watch the clouds with me a\nwhile. ALTARIA loves it here.$"

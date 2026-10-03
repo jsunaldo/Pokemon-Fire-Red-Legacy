@@ -6,15 +6,13 @@ JohtoIsle_Bugsy_Text_LeaderIntro::
 	.string "Let's battle!$"
 
 JohtoIsle_Bugsy_Text_LeaderDefeat::
-	.string "Incredible…\n"
-	.string "You are the real thing.$"
+	.string "Whoa, hold on! I need\nto study that battle!$"
 
 JohtoIsle_Bugsy_Text_LeaderAfter::
-	.string "A fine battle!\pSail on when you're ready.\nThe next isle's LEADER awaits.$"
+	.string "I learned more in that fight\nthan in a month of fieldwork!\pBug POKéMON keep surprising\nme. And so do you!$"
 
 JohtoIsle_Bugsy_Text_LeaderPostBattle::
-	.string "This isle is yours to train on.\n"
-	.string "Come back any time.$"
+	.string "I'm cataloging every bug on\nCHITIN. Want to see my notes?$"
 
 JohtoIsle_Bugsy_Text_SailorBlocked::
 	.string "Ahoy! Beat this isle's GYM LEADER\n"
@@ -35,12 +33,10 @@ JohtoIsle_Bugsy_Text_HoennWATTSONIntro::
 	.string "Let's go!$"
 
 JohtoIsle_Bugsy_Text_HoennWATTSONDefeat::
-	.string "You're every bit the CHAMPION\n"
-	.string "they say you are.$"
+	.string "Wahahahah! You've\nshocked me silly!$"
 
 JohtoIsle_Bugsy_Text_HoennWATTSONAfter::
-	.string "You are a true champion of the ISLES!$"
+	.string "Wahahaha! I haven't been\nzapped like that in years!\pYou've got a charge in you\nno generator could match!$"
 
 JohtoIsle_Bugsy_Text_HoennWATTSONPostBattle::
-	.string "A rematch would be an honor,\n"
-	.string "another day.$"
+	.string "Wahahaha! Drop by any time.\nI'll keep the lights on!$"

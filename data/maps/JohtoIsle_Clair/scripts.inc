@@ -13,8 +13,8 @@ JohtoIsle_Clair_EventScript_Leader::
 @ FRLG Legacy v2.3: a plain trainerbattle_single ends the script after the
 @ battle, so the circuit check must live in the continue script.
 JohtoIsle_Clair_EventScript_LeaderDefeated::
-	call JohtoIsle_Clair_EventScript_TryClearCircuit
 	msgbox JohtoIsle_Clair_Text_LeaderAfter, MSGBOX_DEFAULT
+	call JohtoIsle_Clair_EventScript_TryClearCircuit
 	release
 	end
 
@@ -60,8 +60,8 @@ JohtoIsle_Clair_EventScript_HoennFLANNERY::
 	end
 
 JohtoIsle_Clair_EventScript_HoennFLANNERYDefeated::
-	call JohtoIsle_Clair_EventScript_TryClearCircuit
 	msgbox JohtoIsle_Clair_Text_HoennFLANNERYAfter, MSGBOX_DEFAULT
+	call JohtoIsle_Clair_EventScript_TryClearCircuit
 	release
 	end
 
@@ -84,6 +84,7 @@ JohtoIsle_Clair_EventScript_TryClearCircuitDone::
 
 JohtoIsle_Clair_EventScript_SetCircuitCleared::
 	setflag FLAG_JOHTO_CIRCUIT_CLEARED
+	msgbox JohtoIsle_Clair_Text_CircuitCleared, MSGBOX_DEFAULT
 @ FRLG Legacy: reset the Kanto rematch tracker so the Tier 3 endgame must
 @ re-beat all eight leaders (now at Tier 3 levels) before the Tier 3 E4 opens.
 	clearflag FLAG_KANTO_REMATCH_BROCK

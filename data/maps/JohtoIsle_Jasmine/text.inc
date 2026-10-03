@@ -6,15 +6,13 @@ JohtoIsle_Jasmine_Text_LeaderIntro::
 	.string "Let's battle!$"
 
 JohtoIsle_Jasmine_Text_LeaderDefeat::
-	.string "Incredible…\n"
-	.string "You are the real thing.$"
+	.string "...Oh my. You're truly\nstrong. I can tell.$"
 
 JohtoIsle_Jasmine_Text_LeaderAfter::
-	.string "A fine battle!\pSail on when you're ready.\nThe next isle's LEADER awaits.$"
+	.string "Um... that was wonderful.\nThank you for battling me.\pSteel is strong, but you\nwere stronger still.$"
 
 JohtoIsle_Jasmine_Text_LeaderPostBattle::
-	.string "This isle is yours to train on.\n"
-	.string "Come back any time.$"
+	.string "The forges of FOUNDRY never\ncool... Please visit again.$"
 
 JohtoIsle_Jasmine_Text_SailorBlocked::
 	.string "Ahoy! Beat this isle's GYM LEADER\n"
@@ -35,12 +33,10 @@ JohtoIsle_Jasmine_Text_HoennROXANNEIntro::
 	.string "Let's go!$"
 
 JohtoIsle_Jasmine_Text_HoennROXANNEDefeat::
-	.string "You're every bit the CHAMPION\n"
-	.string "they say you are.$"
+	.string "So I lost... I have much\nmore to learn, it seems.$"
 
 JohtoIsle_Jasmine_Text_HoennROXANNEAfter::
-	.string "You are a true champion of the ISLES!$"
+	.string "No textbook could have\nprepared me for that.\pI'll study our battle until\nI understand every move.$"
 
 JohtoIsle_Jasmine_Text_HoennROXANNEPostBattle::
-	.string "A rematch would be an honor,\n"
-	.string "another day.$"
+	.string "I'm writing up our battle for\nmy students. Thank you!$"

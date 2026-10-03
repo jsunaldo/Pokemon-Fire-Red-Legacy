@@ -6,15 +6,13 @@ JohtoIsle_Whitney_Text_LeaderIntro::
 	.string "Let's battle!$"
 
 JohtoIsle_Whitney_Text_LeaderDefeat::
-	.string "Incredible…\n"
-	.string "You are the real thing.$"
+	.string "Waaah! No fair!\nMy MILTANK was perfect!$"
 
 JohtoIsle_Whitney_Text_LeaderAfter::
-	.string "A fine battle!\pSail on when you're ready.\nThe next isle's LEADER awaits.$"
+	.string "...Sniff. Okay. I'm done\ncrying. Mostly.\pYou were really, really\nstrong. Don't tell anyone!$"
 
 JohtoIsle_Whitney_Text_LeaderPostBattle::
-	.string "This isle is yours to train on.\n"
-	.string "Come back any time.$"
+	.string "Want some MOOMOO MILK? It\nalways cheers me right up!$"
 
 JohtoIsle_Whitney_Text_SailorBlocked::
 	.string "Ahoy! Beat this isle's GYM LEADER\n"
@@ -35,12 +33,10 @@ JohtoIsle_Whitney_Text_HoennNORMANIntro::
 	.string "Let's go!$"
 
 JohtoIsle_Whitney_Text_HoennNORMANDefeat::
-	.string "You're every bit the CHAMPION\n"
-	.string "they say you are.$"
+	.string "I lost... You've grown\nstronger than I imagined.$"
 
 JohtoIsle_Whitney_Text_HoennNORMANAfter::
-	.string "You are a true champion of the ISLES!$"
+	.string "A LEADER is measured by how\nhe faces defeat.\pSo I'll say it plainly. You\nare stronger than I am.$"
 
 JohtoIsle_Whitney_Text_HoennNORMANPostBattle::
-	.string "A rematch would be an honor,\n"
-	.string "another day.$"
+	.string "Strength is earned one battle\nat a time. Keep earning it.$"
