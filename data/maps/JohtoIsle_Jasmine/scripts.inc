@@ -6,7 +6,13 @@ JohtoIsle_Jasmine_EventScript_Leader::
 	faceplayer
 	goto_if_set FLAG_BEAT_JOHTO_JASMINE, JohtoIsle_Jasmine_EventScript_LeaderPostBattle
 	msgbox JohtoIsle_Jasmine_Text_LeaderPreBattle, MSGBOX_DEFAULT
-	trainerbattle_single TRAINER_JOHTO_JASMINE, JohtoIsle_Jasmine_Text_LeaderIntro, JohtoIsle_Jasmine_Text_LeaderDefeat
+	trainerbattle_single TRAINER_JOHTO_JASMINE, JohtoIsle_Jasmine_Text_LeaderIntro, JohtoIsle_Jasmine_Text_LeaderDefeat, JohtoIsle_Jasmine_EventScript_LeaderDefeated
+	release
+	end
+
+@ Continue script: a plain trainerbattle_single ends the script after
+@ the battle, so the after-battle line has to live here.
+JohtoIsle_Jasmine_EventScript_LeaderDefeated::
 	msgbox JohtoIsle_Jasmine_Text_LeaderAfter, MSGBOX_DEFAULT
 	release
 	end
@@ -55,7 +61,13 @@ JohtoIsle_Jasmine_EventScript_HoennROXANNE::
 	faceplayer
 	goto_if_set FLAG_BEAT_HOENN_ROXANNE, JohtoIsle_Jasmine_EventScript_HoennROXANNEPost
 	msgbox JohtoIsle_Jasmine_Text_HoennROXANNEPre, MSGBOX_DEFAULT
-	trainerbattle_single TRAINER_HOENN_ROXANNE, JohtoIsle_Jasmine_Text_HoennROXANNEIntro, JohtoIsle_Jasmine_Text_HoennROXANNEDefeat
+	trainerbattle_single TRAINER_HOENN_ROXANNE, JohtoIsle_Jasmine_Text_HoennROXANNEIntro, JohtoIsle_Jasmine_Text_HoennROXANNEDefeat, JohtoIsle_Jasmine_EventScript_LeaderPostBattleDefeated
+	release
+	end
+
+@ Continue script: a plain trainerbattle_single ends the script after
+@ the battle, so the after-battle line has to live here.
+JohtoIsle_Jasmine_EventScript_LeaderPostBattleDefeated::
 	msgbox JohtoIsle_Jasmine_Text_HoennROXANNEAfter, MSGBOX_DEFAULT
 	release
 	end

@@ -6,7 +6,13 @@ JohtoIsle_Whitney_EventScript_Leader::
 	faceplayer
 	goto_if_set FLAG_BEAT_JOHTO_WHITNEY, JohtoIsle_Whitney_EventScript_LeaderPostBattle
 	msgbox JohtoIsle_Whitney_Text_LeaderPreBattle, MSGBOX_DEFAULT
-	trainerbattle_single TRAINER_JOHTO_WHITNEY, JohtoIsle_Whitney_Text_LeaderIntro, JohtoIsle_Whitney_Text_LeaderDefeat
+	trainerbattle_single TRAINER_JOHTO_WHITNEY, JohtoIsle_Whitney_Text_LeaderIntro, JohtoIsle_Whitney_Text_LeaderDefeat, JohtoIsle_Whitney_EventScript_LeaderDefeated
+	release
+	end
+
+@ Continue script: a plain trainerbattle_single ends the script after
+@ the battle, so the after-battle line has to live here.
+JohtoIsle_Whitney_EventScript_LeaderDefeated::
 	msgbox JohtoIsle_Whitney_Text_LeaderAfter, MSGBOX_DEFAULT
 	release
 	end
@@ -55,7 +61,13 @@ JohtoIsle_Whitney_EventScript_HoennNORMAN::
 	faceplayer
 	goto_if_set FLAG_BEAT_HOENN_NORMAN, JohtoIsle_Whitney_EventScript_HoennNORMANPost
 	msgbox JohtoIsle_Whitney_Text_HoennNORMANPre, MSGBOX_DEFAULT
-	trainerbattle_single TRAINER_HOENN_NORMAN, JohtoIsle_Whitney_Text_HoennNORMANIntro, JohtoIsle_Whitney_Text_HoennNORMANDefeat
+	trainerbattle_single TRAINER_HOENN_NORMAN, JohtoIsle_Whitney_Text_HoennNORMANIntro, JohtoIsle_Whitney_Text_HoennNORMANDefeat, JohtoIsle_Whitney_EventScript_LeaderPostBattleDefeated
+	release
+	end
+
+@ Continue script: a plain trainerbattle_single ends the script after
+@ the battle, so the after-battle line has to live here.
+JohtoIsle_Whitney_EventScript_LeaderPostBattleDefeated::
 	msgbox JohtoIsle_Whitney_Text_HoennNORMANAfter, MSGBOX_DEFAULT
 	release
 	end

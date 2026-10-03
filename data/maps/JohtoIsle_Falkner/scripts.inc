@@ -6,7 +6,13 @@ JohtoIsle_Falkner_EventScript_Leader::
 	faceplayer
 	goto_if_set FLAG_BEAT_JOHTO_FALKNER, JohtoIsle_Falkner_EventScript_LeaderPostBattle
 	msgbox JohtoIsle_Falkner_Text_LeaderPreBattle, MSGBOX_DEFAULT
-	trainerbattle_single TRAINER_JOHTO_FALKNER, JohtoIsle_Falkner_Text_LeaderIntro, JohtoIsle_Falkner_Text_LeaderDefeat
+	trainerbattle_single TRAINER_JOHTO_FALKNER, JohtoIsle_Falkner_Text_LeaderIntro, JohtoIsle_Falkner_Text_LeaderDefeat, JohtoIsle_Falkner_EventScript_LeaderDefeated
+	release
+	end
+
+@ Continue script: a plain trainerbattle_single ends the script after
+@ the battle, so the after-battle line has to live here.
+JohtoIsle_Falkner_EventScript_LeaderDefeated::
 	msgbox JohtoIsle_Falkner_Text_LeaderAfter, MSGBOX_DEFAULT
 	release
 	end
@@ -55,7 +61,13 @@ JohtoIsle_Falkner_EventScript_HoennWINONA::
 	faceplayer
 	goto_if_set FLAG_BEAT_HOENN_WINONA, JohtoIsle_Falkner_EventScript_HoennWINONAPost
 	msgbox JohtoIsle_Falkner_Text_HoennWINONAPre, MSGBOX_DEFAULT
-	trainerbattle_single TRAINER_HOENN_WINONA, JohtoIsle_Falkner_Text_HoennWINONAIntro, JohtoIsle_Falkner_Text_HoennWINONADefeat
+	trainerbattle_single TRAINER_HOENN_WINONA, JohtoIsle_Falkner_Text_HoennWINONAIntro, JohtoIsle_Falkner_Text_HoennWINONADefeat, JohtoIsle_Falkner_EventScript_LeaderPostBattleDefeated
+	release
+	end
+
+@ Continue script: a plain trainerbattle_single ends the script after
+@ the battle, so the after-battle line has to live here.
+JohtoIsle_Falkner_EventScript_LeaderPostBattleDefeated::
 	msgbox JohtoIsle_Falkner_Text_HoennWINONAAfter, MSGBOX_DEFAULT
 	release
 	end

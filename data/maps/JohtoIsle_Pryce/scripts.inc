@@ -6,7 +6,13 @@ JohtoIsle_Pryce_EventScript_Leader::
 	faceplayer
 	goto_if_set FLAG_BEAT_JOHTO_PRYCE, JohtoIsle_Pryce_EventScript_LeaderPostBattle
 	msgbox JohtoIsle_Pryce_Text_LeaderPreBattle, MSGBOX_DEFAULT
-	trainerbattle_single TRAINER_JOHTO_PRYCE, JohtoIsle_Pryce_Text_LeaderIntro, JohtoIsle_Pryce_Text_LeaderDefeat
+	trainerbattle_single TRAINER_JOHTO_PRYCE, JohtoIsle_Pryce_Text_LeaderIntro, JohtoIsle_Pryce_Text_LeaderDefeat, JohtoIsle_Pryce_EventScript_LeaderDefeated
+	release
+	end
+
+@ Continue script: a plain trainerbattle_single ends the script after
+@ the battle, so the after-battle line has to live here.
+JohtoIsle_Pryce_EventScript_LeaderDefeated::
 	msgbox JohtoIsle_Pryce_Text_LeaderAfter, MSGBOX_DEFAULT
 	release
 	end
@@ -55,7 +61,13 @@ JohtoIsle_Pryce_EventScript_HoennWALLACE::
 	faceplayer
 	goto_if_set FLAG_BEAT_HOENN_WALLACE, JohtoIsle_Pryce_EventScript_HoennWALLACEPost
 	msgbox JohtoIsle_Pryce_Text_HoennWALLACEPre, MSGBOX_DEFAULT
-	trainerbattle_single TRAINER_HOENN_WALLACE, JohtoIsle_Pryce_Text_HoennWALLACEIntro, JohtoIsle_Pryce_Text_HoennWALLACEDefeat
+	trainerbattle_single TRAINER_HOENN_WALLACE, JohtoIsle_Pryce_Text_HoennWALLACEIntro, JohtoIsle_Pryce_Text_HoennWALLACEDefeat, JohtoIsle_Pryce_EventScript_LeaderPostBattleDefeated
+	release
+	end
+
+@ Continue script: a plain trainerbattle_single ends the script after
+@ the battle, so the after-battle line has to live here.
+JohtoIsle_Pryce_EventScript_LeaderPostBattleDefeated::
 	msgbox JohtoIsle_Pryce_Text_HoennWALLACEAfter, MSGBOX_DEFAULT
 	release
 	end

@@ -6,7 +6,13 @@ JohtoIsle_Morty_EventScript_Leader::
 	faceplayer
 	goto_if_set FLAG_BEAT_JOHTO_MORTY, JohtoIsle_Morty_EventScript_LeaderPostBattle
 	msgbox JohtoIsle_Morty_Text_LeaderPreBattle, MSGBOX_DEFAULT
-	trainerbattle_single TRAINER_JOHTO_MORTY, JohtoIsle_Morty_Text_LeaderIntro, JohtoIsle_Morty_Text_LeaderDefeat
+	trainerbattle_single TRAINER_JOHTO_MORTY, JohtoIsle_Morty_Text_LeaderIntro, JohtoIsle_Morty_Text_LeaderDefeat, JohtoIsle_Morty_EventScript_LeaderDefeated
+	release
+	end
+
+@ Continue script: a plain trainerbattle_single ends the script after
+@ the battle, so the after-battle line has to live here.
+JohtoIsle_Morty_EventScript_LeaderDefeated::
 	msgbox JohtoIsle_Morty_Text_LeaderAfter, MSGBOX_DEFAULT
 	release
 	end
@@ -55,7 +61,13 @@ JohtoIsle_Morty_EventScript_HoennTATELIZA::
 	faceplayer
 	goto_if_set FLAG_BEAT_HOENN_TATE_LIZA, JohtoIsle_Morty_EventScript_HoennTATELIZAPost
 	msgbox JohtoIsle_Morty_Text_HoennTATELIZAPre, MSGBOX_DEFAULT
-	trainerbattle_single TRAINER_HOENN_TATE_LIZA, JohtoIsle_Morty_Text_HoennTATELIZAIntro, JohtoIsle_Morty_Text_HoennTATELIZADefeat
+	trainerbattle_single TRAINER_HOENN_TATE_LIZA, JohtoIsle_Morty_Text_HoennTATELIZAIntro, JohtoIsle_Morty_Text_HoennTATELIZADefeat, JohtoIsle_Morty_EventScript_LeaderPostBattleDefeated
+	release
+	end
+
+@ Continue script: a plain trainerbattle_single ends the script after
+@ the battle, so the after-battle line has to live here.
+JohtoIsle_Morty_EventScript_LeaderPostBattleDefeated::
 	msgbox JohtoIsle_Morty_Text_HoennTATELIZAAfter, MSGBOX_DEFAULT
 	release
 	end

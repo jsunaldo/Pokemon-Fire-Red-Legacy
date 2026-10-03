@@ -6,7 +6,13 @@ JohtoIsle_Bugsy_EventScript_Leader::
 	faceplayer
 	goto_if_set FLAG_BEAT_JOHTO_BUGSY, JohtoIsle_Bugsy_EventScript_LeaderPostBattle
 	msgbox JohtoIsle_Bugsy_Text_LeaderPreBattle, MSGBOX_DEFAULT
-	trainerbattle_single TRAINER_JOHTO_BUGSY, JohtoIsle_Bugsy_Text_LeaderIntro, JohtoIsle_Bugsy_Text_LeaderDefeat
+	trainerbattle_single TRAINER_JOHTO_BUGSY, JohtoIsle_Bugsy_Text_LeaderIntro, JohtoIsle_Bugsy_Text_LeaderDefeat, JohtoIsle_Bugsy_EventScript_LeaderDefeated
+	release
+	end
+
+@ Continue script: a plain trainerbattle_single ends the script after
+@ the battle, so the after-battle line has to live here.
+JohtoIsle_Bugsy_EventScript_LeaderDefeated::
 	msgbox JohtoIsle_Bugsy_Text_LeaderAfter, MSGBOX_DEFAULT
 	release
 	end
@@ -55,7 +61,13 @@ JohtoIsle_Bugsy_EventScript_HoennWATTSON::
 	faceplayer
 	goto_if_set FLAG_BEAT_HOENN_WATTSON, JohtoIsle_Bugsy_EventScript_HoennWATTSONPost
 	msgbox JohtoIsle_Bugsy_Text_HoennWATTSONPre, MSGBOX_DEFAULT
-	trainerbattle_single TRAINER_HOENN_WATTSON, JohtoIsle_Bugsy_Text_HoennWATTSONIntro, JohtoIsle_Bugsy_Text_HoennWATTSONDefeat
+	trainerbattle_single TRAINER_HOENN_WATTSON, JohtoIsle_Bugsy_Text_HoennWATTSONIntro, JohtoIsle_Bugsy_Text_HoennWATTSONDefeat, JohtoIsle_Bugsy_EventScript_LeaderPostBattleDefeated
+	release
+	end
+
+@ Continue script: a plain trainerbattle_single ends the script after
+@ the battle, so the after-battle line has to live here.
+JohtoIsle_Bugsy_EventScript_LeaderPostBattleDefeated::
 	msgbox JohtoIsle_Bugsy_Text_HoennWATTSONAfter, MSGBOX_DEFAULT
 	release
 	end
