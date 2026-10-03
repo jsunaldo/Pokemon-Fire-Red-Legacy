@@ -6,13 +6,20 @@ JohtoIsle_Clair_EventScript_Leader::
 	faceplayer
 	goto_if_set FLAG_BEAT_JOHTO_CLAIR, JohtoIsle_Clair_EventScript_LeaderPostBattle
 	msgbox JohtoIsle_Clair_Text_LeaderPreBattle, MSGBOX_DEFAULT
-	trainerbattle_single TRAINER_JOHTO_CLAIR, JohtoIsle_Clair_Text_LeaderIntro, JohtoIsle_Clair_Text_LeaderDefeat
-	call_if_set FLAG_BEAT_HOENN_FLANNERY, JohtoIsle_Clair_EventScript_SetCircuitCleared
+	trainerbattle_single TRAINER_JOHTO_CLAIR, JohtoIsle_Clair_Text_LeaderIntro, JohtoIsle_Clair_Text_LeaderDefeat, JohtoIsle_Clair_EventScript_LeaderDefeated
+	release
+	end
+
+@ FRLG Legacy v2.3: a plain trainerbattle_single ends the script after the
+@ battle, so the circuit check must live in the continue script.
+JohtoIsle_Clair_EventScript_LeaderDefeated::
+	call JohtoIsle_Clair_EventScript_TryClearCircuit
 	msgbox JohtoIsle_Clair_Text_LeaderAfter, MSGBOX_DEFAULT
 	release
 	end
 
 JohtoIsle_Clair_EventScript_LeaderPostBattle::
+	call JohtoIsle_Clair_EventScript_TryClearCircuit
 	msgbox JohtoIsle_Clair_Text_LeaderPostBattle, MSGBOX_DEFAULT
 	release
 	end
@@ -48,16 +55,32 @@ JohtoIsle_Clair_EventScript_HoennFLANNERY::
 	faceplayer
 	goto_if_set FLAG_BEAT_HOENN_FLANNERY, JohtoIsle_Clair_EventScript_HoennFLANNERYPost
 	msgbox JohtoIsle_Clair_Text_HoennFLANNERYPre, MSGBOX_DEFAULT
-	trainerbattle_single TRAINER_HOENN_FLANNERY, JohtoIsle_Clair_Text_HoennFLANNERYIntro, JohtoIsle_Clair_Text_HoennFLANNERYDefeat
-	call_if_set FLAG_BEAT_JOHTO_CLAIR, JohtoIsle_Clair_EventScript_SetCircuitCleared
+	trainerbattle_single TRAINER_HOENN_FLANNERY, JohtoIsle_Clair_Text_HoennFLANNERYIntro, JohtoIsle_Clair_Text_HoennFLANNERYDefeat, JohtoIsle_Clair_EventScript_HoennFLANNERYDefeated
+	release
+	end
+
+JohtoIsle_Clair_EventScript_HoennFLANNERYDefeated::
+	call JohtoIsle_Clair_EventScript_TryClearCircuit
 	msgbox JohtoIsle_Clair_Text_HoennFLANNERYAfter, MSGBOX_DEFAULT
 	release
 	end
 
 JohtoIsle_Clair_EventScript_HoennFLANNERYPost::
+	call JohtoIsle_Clair_EventScript_TryClearCircuit
 	msgbox JohtoIsle_Clair_Text_HoennFLANNERYPostBattle, MSGBOX_DEFAULT
 	release
 	end
+
+@ Clears the circuit once both Wyrmspire leaders are beaten. Also runs on
+@ re-talk, which repairs v2.2 saves that beat both but never got the flag.
+@ Guarded so it can never reset Tier 3 progress a second time.
+JohtoIsle_Clair_EventScript_TryClearCircuit::
+	goto_if_set FLAG_JOHTO_CIRCUIT_CLEARED, JohtoIsle_Clair_EventScript_TryClearCircuitDone
+	goto_if_unset FLAG_BEAT_JOHTO_CLAIR, JohtoIsle_Clair_EventScript_TryClearCircuitDone
+	goto_if_unset FLAG_BEAT_HOENN_FLANNERY, JohtoIsle_Clair_EventScript_TryClearCircuitDone
+	call JohtoIsle_Clair_EventScript_SetCircuitCleared
+JohtoIsle_Clair_EventScript_TryClearCircuitDone::
+	return
 
 JohtoIsle_Clair_EventScript_SetCircuitCleared::
 	setflag FLAG_JOHTO_CIRCUIT_CLEARED
