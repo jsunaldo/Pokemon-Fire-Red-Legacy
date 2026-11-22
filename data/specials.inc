@@ -11,6 +11,7 @@ gSpecials::
 	def_special SetCutTreePermanentlyRemoved
 	def_special GetPlayerGymBadgeCount
 	def_special Randomizer_PreviewStarter
+	def_special Randomizer_RandomizeItemBall
 	def_special SetChampionAceEeveelution
 	def_special CheckAllKantoGymsRematched
 	def_special HealPlayerParty

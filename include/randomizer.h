@@ -18,8 +18,9 @@
 #define RANDO_F_STATICS     (1 << 4) // setwildbattle statics + roamer
 #define RANDO_F_SIMILAR_BST (1 << 5) // remap within similar base-stat totals
 #define RANDO_F_LEGENDS     (1 << 6) // allow legendaries in the general pool
+#define RANDO_F_ITEMS       (1 << 7) // item balls + hidden items (key items/HMs stay put)
 // Any content bit set => the randomizer is active for this save.
-#define RANDO_ACTIVE_MASK   (RANDO_F_WILD | RANDO_F_TRAINERS | RANDO_F_BOSSES | RANDO_F_GIFTS | RANDO_F_STATICS)
+#define RANDO_ACTIVE_MASK   (RANDO_F_WILD | RANDO_F_TRAINERS | RANDO_F_BOSSES | RANDO_F_GIFTS | RANDO_F_STATICS | RANDO_F_ITEMS)
 
 enum RandomizerCategory
 {
@@ -43,5 +44,7 @@ u16 Randomizer_MapTrainerMonSpecies(u16 trainerNum, u16 species);
 void Randomizer_SetLastGift(u16 vanillaSpecies, u16 mappedSpecies);
 u16 Randomizer_RemapGiftText(u16 species);
 void Randomizer_PreviewStarter(void);
+u16 Randomizer_MapFieldItem(u16 item, u32 locationKey);
+void Randomizer_RandomizeItemBall(void);
 
 #endif // GUARD_RANDOMIZER_H

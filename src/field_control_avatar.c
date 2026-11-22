@@ -18,6 +18,7 @@
 #include "metatile_behavior.h"
 #include "overworld.h"
 #include "renewable_hidden_items.h"
+#include "randomizer.h"
 #include "quest_log.h"
 #include "safari_zone.h"
 #include "script.h"
@@ -509,6 +510,8 @@ static const u8 *GetInteractedBackgroundEventScript(struct MapPosition *position
         gSpecialVar_0x8006 = GetHiddenItemAttr(bgEvent->bgUnion.hiddenItem, HIDDEN_ITEM_QUANTITY);
         if (FlagGet(gSpecialVar_0x8004) == TRUE)
             return NULL;
+        // Randomizer: hidden items keyed by their own (unique) flag.
+        gSpecialVar_0x8005 = Randomizer_MapFieldItem(gSpecialVar_0x8005, 0x48000000 | gSpecialVar_0x8004);
         gSpecialVar_Facing = direction;
         return EventScript_HiddenItemScript;
     }

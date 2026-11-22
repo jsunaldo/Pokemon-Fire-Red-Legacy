@@ -107,6 +107,7 @@ Std_FindItem::
 	lock
 	faceplayer
 	waitse
+	special Randomizer_RandomizeItemBall
 	copyvar VAR_0x8004, VAR_0x8000
 	copyvar VAR_0x8005, VAR_0x8001
 	checkitemspace VAR_0x8000, VAR_0x8001

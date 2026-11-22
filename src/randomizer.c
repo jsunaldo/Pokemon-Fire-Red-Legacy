@@ -6,6 +6,8 @@
 #include "random.h"
 #include "string_util.h"
 #include "data.h"
+#include "item.h"
+#include "constants/items.h"
 #include "constants/species.h"
 #include "constants/trainers.h"
 
@@ -40,6 +42,8 @@ static EWRAM_DATA u16 sLastGiftMapped = SPECIES_NONE;
 static EWRAM_DATA u16 sPoolList[POOL_MAX] = {};
 
 static u32 sRandoRngState;
+
+#include "data/randomizer_item_pool.h"
 
 static const u16 sLegendaries[] =
 {
@@ -269,4 +273,33 @@ void Randomizer_PreviewStarter(void)
     gSpecialVar_0x8004 = species;
     gSpecialVar_Result = (species != vanilla);
     StringCopy(gStringVar2, gSpeciesNames[species]);
+}
+
+// Item randomizer: each item location (keyed by map + object, or by the hidden
+// item's flag) gets a fixed random item from sRandoItemPool, derived from the
+// save's seed. Key items and HMs are never moved, so progression is safe.
+u16 Randomizer_MapFieldItem(u16 item, u32 locationKey)
+{
+    u32 h;
+
+    if (!(VarGet(VAR_RANDOMIZER_SETTINGS) & RANDO_F_ITEMS) || item == ITEM_NONE)
+        return item;
+    if (ItemId_GetPocket(item) == POCKET_KEY_ITEMS)
+        return item;
+    if (item >= ITEM_HM01 && item <= ITEM_HM08)
+        return item;
+    h = Randomizer_GetSeed() ^ (locationKey * 2654435761u);
+    h = ISO_RANDOMIZE1(h);
+    h = ISO_RANDOMIZE1(h ^ (h >> 15));
+    return sRandoItemPool[(h >> 8) % ARRAY_COUNT(sRandoItemPool)];
+}
+
+// Std_FindItem: VAR_0x8000 holds the ball's item; key it by map + object.
+void Randomizer_RandomizeItemBall(void)
+{
+    u32 key = ((u32)gSaveBlock1Ptr->location.mapGroup << 24)
+            | ((u32)gSaveBlock1Ptr->location.mapNum << 16)
+            | gSpecialVar_LastTalked;
+
+    gSpecialVar_0x8000 = Randomizer_MapFieldItem(gSpecialVar_0x8000, key);
 }

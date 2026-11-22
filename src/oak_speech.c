@@ -53,7 +53,7 @@ EWRAM_DATA bool8 gOakSpeechHardMode = FALSE;
 
 // FireRed Legacy: randomizer toggle states while the intro menu is open
 // (rows 0-6; committed to gOakSpeechRandoSettings when START! is chosen).
-static EWRAM_DATA u8 sRandoToggles[7] = {};
+static EWRAM_DATA u8 sRandoToggles[8] = {};
 
 static void Task_NewGameScene(u8);
 
@@ -1435,6 +1435,7 @@ enum
     RANDO_ROW_BOSSES,
     RANDO_ROW_GIFTS,
     RANDO_ROW_STATICS,
+    RANDO_ROW_ITEMS,
     RANDO_ROW_SIMILAR,
     RANDO_ROW_LEGENDS,
     RANDO_ROW_START,
@@ -1446,6 +1447,7 @@ static const u8 sText_Legacy_RandoTrainers[] = _("TRAINERS");
 static const u8 sText_Legacy_RandoBosses[] = _("BOSSES");
 static const u8 sText_Legacy_RandoGifts[] = _("GIFT PKMN");
 static const u8 sText_Legacy_RandoStatics[] = _("LEGENDS");
+static const u8 sText_Legacy_RandoItems[] = _("ITEMS");
 static const u8 sText_Legacy_RandoSimilar[] = _("SIMILAR BST");
 static const u8 sText_Legacy_RandoLegendPool[] = _("WILD LEGENDS");
 static const u8 sText_Legacy_RandoStart[] = _("START!");
@@ -1457,6 +1459,7 @@ static const u8 *const sRandoRowLabels[NUM_RANDO_ROWS] =
     [RANDO_ROW_BOSSES]   = sText_Legacy_RandoBosses,
     [RANDO_ROW_GIFTS]    = sText_Legacy_RandoGifts,
     [RANDO_ROW_STATICS]  = sText_Legacy_RandoStatics,
+    [RANDO_ROW_ITEMS]    = sText_Legacy_RandoItems,
     [RANDO_ROW_SIMILAR]  = sText_Legacy_RandoSimilar,
     [RANDO_ROW_LEGENDS]  = sText_Legacy_RandoLegendPool,
     [RANDO_ROW_START]    = sText_Legacy_RandoStart,
@@ -1469,21 +1472,22 @@ static const u16 sRandoRowFlags[RANDO_ROW_START] =
     [RANDO_ROW_BOSSES]   = RANDO_F_BOSSES,
     [RANDO_ROW_GIFTS]    = RANDO_F_GIFTS,
     [RANDO_ROW_STATICS]  = RANDO_F_STATICS,
+    [RANDO_ROW_ITEMS]    = RANDO_F_ITEMS,
     [RANDO_ROW_SIMILAR]  = RANDO_F_SIMILAR_BST,
     [RANDO_ROW_LEGENDS]  = RANDO_F_LEGENDS,
 };
 
-// bg0 tile budget: textbox uses blocks 1-420, frame gfx 512-540; the free
-// contiguous run is 544-767, which exactly fits this 16x14 window (224 tiles).
+// bg0 tile budget: frame gfx sit at 512-540. The textbox is cleared while this
+// screen is open, so (like WIN_INTRO_NAMES) the window reuses blocks 1-256.
 static const struct WindowTemplate sLegacyRandomizerWinTemplate =
 {
     .bg = 0,
     .tilemapLeft = 7,
-    .tilemapTop = 3,
+    .tilemapTop = 2,
     .width = 16,
-    .height = 14,
+    .height = 16,
     .paletteNum = 15,
-    .baseBlock = 544
+    .baseBlock = 1
 };
 
 #define RANDO_ROW_HEIGHT 14
@@ -1547,6 +1551,7 @@ static void Task_OakSpeechLegacy_HandleRandomizerYesNoInput(u8 taskId)
         sRandoToggles[RANDO_ROW_BOSSES] = TRUE;
         sRandoToggles[RANDO_ROW_GIFTS] = TRUE;
         sRandoToggles[RANDO_ROW_STATICS] = TRUE;
+        sRandoToggles[RANDO_ROW_ITEMS] = TRUE;
         sRandoToggles[RANDO_ROW_SIMILAR] = FALSE;
         sRandoToggles[RANDO_ROW_LEGENDS] = FALSE;
         gTasks[taskId].tRandoAccept = TRUE;
