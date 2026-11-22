@@ -42,5 +42,6 @@ u16 Randomizer_MapSpecies(u16 species, u8 category);
 u16 Randomizer_MapTrainerMonSpecies(u16 trainerNum, u16 species);
 void Randomizer_SetLastGift(u16 vanillaSpecies, u16 mappedSpecies);
 u16 Randomizer_RemapGiftText(u16 species);
+void Randomizer_PreviewStarter(void);
 
 #endif // GUARD_RANDOMIZER_H

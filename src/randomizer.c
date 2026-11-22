@@ -4,6 +4,8 @@
 #include "event_data.h"
 #include "pokemon.h"
 #include "random.h"
+#include "string_util.h"
+#include "data.h"
 #include "constants/species.h"
 #include "constants/trainers.h"
 
@@ -254,4 +256,17 @@ u16 Randomizer_RemapGiftText(u16 species)
     if (species != SPECIES_NONE && species == sLastGiftVanilla)
         return sLastGiftMapped;
     return species;
+}
+
+// Oak's Lab starter choice: preview the species the chosen ball will really
+// give. VAR_0x8004 = species to show, STR_VAR_2 = its name, VAR_RESULT = TRUE
+// when the randomizer changed it (the script then uses neutral wording).
+void Randomizer_PreviewStarter(void)
+{
+    u16 vanilla = VarGet(VAR_TEMP_2);
+    u16 species = Randomizer_MapSpecies(vanilla, RCAT_GIFT);
+
+    gSpecialVar_0x8004 = species;
+    gSpecialVar_Result = (species != vanilla);
+    StringCopy(gStringVar2, gSpeciesNames[species]);
 }

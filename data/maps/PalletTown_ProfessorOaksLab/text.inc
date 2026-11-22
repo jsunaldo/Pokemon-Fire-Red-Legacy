@@ -100,6 +100,12 @@ PalletTown_ProfessorOaksLab_Text_OakHeyDontGoAwayYet::
     .string "OAK: Hey!\n"
     .string "Don't go away yet!$"
 
+PalletTown_ProfessorOaksLab_Text_OakChoosingRandomStarter::
+    .string "Oh! {STR_VAR_2} is your choice.\n"
+    .string "Raise it well, and it'll go far.\p"
+    .string "So, {PLAYER}, you want to go with\n"
+    .string "{STR_VAR_2}?$"
+
 PalletTown_ProfessorOaksLab_Text_OakChoosingCharmander::
     .string "Ah! CHARMANDER is your choice.\n"
     .string "You should raise it patiently.\p"
