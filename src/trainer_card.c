@@ -1254,15 +1254,15 @@ static void PrintHardModeOnCard(void)
 // FireRed Legacy: show the randomizer seed + settings on the player's own card
 // front, so a randomized save is identifiable at a glance. Settings are shown
 // as letters: W wild, T trainers, B bosses, G gifts, L legendary statics,
-// I items, S similar-BST, A legendaries anywhere.
+// I items, E every slot rolled separately, S similar-BST, A legendaries anywhere.
 static void PrintRandomizerOnCard(void)
 {
     static const u8 sText_Random[] = _("RANDOM ");
-    static const u8 sSettingLetters[] = _("WTBGLISA");
+    static const u8 sSettingLetters[] = _("WTBGLIESA");
     static const u16 sSettingBits[] =
     {
         RANDO_F_WILD, RANDO_F_TRAINERS, RANDO_F_BOSSES, RANDO_F_GIFTS,
-        RANDO_F_STATICS, RANDO_F_ITEMS, RANDO_F_SIMILAR_BST, RANDO_F_LEGENDS,
+        RANDO_F_STATICS, RANDO_F_ITEMS, RANDO_F_PER_SLOT, RANDO_F_SIMILAR_BST, RANDO_F_LEGENDS,
     };
     u8 buffer[32];
     u8 *end;

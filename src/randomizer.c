@@ -214,7 +214,70 @@ void Randomizer_BuildTables(void)
     }
 }
 
+// Hash of (seed, category, slot, attempt) for EVERY SLOT mode.
+static u32 SlotHash(u32 slotKey, u8 category, u32 attempt)
+{
+    u32 h = Randomizer_GetSeed() ^ (slotKey * 2654435761u);
+
+    h = ISO_RANDOMIZE1(h ^ ((u32)category * 0x85EBCA6Bu));
+    h = ISO_RANDOMIZE1(h ^ (h >> 15) ^ (attempt * 0x9E3779B9u));
+    h = ISO_RANDOMIZE1(h ^ (h >> 13));
+    return h >> 8;
+}
+
+// EVERY SLOT mode: each slot draws its own species, honoring the same
+// legendary partition and (optionally) a +/-10% base-stat-total band.
+static u16 PickSlotSpecies(u16 species, u8 category, u32 slotKey, u16 settings)
+{
+    bool8 legendSource = !(settings & RANDO_F_LEGENDS) && IsLegendary(species);
+    u16 srcBst = BstOf(species);
+    u16 tolerance = srcBst / 10;
+    u32 attempt;
+
+    for (attempt = 0; attempt < 256; attempt++)
+    {
+        u32 h = SlotHash(slotKey, category, attempt);
+        u16 candidate;
+
+        if (legendSource)
+        {
+            candidate = sLegendaries[h % ARRAY_COUNT(sLegendaries)];
+        }
+        else
+        {
+            candidate = 1 + h % (NUM_SPECIES - 1);
+            if (!IsRealSpecies(candidate))
+                continue;
+            if (!(settings & RANDO_F_LEGENDS) && IsLegendary(candidate))
+                continue;
+        }
+        if (settings & RANDO_F_SIMILAR_BST)
+        {
+            u16 bst = BstOf(candidate);
+
+            if (bst + tolerance < srcBst || bst > srcBst + tolerance)
+                continue;
+        }
+        return candidate;
+    }
+    return sSpeciesMap[species]; // global map is already partition/BST-safe
+}
+
+// Current map as the high half of a slot key.
+u32 Randomizer_LocationKey(void)
+{
+    return ((u32)gSaveBlock1Ptr->location.mapGroup << 24)
+         | ((u32)gSaveBlock1Ptr->location.mapNum << 16);
+}
+
 u16 Randomizer_MapSpecies(u16 species, u8 category)
+{
+    return Randomizer_MapSpeciesAt(species, category, species);
+}
+
+// slotKey identifies the encounter slot / party slot / gift; it only matters
+// in EVERY SLOT mode (otherwise one global 1:1 swap applies everywhere).
+u16 Randomizer_MapSpeciesAt(u16 species, u8 category, u32 slotKey)
 {
     static const u16 sCategoryBit[] =
     {
@@ -234,14 +297,16 @@ u16 Randomizer_MapSpecies(u16 species, u8 category)
         return species;
     if (!sMapBuilt) // backstop for any load path that skipped the explicit rebuild
         Randomizer_BuildTables();
+    if (settings & RANDO_F_PER_SLOT)
+        return PickSlotSpecies(species, category, slotKey, settings);
     return sSpeciesMap[species];
 }
 
-u16 Randomizer_MapTrainerMonSpecies(u16 trainerNum, u16 species)
+u16 Randomizer_MapTrainerMonSpecies(u16 trainerNum, u8 partyIndex, u16 species)
 {
     u8 category = IsBossTrainerClass(gTrainers[trainerNum].trainerClass) ? RCAT_BOSS : RCAT_TRAINER;
 
-    return Randomizer_MapSpecies(species, category);
+    return Randomizer_MapSpeciesAt(species, category, ((u32)trainerNum << 8) | partyIndex);
 }
 
 void Randomizer_SetLastGift(u16 vanillaSpecies, u16 mappedSpecies)
@@ -268,7 +333,8 @@ u16 Randomizer_RemapGiftText(u16 species)
 void Randomizer_PreviewStarter(void)
 {
     u16 vanilla = VarGet(VAR_TEMP_2);
-    u16 species = Randomizer_MapSpecies(vanilla, RCAT_GIFT);
+    // Same key ScriptGiveMon uses, so the preview matches the mon received.
+    u16 species = Randomizer_MapSpeciesAt(vanilla, RCAT_GIFT, Randomizer_LocationKey() | vanilla);
 
     gSpecialVar_0x8004 = species;
     gSpecialVar_Result = (species != vanilla);
@@ -297,9 +363,7 @@ u16 Randomizer_MapFieldItem(u16 item, u32 locationKey)
 // Std_FindItem: VAR_0x8000 holds the ball's item; key it by map + object.
 void Randomizer_RandomizeItemBall(void)
 {
-    u32 key = ((u32)gSaveBlock1Ptr->location.mapGroup << 24)
-            | ((u32)gSaveBlock1Ptr->location.mapNum << 16)
-            | gSpecialVar_LastTalked;
+    u32 key = Randomizer_LocationKey() | gSpecialVar_LastTalked;
 
     gSpecialVar_0x8000 = Randomizer_MapFieldItem(gSpecialVar_0x8000, key);
 }

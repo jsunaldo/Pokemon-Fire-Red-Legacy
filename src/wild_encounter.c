@@ -237,11 +237,11 @@ static bool8 IsInTanobyChamber(void)
     return TRUE;
 }
 
-static void GenerateWildMon(u16 species, u8 level, u8 slot)
+static void GenerateWildMon(u16 species, u8 level, u8 slot, u8 area)
 {
     u32 personality;
     s8 chamber;
-    species = Randomizer_MapSpecies(species, RCAT_WILD);
+    species = Randomizer_MapSpeciesAt(species, RCAT_WILD, Randomizer_LocationKey() | ((u32)area << 8) | slot);
     ZeroEnemyPartyMons();
     if (species != SPECIES_UNOWN || !IsInTanobyChamber())
     {
@@ -302,7 +302,7 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo * info, u8 area, u8
     {
         return FALSE;
     }
-    GenerateWildMon(info->wildPokemon[slot].species, level, slot);
+    GenerateWildMon(info->wildPokemon[slot].species, level, slot, area);
     return TRUE;
 }
 
@@ -310,7 +310,7 @@ static u16 GenerateFishingEncounter(const struct WildPokemonInfo * info, u8 rod)
 {
     u8 slot = ChooseWildMonIndex_Fishing(rod);
     u8 level = ChooseWildMonLevel(&info->wildPokemon[slot]);
-    GenerateWildMon(info->wildPokemon[slot].species, level, slot);
+    GenerateWildMon(info->wildPokemon[slot].species, level, slot, WILD_AREA_FISHING);
     return info->wildPokemon[slot].species;
 }
 

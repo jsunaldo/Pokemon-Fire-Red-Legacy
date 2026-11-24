@@ -1571,7 +1571,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
             case 0:
             {
                 const struct TrainerMonNoItemDefaultMoves *partyData = gTrainers[trainerNum].party.NoItemDefaultMoves;
-                u16 species = Randomizer_MapTrainerMonSpecies(trainerNum, partyData[i].species);
+                u16 species = Randomizer_MapTrainerMonSpecies(trainerNum, i, partyData[i].species);
 
                 for (j = 0; gSpeciesNames[species][j] != EOS; j++)
                     nameHash += gSpeciesNames[species][j];
@@ -1584,7 +1584,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
             case F_TRAINER_PARTY_CUSTOM_MOVESET:
             {
                 const struct TrainerMonNoItemCustomMoves *partyData = gTrainers[trainerNum].party.NoItemCustomMoves;
-                u16 species = Randomizer_MapTrainerMonSpecies(trainerNum, partyData[i].species);
+                u16 species = Randomizer_MapTrainerMonSpecies(trainerNum, i, partyData[i].species);
 
                 for (j = 0; gSpeciesNames[species][j] != EOS; j++)
                     nameHash += gSpeciesNames[species][j];
@@ -1603,7 +1603,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
             case F_TRAINER_PARTY_HELD_ITEM:
             {
                 const struct TrainerMonItemDefaultMoves *partyData = gTrainers[trainerNum].party.ItemDefaultMoves;
-                u16 species = Randomizer_MapTrainerMonSpecies(trainerNum, partyData[i].species);
+                u16 species = Randomizer_MapTrainerMonSpecies(trainerNum, i, partyData[i].species);
 
                 for (j = 0; gSpeciesNames[species][j] != EOS; j++)
                     nameHash += gSpeciesNames[species][j];
@@ -1618,7 +1618,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
             case F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM:
             {
                 const struct TrainerMonItemCustomMoves *partyData = gTrainers[trainerNum].party.ItemCustomMoves;
-                u16 species = Randomizer_MapTrainerMonSpecies(trainerNum, partyData[i].species);
+                u16 species = Randomizer_MapTrainerMonSpecies(trainerNum, i, partyData[i].species);
 
                 for (j = 0; gSpeciesNames[species][j] != EOS; j++)
                     nameHash += gSpeciesNames[species][j];

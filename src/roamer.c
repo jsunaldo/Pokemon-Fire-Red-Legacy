@@ -101,7 +101,7 @@ void CreateInitialRoamerMon(void)
 {
     struct Pokemon * mon = &gEnemyParty[0];
     // Remap once at creation; ROAMER->species (SaveBlock1) then stays stable.
-    u16 species = Randomizer_MapSpecies(GetRoamerSpecies(), RCAT_STATIC);
+    u16 species = Randomizer_MapSpeciesAt(GetRoamerSpecies(), RCAT_STATIC, 0xFD000000 | GetRoamerSpecies());
     CreateMon(mon, species, 50, USE_RANDOM_IVS, FALSE, 0, OT_ID_PLAYER_ID, 0);
     ROAMER->species = species;
     ROAMER->level = 50;

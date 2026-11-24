@@ -53,7 +53,7 @@ EWRAM_DATA bool8 gOakSpeechHardMode = FALSE;
 
 // FireRed Legacy: randomizer toggle states while the intro menu is open
 // (rows 0-6; committed to gOakSpeechRandoSettings when START! is chosen).
-static EWRAM_DATA u8 sRandoToggles[8] = {};
+static EWRAM_DATA u8 sRandoToggles[9] = {};
 
 static void Task_NewGameScene(u8);
 
@@ -1436,6 +1436,7 @@ enum
     RANDO_ROW_GIFTS,
     RANDO_ROW_STATICS,
     RANDO_ROW_ITEMS,
+    RANDO_ROW_PER_SLOT,
     RANDO_ROW_SIMILAR,
     RANDO_ROW_LEGENDS,
     RANDO_ROW_START,
@@ -1448,6 +1449,7 @@ static const u8 sText_Legacy_RandoBosses[] = _("BOSSES");
 static const u8 sText_Legacy_RandoGifts[] = _("GIFT PKMN");
 static const u8 sText_Legacy_RandoStatics[] = _("LEGENDS");
 static const u8 sText_Legacy_RandoItems[] = _("ITEMS");
+static const u8 sText_Legacy_RandoPerSlot[] = _("EVERY SLOT");
 static const u8 sText_Legacy_RandoSimilar[] = _("SIMILAR BST");
 static const u8 sText_Legacy_RandoLegendPool[] = _("WILD LEGENDS");
 static const u8 sText_Legacy_RandoStart[] = _("START!");
@@ -1460,6 +1462,7 @@ static const u8 *const sRandoRowLabels[NUM_RANDO_ROWS] =
     [RANDO_ROW_GIFTS]    = sText_Legacy_RandoGifts,
     [RANDO_ROW_STATICS]  = sText_Legacy_RandoStatics,
     [RANDO_ROW_ITEMS]    = sText_Legacy_RandoItems,
+    [RANDO_ROW_PER_SLOT] = sText_Legacy_RandoPerSlot,
     [RANDO_ROW_SIMILAR]  = sText_Legacy_RandoSimilar,
     [RANDO_ROW_LEGENDS]  = sText_Legacy_RandoLegendPool,
     [RANDO_ROW_START]    = sText_Legacy_RandoStart,
@@ -1473,19 +1476,21 @@ static const u16 sRandoRowFlags[RANDO_ROW_START] =
     [RANDO_ROW_GIFTS]    = RANDO_F_GIFTS,
     [RANDO_ROW_STATICS]  = RANDO_F_STATICS,
     [RANDO_ROW_ITEMS]    = RANDO_F_ITEMS,
+    [RANDO_ROW_PER_SLOT] = RANDO_F_PER_SLOT,
     [RANDO_ROW_SIMILAR]  = RANDO_F_SIMILAR_BST,
     [RANDO_ROW_LEGENDS]  = RANDO_F_LEGENDS,
 };
 
 // bg0 tile budget: frame gfx sit at 512-540. The textbox is cleared while this
-// screen is open, so (like WIN_INTRO_NAMES) the window reuses blocks 1-256.
+// screen is open, so (like WIN_INTRO_NAMES) the window reuses blocks 1-288
+// (BOYGIRL/YESNO at 372+ are not open here).
 static const struct WindowTemplate sLegacyRandomizerWinTemplate =
 {
     .bg = 0,
     .tilemapLeft = 7,
-    .tilemapTop = 2,
+    .tilemapTop = 1,
     .width = 16,
-    .height = 16,
+    .height = 18,
     .paletteNum = 15,
     .baseBlock = 1
 };
@@ -1552,6 +1557,7 @@ static void Task_OakSpeechLegacy_HandleRandomizerYesNoInput(u8 taskId)
         sRandoToggles[RANDO_ROW_GIFTS] = TRUE;
         sRandoToggles[RANDO_ROW_STATICS] = TRUE;
         sRandoToggles[RANDO_ROW_ITEMS] = TRUE;
+        sRandoToggles[RANDO_ROW_PER_SLOT] = FALSE;
         sRandoToggles[RANDO_ROW_SIMILAR] = FALSE;
         sRandoToggles[RANDO_ROW_LEGENDS] = FALSE;
         gTasks[taskId].tRandoAccept = TRUE;
