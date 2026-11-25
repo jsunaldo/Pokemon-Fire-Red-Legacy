@@ -3368,6 +3368,26 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FollowerPokemon = 
     .affineAnims = gDummySpriteAffineAnimTable,
 };
 
+// Same follower, for species whose overworld art is 64x64 (gFollowerMonIsLarge).
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FollowerPokemonLarge = {
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_FOLLOWER,
+    .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,
+    .size = 2048,
+    .width = 64,
+    .height = 64,
+    .paletteSlot = PALSLOT_NPC_1,
+    .shadowSize = SHADOW_SIZE_L,
+    .inanimate = FALSE,
+    .disableReflectionPaletteLoad = FALSE,
+    .tracks = TRACKS_FOOT,
+    .oam = &gObjectEventBaseOam_64x64,
+    .subspriteTables = gObjectEventSpriteOamTables_64x64,
+    .anims = sAnimTable_FollowerPokemon,
+    .images = sFollowerFrames_Lugia, // default frames; engine swaps these per species
+    .affineAnims = gDummySpriteAffineAnimTable,
+};
+
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Onix = {
     .tileTag = TAG_NONE,
     .paletteTag = OBJ_EVENT_PAL_TAG_ONIX,

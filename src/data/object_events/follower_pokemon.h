@@ -2432,12 +2432,12 @@ static const struct SpriteFrameImage sFollowerFrames_Gligar[] = {
     overworld_frame(sFollowerPic_Gligar, 4, 4, 5),
 };
 static const struct SpriteFrameImage sFollowerFrames_Steelix[] = {
-    overworld_frame(sFollowerPic_Steelix, 4, 4, 0),
-    overworld_frame(sFollowerPic_Steelix, 4, 4, 1),
-    overworld_frame(sFollowerPic_Steelix, 4, 4, 2),
-    overworld_frame(sFollowerPic_Steelix, 4, 4, 3),
-    overworld_frame(sFollowerPic_Steelix, 4, 4, 4),
-    overworld_frame(sFollowerPic_Steelix, 4, 4, 5),
+    overworld_frame(sFollowerPic_Steelix, 8, 8, 0),
+    overworld_frame(sFollowerPic_Steelix, 8, 8, 1),
+    overworld_frame(sFollowerPic_Steelix, 8, 8, 2),
+    overworld_frame(sFollowerPic_Steelix, 8, 8, 3),
+    overworld_frame(sFollowerPic_Steelix, 8, 8, 4),
+    overworld_frame(sFollowerPic_Steelix, 8, 8, 5),
 };
 static const struct SpriteFrameImage sFollowerFrames_Snubbull[] = {
     overworld_frame(sFollowerPic_Snubbull, 4, 4, 0),
@@ -2760,20 +2760,20 @@ static const struct SpriteFrameImage sFollowerFrames_Tyranitar[] = {
     overworld_frame(sFollowerPic_Tyranitar, 4, 4, 5),
 };
 static const struct SpriteFrameImage sFollowerFrames_Lugia[] = {
-    overworld_frame(sFollowerPic_Lugia, 4, 4, 0),
-    overworld_frame(sFollowerPic_Lugia, 4, 4, 1),
-    overworld_frame(sFollowerPic_Lugia, 4, 4, 2),
-    overworld_frame(sFollowerPic_Lugia, 4, 4, 3),
-    overworld_frame(sFollowerPic_Lugia, 4, 4, 4),
-    overworld_frame(sFollowerPic_Lugia, 4, 4, 5),
+    overworld_frame(sFollowerPic_Lugia, 8, 8, 0),
+    overworld_frame(sFollowerPic_Lugia, 8, 8, 1),
+    overworld_frame(sFollowerPic_Lugia, 8, 8, 2),
+    overworld_frame(sFollowerPic_Lugia, 8, 8, 3),
+    overworld_frame(sFollowerPic_Lugia, 8, 8, 4),
+    overworld_frame(sFollowerPic_Lugia, 8, 8, 5),
 };
 static const struct SpriteFrameImage sFollowerFrames_HoOh[] = {
-    overworld_frame(sFollowerPic_HoOh, 4, 4, 0),
-    overworld_frame(sFollowerPic_HoOh, 4, 4, 1),
-    overworld_frame(sFollowerPic_HoOh, 4, 4, 2),
-    overworld_frame(sFollowerPic_HoOh, 4, 4, 3),
-    overworld_frame(sFollowerPic_HoOh, 4, 4, 4),
-    overworld_frame(sFollowerPic_HoOh, 4, 4, 5),
+    overworld_frame(sFollowerPic_HoOh, 8, 8, 0),
+    overworld_frame(sFollowerPic_HoOh, 8, 8, 1),
+    overworld_frame(sFollowerPic_HoOh, 8, 8, 2),
+    overworld_frame(sFollowerPic_HoOh, 8, 8, 3),
+    overworld_frame(sFollowerPic_HoOh, 8, 8, 4),
+    overworld_frame(sFollowerPic_HoOh, 8, 8, 5),
 };
 static const struct SpriteFrameImage sFollowerFrames_Celebi[] = {
     overworld_frame(sFollowerPic_Celebi, 4, 4, 0),
@@ -3080,12 +3080,12 @@ static const struct SpriteFrameImage sFollowerFrames_Wailmer[] = {
     overworld_frame(sFollowerPic_Wailmer, 4, 4, 5),
 };
 static const struct SpriteFrameImage sFollowerFrames_Wailord[] = {
-    overworld_frame(sFollowerPic_Wailord, 4, 4, 0),
-    overworld_frame(sFollowerPic_Wailord, 4, 4, 1),
-    overworld_frame(sFollowerPic_Wailord, 4, 4, 2),
-    overworld_frame(sFollowerPic_Wailord, 4, 4, 3),
-    overworld_frame(sFollowerPic_Wailord, 4, 4, 4),
-    overworld_frame(sFollowerPic_Wailord, 4, 4, 5),
+    overworld_frame(sFollowerPic_Wailord, 8, 8, 0),
+    overworld_frame(sFollowerPic_Wailord, 8, 8, 1),
+    overworld_frame(sFollowerPic_Wailord, 8, 8, 2),
+    overworld_frame(sFollowerPic_Wailord, 8, 8, 3),
+    overworld_frame(sFollowerPic_Wailord, 8, 8, 4),
+    overworld_frame(sFollowerPic_Wailord, 8, 8, 5),
 };
 static const struct SpriteFrameImage sFollowerFrames_Skitty[] = {
     overworld_frame(sFollowerPic_Skitty, 4, 4, 0),
@@ -3800,28 +3800,28 @@ static const struct SpriteFrameImage sFollowerFrames_Registeel[] = {
     overworld_frame(sFollowerPic_Registeel, 4, 4, 5),
 };
 static const struct SpriteFrameImage sFollowerFrames_Kyogre[] = {
-    overworld_frame(sFollowerPic_Kyogre, 4, 4, 0),
-    overworld_frame(sFollowerPic_Kyogre, 4, 4, 1),
-    overworld_frame(sFollowerPic_Kyogre, 4, 4, 2),
-    overworld_frame(sFollowerPic_Kyogre, 4, 4, 3),
-    overworld_frame(sFollowerPic_Kyogre, 4, 4, 4),
-    overworld_frame(sFollowerPic_Kyogre, 4, 4, 5),
+    overworld_frame(sFollowerPic_Kyogre, 8, 8, 0),
+    overworld_frame(sFollowerPic_Kyogre, 8, 8, 1),
+    overworld_frame(sFollowerPic_Kyogre, 8, 8, 2),
+    overworld_frame(sFollowerPic_Kyogre, 8, 8, 3),
+    overworld_frame(sFollowerPic_Kyogre, 8, 8, 4),
+    overworld_frame(sFollowerPic_Kyogre, 8, 8, 5),
 };
 static const struct SpriteFrameImage sFollowerFrames_Groudon[] = {
-    overworld_frame(sFollowerPic_Groudon, 4, 4, 0),
-    overworld_frame(sFollowerPic_Groudon, 4, 4, 1),
-    overworld_frame(sFollowerPic_Groudon, 4, 4, 2),
-    overworld_frame(sFollowerPic_Groudon, 4, 4, 3),
-    overworld_frame(sFollowerPic_Groudon, 4, 4, 4),
-    overworld_frame(sFollowerPic_Groudon, 4, 4, 5),
+    overworld_frame(sFollowerPic_Groudon, 8, 8, 0),
+    overworld_frame(sFollowerPic_Groudon, 8, 8, 1),
+    overworld_frame(sFollowerPic_Groudon, 8, 8, 2),
+    overworld_frame(sFollowerPic_Groudon, 8, 8, 3),
+    overworld_frame(sFollowerPic_Groudon, 8, 8, 4),
+    overworld_frame(sFollowerPic_Groudon, 8, 8, 5),
 };
 static const struct SpriteFrameImage sFollowerFrames_Rayquaza[] = {
-    overworld_frame(sFollowerPic_Rayquaza, 4, 4, 0),
-    overworld_frame(sFollowerPic_Rayquaza, 4, 4, 1),
-    overworld_frame(sFollowerPic_Rayquaza, 4, 4, 2),
-    overworld_frame(sFollowerPic_Rayquaza, 4, 4, 3),
-    overworld_frame(sFollowerPic_Rayquaza, 4, 4, 4),
-    overworld_frame(sFollowerPic_Rayquaza, 4, 4, 5),
+    overworld_frame(sFollowerPic_Rayquaza, 8, 8, 0),
+    overworld_frame(sFollowerPic_Rayquaza, 8, 8, 1),
+    overworld_frame(sFollowerPic_Rayquaza, 8, 8, 2),
+    overworld_frame(sFollowerPic_Rayquaza, 8, 8, 3),
+    overworld_frame(sFollowerPic_Rayquaza, 8, 8, 4),
+    overworld_frame(sFollowerPic_Rayquaza, 8, 8, 5),
 };
 static const struct SpriteFrameImage sFollowerFrames_Latias[] = {
     overworld_frame(sFollowerPic_Latias, 4, 4, 0),
@@ -4640,4 +4640,15 @@ const u16 *const gFollowerMonPaletteTable[NUM_SPECIES] = {
     [SPECIES_JIRACHI] = sFollowerPal_Jirachi,
     [SPECIES_DEOXYS] = sFollowerPal_Deoxys,
     [SPECIES_CHIMECHO] = sFollowerPal_Chimecho,
+};
+
+// TRUE for species drawn with 64x64 frames (OBJ_EVENT_GFX_FOLLOWER_POKEMON_LARGE).
+const bool8 gFollowerMonIsLarge[NUM_SPECIES] = {
+    [SPECIES_STEELIX] = TRUE,
+    [SPECIES_LUGIA] = TRUE,
+    [SPECIES_HO_OH] = TRUE,
+    [SPECIES_WAILORD] = TRUE,
+    [SPECIES_KYOGRE] = TRUE,
+    [SPECIES_GROUDON] = TRUE,
+    [SPECIES_RAYQUAZA] = TRUE,
 };

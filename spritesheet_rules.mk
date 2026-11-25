@@ -1,7 +1,12 @@
 OBJEVENTGFXDIR := graphics/object_events/pics
 FLDEFFGFXDIR := graphics/field_effects/pics
 
-# Following-Pokémon overworld sprites: 192x32 sheets of six 32x32 frames.
+# Following-Pokémon overworld sprites: 192x32 sheets of six 32x32 frames,
+# except the giants, which are 384x64 sheets of six 64x64 frames.
+FOLLOWER_LARGE := groudon ho_oh kyogre lugia rayquaza steelix wailord
+$(foreach n,$(FOLLOWER_LARGE),$(OBJEVENTGFXDIR)/pokemon_follow/$(n).4bpp): %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 8 -mheight 8
+
 $(OBJEVENTGFXDIR)/pokemon_follow/%.4bpp: $(OBJEVENTGFXDIR)/pokemon_follow/%.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 

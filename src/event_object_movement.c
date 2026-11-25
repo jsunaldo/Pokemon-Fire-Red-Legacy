@@ -9688,7 +9688,9 @@ void TrySpawnFollowerPokemon(void)
     player = &gObjectEvents[gPlayerAvatar.objectEventId];
     dir = player->facingDirection;
 
-    objId = SpawnSpecialObjectEventParameterized(OBJ_EVENT_GFX_FOLLOWER_POKEMON, MOVEMENT_TYPE_NONE,
+    objId = SpawnSpecialObjectEventParameterized(gFollowerMonIsLarge[species] ? OBJ_EVENT_GFX_FOLLOWER_POKEMON_LARGE
+                                                                              : OBJ_EVENT_GFX_FOLLOWER_POKEMON,
+                                                 MOVEMENT_TYPE_NONE,
                                                  LOCALID_FOLLOWER, player->currentCoords.x,
                                                  player->currentCoords.y, player->currentElevation);
     if (objId == OBJECT_EVENTS_COUNT)
