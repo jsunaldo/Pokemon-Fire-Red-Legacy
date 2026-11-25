@@ -2564,3 +2564,12 @@ void NuzlockeHelperTopUpAmount(void)
 
     gSpecialVar_0x8001 = (have >= 999) ? 0 : 999 - have;
 }
+
+// FRLG Legacy: randomized saves can hold the National Dex from the very start,
+// so story beats that vanilla keyed off the dex (Celio's Ruby request and the
+// Sevii 4-7 unlock, the Indigo Plateau door guard, Dunsparce Tunnel) also
+// require having beaten the Elite Four, keeping the original order.
+bool8 IsNationalDexPostgame(void)
+{
+    return IsNationalPokedexEnabled() && FlagGet(FLAG_SYS_GAME_CLEAR);
+}

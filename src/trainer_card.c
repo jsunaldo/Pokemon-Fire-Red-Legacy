@@ -1254,7 +1254,8 @@ static void PrintHardModeOnCard(void)
 // FireRed Legacy: show the randomizer seed + settings on the player's own card
 // front, so a randomized save is identifiable at a glance. Settings are shown
 // as letters: W wild, T trainers, B bosses, G gifts, L legendary statics,
-// I items, E every slot rolled separately, S similar-BST, A legendaries anywhere.
+// I items, E every slot rolled separately, S similar-BST, A legendaries anywhere,
+// then the allowed gens (e.g. "13") when the gen filter excludes any.
 static void PrintRandomizerOnCard(void)
 {
     static const u8 sText_Random[] = _("RANDOM ");
@@ -1282,6 +1283,17 @@ static void PrintRandomizerOnCard(void)
         {
             if (settings & sSettingBits[i])
                 *end++ = sSettingLetters[i];
+        }
+        // Gen filter: list the allowed gens only when some are excluded.
+        if (settings & RANDO_GEN_MASK)
+        {
+            *end++ = CHAR_SPACE;
+            if (!(settings & RANDO_F_NO_GEN1))
+                *end++ = CHAR_1;
+            if (!(settings & RANDO_F_NO_GEN2))
+                *end++ = CHAR_2;
+            if (!(settings & RANDO_F_NO_GEN3))
+                *end++ = CHAR_3;
         }
         *end = EOS;
         AddTextPrinterParameterized3(1, sTrainerCardFontIds[1], 20, 116, sTrainerCardTextColors, TEXT_SKIP_DRAW, buffer);

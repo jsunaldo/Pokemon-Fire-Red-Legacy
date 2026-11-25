@@ -157,6 +157,7 @@ void NewGameInitData(void)
     VarSet(VAR_RANDOMIZER_SEED_HI, gOakSpeechRandoSeed >> 16);
     VarSet(VAR_RANDOMIZER_SETTINGS, gOakSpeechRandoSettings);
     Randomizer_BuildTables();
+    Randomizer_TryGrantNationalDex();
     StringCopy(gSaveBlock1Ptr->rivalName, rivalName);
     ResetTrainerTowerResults();
 }

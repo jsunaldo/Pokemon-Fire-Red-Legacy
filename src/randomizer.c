@@ -110,6 +110,105 @@ static u16 BstOf(u16 species)
          + info->baseSpeed + info->baseSpAttack + info->baseSpDefense;
 }
 
+// 1, 2 or 3 by National Dex number.
+static u8 GenOf(u16 species)
+{
+    u16 dex = SpeciesToNationalPokedexNum(species);
+
+    if (dex <= 151)
+        return 1;
+    if (dex <= 251)
+        return 2;
+    return 3;
+}
+
+static bool8 IsGenAllowed(u16 species, u16 settings)
+{
+    static const u16 sGenBit[] = {0, RANDO_F_NO_GEN1, RANDO_F_NO_GEN2, RANDO_F_NO_GEN3};
+
+    return !(settings & sGenBit[GenOf(species)]);
+}
+
+static bool8 InPartition(u16 species, u8 which)
+{
+    if (!IsRealSpecies(species))
+        return FALSE;
+    if (which == PARTITION_NORMALS && IsLegendary(species))
+        return FALSE;
+    if (which == PARTITION_LEGENDS && !IsLegendary(species))
+        return FALSE;
+    return TRUE;
+}
+
+// Generation-restricted global swap: every species in the partition maps to one
+// fixed species from the allowed gens. A bijection is impossible when the pool
+// is smaller, so allowed targets are reused evenly (or, with SIMILAR BST, the
+// target is drawn from the allowed species closest in base stat total).
+static void MapPartitionRestricted(u8 which, u16 settings)
+{
+    u32 i, j, nA = 0, k = 0;
+    u16 species;
+
+    for (species = 1; species < NUM_SPECIES; species++)
+    {
+        if (InPartition(species, which) && IsGenAllowed(species, settings))
+            sPoolList[nA++] = species;
+    }
+    if (nA == 0)
+        return; // nothing allowed in this partition: leave it unchanged
+
+    if (settings & RANDO_F_SIMILAR_BST)
+    {
+        for (i = 1; i < nA; i++) // sort allowed pool by BST
+        {
+            u16 s = sPoolList[i];
+            u16 b = BstOf(s);
+
+            for (j = i; j > 0; j--)
+            {
+                u16 prevB = BstOf(sPoolList[j - 1]);
+
+                if (prevB < b || (prevB == b && sPoolList[j - 1] < s))
+                    break;
+                sPoolList[j] = sPoolList[j - 1];
+            }
+            sPoolList[j] = s;
+        }
+        for (species = 1; species < NUM_SPECIES; species++)
+        {
+            u16 b;
+            u32 lo, hi, pos, window;
+
+            if (!InPartition(species, which))
+                continue;
+            b = BstOf(species);
+            for (pos = 0; pos < nA && BstOf(sPoolList[pos]) < b; pos++)
+                ;
+            window = RANDO_BST_WINDOW < nA ? RANDO_BST_WINDOW : nA;
+            lo = pos >= window / 2 ? pos - window / 2 : 0;
+            if (lo + window > nA)
+                lo = nA - window;
+            hi = lo + window;
+            sSpeciesMap[species] = sPoolList[lo + RandoRand() % (hi - lo)];
+        }
+    }
+    else
+    {
+        for (i = nA - 1; i > 0; i--) // shuffle the allowed pool
+        {
+            j = RandoRand() % (i + 1);
+            species = sPoolList[i];
+            sPoolList[i] = sPoolList[j];
+            sPoolList[j] = species;
+        }
+        for (species = 1; species < NUM_SPECIES; species++)
+        {
+            if (InPartition(species, which))
+                sSpeciesMap[species] = sPoolList[k++ % nA];
+        }
+    }
+}
+
 // Swap the map targets of two partition members. sSpeciesMap starts as the
 // identity, so Fisher-Yates over map entries yields a uniform permutation of
 // the partition without a separate codomain array.
@@ -204,8 +303,22 @@ void Randomizer_BuildTables(void)
         return;
 
     sRandoRngState = Randomizer_GetSeed();
-    if (settings & RANDO_F_LEGENDS)
+    if (settings & RANDO_GEN_MASK)
     {
+        // Some gens excluded: map everything onto the allowed gens.
+        if (settings & RANDO_F_LEGENDS)
+        {
+            MapPartitionRestricted(PARTITION_ALL, settings);
+        }
+        else
+        {
+            MapPartitionRestricted(PARTITION_NORMALS, settings);
+            MapPartitionRestricted(PARTITION_LEGENDS, settings);
+        }
+    }
+    else if (settings & RANDO_F_LEGENDS)
+    {
+        // All gens: the original bijective shuffle (existing saves keep their world).
         ShufflePartition(PARTITION_ALL, settings);
     }
     else
@@ -253,6 +366,8 @@ static u16 PickSlotSpecies(u16 species, u8 category, u32 slotKey, u16 settings)
             if (!(settings & RANDO_F_LEGENDS) && IsLegendary(candidate))
                 continue;
         }
+        if (!IsGenAllowed(candidate, settings))
+            continue;
         if (settings & RANDO_F_SIMILAR_BST)
         {
             u16 bst = BstOf(candidate);
@@ -262,7 +377,7 @@ static u16 PickSlotSpecies(u16 species, u8 category, u32 slotKey, u16 settings)
         }
         return candidate;
     }
-    return sSpeciesMap[species]; // global map is already partition/BST-safe
+    return sSpeciesMap[species]; // global map is already partition/BST/gen-safe
 }
 
 // Current map as the high half of a slot key.
@@ -368,4 +483,19 @@ void Randomizer_RandomizeItemBall(void)
     u32 key = Randomizer_LocationKey() | gSpecialVar_LastTalked;
 
     gSpecialVar_0x8000 = Randomizer_MapFieldItem(gSpecialVar_0x8000, key);
+}
+
+// A randomized save that can produce Gen 2/3 Pokémon gets the National Dex from
+// the start (otherwise those catches aren't even recorded). Called on new game
+// and on every continue, so existing randomized saves pick it up too.
+void Randomizer_TryGrantNationalDex(void)
+{
+    u16 settings = VarGet(VAR_RANDOMIZER_SETTINGS);
+
+    if (!(settings & RANDO_SPECIES_MASK))
+        return;
+    if ((settings & RANDO_F_NO_GEN2) && (settings & RANDO_F_NO_GEN3))
+        return;
+    if (!IsNationalPokedexEnabled())
+        EnableNationalPokedex();
 }

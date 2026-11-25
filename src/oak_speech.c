@@ -53,7 +53,9 @@ EWRAM_DATA bool8 gOakSpeechHardMode = FALSE;
 
 // FireRed Legacy: randomizer toggle states while the intro menu is open
 // (rows 0-6; committed to gOakSpeechRandoSettings when START! is chosen).
-static EWRAM_DATA u8 sRandoToggles[9] = {};
+static EWRAM_DATA u8 sRandoToggles[10] = {};
+// GENS row: allowed-generation bitmask (bit0 Gen 1, bit1 Gen 2, bit2 Gen 3).
+static EWRAM_DATA u8 sRandoGens = 7;
 
 static void Task_NewGameScene(u8);
 
@@ -1439,6 +1441,7 @@ enum
     RANDO_ROW_PER_SLOT,
     RANDO_ROW_SIMILAR,
     RANDO_ROW_LEGENDS,
+    RANDO_ROW_GENS,
     RANDO_ROW_START,
     NUM_RANDO_ROWS
 };
@@ -1452,7 +1455,21 @@ static const u8 sText_Legacy_RandoItems[] = _("ITEMS");
 static const u8 sText_Legacy_RandoPerSlot[] = _("EVERY SLOT");
 static const u8 sText_Legacy_RandoSimilar[] = _("SIMILAR BST");
 static const u8 sText_Legacy_RandoLegendPool[] = _("WILD LEGENDS");
+static const u8 sText_Legacy_RandoGens[] = _("GENS");
 static const u8 sText_Legacy_RandoStart[] = _("START!");
+// Cycle order for the GENS row (bitmask values) and their labels.
+static const u8 sRandoGenCycle[] = {7, 1, 2, 4, 3, 5, 6};
+static const u8 sText_Gens1[]   = _("1");
+static const u8 sText_Gens2[]   = _("2");
+static const u8 sText_Gens3[]   = _("3");
+static const u8 sText_Gens12[]  = _("1+2");
+static const u8 sText_Gens13[]  = _("1+3");
+static const u8 sText_Gens23[]  = _("2+3");
+static const u8 sText_Gens123[] = _("1+2+3");
+static const u8 *const sRandoGenLabels[8] = {
+    [1] = sText_Gens1, [2] = sText_Gens2, [4] = sText_Gens3, [3] = sText_Gens12,
+    [5] = sText_Gens13, [6] = sText_Gens23, [7] = sText_Gens123,
+};
 
 static const u8 *const sRandoRowLabels[NUM_RANDO_ROWS] =
 {
@@ -1465,6 +1482,7 @@ static const u8 *const sRandoRowLabels[NUM_RANDO_ROWS] =
     [RANDO_ROW_PER_SLOT] = sText_Legacy_RandoPerSlot,
     [RANDO_ROW_SIMILAR]  = sText_Legacy_RandoSimilar,
     [RANDO_ROW_LEGENDS]  = sText_Legacy_RandoLegendPool,
+    [RANDO_ROW_GENS]     = sText_Legacy_RandoGens,
     [RANDO_ROW_START]    = sText_Legacy_RandoStart,
 };
 
@@ -1495,7 +1513,7 @@ static const struct WindowTemplate sLegacyRandomizerWinTemplate =
     .baseBlock = 1
 };
 
-#define RANDO_ROW_HEIGHT 14
+#define RANDO_ROW_HEIGHT 13
 #define RANDO_VALUE_X    94
 
 static void PrintRandomizerToggleRow(u8 windowId, u8 row)
@@ -1506,9 +1524,10 @@ static void PrintRandomizerToggleRow(u8 windowId, u8 row)
     AddTextPrinterParameterized3(windowId, FONT_NORMAL, 10, row * RANDO_ROW_HEIGHT, sOakSpeechResources->textColor, 0, sRandoRowLabels[row]);
     if (row < RANDO_ROW_START)
     {
-        FillWindowPixelRect(windowId, PIXEL_FILL(1), RANDO_VALUE_X, row * RANDO_ROW_HEIGHT, 34, RANDO_ROW_HEIGHT);
+        FillWindowPixelRect(windowId, PIXEL_FILL(1), RANDO_VALUE_X, row * RANDO_ROW_HEIGHT, 128 - RANDO_VALUE_X, RANDO_ROW_HEIGHT);
         AddTextPrinterParameterized3(windowId, FONT_NORMAL, RANDO_VALUE_X, row * RANDO_ROW_HEIGHT, sOakSpeechResources->textColor, 0,
-                                     sRandoToggles[row] ? sText_Legacy_RandoOn : sText_Legacy_RandoOff);
+                                     row == RANDO_ROW_GENS ? sRandoGenLabels[sRandoGens]
+                                     : (sRandoToggles[row] ? sText_Legacy_RandoOn : sText_Legacy_RandoOff));
     }
 }
 
@@ -1560,6 +1579,7 @@ static void Task_OakSpeechLegacy_HandleRandomizerYesNoInput(u8 taskId)
         sRandoToggles[RANDO_ROW_PER_SLOT] = FALSE;
         sRandoToggles[RANDO_ROW_SIMILAR] = FALSE;
         sRandoToggles[RANDO_ROW_LEGENDS] = FALSE;
+        sRandoGens = 7;
         gTasks[taskId].tRandoAccept = TRUE;
         break;
     case MENU_B_PRESSED:
@@ -1584,6 +1604,21 @@ static void Task_OakSpeechLegacy_ShowRandomizerToggles(u8 taskId)
     gTasks[taskId].func = Task_OakSpeechLegacy_HandleRandomizerToggleInput;
 }
 
+static void StepRandoGens(s8 dir)
+{
+    u32 i;
+
+    for (i = 0; i < ARRAY_COUNT(sRandoGenCycle); i++)
+    {
+        if (sRandoGenCycle[i] == sRandoGens)
+            break;
+    }
+    if (i == ARRAY_COUNT(sRandoGenCycle))
+        i = 0;
+    i = (i + ARRAY_COUNT(sRandoGenCycle) + dir) % ARRAY_COUNT(sRandoGenCycle);
+    sRandoGens = sRandoGenCycle[i];
+}
+
 static void Task_OakSpeechLegacy_HandleRandomizerToggleInput(u8 taskId)
 {
     s8 input;
@@ -1594,7 +1629,14 @@ static void Task_OakSpeechLegacy_HandleRandomizerToggleInput(u8 taskId)
     {
         u8 pos = Menu_GetCursorPos();
 
-        if (pos < RANDO_ROW_START)
+        if (pos == RANDO_ROW_GENS)
+        {
+            StepRandoGens(JOY_NEW(DPAD_LEFT) ? -1 : 1);
+            PrintRandomizerToggleRow(gTasks[taskId].tMenuWindowId, pos);
+            CopyWindowToVram(gTasks[taskId].tMenuWindowId, COPYWIN_GFX);
+            PlaySE(SE_SELECT);
+        }
+        else if (pos < RANDO_ROW_START)
         {
             sRandoToggles[pos] ^= 1;
             PrintRandomizerToggleRow(gTasks[taskId].tMenuWindowId, pos);
@@ -1615,11 +1657,17 @@ static void Task_OakSpeechLegacy_HandleRandomizerToggleInput(u8 taskId)
         u32 i;
         u16 settings = 0;
 
-        for (i = 0; i < RANDO_ROW_START; i++)
+        for (i = 0; i < RANDO_ROW_GENS; i++)
         {
             if (sRandoToggles[i])
                 settings |= sRandoRowFlags[i];
         }
+        if (!(sRandoGens & 1))
+            settings |= RANDO_F_NO_GEN1;
+        if (!(sRandoGens & 2))
+            settings |= RANDO_F_NO_GEN2;
+        if (!(sRandoGens & 4))
+            settings |= RANDO_F_NO_GEN3;
         gOakSpeechRandoSettings = settings;
         gOakSpeechRandoSeed = ((u32)Random() << 16) | Random();
         gTasks[taskId].tRandoAccept = FALSE;
@@ -1627,7 +1675,13 @@ static void Task_OakSpeechLegacy_HandleRandomizerToggleInput(u8 taskId)
         gTasks[taskId].func = Task_OakSpeechLegacy_ClearRandomizerWindows;
         break;
     }
-    default: // rows 0-6: A toggles too
+    case RANDO_ROW_GENS:
+        StepRandoGens(1);
+        PrintRandomizerToggleRow(gTasks[taskId].tMenuWindowId, input);
+        CopyWindowToVram(gTasks[taskId].tMenuWindowId, COPYWIN_GFX);
+        PlaySE(SE_SELECT);
+        break;
+    default: // toggle rows: A toggles too
         sRandoToggles[input] ^= 1;
         PrintRandomizerToggleRow(gTasks[taskId].tMenuWindowId, input);
         CopyWindowToVram(gTasks[taskId].tMenuWindowId, COPYWIN_GFX);

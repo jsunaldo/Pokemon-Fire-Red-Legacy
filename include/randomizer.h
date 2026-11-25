@@ -20,6 +20,14 @@
 #define RANDO_F_LEGENDS     (1 << 6) // allow legendaries in the general pool
 #define RANDO_F_ITEMS       (1 << 7) // item balls + hidden items (key items/HMs stay put)
 #define RANDO_F_PER_SLOT    (1 << 8) // roll every slot independently instead of one global 1:1 swap
+// Generation filter, stored as EXCLUDE bits so older saves (bits clear) keep all
+// three gens and their existing shuffle. Applies only to what is randomized.
+#define RANDO_F_NO_GEN1     (1 << 9)
+#define RANDO_F_NO_GEN2     (1 << 10)
+#define RANDO_F_NO_GEN3     (1 << 11)
+#define RANDO_GEN_MASK      (RANDO_F_NO_GEN1 | RANDO_F_NO_GEN2 | RANDO_F_NO_GEN3)
+// Species-changing categories (items don't count for gens / National Dex).
+#define RANDO_SPECIES_MASK  (RANDO_F_WILD | RANDO_F_TRAINERS | RANDO_F_BOSSES | RANDO_F_GIFTS | RANDO_F_STATICS)
 // Any content bit set => the randomizer is active for this save.
 #define RANDO_ACTIVE_MASK   (RANDO_F_WILD | RANDO_F_TRAINERS | RANDO_F_BOSSES | RANDO_F_GIFTS | RANDO_F_STATICS | RANDO_F_ITEMS)
 
@@ -38,6 +46,7 @@ extern u16 gOakSpeechRandoSettings;
 extern u32 gOakSpeechRandoSeed;
 
 bool8 Randomizer_IsActive(void);
+void Randomizer_TryGrantNationalDex(void);
 u32 Randomizer_GetSeed(void);
 void Randomizer_BuildTables(void);
 u16 Randomizer_MapSpecies(u16 species, u8 category);

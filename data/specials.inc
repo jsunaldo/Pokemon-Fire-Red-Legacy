@@ -459,4 +459,5 @@ gSpecials::
 	def_special LoopWingFlapSound
 	def_special CreateEnemyEventMon
 	def_special NuzlockeHelperTopUpAmount
+	def_special IsNationalDexPostgame
 gSpecialsEnd::

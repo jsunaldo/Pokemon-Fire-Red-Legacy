@@ -2151,6 +2151,7 @@ static void InitObjectEventsLocal(void)
     TrySpawnObjectEvents(0, 0);
     ResetFollowerPokemon(); // clear any stale follower; a fresh one spawns on the first step
     TryShowChampionAce();
+    Randomizer_TryGrantNationalDex(); // after any Quest Log reload of the save
     TryRunOnWarpIntoMapScript();
 }
 
@@ -2159,6 +2160,7 @@ static void ReloadObjectsAndRunReturnToFieldMapScript(void)
     SpawnObjectEventsOnReturnToField(0, 0);
     ResetFollowerPokemon();
     TryShowChampionAce();
+    Randomizer_TryGrantNationalDex(); // after any Quest Log reload of the save
     RunOnReturnToFieldMapScript();
 }
 
