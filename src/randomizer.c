@@ -95,6 +95,8 @@ static bool8 IsBossTrainerClass(u8 trainerClass)
     case TRAINER_CLASS_RIVAL_LATE:
     case TRAINER_CLASS_PKMN_PROF:   // Prof. Oak postgame fight
     case TRAINER_CLASS_AQUA_LEADER: // repurposed as Janine's NINJA class
+    case TRAINER_CLASS_NURSE:       // secret postgame boss Nurse Joy
+    case TRAINER_CLASS_OFFICER:     // secret postgame boss Officer Jenny
         return TRUE;
     }
     return FALSE;
