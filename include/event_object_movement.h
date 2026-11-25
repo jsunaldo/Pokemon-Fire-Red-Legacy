@@ -154,6 +154,7 @@ u16 GetFollowerPokemonSpecies(void);
 void TrySpawnFollowerPokemon(void);
 void RemoveFollowerPokemon(void);
 void ResetFollowerPokemon(void);
+void TryShowChampionAce(void);
 void MoveFollowerPokemon(u8 direction, u8 speed);
 void UpdateFollowerPokemonVisibility(void);
 void HideFollowerPokemon(void);

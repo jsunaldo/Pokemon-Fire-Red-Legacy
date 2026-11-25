@@ -2150,6 +2150,7 @@ static void InitObjectEventsLocal(void)
     ResetInitialPlayerAvatarState();
     TrySpawnObjectEvents(0, 0);
     ResetFollowerPokemon(); // clear any stale follower; a fresh one spawns on the first step
+    TryShowChampionAce();
     TryRunOnWarpIntoMapScript();
 }
 
@@ -2157,6 +2158,7 @@ static void ReloadObjectsAndRunReturnToFieldMapScript(void)
 {
     SpawnObjectEventsOnReturnToField(0, 0);
     ResetFollowerPokemon();
+    TryShowChampionAce();
     RunOnReturnToFieldMapScript();
 }
 

@@ -14,6 +14,9 @@
 #include "palette.h"
 #include "quest_log.h"
 #include "random.h"
+#include "randomizer.h"
+#include "battle.h"
+#include "constants/opponents.h"
 #include "script.h"
 #include "trainer_see.h"
 #include "trig.h"
@@ -1908,6 +1911,7 @@ void TrySpawnObjectEvents(s16 cameraX, s16 cameraY)
                 && !FlagGet(template->flagId))
                 TrySpawnObjectEventTemplate(template, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, cameraX, cameraY);
         }
+        TryShowChampionAce(); // the ace spawns only once the camera reaches it
     }
 }
 
@@ -9586,43 +9590,96 @@ static void SetFollowerPokemonGraphics(struct ObjectEvent *follower, u16 species
     }
 }
 
-// FRLG Legacy: the Champion (rival) stands beside his ace, drawn as an Eevee, but
-// his team's Eevee evolved to counter your starter. Swap the Eevee overworld
-// sprite to the matching eeveelution using the follower sprite tables (same 32x32
-// size / Standard anims), recoloring the Eevee palette slot in place. Called as a
-// special from the Champion's Room ON_TRANSITION script, so it runs on every entry
-// while the ace object is present. VAR_STARTER_MON here follows the room's own
-// script mapping: 2 = Squirtle, 1 = Bulbasaur, 0 = Charmander.
-void SetChampionAceEeveelution(void)
+// FRLG Legacy: the Champion (rival) stands beside his ace, a Pokémon object
+// drawn as an Eevee in the map data. Redraw it as the species actually in the
+// last slot of his party for this fight, after the randomizer, using the
+// follower sprite tables. It keeps the Eevee palette slot so it never clashes
+// with the player's own follower. Runs after the room's objects are spawned or
+// reloaded (overworld.c); the map's ON_TRANSITION script ran too early, before
+// any objects existed, so the sprite was never swapped.
+#define LOCALID_CHAMPIONS_ROOM_ACE 3
+
+static u16 GetChampionAceSpecies(void)
 {
+    static const u16 sChampions[2][3] = {
+        // VAR_STARTER_MON as the room's script maps it: 0 Charmander, 1 Bulbasaur, 2 Squirtle
+        {TRAINER_CHAMPION_FIRST_CHARMANDER,   TRAINER_CHAMPION_FIRST_BULBASAUR,   TRAINER_CHAMPION_FIRST_SQUIRTLE},
+        {TRAINER_CHAMPION_REMATCH_CHARMANDER, TRAINER_CHAMPION_REMATCH_BULBASAUR, TRAINER_CHAMPION_REMATCH_SQUIRTLE},
+    };
+    u16 starter = VarGet(VAR_STARTER_MON);
+    u16 trainerNum = sChampions[FlagGet(FLAG_SYS_GAME_CLEAR) ? 1 : 0][starter <= 2 ? starter : 0];
+    u8 idx;
     u16 species;
-    u8 i;
 
-    switch (VarGet(VAR_STARTER_MON))
+    if (gTrainers[trainerNum].partySize == 0)
+        return SPECIES_NONE;
+    idx = gTrainers[trainerNum].partySize - 1;
+    switch (gTrainers[trainerNum].partyFlags)
     {
-    case 2:  species = SPECIES_VAPOREON; break; // Squirtle -> Vaporeon
-    case 1:  species = SPECIES_JOLTEON;  break; // Bulbasaur -> Jolteon
-    default: species = SPECIES_FLAREON;  break; // Charmander -> Flareon
+    case 0:
+        species = gTrainers[trainerNum].party.NoItemDefaultMoves[idx].species;
+        break;
+    case F_TRAINER_PARTY_CUSTOM_MOVESET:
+        species = gTrainers[trainerNum].party.NoItemCustomMoves[idx].species;
+        break;
+    case F_TRAINER_PARTY_HELD_ITEM:
+        species = gTrainers[trainerNum].party.ItemDefaultMoves[idx].species;
+        break;
+    default:
+        species = gTrainers[trainerNum].party.ItemCustomMoves[idx].species;
+        break;
     }
+    return Randomizer_MapTrainerMonSpecies(trainerNum, idx, species);
+}
 
+void TryShowChampionAce(void)
+{
+    u8 i, palSlot, gfxId;
+    u16 species;
+    struct ObjectEvent *obj = NULL;
+    struct Sprite *sprite;
+
+    if (gSaveBlock1Ptr->location.mapGroup != (MAP_POKEMON_LEAGUE_CHAMPIONS_ROOM >> 8)
+     || gSaveBlock1Ptr->location.mapNum != (MAP_POKEMON_LEAGUE_CHAMPIONS_ROOM & 0xFF))
+        return;
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
     {
-        struct ObjectEvent *obj = &gObjectEvents[i];
-
-        if (obj->active && obj->graphicsId == OBJ_EVENT_GFX_EEVEE)
+        if (gObjectEvents[i].active && gObjectEvents[i].localId == LOCALID_CHAMPIONS_ROOM_ACE
+         && gObjectEvents[i].mapGroup == (MAP_POKEMON_LEAGUE_CHAMPIONS_ROOM >> 8)
+         && gObjectEvents[i].mapNum == (MAP_POKEMON_LEAGUE_CHAMPIONS_ROOM & 0xFF))
         {
-            struct Sprite *sprite = &gSprites[obj->spriteId];
-            u8 palSlot;
-
-            sprite->images = gFollowerMonFrameTable[species];
-            sprite->animBeginning = TRUE;
-            sprite->animEnded = FALSE;
-            palSlot = IndexOfSpritePaletteTag(OBJ_EVENT_PAL_TAG_EEVEE);
-            if (palSlot != 0xFF)
-                LoadPalette(gFollowerMonPaletteTable[species], 0x100 + palSlot * 16, PLTT_SIZE_4BPP);
+            obj = &gObjectEvents[i];
             break;
         }
     }
+    if (obj == NULL || obj->spriteId >= MAX_SPRITES)
+        return;
+    species = GetChampionAceSpecies();
+    if (species == SPECIES_NONE || species >= NUM_SPECIES || gFollowerMonFrameTable[species] == NULL)
+        return;
+
+    gfxId = gFollowerMonIsLarge[species] ? OBJ_EVENT_GFX_FOLLOWER_POKEMON_LARGE : OBJ_EVENT_GFX_FOLLOWER_POKEMON;
+    sprite = &gSprites[obj->spriteId];
+    if (obj->graphicsId == gfxId && sprite->images == gFollowerMonFrameTable[species])
+        return; // already drawn (this runs on every camera step in the room)
+    if (obj->graphicsId != gfxId)
+        ObjectEventSetGraphicsId(obj, gfxId);
+    sprite->images = gFollowerMonFrameTable[species];
+    sprite->animBeginning = TRUE;
+    sprite->animEnded = FALSE;
+    LoadObjectEventPalette(OBJ_EVENT_PAL_TAG_EEVEE);
+    palSlot = IndexOfSpritePaletteTag(OBJ_EVENT_PAL_TAG_EEVEE);
+    if (palSlot != 0xFF)
+    {
+        sprite->oam.paletteNum = palSlot;
+        LoadPalette(gFollowerMonPaletteTable[species], 0x100 + palSlot * 16, PLTT_SIZE_4BPP);
+    }
+}
+
+// Kept as a special for old scripts; the real work happens in TryShowChampionAce.
+void SetChampionAceEeveelution(void)
+{
+    TryShowChampionAce();
 }
 
 // Returns the follower object event only if our tracked slot still holds it,
