@@ -8,6 +8,7 @@
 #include "overworld.h"
 #include "field_message_box.h"
 #include "event_data.h"
+#include "item.h"
 #include "strings.h"
 #include "battle.h"
 #include "fieldmap.h"
@@ -2552,4 +2553,14 @@ static void Task_WingFlapSound(u8 taskId)
     }
     if (data[0] == gSpecialVar_0x8004 - 1)
         DestroyTask(taskId);
+}
+
+// FRLG Legacy: Pallet Town supply helper. VAR_0x8000 = item; sets VAR_0x8001 to
+// the amount that fills the bag stack to 999 (FRLG keeps one stack per item and
+// refuses an add that would pass 999, so a flat 999 would fail if you had any).
+void NuzlockeHelperTopUpAmount(void)
+{
+    u16 have = BagGetQuantityByItemId(gSpecialVar_0x8000);
+
+    gSpecialVar_0x8001 = (have >= 999) ? 0 : 999 - have;
 }

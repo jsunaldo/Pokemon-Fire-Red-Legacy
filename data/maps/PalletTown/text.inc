@@ -66,6 +66,10 @@ PalletTown_Text_OakYouEnjoyingTraveling::
     .string "Hohoho.$"
 
 
+PalletTown_Text_NuzlockeHelperAlreadyFull::
+	.string "Your BAG is already stuffed with\n"
+	.string "999 of those!$"
+
 PalletTown_Text_NuzlockeHelperIntro::
 	.string "Some TRAINERS live by hard rules.\p"
 	.string "One POKéMON per route. Nicknames\n"

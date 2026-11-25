@@ -470,27 +470,40 @@ PalletTown_EventScript_NuzlockeHelperMenu::
 	end
 
 PalletTown_EventScript_NuzlockeGiveRareCandy::
-	giveitem ITEM_RARE_CANDY, 99
-	goto PalletTown_EventScript_NuzlockeHelperMenu
+	setvar VAR_0x8000, ITEM_RARE_CANDY
+	goto PalletTown_EventScript_NuzlockeTopUp
 	end
 
 PalletTown_EventScript_NuzlockeGiveMasterBall::
-	giveitem ITEM_MASTER_BALL, 99
-	goto PalletTown_EventScript_NuzlockeHelperMenu
+	setvar VAR_0x8000, ITEM_MASTER_BALL
+	goto PalletTown_EventScript_NuzlockeTopUp
 	end
 
 PalletTown_EventScript_NuzlockeGiveFullRestore::
-	giveitem ITEM_FULL_RESTORE, 99
-	goto PalletTown_EventScript_NuzlockeHelperMenu
+	setvar VAR_0x8000, ITEM_FULL_RESTORE
+	goto PalletTown_EventScript_NuzlockeTopUp
 	end
 
 PalletTown_EventScript_NuzlockeGiveMaxRepel::
-	giveitem ITEM_MAX_REPEL, 99
-	goto PalletTown_EventScript_NuzlockeHelperMenu
+	setvar VAR_0x8000, ITEM_MAX_REPEL
+	goto PalletTown_EventScript_NuzlockeTopUp
 	end
 
 PalletTown_EventScript_NuzlockeGiveMaxElixir::
-	giveitem ITEM_MAX_ELIXIR, 99
+	setvar VAR_0x8000, ITEM_MAX_ELIXIR
+	goto PalletTown_EventScript_NuzlockeTopUp
+	end
+
+@ Tops the chosen item up to the 999 bag maximum (gives 999 if you have none).
+PalletTown_EventScript_NuzlockeTopUp::
+	special NuzlockeHelperTopUpAmount
+	goto_if_eq VAR_0x8001, 0, PalletTown_EventScript_NuzlockeAlreadyFull
+	callstd STD_OBTAIN_ITEM
+	goto PalletTown_EventScript_NuzlockeHelperMenu
+	end
+
+PalletTown_EventScript_NuzlockeAlreadyFull::
+	msgbox PalletTown_Text_NuzlockeHelperAlreadyFull
 	goto PalletTown_EventScript_NuzlockeHelperMenu
 	end
 
