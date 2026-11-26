@@ -49,8 +49,8 @@ PalletTown_Text_CaughtXPuttingInHonestEffort::
     .string "more, come show me, please.$"
 
 PalletTown_Text_CaughtXImpressiveFollowMe::
-    .string "You've caught… {STR_VAR_2}!?\n"
-    .string "Now, this is impressive!\p"
+    .string "You've caught {STR_VAR_2}!\n"
+    .string "Good work!\p"
     .string "There's something I wanted to ask\n"
     .string "of you, {PLAYER}.\p"
     .string "Come.\n"

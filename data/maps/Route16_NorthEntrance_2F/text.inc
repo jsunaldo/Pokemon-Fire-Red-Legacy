@@ -45,3 +45,7 @@ Route16_NorthEntrance_2F_Text_ExplainAmuletCoin::
     .string "If the POKéMON appears in a winning\n"
     .string "battle, you will earn more money.$"
 
+Route16_NorthEntrance_2F_Text_OakAskedMeToGiveYouThis::
+    .string "Oh! {PLAYER}, right?\p"
+    .string "PROF. OAK asked me to give\n"
+    .string "you this!$"

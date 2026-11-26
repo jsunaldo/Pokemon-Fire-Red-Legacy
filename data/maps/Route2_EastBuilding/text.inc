@@ -30,3 +30,7 @@ Route2_EastBuilding_Text_CanGetThroughRockTunnel::
     .string "Once a POKéMON learns FLASH, you\n"
     .string "can get through ROCK TUNNEL.$"
 
+Route2_EastBuilding_Text_OakAskedMeToGiveYouThis::
+    .string "Oh! {PLAYER}, right?\p"
+    .string "PROF. OAK asked me to give\n"
+    .string "you this!$"

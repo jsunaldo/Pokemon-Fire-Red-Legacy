@@ -46,3 +46,7 @@ Route10_PokemonCenter_1F_Text_ExplainEverstone::
     .string "It will prevent evolution according\n"
     .string "to the PROFESSOR.$"
 
+Route10_PokemonCenter_1F_Text_OakAskedMeToGiveYouThis::
+    .string "Oh! {PLAYER}, right?\p"
+    .string "PROF. OAK asked me to give\n"
+    .string "you this!$"

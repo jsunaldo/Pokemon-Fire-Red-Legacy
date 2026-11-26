@@ -50,3 +50,7 @@ Route11_EastEntrance_2F_Text_RockTunnelGoodRouteToLavender::
     .string "ROCK TUNNEL appears to be a good\n"
     .string "route to take.$"
 
+Route11_EastEntrance_2F_Text_OakAskedMeToGiveYouThis::
+    .string "Oh! {PLAYER}, right?\p"
+    .string "PROF. OAK asked me to give\n"
+    .string "you this!$"
