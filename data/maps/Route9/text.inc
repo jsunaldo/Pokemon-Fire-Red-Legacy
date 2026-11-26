@@ -104,3 +104,13 @@ Route9_Text_RouteSign::
     .string "ROUTE 9\n"
     .string "CERULEAN CITY - ROCK TUNNEL$"
 
+Route9_Text_GuardStop::
+    .string "Hold it! ROCK TUNNEL is no place\n"
+    .string "for a rookie.\p"
+    .string "Come back with three BADGES.\n"
+    .string "VERMILION CITY to the south\l"
+    .string "has a GYM.$"
+
+Route9_Text_GuardPass::
+    .string "Three BADGES? Go on through.\n"
+    .string "Watch your step in ROCK TUNNEL!$"
