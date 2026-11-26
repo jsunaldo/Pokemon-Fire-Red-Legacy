@@ -56,7 +56,10 @@ void HealPlayerParty(void)
 // (Erika/Koga/Sabrina/Blaine) use this to pick a leader team scaled to the
 // player's progress, so those four can be cleared in any order and still fight
 // at an appropriate level.
-void GetPlayerGymBadgeCount(void)
+// FRLG Legacy: number of gym badges held. HMs unlock by this count (HM n needs
+// n badges, whichever gyms they came from), since gyms 3-7 can be beaten in
+// different orders.
+u8 CountGymBadges(void)
 {
     u32 flag;
     u8 count = 0;
@@ -66,7 +69,12 @@ void GetPlayerGymBadgeCount(void)
         if (FlagGet(flag))
             count++;
     }
-    gSpecialVar_Result = count;
+    return count;
+}
+
+void GetPlayerGymBadgeCount(void)
+{
+    gSpecialVar_Result = CountGymBadges();
 }
 
 // FRLG Legacy: VAR_RESULT = TRUE only if every Kanto gym leader has been re-beaten

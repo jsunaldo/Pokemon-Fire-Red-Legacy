@@ -1,4 +1,5 @@
 #include "global.h"
+#include "script_pokemon_util.h"
 #include "gflib.h"
 #include "battle.h"
 #include "battle_anim.h"
@@ -3922,8 +3923,9 @@ static void CursorCB_FieldMove(u8 taskId)
     }
     else
     {
-        // All field moves before WATERFALL are HMs.
-        if (fieldMove <= FIELD_MOVE_WATERFALL && FlagGet(FLAG_BADGE01_GET + fieldMove) != TRUE)
+        // All field moves before WATERFALL are HMs. FRLG Legacy: HM n needs
+        // n badges (any gyms), not one specific badge.
+        if (fieldMove <= FIELD_MOVE_WATERFALL && CountGymBadges() < fieldMove + 1)
         {
             DisplayPartyMenuMessage(gText_CantUseUntilNewBadge, TRUE);
             gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
