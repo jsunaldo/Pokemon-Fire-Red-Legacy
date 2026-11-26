@@ -1512,29 +1512,100 @@ static const struct WindowTemplate sLegacyRandomizerWinTemplate =
 {
     .bg = 0,
     .tilemapLeft = 7,
-    .tilemapTop = 1,
+    .tilemapTop = 3,
     .width = 16,
-    .height = 18,
+    .height = 12,
     .paletteNum = 15,
     .baseBlock = 1
 };
 
-#define RANDO_ROW_HEIGHT 11   // 13 rows x 11 px fit the 18-tile (144 px) window
-#define RANDO_VALUE_X    94
+// FRLG Legacy: the randomizer settings are a short walk-through, one page per
+// topic. Each page lists its switches, then NEXT (START! on the last page).
+// B steps back a page. Saved settings bits are unchanged.
+#define RANDO_NUM_PAGES      5
+#define RANDO_PAGE_MAX_ROWS  4
+#define RANDO_ROW_HEIGHT     14
+#define RANDO_FIRST_ROW_Y    18   // below the page title
+#define RANDO_VALUE_X        94
+#define RANDO_NONE           0xFF
 
-static void PrintRandomizerToggleRow(u8 windowId, u8 row)
+static const u8 sText_Legacy_RandoPagePokemon[] = _("POKéMON");
+static const u8 sText_Legacy_RandoPageTrainers[] = _("TRAINERS");
+static const u8 sText_Legacy_RandoPageItems[] = _("FIELD ITEMS");
+static const u8 sText_Legacy_RandoPageRules[] = _("SHUFFLE RULES");
+static const u8 sText_Legacy_RandoPageExtras[] = _("EXTRAS");
+static const u8 sText_Legacy_RandoNext[] = _("NEXT");
+static const u8 sText_Legacy_RandoPageNum1[] = _("1/5");
+static const u8 sText_Legacy_RandoPageNum2[] = _("2/5");
+static const u8 sText_Legacy_RandoPageNum3[] = _("3/5");
+static const u8 sText_Legacy_RandoPageNum4[] = _("4/5");
+static const u8 sText_Legacy_RandoPageNum5[] = _("5/5");
+
+static const u8 *const sRandoPageTitles[RANDO_NUM_PAGES] = {
+    sText_Legacy_RandoPagePokemon, sText_Legacy_RandoPageTrainers, sText_Legacy_RandoPageItems,
+    sText_Legacy_RandoPageRules, sText_Legacy_RandoPageExtras,
+};
+static const u8 *const sRandoPageNums[RANDO_NUM_PAGES] = {
+    sText_Legacy_RandoPageNum1, sText_Legacy_RandoPageNum2, sText_Legacy_RandoPageNum3,
+    sText_Legacy_RandoPageNum4, sText_Legacy_RandoPageNum5,
+};
+static const u8 sRandoPageRows[RANDO_NUM_PAGES][RANDO_PAGE_MAX_ROWS] = {
+    {RANDO_ROW_WILD, RANDO_ROW_GIFTS, RANDO_ROW_STATICS, RANDO_NONE},
+    {RANDO_ROW_TRAINERS, RANDO_ROW_BOSSES, RANDO_NONE, RANDO_NONE},
+    {RANDO_ROW_ITEMS, RANDO_NONE, RANDO_NONE, RANDO_NONE},
+    {RANDO_ROW_PER_SLOT, RANDO_ROW_SIMILAR, RANDO_ROW_LEGENDS, RANDO_ROW_GENS},
+    {RANDO_ROW_SUPPLY, RANDO_ROW_TMS, RANDO_NONE, RANDO_NONE},
+};
+static EWRAM_DATA u8 sRandoPage = 0;
+
+static u8 RandoPageRowCount(u8 page)
+{
+    u8 n = 0;
+    while (n < RANDO_PAGE_MAX_ROWS && sRandoPageRows[page][n] != RANDO_NONE)
+        n++;
+    return n;
+}
+
+static void RandoSetTextColor(void)
 {
     sOakSpeechResources->textColor[0] = 1;
     sOakSpeechResources->textColor[1] = 2;
     sOakSpeechResources->textColor[2] = 3;
-    AddTextPrinterParameterized3(windowId, FONT_NORMAL, 10, row * RANDO_ROW_HEIGHT, sOakSpeechResources->textColor, 0, sRandoRowLabels[row]);
-    if (row < RANDO_ROW_START)
+}
+
+// One switch row of the current page (slot = position on the page).
+static void PrintRandomizerSlot(u8 windowId, u8 slot)
+{
+    u8 row = sRandoPageRows[sRandoPage][slot];
+    u8 y = RANDO_FIRST_ROW_Y + slot * RANDO_ROW_HEIGHT;
+
+    RandoSetTextColor();
+    FillWindowPixelRect(windowId, PIXEL_FILL(1), RANDO_VALUE_X, y, 128 - RANDO_VALUE_X, RANDO_ROW_HEIGHT);
+    AddTextPrinterParameterized3(windowId, FONT_NORMAL, RANDO_VALUE_X, y, sOakSpeechResources->textColor, 0,
+                                 row == RANDO_ROW_GENS ? sRandoGenLabels[sRandoGens]
+                                 : (sRandoToggles[row] ? sText_Legacy_RandoOn : sText_Legacy_RandoOff));
+}
+
+static void PrintRandomizerPage(u8 windowId)
+{
+    u8 i, n = RandoPageRowCount(sRandoPage);
+
+    FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
+    RandoSetTextColor();
+    AddTextPrinterParameterized3(windowId, FONT_NORMAL, 2, 1, sOakSpeechResources->textColor, 0, sRandoPageTitles[sRandoPage]);
+    AddTextPrinterParameterized3(windowId, FONT_NORMAL, 104, 1, sOakSpeechResources->textColor, 0, sRandoPageNums[sRandoPage]);
+    for (i = 0; i < n; i++)
     {
-        FillWindowPixelRect(windowId, PIXEL_FILL(1), RANDO_VALUE_X, row * RANDO_ROW_HEIGHT, 128 - RANDO_VALUE_X, RANDO_ROW_HEIGHT);
-        AddTextPrinterParameterized3(windowId, FONT_NORMAL, RANDO_VALUE_X, row * RANDO_ROW_HEIGHT, sOakSpeechResources->textColor, 0,
-                                     row == RANDO_ROW_GENS ? sRandoGenLabels[sRandoGens]
-                                     : (sRandoToggles[row] ? sText_Legacy_RandoOn : sText_Legacy_RandoOff));
+        RandoSetTextColor();
+        AddTextPrinterParameterized3(windowId, FONT_NORMAL, 10, RANDO_FIRST_ROW_Y + i * RANDO_ROW_HEIGHT,
+                                     sOakSpeechResources->textColor, 0, sRandoRowLabels[sRandoPageRows[sRandoPage][i]]);
+        PrintRandomizerSlot(windowId, i);
     }
+    RandoSetTextColor();
+    AddTextPrinterParameterized3(windowId, FONT_NORMAL, 10, RANDO_FIRST_ROW_Y + n * RANDO_ROW_HEIGHT, sOakSpeechResources->textColor, 0,
+                                 sRandoPage == RANDO_NUM_PAGES - 1 ? sText_Legacy_RandoStart : sText_Legacy_RandoNext);
+    Menu_InitCursor(windowId, FONT_NORMAL, 0, RANDO_FIRST_ROW_Y, RANDO_ROW_HEIGHT, n + 1, 0);
+    CopyWindowToVram(windowId, COPYWIN_FULL);
 }
 
 static void Task_OakSpeechLegacy_AskRandomizer(u8 taskId)
@@ -1599,16 +1670,11 @@ static void Task_OakSpeechLegacy_HandleRandomizerYesNoInput(u8 taskId)
 
 static void Task_OakSpeechLegacy_ShowRandomizerToggles(u8 taskId)
 {
-    u32 i;
-
     gTasks[taskId].tMenuWindowId = AddWindow(&sLegacyRandomizerWinTemplate);
     PutWindowTilemap(gTasks[taskId].tMenuWindowId);
     DrawStdFrameWithCustomTileAndPalette(gTasks[taskId].tMenuWindowId, TRUE, GetStdWindowBaseTileNum(), 14);
-    FillWindowPixelBuffer(gTasks[taskId].tMenuWindowId, PIXEL_FILL(1));
-    for (i = 0; i < NUM_RANDO_ROWS; i++)
-        PrintRandomizerToggleRow(gTasks[taskId].tMenuWindowId, i);
-    Menu_InitCursor(gTasks[taskId].tMenuWindowId, FONT_NORMAL, 0, 0, RANDO_ROW_HEIGHT, NUM_RANDO_ROWS, 0);
-    CopyWindowToVram(gTasks[taskId].tMenuWindowId, COPYWIN_FULL);
+    sRandoPage = 0;
+    PrintRandomizerPage(gTasks[taskId].tMenuWindowId);
     gTasks[taskId].func = Task_OakSpeechLegacy_HandleRandomizerToggleInput;
 }
 
@@ -1627,40 +1693,62 @@ static void StepRandoGens(s8 dir)
     sRandoGens = sRandoGenCycle[i];
 }
 
+static void ToggleRandomizerSlot(u8 windowId, u8 slot, s8 dir)
+{
+    u8 row = sRandoPageRows[sRandoPage][slot];
+
+    if (row == RANDO_ROW_GENS)
+        StepRandoGens(dir);
+    else
+        sRandoToggles[row] ^= 1;
+    PrintRandomizerSlot(windowId, slot);
+    CopyWindowToVram(windowId, COPYWIN_GFX);
+    PlaySE(SE_SELECT);
+}
+
 static void Task_OakSpeechLegacy_HandleRandomizerToggleInput(u8 taskId)
 {
+    u8 windowId = gTasks[taskId].tMenuWindowId;
+    u8 n = RandoPageRowCount(sRandoPage);
     s8 input;
 
-    // LEFT/RIGHT toggles the hovered row; handled before the menu call so the
+    // LEFT/RIGHT flips the hovered switch; handled before the menu call so the
     // same frame's input isn't double-processed.
     if (JOY_NEW(DPAD_LEFT | DPAD_RIGHT))
     {
         u8 pos = Menu_GetCursorPos();
 
-        if (pos == RANDO_ROW_GENS)
-        {
-            StepRandoGens(JOY_NEW(DPAD_LEFT) ? -1 : 1);
-            PrintRandomizerToggleRow(gTasks[taskId].tMenuWindowId, pos);
-            CopyWindowToVram(gTasks[taskId].tMenuWindowId, COPYWIN_GFX);
-            PlaySE(SE_SELECT);
-        }
-        else if (pos < RANDO_ROW_START)
-        {
-            sRandoToggles[pos] ^= 1;
-            PrintRandomizerToggleRow(gTasks[taskId].tMenuWindowId, pos);
-            CopyWindowToVram(gTasks[taskId].tMenuWindowId, COPYWIN_GFX);
-            PlaySE(SE_SELECT);
-        }
+        if (pos < n)
+            ToggleRandomizerSlot(windowId, pos, JOY_NEW(DPAD_LEFT) ? -1 : 1);
         return;
     }
 
     input = Menu_ProcessInputNoWrapAround();
-    switch (input)
-    {
-    case MENU_B_PRESSED:
-    case MENU_NOTHING_CHOSEN:
+    if (input == MENU_NOTHING_CHOSEN)
         return;
-    case RANDO_ROW_START:
+    if (input == MENU_B_PRESSED)
+    {
+        if (sRandoPage > 0)
+        {
+            sRandoPage--;
+            PlaySE(SE_SELECT);
+            PrintRandomizerPage(windowId);
+        }
+        return;
+    }
+    if (input < n)
+    {
+        ToggleRandomizerSlot(windowId, input, 1);
+        return;
+    }
+    // NEXT / START!
+    PlaySE(SE_SELECT);
+    if (sRandoPage < RANDO_NUM_PAGES - 1)
+    {
+        sRandoPage++;
+        PrintRandomizerPage(windowId);
+        return;
+    }
     {
         u32 i;
         u16 settings = 0;
@@ -1683,22 +1771,7 @@ static void Task_OakSpeechLegacy_HandleRandomizerToggleInput(u8 taskId)
         gOakSpeechRandoSettings = settings;
         gOakSpeechRandoSeed = ((u32)Random() << 16) | Random();
         gTasks[taskId].tRandoAccept = FALSE;
-        PlaySE(SE_SELECT);
         gTasks[taskId].func = Task_OakSpeechLegacy_ClearRandomizerWindows;
-        break;
-    }
-    case RANDO_ROW_GENS:
-        StepRandoGens(1);
-        PrintRandomizerToggleRow(gTasks[taskId].tMenuWindowId, input);
-        CopyWindowToVram(gTasks[taskId].tMenuWindowId, COPYWIN_GFX);
-        PlaySE(SE_SELECT);
-        break;
-    default: // toggle rows: A toggles too
-        sRandoToggles[input] ^= 1;
-        PrintRandomizerToggleRow(gTasks[taskId].tMenuWindowId, input);
-        CopyWindowToVram(gTasks[taskId].tMenuWindowId, COPYWIN_GFX);
-        PlaySE(SE_SELECT);
-        break;
     }
 }
 
