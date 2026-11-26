@@ -1230,7 +1230,7 @@
 #define FLAG_HARD_MODE                  0x4AC
 #define FLAG_GOT_FOSSIL_MON_GIFT        0x4AD // FRLG Legacy: Fuchsia fossil-mon gift
 #define FLAG_JOHTO_CIRCUIT_CLEARED        0x4AE // Johto Isles all cleared
-#define FLAG_UNUSED_0x4AF               0x4AF // Unused Flag
+#define FLAG_HIDE_SUPPLY_GENTLEMAN      0x4AF // Randomizer SUPPLY MAN = OFF
 
 // Boss clear flags, 1200
 #define FLAG_DEFEATED_BROCK           0x4B0

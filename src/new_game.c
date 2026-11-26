@@ -158,6 +158,8 @@ void NewGameInitData(void)
     VarSet(VAR_RANDOMIZER_SETTINGS, gOakSpeechRandoSettings);
     Randomizer_BuildTables();
     Randomizer_TryGrantNationalDex();
+    if (gOakSpeechRandoSettings & RANDO_F_NO_SUPPLY)
+        FlagSet(FLAG_HIDE_SUPPLY_GENTLEMAN);
     StringCopy(gSaveBlock1Ptr->rivalName, rivalName);
     ResetTrainerTowerResults();
 }

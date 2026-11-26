@@ -25,6 +25,8 @@
 #define RANDO_F_NO_GEN1     (1 << 9)
 #define RANDO_F_NO_GEN2     (1 << 10)
 #define RANDO_F_NO_GEN3     (1 << 11)
+// SUPPLY MAN row OFF: hide the Pallet Supply Gentleman (exclude bit, so old saves keep him).
+#define RANDO_F_NO_SUPPLY   (1 << 12)
 #define RANDO_GEN_MASK      (RANDO_F_NO_GEN1 | RANDO_F_NO_GEN2 | RANDO_F_NO_GEN3)
 // Species-changing categories (items don't count for gens / National Dex).
 #define RANDO_SPECIES_MASK  (RANDO_F_WILD | RANDO_F_TRAINERS | RANDO_F_BOSSES | RANDO_F_GIFTS | RANDO_F_STATICS)

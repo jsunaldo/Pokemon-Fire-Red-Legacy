@@ -28,7 +28,7 @@ static const u8 sTextSpeedFrameDelays[] =
 {
     [OPTIONS_TEXT_SPEED_SLOW] = 8,
     [OPTIONS_TEXT_SPEED_MID]  = 4,
-    [OPTIONS_TEXT_SPEED_FAST] = 0 // FRLG Legacy: FAST = instant
+    [OPTIONS_TEXT_SPEED_FAST] = 1 // FRLG Legacy: FAST = instant (printer speed 0 -> RunTextPrinters drains the message; 0 here would print before the box is drawn and get wiped)
 };
 
 static const struct WindowTemplate sStandardTextBox_WindowTemplates[] = 
