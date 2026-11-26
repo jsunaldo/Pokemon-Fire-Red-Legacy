@@ -12,6 +12,7 @@
 #include "decompress.h"
 #include "easy_chat.h"
 #include "event_data.h"
+#include "randomizer.h"
 #include "evolution_scene.h"
 #include "field_effect.h"
 #include "field_player_avatar.h"
@@ -4287,8 +4288,10 @@ static void CB2_UseItem(void)
     {
         GiveMoveToMon(&gPlayerParty[gPartyMenu.slotId], ItemIdToBattleMoveId(gSpecialVar_ItemId));
         AdjustFriendship(&gPlayerParty[gPartyMenu.slotId], FRIENDSHIP_EVENT_LEARN_TMHM);
-        // FRLG Legacy: TMs are reusable (Emerald Legacy QoL), so they are never
-        // consumed on use — just like HMs always were.
+        // FRLG Legacy: TMs are reusable (Emerald Legacy QoL) unless the
+        // randomizer's REUSABLE TMS switch was turned off for this save.
+        if (gSpecialVar_ItemId < ITEM_HM01 && (VarGet(VAR_RANDOMIZER_SETTINGS) & RANDO_F_SINGLE_USE_TMS))
+            RemoveBagItem(gSpecialVar_ItemId, 1);
         SetMainCallback2(gPartyMenu.exitCallback);
     }
     else
@@ -4307,7 +4310,9 @@ static void CB2_UseTMHMAfterForgettingMove(void)
         SetMonMoveSlot(mon, ItemIdToBattleMoveId(gSpecialVar_ItemId), moveIdx);
         AdjustFriendship(mon, FRIENDSHIP_EVENT_LEARN_TMHM);
         ItemUse_SetQuestLogEvent(QL_EVENT_USED_ITEM, mon, gSpecialVar_ItemId, move);
-        // FRLG Legacy: TMs are reusable (Emerald Legacy QoL), never consumed.
+        // FRLG Legacy: TMs are reusable unless REUSABLE TMS is off for this save.
+        if (gSpecialVar_ItemId < ITEM_HM01 && (VarGet(VAR_RANDOMIZER_SETTINGS) & RANDO_F_SINGLE_USE_TMS))
+            RemoveBagItem(gSpecialVar_ItemId, 1);
         SetMainCallback2(gPartyMenu.exitCallback);
     }
     else

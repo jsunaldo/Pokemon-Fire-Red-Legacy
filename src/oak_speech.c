@@ -53,7 +53,7 @@ EWRAM_DATA bool8 gOakSpeechHardMode = FALSE;
 
 // FireRed Legacy: randomizer toggle states while the intro menu is open
 // (rows 0-6; committed to gOakSpeechRandoSettings when START! is chosen).
-static EWRAM_DATA u8 sRandoToggles[12] = {};
+static EWRAM_DATA u8 sRandoToggles[13] = {};
 // GENS row: allowed-generation bitmask (bit0 Gen 1, bit1 Gen 2, bit2 Gen 3).
 static EWRAM_DATA u8 sRandoGens = 7;
 
@@ -1443,6 +1443,7 @@ enum
     RANDO_ROW_LEGENDS,
     RANDO_ROW_GENS,
     RANDO_ROW_SUPPLY,
+    RANDO_ROW_TMS,
     RANDO_ROW_START,
     NUM_RANDO_ROWS
 };
@@ -1458,6 +1459,7 @@ static const u8 sText_Legacy_RandoSimilar[] = _("SIMILAR BST");
 static const u8 sText_Legacy_RandoLegendPool[] = _("WILD LEGENDS");
 static const u8 sText_Legacy_RandoGens[] = _("GENS");
 static const u8 sText_Legacy_RandoSupply[] = _("SUPPLY MAN");
+static const u8 sText_Legacy_RandoTms[] = _("REUSABLE TMS");
 static const u8 sText_Legacy_RandoStart[] = _("START!");
 // Cycle order for the GENS row (bitmask values) and their labels.
 static const u8 sRandoGenCycle[] = {7, 1, 2, 4, 3, 5, 6};
@@ -1486,6 +1488,7 @@ static const u8 *const sRandoRowLabels[NUM_RANDO_ROWS] =
     [RANDO_ROW_LEGENDS]  = sText_Legacy_RandoLegendPool,
     [RANDO_ROW_GENS]     = sText_Legacy_RandoGens,
     [RANDO_ROW_SUPPLY]   = sText_Legacy_RandoSupply,
+    [RANDO_ROW_TMS]      = sText_Legacy_RandoTms,
     [RANDO_ROW_START]    = sText_Legacy_RandoStart,
 };
 
@@ -1516,7 +1519,7 @@ static const struct WindowTemplate sLegacyRandomizerWinTemplate =
     .baseBlock = 1
 };
 
-#define RANDO_ROW_HEIGHT 12   // 12 rows x 12 px = the 18-tile window
+#define RANDO_ROW_HEIGHT 11   // 13 rows x 11 px fit the 18-tile (144 px) window
 #define RANDO_VALUE_X    94
 
 static void PrintRandomizerToggleRow(u8 windowId, u8 row)
@@ -1583,6 +1586,7 @@ static void Task_OakSpeechLegacy_HandleRandomizerYesNoInput(u8 taskId)
         sRandoToggles[RANDO_ROW_SIMILAR] = FALSE;
         sRandoToggles[RANDO_ROW_LEGENDS] = FALSE;
         sRandoToggles[RANDO_ROW_SUPPLY] = TRUE;
+        sRandoToggles[RANDO_ROW_TMS] = TRUE;
         sRandoGens = 7;
         gTasks[taskId].tRandoAccept = TRUE;
         break;
@@ -1674,6 +1678,8 @@ static void Task_OakSpeechLegacy_HandleRandomizerToggleInput(u8 taskId)
             settings |= RANDO_F_NO_GEN3;
         if (!sRandoToggles[RANDO_ROW_SUPPLY])
             settings |= RANDO_F_NO_SUPPLY;
+        if (!sRandoToggles[RANDO_ROW_TMS])
+            settings |= RANDO_F_SINGLE_USE_TMS;
         gOakSpeechRandoSettings = settings;
         gOakSpeechRandoSeed = ((u32)Random() << 16) | Random();
         gTasks[taskId].tRandoAccept = FALSE;
