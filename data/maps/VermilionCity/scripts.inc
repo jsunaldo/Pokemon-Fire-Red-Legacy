@@ -72,6 +72,7 @@ VermilionCity_EventScript_CheckSeagallopPresent::
 	setvar VAR_0x8004, SEAGALLOP_VERMILION_CITY
 	goto_if_ge VAR_MAP_SCENE_ONE_ISLAND_POKEMON_CENTER_1F, 5, VermilionCity_EventScript_ChooseSeagallopDestRainbowPass
 	goto_if_ge VAR_MAP_SCENE_ONE_ISLAND_POKEMON_CENTER_1F, 1, VermilionCity_EventScript_ChooseSeagallopDestTriPass
+	goto_if_set FLAG_E4_REMATCH_CLEARED, VermilionCity_EventScript_ChooseSeagallopDestCrownOnly
 	msgbox VermilionCity_Text_TheShipSetSail
 	release
 	end
@@ -157,6 +158,7 @@ VermilionCity_EventScript_ChooseSeagallopDestTriPass::
 	message VermilionCity_Text_BoardSeagallopTriPass
 	waitmessage
 	setvar VAR_0x8004, SEAGALLOP_VERMILION_CITY
+	goto_if_set FLAG_E4_REMATCH_CLEARED, EventScript_SeagallopCrownMenu
 	multichoice 19, 5, MULTICHOICE_SEAGALLOP_123, FALSE
 	switch VAR_RESULT
 	case 0, EventScript_SailToOneIsland2
@@ -164,6 +166,16 @@ VermilionCity_EventScript_ChooseSeagallopDestTriPass::
 	case 2, EventScript_SailToThreeIsland2
 	case 3, EventScript_CancelSail
 	case 127, EventScript_CancelSail
+	end
+
+@ Reforged: no Sevii pass yet, but the CROWN ISLES are open.
+VermilionCity_EventScript_ChooseSeagallopDestCrownOnly::
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
+	message Text_WhereDoYouWantToSail
+	waitmessage
+	setvar VAR_0x8004, SEAGALLOP_VERMILION_CITY
+	goto EventScript_SeagallopCrownMenu
 	end
 
 @ Unreachable
@@ -210,6 +222,7 @@ VermilionCity_EventScript_CheckSeagallopPresentTrigger::
 	setvar VAR_0x8004, SEAGALLOP_VERMILION_CITY
 	goto_if_ge VAR_MAP_SCENE_ONE_ISLAND_POKEMON_CENTER_1F, 5, VermilionCity_EventScript_ChooseSeagallopDestRainbowPass
 	goto_if_ge VAR_MAP_SCENE_ONE_ISLAND_POKEMON_CENTER_1F, 1, VermilionCity_EventScript_ChooseSeagallopDestTriPass
+	goto_if_set FLAG_E4_REMATCH_CLEARED, VermilionCity_EventScript_ChooseSeagallopDestCrownOnly
 	msgbox VermilionCity_Text_TheShipSetSail
 	closemessage
 	goto VermilionCity_EventScript_WalkUpPier

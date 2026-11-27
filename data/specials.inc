@@ -461,4 +461,7 @@ gSpecials::
 	def_special CreateEnemyEventMon
 	def_special NuzlockeHelperTopUpAmount
 	def_special IsNationalDexPostgame
+	def_special DrawSeagallopListMenu
+	def_special GetSelectedSeagallopListItem
+	def_special IsNextCrownIsleLocked
 gSpecialsEnd::

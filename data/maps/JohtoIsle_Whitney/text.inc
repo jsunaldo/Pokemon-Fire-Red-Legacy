@@ -14,16 +14,6 @@ JohtoIsle_Whitney_Text_LeaderAfter::
 JohtoIsle_Whitney_Text_LeaderPostBattle::
 	.string "Want some MOOMOO MILK? It\nalways cheers me right up!$"
 
-JohtoIsle_Whitney_Text_SailorBlocked::
-	.string "Ahoy! Beat this isle's GYM LEADER\n"
-	.string "and I'll ferry you onward.$"
-
-JohtoIsle_Whitney_Text_SailorOnward::
-	.string "Ready to sail to the next isle?$"
-
-JohtoIsle_Whitney_Text_SailorReturn::
-	.string "Sail back to ONE ISLAND?$"
-
 JohtoIsle_Whitney_Text_HoennNORMANPre::
 	.string "I'm NORMAN, of the HOENN\n"
 	.string "LEAGUE. This isle tests us both!\p"

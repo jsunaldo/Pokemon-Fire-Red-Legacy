@@ -12,6 +12,9 @@
 #include "constants/songs.h"
 #include "constants/maps.h"
 #include "constants/seagallop.h"
+#include "constants/flags.h"
+#include "constants/opponents.h"
+#include "seagallop.h"
 
 #define TILESTAG_FERRY 3000
 #define TILESTAG_WAKE  4000
@@ -71,7 +74,16 @@ static const s8 sSeag[][4] = {
     [SEAGALLOP_SEVEN_ISLAND]    = {MAP(MAP_SEVEN_ISLAND_HARBOR), 0x08, 0x05},
     [SEAGALLOP_CINNABAR_ISLAND] = {MAP(MAP_CINNABAR_ISLAND),     0x15, 0x07},
     [SEAGALLOP_NAVEL_ROCK]      = {MAP(MAP_NAVEL_ROCK_HARBOR),   0x08, 0x05},
-    [SEAGALLOP_BIRTH_ISLAND]    = {MAP(MAP_BIRTH_ISLAND_HARBOR), 0x08, 0x05}
+    [SEAGALLOP_BIRTH_ISLAND]    = {MAP(MAP_BIRTH_ISLAND_HARBOR), 0x08, 0x05},
+    // Reforged: CROWN ISLES dock arrival tiles (tools_legacy/crown_isles_docks.json)
+    [SEAGALLOP_CROWN_SKYREACH]  = {MAP(MAP_JOHTO_ISLE_FALKNER),   14, 39},
+    [SEAGALLOP_CROWN_CHITIN]    = {MAP(MAP_JOHTO_ISLE_BUGSY),     18, 42},
+    [SEAGALLOP_CROWN_MEADOWMOO] = {MAP(MAP_JOHTO_ISLE_WHITNEY),    3, 16},
+    [SEAGALLOP_CROWN_HOLLOW]    = {MAP(MAP_JOHTO_ISLE_MORTY),     27, 31},
+    [SEAGALLOP_CROWN_IRONFIST]  = {MAP(MAP_JOHTO_ISLE_CHUCK),     16, 41},
+    [SEAGALLOP_CROWN_FOUNDRY]   = {MAP(MAP_JOHTO_ISLE_JASMINE),   18, 29},
+    [SEAGALLOP_CROWN_GLACIER]   = {MAP(MAP_JOHTO_ISLE_PRYCE),     12,  8},
+    [SEAGALLOP_CROWN_WYRMSPIRE] = {MAP(MAP_JOHTO_ISLE_CLAIR),     15, 36},
 };
 
 // Bitpacked array.  In the commented section, right-most bit is the
@@ -84,7 +96,12 @@ enum TravelDirections
     DIRN_EASTBOUND = 1
 };
 
-static const u16 sTravelDirectionMatrix[] = {
+// Reforged: widened to u32 for the CROWN ISLES (ids 11-18). Sailing out to an
+// isle is westbound from every Kanto/Sevii port (bits 11-18 clear in those rows);
+// leaving an isle for Kanto/Sevii is eastbound; isle to isle runs eastbound
+// toward later isles in the circuit.
+#define CROWN_ROW(id) (0x7FF | (0x7FF80 & ~((2u << (id)) - 1)))
+static const u32 sTravelDirectionMatrix[] = {
     [SEAGALLOP_VERMILION_CITY]  = 0x6fe, // 11011111110
     [SEAGALLOP_ONE_ISLAND]      = 0x6fc, // 11011111100
     [SEAGALLOP_TWO_ISLAND]      = 0x6f8, // 11011111000
@@ -95,7 +112,15 @@ static const u16 sTravelDirectionMatrix[] = {
     [SEAGALLOP_SEVEN_ISLAND]    = 0x440, // 10001000000
     [SEAGALLOP_CINNABAR_ISLAND] = 0x7ff, // 11111111111
     [SEAGALLOP_NAVEL_ROCK]      = 0x6e0, // 11011100000
-    [SEAGALLOP_BIRTH_ISLAND]    = 0x000  // 00000000000
+    [SEAGALLOP_BIRTH_ISLAND]    = 0x000, // 00000000000
+    [SEAGALLOP_CROWN_SKYREACH]  = CROWN_ROW(SEAGALLOP_CROWN_SKYREACH),
+    [SEAGALLOP_CROWN_CHITIN]    = CROWN_ROW(SEAGALLOP_CROWN_CHITIN),
+    [SEAGALLOP_CROWN_MEADOWMOO] = CROWN_ROW(SEAGALLOP_CROWN_MEADOWMOO),
+    [SEAGALLOP_CROWN_HOLLOW]    = CROWN_ROW(SEAGALLOP_CROWN_HOLLOW),
+    [SEAGALLOP_CROWN_IRONFIST]  = CROWN_ROW(SEAGALLOP_CROWN_IRONFIST),
+    [SEAGALLOP_CROWN_FOUNDRY]   = CROWN_ROW(SEAGALLOP_CROWN_FOUNDRY),
+    [SEAGALLOP_CROWN_GLACIER]   = CROWN_ROW(SEAGALLOP_CROWN_GLACIER),
+    [SEAGALLOP_CROWN_WYRMSPIRE] = CROWN_ROW(SEAGALLOP_CROWN_WYRMSPIRE),
 };
 
 static const union AnimCmd sSpriteAnims_Ferry_WB[] = {
@@ -458,6 +483,10 @@ u8 GetSeagallopNumber(void)
     originId = gSpecialVar_0x8004;
     destId = gSpecialVar_0x8006;
 
+    // Reforged: every CROWN ISLES route is HI-SPEED 8 (eight isles)
+    if (IS_SEAGALLOP_CROWN(originId) || IS_SEAGALLOP_CROWN(destId))
+        return 8;
+
     if (originId == SEAGALLOP_CINNABAR_ISLAND || destId == SEAGALLOP_CINNABAR_ISLAND)
         return 1;
 
@@ -501,4 +530,41 @@ bool8 IsPlayerLeftOfVermilionSailor(void)
         return TRUE;
 
     return FALSE;
+}
+
+// Reforged: CROWN ISLES unlocks. Isle 1 opens with the E4 rematch clear; each
+// later isle opens once BOTH leaders of the isle before it are beaten (the old
+// per-isle sailor gate); clearing the circuit opens them all.
+static const u16 sCrownIsleLeaderFlags[NUM_CROWN_ISLES][2] = {
+    {FLAG_BEAT_JOHTO_FALKNER, FLAG_BEAT_HOENN_WINONA},
+    {FLAG_BEAT_JOHTO_BUGSY,   FLAG_BEAT_HOENN_WATTSON},
+    {FLAG_BEAT_JOHTO_WHITNEY, FLAG_BEAT_HOENN_NORMAN},
+    {FLAG_BEAT_JOHTO_MORTY,   FLAG_BEAT_HOENN_TATE_LIZA},
+    {FLAG_BEAT_JOHTO_CHUCK,   FLAG_BEAT_HOENN_BRAWLY},
+    {FLAG_BEAT_JOHTO_JASMINE, FLAG_BEAT_HOENN_ROXANNE},
+    {FLAG_BEAT_JOHTO_PRYCE,   FLAG_BEAT_HOENN_WALLACE},
+    {FLAG_BEAT_JOHTO_CLAIR,   FLAG_BEAT_HOENN_FLANNERY},
+};
+
+bool8 IsCrownIsleUnlocked(u8 isle)
+{
+    if (isle >= NUM_CROWN_ISLES || !FlagGet(FLAG_E4_REMATCH_CLEARED))
+        return FALSE;
+    if (isle == 0 || FlagGet(FLAG_JOHTO_CIRCUIT_CLEARED))
+        return TRUE;
+    return FlagGet(sCrownIsleLeaderFlags[isle - 1][0]) && FlagGet(sCrownIsleLeaderFlags[isle - 1][1]);
+}
+
+// specialvar: TRUE when the captain at the isle in VAR_0x8004 can't chart the
+// next isle yet (its two leaders aren't both beaten).
+bool8 IsNextCrownIsleLocked(void)
+{
+    u16 isle;
+
+    if (!IS_SEAGALLOP_CROWN(gSpecialVar_0x8004))
+        return FALSE;
+    isle = gSpecialVar_0x8004 - SEAGALLOP_CROWN_FIRST;
+    if (isle + 1 >= NUM_CROWN_ISLES)
+        return FALSE;
+    return !IsCrownIsleUnlocked(isle + 1);
 }

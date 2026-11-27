@@ -524,6 +524,14 @@ static const u8 *const sTextColorTable[] = {
     [MAPSECTYPE_NOT_VISITED - 2] = sTextColor_Red
 };
 
+#define IS_CROWN_ISLE_MAPSEC(mapsec) ((mapsec) >= MAPSEC_SKYREACH_ISLE && (mapsec) <= MAPSEC_WYRMSPIRE_ISLE)
+
+// Reforged: CROWN ISLES art in graphics/region_map/sevii_123.bin, tilemap tile
+// centers (mapsec grid x,y + 4). Keep in sync with region_map_sections.json.
+static const u8 sCrownIsleTileCenters[][2] = {
+    {9, 8}, {11, 5}, {13, 7}, {15, 4}, {19, 4}, {21, 7}, {23, 5}, {25, 8},
+};
+
 static const u8 sSeviiMapsecs[3][30] = {
     [REGIONMAP_SEVII123 - 1] =
     {
@@ -539,6 +547,14 @@ static const u8 sSeviiMapsecs[3][30] = {
         MAPSEC_BERRY_FOREST,
         MAPSEC_THREE_ISLE_PATH,
         MAPSEC_EMBER_SPA,
+        MAPSEC_SKYREACH_ISLE,
+        MAPSEC_CHITIN_ISLE,
+        MAPSEC_MEADOWMOO_ISLE,
+        MAPSEC_HOLLOW_ISLE,
+        MAPSEC_IRONFIST_ISLE,
+        MAPSEC_FOUNDRY_ISLE,
+        MAPSEC_GLACIER_ISLE,
+        MAPSEC_WYRMSPIRE_ISLE,
         MAPSEC_NONE
     }, 
     [REGIONMAP_SEVII45 - 1] =
@@ -934,6 +950,14 @@ static const u8 sMapFlyDestinations[][3] = {
     [MAPSEC_RIXY_CHAMBER        - KANTO_MAPSEC_START] = {MAP(MAP_PALLET_TOWN),                           HEAL_LOCATION_NONE},
     [MAPSEC_VIAPOIS_CHAMBER     - KANTO_MAPSEC_START] = {MAP(MAP_PALLET_TOWN),                           HEAL_LOCATION_NONE},
     [MAPSEC_EMBER_SPA           - KANTO_MAPSEC_START] = {MAP(MAP_PALLET_TOWN),                           HEAL_LOCATION_NONE},
+    [MAPSEC_SKYREACH_ISLE    - KANTO_MAPSEC_START] = {MAP(MAP_JOHTO_ISLE_FALKNER), HEAL_LOCATION_CROWN_SKYREACH},
+    [MAPSEC_CHITIN_ISLE      - KANTO_MAPSEC_START] = {MAP(MAP_JOHTO_ISLE_BUGSY), HEAL_LOCATION_CROWN_CHITIN},
+    [MAPSEC_MEADOWMOO_ISLE   - KANTO_MAPSEC_START] = {MAP(MAP_JOHTO_ISLE_WHITNEY), HEAL_LOCATION_CROWN_MEADOWMOO},
+    [MAPSEC_HOLLOW_ISLE      - KANTO_MAPSEC_START] = {MAP(MAP_JOHTO_ISLE_MORTY), HEAL_LOCATION_CROWN_HOLLOW},
+    [MAPSEC_IRONFIST_ISLE    - KANTO_MAPSEC_START] = {MAP(MAP_JOHTO_ISLE_CHUCK), HEAL_LOCATION_CROWN_IRONFIST},
+    [MAPSEC_FOUNDRY_ISLE     - KANTO_MAPSEC_START] = {MAP(MAP_JOHTO_ISLE_JASMINE), HEAL_LOCATION_CROWN_FOUNDRY},
+    [MAPSEC_GLACIER_ISLE     - KANTO_MAPSEC_START] = {MAP(MAP_JOHTO_ISLE_PRYCE), HEAL_LOCATION_CROWN_GLACIER},
+    [MAPSEC_WYRMSPIRE_ISLE   - KANTO_MAPSEC_START] = {MAP(MAP_JOHTO_ISLE_CLAIR), HEAL_LOCATION_CROWN_WYRMSPIRE},
 };
 
 static void RegionMap_DarkenPalette(u16 *pal, u16 size, u16 tint)
@@ -1025,6 +1049,11 @@ static void InitRegionMapType(void)
     {
         sRegionMap->permissions[i] = sRegionMapPermissions[sRegionMap->type][i];
     }
+    // Reforged: the FR/LG Fly map only shows the page you're on. Once the CROWN
+    // ISLES are open (postgame) it gets the Town Map's page switch, so Kanto,
+    // Sevii and the isles can all be reached by Fly from anywhere.
+    if (sRegionMap->type == REGIONMAP_TYPE_FLY && FlagGet(FLAG_E4_REMATCH_CLEARED))
+        sRegionMap->permissions[MAPPERM_HAS_SWITCH_BUTTON] = TRUE;
     if (!FlagGet(FLAG_SYS_SEVII_MAP_123))
         sRegionMap->permissions[MAPPERM_HAS_SWITCH_BUTTON] = FALSE;
     region = REGIONMAP_KANTO;
@@ -1522,6 +1551,14 @@ static void BufferRegionMapBg(u8 bg, u16 *map)
         FillBgTilemapBufferRect_Palette0(0, 0x003, 13, 11, 3, 2);
     if (whichMap == REGIONMAP_SEVII67 && !FlagGet(FLAG_WORLD_MAP_BIRTH_ISLAND_EXTERIOR))
         FillBgTilemapBufferRect_Palette0(0, 0x003, 21, 16, 3, 3);
+    // Reforged: the CROWN ISLES (baked into sevii_123.bin) stay open sea until
+    // the E4 rematch is cleared. Centers in tilemap tiles; each isle art is <= 3x3.
+    if (whichMap == REGIONMAP_SEVII123 && !FlagGet(FLAG_E4_REMATCH_CLEARED))
+    {
+        u8 i;
+        for (i = 0; i < ARRAY_COUNT(sCrownIsleTileCenters); i++)
+            FillBgTilemapBufferRect_Palette0(0, 0x003, sCrownIsleTileCenters[i][0] - 1, sCrownIsleTileCenters[i][1] - 1, 3, 3);
+    }
 }
 
 static bool8 GetRegionMapPermission(u8 attr)
@@ -2931,6 +2968,8 @@ static u16 GetMapsecUnderCursor(void)
     mapsec = GetSelectedMapSection(GetSelectedRegionMap(), LAYER_MAP, sMapCursor->y, sMapCursor->x);
     if ((mapsec == MAPSEC_NAVEL_ROCK || mapsec == MAPSEC_BIRTH_ISLAND) && !FlagGet(FLAG_WORLD_MAP_NAVEL_ROCK_EXTERIOR))
         mapsec = MAPSEC_NONE;
+    if (IS_CROWN_ISLE_MAPSEC(mapsec) && !FlagGet(FLAG_E4_REMATCH_CLEARED))
+        mapsec = MAPSEC_NONE;
     return mapsec;
 }
 
@@ -2995,6 +3034,18 @@ static u8 GetMapsecType(u8 mapsec)
         return FlagGet(FLAG_WORLD_MAP_ROUTE4_POKEMON_CENTER_1F) ? MAPSECTYPE_VISITED : MAPSECTYPE_NOT_VISITED;
     case MAPSEC_ROUTE_10_POKECENTER:
         return FlagGet(FLAG_WORLD_MAP_ROUTE10_POKEMON_CENTER_1F) ? MAPSECTYPE_VISITED : MAPSECTYPE_NOT_VISITED;
+    case MAPSEC_SKYREACH_ISLE:
+    case MAPSEC_CHITIN_ISLE:
+    case MAPSEC_MEADOWMOO_ISLE:
+    case MAPSEC_HOLLOW_ISLE:
+    case MAPSEC_IRONFIST_ISLE:
+    case MAPSEC_FOUNDRY_ISLE:
+    case MAPSEC_GLACIER_ISLE:
+    case MAPSEC_WYRMSPIRE_ISLE:
+        // Reforged: shown once the isles open; Fly needs a first visit (ferry)
+        if (!FlagGet(FLAG_E4_REMATCH_CLEARED))
+            return MAPSECTYPE_NONE;
+        return FlagGet(FLAG_WORLD_MAP_CROWN_SKYREACH + (mapsec - MAPSEC_SKYREACH_ISLE)) ? MAPSECTYPE_VISITED : MAPSECTYPE_NOT_VISITED;
     case MAPSEC_NONE:
         return MAPSECTYPE_NONE;
     default:
@@ -3798,51 +3849,11 @@ static bool32 IsCeladonDeptStoreMapsec(u16 mapsec)
     return TRUE;
 }
 
-// Reforged: the Johto Isles use MAPSEC_SPECIAL_AREA, which has no name entry
-// (the lookup ran past the table into "CELADON DEPT."). Name each isle.
-static const u8 *GetJohtoIsleName(void)
-{
-    static const u8 sSkyreach[] = _("SKYREACH ISLE");
-    static const u8 sChitin[] = _("CHITIN ISLE");
-    static const u8 sMeadowmoo[] = _("MEADOWMOO ISLE");
-    static const u8 sHollow[] = _("HOLLOW ISLE");
-    static const u8 sIronfist[] = _("IRONFIST ISLE");
-    static const u8 sFoundry[] = _("FOUNDRY ISLE");
-    static const u8 sGlacier[] = _("GLACIER ISLE");
-    static const u8 sWyrmspire[] = _("WYRMSPIRE ISLE");
-    static const struct { u16 map; const u8 *name; } sIsles[] = {
-        {MAP_JOHTO_ISLE_FALKNER, sSkyreach}, {MAP_JOHTO_ISLE_BUGSY, sChitin},
-        {MAP_JOHTO_ISLE_WHITNEY, sMeadowmoo}, {MAP_JOHTO_ISLE_MORTY, sHollow},
-        {MAP_JOHTO_ISLE_CHUCK, sIronfist}, {MAP_JOHTO_ISLE_JASMINE, sFoundry},
-        {MAP_JOHTO_ISLE_PRYCE, sGlacier}, {MAP_JOHTO_ISLE_CLAIR, sWyrmspire},
-    };
-    u16 here = (gSaveBlock1Ptr->location.mapGroup << 8) | gSaveBlock1Ptr->location.mapNum;
-    u32 i;
-
-    for (i = 0; i < NELEMS(sIsles); i++)
-    {
-        if (sIsles[i].map == here)
-            return sIsles[i].name;
-    }
-    return NULL;
-}
-
 u8 *GetMapName(u8 *dst0, u16 mapsec, u16 fill)
 {
     u8 *dst;
     u16 i;
     u16 idx;
-    if (mapsec == MAPSEC_SPECIAL_AREA && sRegionMap == NULL && GetJohtoIsleName() != NULL)
-    {
-        dst = StringCopy(dst0, GetJohtoIsleName());
-        if (fill != 0)
-        {
-            for (i = dst - dst0; i < fill; i++)
-                *dst++ = CHAR_SPACE;
-            *dst = EOS;
-        }
-        return dst;
-    }
     if ((idx = mapsec - KANTO_MAPSEC_START) < MAPSEC_NONE - KANTO_MAPSEC_START)
     {
         if (IsCeladonDeptStoreMapsec(mapsec) == TRUE)

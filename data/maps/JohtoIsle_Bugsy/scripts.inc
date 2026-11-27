@@ -1,5 +1,10 @@
 JohtoIsle_Bugsy_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, JohtoIsle_Bugsy_OnTransition
 	.byte 0
+
+JohtoIsle_Bugsy_OnTransition::
+	setworldmapflag FLAG_WORLD_MAP_CROWN_CHITIN
+	end
 
 JohtoIsle_Bugsy_EventScript_Leader::
 	lock
@@ -23,38 +28,13 @@ JohtoIsle_Bugsy_EventScript_LeaderPostBattle::
 	release
 	end
 
+@ Reforged: this isle's dock is a Seagallop port. The captain sails to
+@ VERMILION, ONE-SEVEN ISLAND and every unlocked CROWN ISLE.
 JohtoIsle_Bugsy_EventScript_Sailor::
 	lock
 	faceplayer
-	goto_if_unset FLAG_BEAT_JOHTO_BUGSY, JohtoIsle_Bugsy_EventScript_SailorBlocked
-	goto_if_unset FLAG_BEAT_HOENN_WATTSON, JohtoIsle_Bugsy_EventScript_SailorBlocked
-	goto JohtoIsle_Bugsy_EventScript_SailorOnward
-
-JohtoIsle_Bugsy_EventScript_SailorBlocked::
-	msgbox JohtoIsle_Bugsy_Text_SailorBlocked, MSGBOX_DEFAULT
-	goto JohtoIsle_Bugsy_EventScript_SailorReturnPrompt
-
-JohtoIsle_Bugsy_EventScript_SailorOnward::
-	msgbox JohtoIsle_Bugsy_Text_SailorOnward, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, JohtoIsle_Bugsy_EventScript_SailNext
-	goto JohtoIsle_Bugsy_EventScript_SailorReturnPrompt
-
-JohtoIsle_Bugsy_EventScript_SailNext::
-	warp MAP_JOHTO_ISLE_WHITNEY, 3, 16
-	waitstate
-	release
-	end
-
-JohtoIsle_Bugsy_EventScript_SailorReturnPrompt::
-	msgbox JohtoIsle_Bugsy_Text_SailorReturn, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, JohtoIsle_Bugsy_EventScript_SailorBye
-	warp MAP_ONE_ISLAND_HARBOR, 8, 5
-	waitstate
-	release
-	end
-
-JohtoIsle_Bugsy_EventScript_SailorBye::
-	release
+	setvar VAR_0x8004, SEAGALLOP_CROWN_CHITIN
+	goto EventScript_CrownIsleCaptain
 	end
 
 JohtoIsle_Bugsy_EventScript_HoennWATTSON::

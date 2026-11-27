@@ -51,6 +51,16 @@
 #define FLAG_0x025               0x025
 #define FLAG_0x026               0x026
 #define FLAG_0x027               0x027
+// Reforged: Town Map "visited" bits for the eight CROWN ISLES (Fly targets),
+// set by each isle's ON_TRANSITION script. Circuit order, Skyreach first.
+#define FLAG_WORLD_MAP_CROWN_SKYREACH   FLAG_0x020
+#define FLAG_WORLD_MAP_CROWN_CHITIN     FLAG_0x021
+#define FLAG_WORLD_MAP_CROWN_MEADOWMOO  FLAG_0x022
+#define FLAG_WORLD_MAP_CROWN_HOLLOW     FLAG_0x023
+#define FLAG_WORLD_MAP_CROWN_IRONFIST   FLAG_0x024
+#define FLAG_WORLD_MAP_CROWN_FOUNDRY    FLAG_0x025
+#define FLAG_WORLD_MAP_CROWN_GLACIER    FLAG_0x026
+#define FLAG_WORLD_MAP_CROWN_WYRMSPIRE  FLAG_0x027
 
 // Hide/show flags
 #define FLAG_HIDE_BULBASAUR_BALL                           0x028

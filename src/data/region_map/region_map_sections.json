@@ -1139,6 +1139,70 @@
       "y": 0,
       "width": 0,
       "height": 0
+    },
+    {
+      "id": "MAPSEC_SKYREACH_ISLE",
+      "name": "SKYREACH ISLE",
+      "x": 5,
+      "y": 4,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_CHITIN_ISLE",
+      "name": "CHITIN ISLE",
+      "x": 7,
+      "y": 1,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_MEADOWMOO_ISLE",
+      "name": "MEADOWMOO ISLE",
+      "x": 9,
+      "y": 3,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_HOLLOW_ISLE",
+      "name": "HOLLOW ISLE",
+      "x": 11,
+      "y": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_IRONFIST_ISLE",
+      "name": "IRONFIST ISLE",
+      "x": 15,
+      "y": 0,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_FOUNDRY_ISLE",
+      "name": "FOUNDRY ISLE",
+      "x": 17,
+      "y": 3,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_GLACIER_ISLE",
+      "name": "GLACIER ISLE",
+      "x": 19,
+      "y": 1,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_WYRMSPIRE_ISLE",
+      "name": "WYRMSPIRE ISLE",
+      "x": 21,
+      "y": 4,
+      "width": 1,
+      "height": 1
     }
   ]
 }

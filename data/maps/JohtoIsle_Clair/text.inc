@@ -14,16 +14,6 @@ JohtoIsle_Clair_Text_LeaderAfter::
 JohtoIsle_Clair_Text_LeaderPostBattle::
 	.string "Don't let it go to your head.\nMy dragons are training.$"
 
-JohtoIsle_Clair_Text_SailorBlocked::
-	.string "Ahoy! Beat this isle's GYM LEADER\n"
-	.string "and I'll ferry you onward.$"
-
-JohtoIsle_Clair_Text_SailorOnward::
-	.string "Ready to sail to the next isle?$"
-
-JohtoIsle_Clair_Text_SailorReturn::
-	.string "Sail back to ONE ISLAND?$"
-
 JohtoIsle_Clair_Text_HoennFLANNERYPre::
 	.string "I'm FLANNERY, of the HOENN\n"
 	.string "LEAGUE. This isle tests us both!\p"
@@ -42,7 +32,7 @@ JohtoIsle_Clair_Text_HoennFLANNERYPostBattle::
 	.string "Grandpa would've loved that\nbattle! I'll tell him all!$"
 
 JohtoIsle_Clair_Text_CircuitCleared::
-	.string "You've beaten every LEADER of\nthe JOHTO ISLES!\pWord of your strength will\nreach KANTO's GYMS and LEAGUE.\pSeek them out. They'll be\nready for you now.$"
+	.string "You've beaten every LEADER of\nthe CROWN ISLES!\pWord of your strength will\nreach KANTO's GYMS and LEAGUE.\pSeek them out. They'll be\nready for you now.$"
 
 JohtoIsle_Clair_Text_CrownRematchAsk::
     .string "You beat the final LEAGUE!\n"

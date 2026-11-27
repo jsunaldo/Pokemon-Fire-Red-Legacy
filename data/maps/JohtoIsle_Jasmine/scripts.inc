@@ -1,5 +1,10 @@
 JohtoIsle_Jasmine_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, JohtoIsle_Jasmine_OnTransition
 	.byte 0
+
+JohtoIsle_Jasmine_OnTransition::
+	setworldmapflag FLAG_WORLD_MAP_CROWN_FOUNDRY
+	end
 
 JohtoIsle_Jasmine_EventScript_Leader::
 	lock
@@ -23,38 +28,13 @@ JohtoIsle_Jasmine_EventScript_LeaderPostBattle::
 	release
 	end
 
+@ Reforged: this isle's dock is a Seagallop port. The captain sails to
+@ VERMILION, ONE-SEVEN ISLAND and every unlocked CROWN ISLE.
 JohtoIsle_Jasmine_EventScript_Sailor::
 	lock
 	faceplayer
-	goto_if_unset FLAG_BEAT_JOHTO_JASMINE, JohtoIsle_Jasmine_EventScript_SailorBlocked
-	goto_if_unset FLAG_BEAT_HOENN_ROXANNE, JohtoIsle_Jasmine_EventScript_SailorBlocked
-	goto JohtoIsle_Jasmine_EventScript_SailorOnward
-
-JohtoIsle_Jasmine_EventScript_SailorBlocked::
-	msgbox JohtoIsle_Jasmine_Text_SailorBlocked, MSGBOX_DEFAULT
-	goto JohtoIsle_Jasmine_EventScript_SailorReturnPrompt
-
-JohtoIsle_Jasmine_EventScript_SailorOnward::
-	msgbox JohtoIsle_Jasmine_Text_SailorOnward, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, JohtoIsle_Jasmine_EventScript_SailNext
-	goto JohtoIsle_Jasmine_EventScript_SailorReturnPrompt
-
-JohtoIsle_Jasmine_EventScript_SailNext::
-	warp MAP_JOHTO_ISLE_PRYCE, 12, 8
-	waitstate
-	release
-	end
-
-JohtoIsle_Jasmine_EventScript_SailorReturnPrompt::
-	msgbox JohtoIsle_Jasmine_Text_SailorReturn, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, JohtoIsle_Jasmine_EventScript_SailorBye
-	warp MAP_ONE_ISLAND_HARBOR, 8, 5
-	waitstate
-	release
-	end
-
-JohtoIsle_Jasmine_EventScript_SailorBye::
-	release
+	setvar VAR_0x8004, SEAGALLOP_CROWN_FOUNDRY
+	goto EventScript_CrownIsleCaptain
 	end
 
 JohtoIsle_Jasmine_EventScript_HoennROXANNE::

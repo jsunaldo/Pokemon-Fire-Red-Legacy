@@ -1,5 +1,6 @@
 @ Separate selection menus for before the Rainbow Pass is obtained
 EventScript_ChooseDestFromOneIsland::
+	goto_if_set FLAG_E4_REMATCH_CLEARED, EventScript_SeagallopCrownMenu
 	goto_if_ge VAR_MAP_SCENE_ONE_ISLAND_POKEMON_CENTER_1F, 5, EventScript_SeviiDestinationsPage1
 	goto_if_ge VAR_MAP_SCENE_CINNABAR_ISLAND, 4, EventScript_ChooseDestFromOneIslandVermilionAllowed
 	multichoice 19, 6, MULTICHOICE_ISLAND_23, FALSE
@@ -21,6 +22,7 @@ EventScript_ChooseDestFromOneIslandVermilionAllowed::
 	end
 
 EventScript_ChooseDestFromTwoIsland::
+	goto_if_set FLAG_E4_REMATCH_CLEARED, EventScript_SeagallopCrownMenu
 	goto_if_ge VAR_MAP_SCENE_ONE_ISLAND_POKEMON_CENTER_1F, 5, EventScript_SeviiDestinationsPage1
 	goto_if_ge VAR_MAP_SCENE_CINNABAR_ISLAND, 4, EventScript_ChooseDestFromTwoIslandVermilionAllowed
 	multichoice 19, 6, MULTICHOICE_ISLAND_13, FALSE
@@ -62,6 +64,7 @@ EventScript_SailToThreeIsland2::
 	end
 
 EventScript_ChooseDestFromIsland::
+	goto_if_set FLAG_E4_REMATCH_CLEARED, EventScript_SeagallopCrownMenu
 	goto_if_ge VAR_MAP_SCENE_ONE_ISLAND_POKEMON_CENTER_1F, 5, EventScript_SeviiDestinationsPage1
 	goto_if_ge VAR_MAP_SCENE_CINNABAR_ISLAND, 4, EventScript_ChooseDestFromIslandVermilionAllowed
 	multichoice 19, 6, MULTICHOICE_ISLAND_12, FALSE
@@ -85,6 +88,7 @@ EventScript_ChooseDestFromIslandVermilionAllowed::
 EventScript_SailToDest::
 	specialvar VAR_RESULT, GetSeagallopNumber
 	buffernumberstring STR_VAR_1, VAR_RESULT
+	goto_if_ge VAR_0x8006, SEAGALLOP_CROWN_FIRST, EventScript_DepartingNotVermilion
 	goto_if_eq VAR_0x8004, SEAGALLOP_VERMILION_CITY, EventScript_DepartingVermilion
 	goto_if_ne VAR_0x8004, SEAGALLOP_VERMILION_CITY, EventScript_DepartingNotVermilion
 	end
@@ -128,6 +132,7 @@ VermilionCity_Movement_WalkUp::
 	step_end
 
 EventScript_SeviiDestinationsPage1::
+	goto_if_set FLAG_E4_REMATCH_CLEARED, EventScript_SeagallopCrownMenu
 	setvar VAR_0x8005, 0
 	special DrawSeagallopDestinationMenu
 	waitstate
@@ -195,3 +200,44 @@ EventScript_SailToSevenIsland::
 	setvar VAR_0x8006, SEAGALLOP_SEVEN_ISLAND
 	goto EventScript_SailToDest
 	end
+
+@ Reforged: once the CROWN ISLES are open (FLAG_E4_REMATCH_CLEARED) every
+@ Seagallop port uses this menu. VAR_0x8004 = origin port. The first list holds
+@ CROWN ISLES + the ports the player's passes allow; CROWN ISLES opens the list
+@ of unlocked isles (see DrawSeagallopListMenu in script_menu.c).
+EventScript_SeagallopCrownMenu::
+	setvar VAR_0x8005, 0
+	setvar VAR_0x8007, 0
+EventScript_SeagallopListLoop::
+	special DrawSeagallopListMenu
+	waitstate
+	specialvar VAR_0x8006, GetSelectedSeagallopListItem
+	goto_if_eq VAR_0x8006, SCR_MENU_CANCEL, EventScript_CancelSail
+	goto_if_eq VAR_0x8006, SEAGALLOP_MORE, EventScript_SeagallopListNextPage
+	goto_if_eq VAR_0x8006, SEAGALLOP_CROWN_LIST, EventScript_SeagallopListCrownIsles
+	goto EventScript_SailToDest
+	end
+
+EventScript_SeagallopListNextPage::
+	addvar VAR_0x8005, 1
+	goto EventScript_SeagallopListLoop
+	end
+
+EventScript_SeagallopListCrownIsles::
+	setvar VAR_0x8005, 0
+	setvar VAR_0x8007, 1
+	goto EventScript_SeagallopListLoop
+	end
+
+@ The Seagallop captain docked at each CROWN ISLE. VAR_0x8004 = this isle.
+EventScript_CrownIsleCaptain::
+	specialvar VAR_RESULT, IsNextCrownIsleLocked
+	call_if_eq VAR_RESULT, TRUE, EventScript_CrownIsleCaptainHint
+	message Text_WhereDoYouWantToSail
+	waitmessage
+	goto EventScript_SeagallopCrownMenu
+	end
+
+EventScript_CrownIsleCaptainHint::
+	msgbox Text_CrownIsleCaptainHint
+	return

@@ -14,16 +14,6 @@ JohtoIsle_Falkner_Text_LeaderAfter::
 JohtoIsle_Falkner_Text_LeaderPostBattle::
 	.string "The updrafts here are perfect.\nMy birds fly higher every day.$"
 
-JohtoIsle_Falkner_Text_SailorBlocked::
-	.string "Ahoy! Beat this isle's GYM LEADER\n"
-	.string "and I'll ferry you onward.$"
-
-JohtoIsle_Falkner_Text_SailorOnward::
-	.string "Ready to sail to the next isle?$"
-
-JohtoIsle_Falkner_Text_SailorReturn::
-	.string "Sail back to ONE ISLAND?$"
-
 JohtoIsle_Falkner_Text_HoennWINONAPre::
 	.string "I'm WINONA, of the HOENN\n"
 	.string "LEAGUE. This isle tests us both!\p"

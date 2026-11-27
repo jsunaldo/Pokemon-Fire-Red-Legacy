@@ -14,16 +14,6 @@ JohtoIsle_Bugsy_Text_LeaderAfter::
 JohtoIsle_Bugsy_Text_LeaderPostBattle::
 	.string "I'm cataloging every bug on\nCHITIN. Want to see my notes?$"
 
-JohtoIsle_Bugsy_Text_SailorBlocked::
-	.string "Ahoy! Beat this isle's GYM LEADER\n"
-	.string "and I'll ferry you onward.$"
-
-JohtoIsle_Bugsy_Text_SailorOnward::
-	.string "Ready to sail to the next isle?$"
-
-JohtoIsle_Bugsy_Text_SailorReturn::
-	.string "Sail back to ONE ISLAND?$"
-
 JohtoIsle_Bugsy_Text_HoennWATTSONPre::
 	.string "I'm WATTSON, of the HOENN\n"
 	.string "LEAGUE. This isle tests us both!\p"

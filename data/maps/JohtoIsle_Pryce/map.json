@@ -3,7 +3,7 @@
   "name": "JohtoIsle_Pryce",
   "layout": "LAYOUT_JOHTO_ISLE_PRYCE",
   "music": "MUS_SEVII_CAVE",
-  "region_map_section": "MAPSEC_SPECIAL_AREA",
+  "region_map_section": "MAPSEC_GLACIER_ISLE",
   "requires_flash": false,
   "weather": "WEATHER_SNOW",
   "map_type": "MAP_TYPE_ROUTE",

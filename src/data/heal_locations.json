@@ -159,6 +159,70 @@
       "y": 12,
       "respawn_map": "MAP_SIX_ISLAND_POKEMON_CENTER_1F",
       "respawn_npc": "LOCALID_SIX_ISLAND_NURSE"
+    },
+    {
+      "id": "HEAL_LOCATION_CROWN_SKYREACH",
+      "map": "MAP_JOHTO_ISLE_FALKNER",
+      "x": 14,
+      "y": 39,
+      "respawn_map": "MAP_ONE_ISLAND_POKEMON_CENTER_1F",
+      "respawn_npc": "LOCALID_ONE_ISLAND_NURSE"
+    },
+    {
+      "id": "HEAL_LOCATION_CROWN_CHITIN",
+      "map": "MAP_JOHTO_ISLE_BUGSY",
+      "x": 18,
+      "y": 42,
+      "respawn_map": "MAP_ONE_ISLAND_POKEMON_CENTER_1F",
+      "respawn_npc": "LOCALID_ONE_ISLAND_NURSE"
+    },
+    {
+      "id": "HEAL_LOCATION_CROWN_MEADOWMOO",
+      "map": "MAP_JOHTO_ISLE_WHITNEY",
+      "x": 3,
+      "y": 16,
+      "respawn_map": "MAP_ONE_ISLAND_POKEMON_CENTER_1F",
+      "respawn_npc": "LOCALID_ONE_ISLAND_NURSE"
+    },
+    {
+      "id": "HEAL_LOCATION_CROWN_HOLLOW",
+      "map": "MAP_JOHTO_ISLE_MORTY",
+      "x": 27,
+      "y": 31,
+      "respawn_map": "MAP_ONE_ISLAND_POKEMON_CENTER_1F",
+      "respawn_npc": "LOCALID_ONE_ISLAND_NURSE"
+    },
+    {
+      "id": "HEAL_LOCATION_CROWN_IRONFIST",
+      "map": "MAP_JOHTO_ISLE_CHUCK",
+      "x": 16,
+      "y": 41,
+      "respawn_map": "MAP_ONE_ISLAND_POKEMON_CENTER_1F",
+      "respawn_npc": "LOCALID_ONE_ISLAND_NURSE"
+    },
+    {
+      "id": "HEAL_LOCATION_CROWN_FOUNDRY",
+      "map": "MAP_JOHTO_ISLE_JASMINE",
+      "x": 18,
+      "y": 29,
+      "respawn_map": "MAP_ONE_ISLAND_POKEMON_CENTER_1F",
+      "respawn_npc": "LOCALID_ONE_ISLAND_NURSE"
+    },
+    {
+      "id": "HEAL_LOCATION_CROWN_GLACIER",
+      "map": "MAP_JOHTO_ISLE_PRYCE",
+      "x": 12,
+      "y": 8,
+      "respawn_map": "MAP_ONE_ISLAND_POKEMON_CENTER_1F",
+      "respawn_npc": "LOCALID_ONE_ISLAND_NURSE"
+    },
+    {
+      "id": "HEAL_LOCATION_CROWN_WYRMSPIRE",
+      "map": "MAP_JOHTO_ISLE_CLAIR",
+      "x": 15,
+      "y": 36,
+      "respawn_map": "MAP_ONE_ISLAND_POKEMON_CENTER_1F",
+      "respawn_npc": "LOCALID_ONE_ISLAND_NURSE"
     }
   ]
 }

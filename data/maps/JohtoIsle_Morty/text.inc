@@ -14,16 +14,6 @@ JohtoIsle_Morty_Text_LeaderAfter::
 JohtoIsle_Morty_Text_LeaderPostBattle::
 	.string "The fog is thinning. The\nspirits are at peace with you.$"
 
-JohtoIsle_Morty_Text_SailorBlocked::
-	.string "Ahoy! Beat this isle's GYM LEADER\n"
-	.string "and I'll ferry you onward.$"
-
-JohtoIsle_Morty_Text_SailorOnward::
-	.string "Ready to sail to the next isle?$"
-
-JohtoIsle_Morty_Text_SailorReturn::
-	.string "Sail back to ONE ISLAND?$"
-
 JohtoIsle_Morty_Text_HoennTATELIZAPre::
 	.string "I'm TATE&LIZA, of the HOENN\n"
 	.string "LEAGUE. This isle tests us both!\p"

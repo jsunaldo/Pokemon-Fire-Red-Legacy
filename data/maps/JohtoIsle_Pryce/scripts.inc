@@ -1,5 +1,10 @@
 JohtoIsle_Pryce_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, JohtoIsle_Pryce_OnTransition
 	.byte 0
+
+JohtoIsle_Pryce_OnTransition::
+	setworldmapflag FLAG_WORLD_MAP_CROWN_GLACIER
+	end
 
 JohtoIsle_Pryce_EventScript_Leader::
 	lock
@@ -23,38 +28,13 @@ JohtoIsle_Pryce_EventScript_LeaderPostBattle::
 	release
 	end
 
+@ Reforged: this isle's dock is a Seagallop port. The captain sails to
+@ VERMILION, ONE-SEVEN ISLAND and every unlocked CROWN ISLE.
 JohtoIsle_Pryce_EventScript_Sailor::
 	lock
 	faceplayer
-	goto_if_unset FLAG_BEAT_JOHTO_PRYCE, JohtoIsle_Pryce_EventScript_SailorBlocked
-	goto_if_unset FLAG_BEAT_HOENN_WALLACE, JohtoIsle_Pryce_EventScript_SailorBlocked
-	goto JohtoIsle_Pryce_EventScript_SailorOnward
-
-JohtoIsle_Pryce_EventScript_SailorBlocked::
-	msgbox JohtoIsle_Pryce_Text_SailorBlocked, MSGBOX_DEFAULT
-	goto JohtoIsle_Pryce_EventScript_SailorReturnPrompt
-
-JohtoIsle_Pryce_EventScript_SailorOnward::
-	msgbox JohtoIsle_Pryce_Text_SailorOnward, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, JohtoIsle_Pryce_EventScript_SailNext
-	goto JohtoIsle_Pryce_EventScript_SailorReturnPrompt
-
-JohtoIsle_Pryce_EventScript_SailNext::
-	warp MAP_JOHTO_ISLE_CLAIR, 15, 36
-	waitstate
-	release
-	end
-
-JohtoIsle_Pryce_EventScript_SailorReturnPrompt::
-	msgbox JohtoIsle_Pryce_Text_SailorReturn, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, JohtoIsle_Pryce_EventScript_SailorBye
-	warp MAP_ONE_ISLAND_HARBOR, 8, 5
-	waitstate
-	release
-	end
-
-JohtoIsle_Pryce_EventScript_SailorBye::
-	release
+	setvar VAR_0x8004, SEAGALLOP_CROWN_GLACIER
+	goto EventScript_CrownIsleCaptain
 	end
 
 JohtoIsle_Pryce_EventScript_HoennWALLACE::

@@ -1,5 +1,10 @@
 JohtoIsle_Clair_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, JohtoIsle_Clair_OnTransition
 	.byte 0
+
+JohtoIsle_Clair_OnTransition::
+	setworldmapflag FLAG_WORLD_MAP_CROWN_WYRMSPIRE
+	end
 
 JohtoIsle_Clair_EventScript_Leader::
 	lock
@@ -25,30 +30,13 @@ JohtoIsle_Clair_EventScript_LeaderPostBattle::
 	release
 	end
 
+@ Reforged: this isle's dock is a Seagallop port. The captain sails to
+@ VERMILION, ONE-SEVEN ISLAND and every unlocked CROWN ISLE.
 JohtoIsle_Clair_EventScript_Sailor::
 	lock
 	faceplayer
-	goto_if_unset FLAG_BEAT_JOHTO_CLAIR, JohtoIsle_Clair_EventScript_SailorBlocked
-	goto_if_unset FLAG_BEAT_HOENN_FLANNERY, JohtoIsle_Clair_EventScript_SailorBlocked
-	goto JohtoIsle_Clair_EventScript_SailorOnward
-
-JohtoIsle_Clair_EventScript_SailorBlocked::
-	msgbox JohtoIsle_Clair_Text_SailorBlocked, MSGBOX_DEFAULT
-	goto JohtoIsle_Clair_EventScript_SailorReturnPrompt
-
-JohtoIsle_Clair_EventScript_SailorOnward::
-	goto JohtoIsle_Clair_EventScript_SailorReturnPrompt
-
-JohtoIsle_Clair_EventScript_SailorReturnPrompt::
-	msgbox JohtoIsle_Clair_Text_SailorReturn, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, JohtoIsle_Clair_EventScript_SailorBye
-	warp MAP_ONE_ISLAND_HARBOR, 8, 5
-	waitstate
-	release
-	end
-
-JohtoIsle_Clair_EventScript_SailorBye::
-	release
+	setvar VAR_0x8004, SEAGALLOP_CROWN_WYRMSPIRE
+	goto EventScript_CrownIsleCaptain
 	end
 
 JohtoIsle_Clair_EventScript_HoennFLANNERY::

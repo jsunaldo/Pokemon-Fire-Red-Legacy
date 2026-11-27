@@ -12,6 +12,8 @@
 #include "event_scripts.h"
 #include "constants/songs.h"
 #include "constants/seagallop.h"
+#include "seagallop.h"
+#include "constants/vars.h"
 #include "constants/menu.h"
 
 #define GFXTAG_FOSSIL 7000
@@ -1358,4 +1360,159 @@ u16 GetSelectedSeagallopDestination(void)
             return gSpecialVar_Result;
     }
     return SEAGALLOP_VERMILION_CITY;
+}
+
+// Reforged: the Seagallop menu once the CROWN ISLES are open (FLAG_E4_REMATCH_CLEARED).
+// Used by Vermilion, every Sevii harbor and every Crown Isle captain.
+//   VAR_0x8004 = origin port (SEAGALLOP_*)
+//   VAR_0x8005 = page (wraps)
+//   VAR_0x8007 = 0: ports list (CROWN ISLES first, then Vermilion, One-Seven Island)
+//                1: the unlocked Crown Isles
+// Ports follow the same pass rules as the old menus. Up to 5 destinations fit on
+// one page (+ EXIT); longer lists split evenly into pages of 4 or fewer + OTHER + EXIT.
+#define SEAGALLOP_LIST_MAX_DESTS 10
+#define SEAGALLOP_LIST_MAX_ITEMS 6
+
+static const u8 sText_CrownIsles[] = _("CROWN ISLES");
+static const u8 *const sCrownIsleNames[NUM_CROWN_ISLES] = {
+    gText_SkyreachIsle, gText_ChitinIsle, gText_MeadowmooIsle, gText_HollowIsle,
+    gText_IronfistIsle, gText_FoundryIsle, gText_GlacierIsle, gText_WyrmspireIsle,
+};
+
+static bool8 IsSeagallopPortAllowed(u8 dest, u8 origin)
+{
+    u16 passScene = VarGet(VAR_MAP_SCENE_ONE_ISLAND_POKEMON_CENTER_1F);
+
+    if (dest == origin)
+        return FALSE;
+    switch (dest)
+    {
+    case SEAGALLOP_VERMILION_CITY:
+        return passScene >= 5 || VarGet(VAR_MAP_SCENE_CINNABAR_ISLAND) >= 4;
+    case SEAGALLOP_ONE_ISLAND:
+        // The old isle sailors always sailed back to ONE ISLAND.
+        return passScene >= 1 || IS_SEAGALLOP_CROWN(origin);
+    case SEAGALLOP_TWO_ISLAND:
+    case SEAGALLOP_THREE_ISLAND:
+        return passScene >= 1;
+    default:
+        return passScene >= 5;
+    }
+}
+
+static u8 GetSeagallopListDests(u8 *dests)
+{
+    u8 origin = gSpecialVar_0x8004;
+    u8 count = 0;
+    u8 i;
+
+    if (gSpecialVar_0x8007 == 1)
+    {
+        for (i = 0; i < NUM_CROWN_ISLES; i++)
+        {
+            if (SEAGALLOP_CROWN_FIRST + i != origin && IsCrownIsleUnlocked(i))
+                dests[count++] = SEAGALLOP_CROWN_FIRST + i;
+        }
+    }
+    else
+    {
+        // CROWN ISLES only when it would list at least one other isle.
+        for (i = 0; i < NUM_CROWN_ISLES; i++)
+        {
+            if (SEAGALLOP_CROWN_FIRST + i != origin && IsCrownIsleUnlocked(i))
+            {
+                dests[count++] = SEAGALLOP_CROWN_LIST;
+                break;
+            }
+        }
+        for (i = SEAGALLOP_VERMILION_CITY; i <= SEAGALLOP_SEVEN_ISLAND; i++)
+        {
+            if (IsSeagallopPortAllowed(i, origin))
+                dests[count++] = i;
+        }
+    }
+    return count;
+}
+
+// Fills items[] with the current page's entries; returns the item count.
+static u8 GetSeagallopListPage(u8 *items)
+{
+    u8 dests[SEAGALLOP_LIST_MAX_DESTS];
+    u8 numDests = GetSeagallopListDests(dests);
+    u8 numPages, page, start, end, n = 0, i;
+
+    if (numDests <= SEAGALLOP_LIST_MAX_ITEMS - 1)
+    {
+        for (i = 0; i < numDests; i++)
+            items[n++] = dests[i];
+        items[n++] = SCR_MENU_CANCEL;
+        return n;
+    }
+    numPages = (numDests + 3) / 4;
+    page = gSpecialVar_0x8005 % numPages;
+    start = (numDests * page) / numPages;
+    end = (numDests * (page + 1)) / numPages;
+    for (i = start; i < end; i++)
+        items[n++] = dests[i];
+    items[n++] = SEAGALLOP_MORE;
+    items[n++] = SCR_MENU_CANCEL;
+    return n;
+}
+
+static const u8 *GetSeagallopListItemName(u8 item)
+{
+    if (item == SEAGALLOP_CROWN_LIST)
+        return sText_CrownIsles;
+    if (item == SEAGALLOP_MORE)
+        return gText_Other;
+    if (item == SCR_MENU_CANCEL)
+        return gOtherText_Exit;
+    if (IS_SEAGALLOP_CROWN(item))
+        return sCrownIsleNames[item - SEAGALLOP_CROWN_FIRST];
+    return sSeagallopDestStrings[item];
+}
+
+void DrawSeagallopListMenu(void)
+{
+    u8 items[SEAGALLOP_LIST_MAX_ITEMS];
+    u8 numItems, cursorWidth, windowId, width, i;
+    u16 textWidth, maxWidth = 0;
+
+    gSpecialVar_Result = SCR_MENU_UNSET;
+    if (QL_AvoidDisplay(QL_DestroyAbortedDisplay) == TRUE)
+        return;
+
+    numItems = GetSeagallopListPage(items);
+    cursorWidth = GetMenuCursorDimensionByFont(FONT_NORMAL, 0);
+    for (i = 0; i < numItems; i++)
+    {
+        textWidth = GetStringWidth(FONT_NORMAL, GetSeagallopListItemName(items[i]), 0);
+        if (textWidth > maxWidth)
+            maxWidth = textWidth;
+    }
+    width = (cursorWidth + maxWidth + 7) / 8 + 1;
+    if (width < 11)
+        width = 11;
+    // Bottom-aligned with the old Seagallop menus (6 items at the top row).
+    windowId = CreateWindowFromRect(28 - width, (SEAGALLOP_LIST_MAX_ITEMS - numItems) * 2, width, numItems * 2);
+    SetStdWindowBorderStyle(windowId, FALSE);
+    for (i = 0; i < numItems; i++)
+        AddTextPrinterParameterized(windowId, FONT_NORMAL, GetSeagallopListItemName(items[i]), cursorWidth, i * 16 + 2, TEXT_SKIP_DRAW, NULL);
+    Menu_InitCursor(windowId, FONT_NORMAL, 0, 2, 16, numItems, 0);
+    CreateMCMenuInputHandlerTask(FALSE, numItems, windowId, MULTICHOICE_NONE);
+    ScheduleBgCopyTilemapToVram(0);
+}
+
+// Returns a SEAGALLOP_* destination, SEAGALLOP_CROWN_LIST, SEAGALLOP_MORE or SCR_MENU_CANCEL.
+u16 GetSelectedSeagallopListItem(void)
+{
+    u8 items[SEAGALLOP_LIST_MAX_ITEMS];
+    u8 numItems;
+
+    if (gSpecialVar_Result == SCR_MENU_CANCEL)
+        return SCR_MENU_CANCEL;
+    numItems = GetSeagallopListPage(items);
+    if (gSpecialVar_Result >= numItems)
+        return SCR_MENU_CANCEL;
+    return items[gSpecialVar_Result];
 }

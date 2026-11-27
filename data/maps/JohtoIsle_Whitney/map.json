@@ -3,7 +3,7 @@
   "name": "JohtoIsle_Whitney",
   "layout": "LAYOUT_JOHTO_ISLE_WHITNEY",
   "music": "MUS_SEVII_ROUTE",
-  "region_map_section": "MAPSEC_SPECIAL_AREA",
+  "region_map_section": "MAPSEC_MEADOWMOO_ISLE",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
   "map_type": "MAP_TYPE_ROUTE",
