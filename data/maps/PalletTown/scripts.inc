@@ -459,12 +459,13 @@ PalletTown_EventScript_NuzlockeHelperMenu::
 	waitmessage
 	multichoice 0, 0, MULTICHOICE_NUZLOCKE_ITEMS, FALSE
 	switch VAR_RESULT
-	case 0, PalletTown_EventScript_NuzlockeGiveRareCandy
-	case 1, PalletTown_EventScript_NuzlockeGiveMasterBall
-	case 2, PalletTown_EventScript_NuzlockeGiveFullRestore
-	case 3, PalletTown_EventScript_NuzlockeGiveMaxRepel
-	case 4, PalletTown_EventScript_NuzlockeGiveMaxElixir
-	case 5, PalletTown_EventScript_NuzlockeHelperDone
+	case 0, PalletTown_EventScript_NuzlockeGiveEverything
+	case 1, PalletTown_EventScript_NuzlockeGiveRareCandy
+	case 2, PalletTown_EventScript_NuzlockeGiveMasterBall
+	case 3, PalletTown_EventScript_NuzlockeGiveFullRestore
+	case 4, PalletTown_EventScript_NuzlockeGiveMaxRepel
+	case 5, PalletTown_EventScript_NuzlockeGiveMaxElixir
+	case 6, PalletTown_EventScript_NuzlockeHelperDone
 	case 127, PalletTown_EventScript_NuzlockeHelperDone
 	end
 
@@ -492,6 +493,35 @@ PalletTown_EventScript_NuzlockeGiveMaxElixir::
 	setvar VAR_0x8000, ITEM_MAX_ELIXIR
 	goto PalletTown_EventScript_NuzlockeTopUp
 	end
+
+@ Reforged: EVERYTHING tops all five items up to 999 in one go.
+PalletTown_EventScript_NuzlockeGiveEverything::
+	setvar VAR_0x8002, 0
+	setvar VAR_0x8000, ITEM_RARE_CANDY
+	call PalletTown_EventScript_NuzlockeTopUpQuiet
+	setvar VAR_0x8000, ITEM_MASTER_BALL
+	call PalletTown_EventScript_NuzlockeTopUpQuiet
+	setvar VAR_0x8000, ITEM_FULL_RESTORE
+	call PalletTown_EventScript_NuzlockeTopUpQuiet
+	setvar VAR_0x8000, ITEM_MAX_REPEL
+	call PalletTown_EventScript_NuzlockeTopUpQuiet
+	setvar VAR_0x8000, ITEM_MAX_ELIXIR
+	call PalletTown_EventScript_NuzlockeTopUpQuiet
+	goto_if_eq VAR_0x8002, 0, PalletTown_EventScript_NuzlockeAlreadyFull
+	playfanfare MUS_OBTAIN_ITEM
+	message PalletTown_Text_NuzlockeHelperEverything
+	waitfanfare
+	waitmessage
+	waitbuttonpress
+	goto PalletTown_EventScript_NuzlockeHelperMenu
+	end
+
+PalletTown_EventScript_NuzlockeTopUpQuiet::
+	special NuzlockeHelperTopUpAmount
+	goto_if_eq VAR_0x8001, 0, EventScript_Return
+	additem VAR_0x8000, VAR_0x8001
+	addvar VAR_0x8002, 1
+	return
 
 @ Tops the chosen item up to the 999 bag maximum (gives 999 if you have none).
 PalletTown_EventScript_NuzlockeTopUp::

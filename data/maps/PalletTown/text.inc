@@ -84,3 +84,9 @@ PalletTown_Text_NuzlockeHelperWhichItem::
 PalletTown_Text_NuzlockeHelperGoodbye::
 	.string "Go on, live dangerously!\n"
 	.string "…And come back any time.$"
+
+PalletTown_Text_NuzlockeHelperEverything::
+    .string "There you go! Your RARE CANDIES,\n"
+    .string "MASTER BALLS, FULL RESTORES,\l"
+    .string "MAX REPELS and MAX ELIXIRS are\l"
+    .string "all stocked up to 999!$"

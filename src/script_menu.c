@@ -503,6 +503,7 @@ static const struct MenuAction sMultichoiceList_Exit[] = {
 };
 
 
+static const u8 sText_NuzlockeEverything[] = _("EVERYTHING");
 static const u8 sText_NuzlockeRareCandy[] = _("RARE CANDY x999");
 static const u8 sText_NuzlockeMasterBall[] = _("MASTER BALL x999");
 static const u8 sText_NuzlockeFullRestore[] = _("FULL RESTORE x999");
@@ -511,6 +512,7 @@ static const u8 sText_NuzlockeMaxElixir[] = _("MAX ELIXIR x999");
 
 // FRLG Legacy: Pallet Town Nuzlocke supply NPC
 static const struct MenuAction sMultichoiceList_NuzlockeItems[] = {
+    { sText_NuzlockeEverything },
     { sText_NuzlockeRareCandy },
     { sText_NuzlockeMasterBall },
     { sText_NuzlockeFullRestore },
