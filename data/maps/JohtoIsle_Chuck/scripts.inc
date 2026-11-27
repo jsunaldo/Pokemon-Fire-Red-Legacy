@@ -40,7 +40,7 @@ JohtoIsle_Chuck_EventScript_SailorOnward::
 	goto JohtoIsle_Chuck_EventScript_SailorReturnPrompt
 
 JohtoIsle_Chuck_EventScript_SailNext::
-	warp MAP_JOHTO_ISLE_JASMINE, 27, 48
+	warp MAP_JOHTO_ISLE_JASMINE, 18, 29
 	waitstate
 	release
 	end

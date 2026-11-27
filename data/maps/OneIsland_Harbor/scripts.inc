@@ -48,7 +48,7 @@ OneIsland_Harbor_EventScript_JohtoFerry::
 	msgbox OneIsland_Harbor_Text_JohtoFerryAsk, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, OneIsland_Harbor_EventScript_JohtoFerryBye
 	msgbox OneIsland_Harbor_Text_JohtoFerryGo, MSGBOX_DEFAULT
-	warp MAP_JOHTO_ISLE_FALKNER, 14, 36
+	warp MAP_JOHTO_ISLE_FALKNER, 14, 39
 	waitstate
 	release
 	end

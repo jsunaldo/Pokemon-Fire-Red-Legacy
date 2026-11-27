@@ -18,7 +18,7 @@
     {
       "local_id": "LOCALID_JOHTO_FALKNER_LEADER",
       "type": "object",
-      "graphics_id": "OBJ_EVENT_GFX_MAN",
+      "graphics_id": "OBJ_EVENT_GFX_JOHTO_FALKNER",
       "x": 14,
       "y": 5,
       "elevation": 3,
@@ -35,7 +35,7 @@
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SAILOR",
       "x": 14,
-      "y": 37,
+      "y": 40,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_UP",
       "movement_range_x": 0,

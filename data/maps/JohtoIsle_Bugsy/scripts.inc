@@ -40,7 +40,7 @@ JohtoIsle_Bugsy_EventScript_SailorOnward::
 	goto JohtoIsle_Bugsy_EventScript_SailorReturnPrompt
 
 JohtoIsle_Bugsy_EventScript_SailNext::
-	warp MAP_JOHTO_ISLE_WHITNEY, 9, 34
+	warp MAP_JOHTO_ISLE_WHITNEY, 3, 16
 	waitstate
 	release
 	end

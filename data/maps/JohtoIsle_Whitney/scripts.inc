@@ -40,7 +40,7 @@ JohtoIsle_Whitney_EventScript_SailorOnward::
 	goto JohtoIsle_Whitney_EventScript_SailorReturnPrompt
 
 JohtoIsle_Whitney_EventScript_SailNext::
-	warp MAP_JOHTO_ISLE_MORTY, 2, 8
+	warp MAP_JOHTO_ISLE_MORTY, 27, 31
 	waitstate
 	release
 	end

@@ -40,7 +40,7 @@ JohtoIsle_Falkner_EventScript_SailorOnward::
 	goto JohtoIsle_Falkner_EventScript_SailorReturnPrompt
 
 JohtoIsle_Falkner_EventScript_SailNext::
-	warp MAP_JOHTO_ISLE_BUGSY, 27, 62
+	warp MAP_JOHTO_ISLE_BUGSY, 18, 42
 	waitstate
 	release
 	end
