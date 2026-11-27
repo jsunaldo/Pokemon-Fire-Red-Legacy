@@ -10,10 +10,8 @@ FiveIsland_WaterLabyrinth_EventScript_EggGentleman::
 	goto_if_set FLAG_GOT_TOGEPI_EGG, FiveIsland_WaterLabyrinth_EventScript_PostEggComment
 	goto_if_set FLAG_NO_ROOM_FOR_TOGEPI_EGG, FiveIsland_WaterLabyrinth_EventScript_ReturnForEgg
 	msgbox FiveIsland_WaterLabyrinth_Text_LetMeTakeLookAtMons
-	specialvar VAR_RESULT, GetLeadMonFriendship
-	goto_if_eq VAR_RESULT, 6, FiveIsland_WaterLabyrinth_EventScript_LeadMonMaxFriendship
-	msgbox FiveIsland_WaterLabyrinth_Text_HmmISeeIsee
-	release
+	@ Reforged: no friendship check; the egg is a plain gift
+	goto FiveIsland_WaterLabyrinth_EventScript_LeadMonMaxFriendship
 	end
 
 FiveIsland_WaterLabyrinth_EventScript_MonDaisyComment::
