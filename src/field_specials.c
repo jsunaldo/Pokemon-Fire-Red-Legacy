@@ -1,4 +1,5 @@
 #include "global.h"
+#include "randomizer.h"
 #include "gflib.h"
 #include "quest_log.h"
 #include "list_menu.h"
@@ -73,6 +74,7 @@ static void Task_RedrawScrollArrowsAndWaitInput(u8 taskId);
 static void Task_CreateMenuRemoveScrollIndicatorArrowPair(u8 taskId);
 static void Task_ListMenuRemoveScrollIndicatorArrowPair(u8 taskId);
 static u16 GetStarterSpeciesById(u16 starterIdx);
+u16 GetActualStarterSpecies(void);
 static void ChangeBoxPokemonNickname_CB(void);
 static void ChangePokemonNickname_CB(void);
 static void Task_RunPokemonLeagueLightingEffect(u8 taskId);
@@ -419,7 +421,7 @@ bool8 AreLeadMonEVsMaxedOut(void)
 
 bool8 IsStarterFirstStageInParty(void)
 {
-    u16 species = GetStarterSpeciesById(VarGet(VAR_STARTER_MON));
+    u16 species = GetActualStarterSpecies();
     u8 partyCount = CalculatePlayerPartyCount();
     u8 i;
     for (i = 0; i < partyCount; i++)
@@ -1528,6 +1530,19 @@ static u16 GetStarterSpeciesById(u16 idx)
     if (idx >= NELEMS(sStarterSpecies))
         idx = 0;
     return sStarterSpecies[idx];
+}
+
+// Reforged: the starter the player actually received. With randomized gifts,
+// that's the species ScriptGiveMon rolled in Oak's Lab (same key as
+// Randomizer_PreviewStarter). GetStarterSpecies stays vanilla on purpose: the
+// roamer choice keys off the original starter.
+u16 GetActualStarterSpecies(void)
+{
+    u16 species = GetStarterSpeciesById(VarGet(VAR_STARTER_MON));
+
+    return Randomizer_MapSpeciesAt(species, RCAT_GIFT,
+        ((u32)MAP_GROUP(MAP_PALLET_TOWN_PROFESSOR_OAKS_LAB) << 24)
+        | ((u32)MAP_NUM(MAP_PALLET_TOWN_PROFESSOR_OAKS_LAB) << 16) | species);
 }
 
 u16 GetStarterSpecies(void)
