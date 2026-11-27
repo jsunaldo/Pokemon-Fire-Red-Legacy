@@ -478,14 +478,14 @@ static const u8 gInitialMovementTypeFacingDirections[MOVEMENT_TYPES_COUNT] = {
 #define OBJ_EVENT_PAL_TAG_LATIAS 0x1147 // own palette, loaded via the ace hook
 #define OBJ_EVENT_PAL_TAG_LATIOS 0x1148 // own palette, loaded via the ace hook
 #define OBJ_EVENT_PAL_TAG_JIRACHI 0x1149 // own palette, loaded via the ace hook
-#define OBJ_EVENT_PAL_TAG_HOENN_WINONA 0x1120
-#define OBJ_EVENT_PAL_TAG_HOENN_WATTSON 0x1121
-#define OBJ_EVENT_PAL_TAG_HOENN_NORMAN 0x1122
-#define OBJ_EVENT_PAL_TAG_HOENN_LIZA 0x1123
-#define OBJ_EVENT_PAL_TAG_HOENN_BRAWLY 0x1124
-#define OBJ_EVENT_PAL_TAG_HOENN_ROXANNE 0x1125
-#define OBJ_EVENT_PAL_TAG_HOENN_WALLACE 0x1126
-#define OBJ_EVENT_PAL_TAG_HOENN_FLANNERY 0x1127
+#define OBJ_EVENT_PAL_TAG_HOENN_WINONA 0x114A // own palette, loaded via the ace hook
+#define OBJ_EVENT_PAL_TAG_HOENN_WATTSON 0x114B // own palette, loaded via the ace hook
+#define OBJ_EVENT_PAL_TAG_HOENN_NORMAN 0x114C // own palette, loaded via the ace hook
+#define OBJ_EVENT_PAL_TAG_HOENN_LIZA 0x114D // own palette, loaded via the ace hook
+#define OBJ_EVENT_PAL_TAG_HOENN_BRAWLY 0x114E // own palette, loaded via the ace hook
+#define OBJ_EVENT_PAL_TAG_HOENN_ROXANNE 0x114F // own palette, loaded via the ace hook
+#define OBJ_EVENT_PAL_TAG_HOENN_WALLACE 0x1150 // own palette, loaded via the ace hook
+#define OBJ_EVENT_PAL_TAG_HOENN_FLANNERY 0x1151 // own palette, loaded via the ace hook
 #define OBJ_EVENT_PAL_TAG_GENGAR 0x1130
 #define OBJ_EVENT_PAL_TAG_MACHAMP 0x1131
 #define OBJ_EVENT_PAL_TAG_DRAGONITE 0x1132
@@ -1667,7 +1667,7 @@ static u8 TrySetupObjectEventSprite(const struct ObjectEventTemplate *objectEven
     // slot would show the wrong colors. Load it into a free (non-reserved) sprite
     // palette slot and point the sprite there so it shows its real colors.
     if (graphicsInfo->paletteTag >= OBJ_EVENT_PAL_TAG_GENGAR
-     && graphicsInfo->paletteTag <= OBJ_EVENT_PAL_TAG_JIRACHI)
+     && graphicsInfo->paletteTag <= OBJ_EVENT_PAL_TAG_HOENN_FLANNERY)
     {
         u8 acePalSlot;
         LoadObjectEventPalette(graphicsInfo->paletteTag);
@@ -2025,7 +2025,7 @@ static void SpawnObjectEventOnReturnToField(u8 objectEventId, s16 x, s16 y)
         if ((graphicsInfo->paletteTag >= OBJ_EVENT_PAL_TAG_GENGAR
           && graphicsInfo->paletteTag <= OBJ_EVENT_PAL_TAG_JANINE)
          || (graphicsInfo->paletteTag >= OBJ_EVENT_PAL_TAG_GROUDON
-          && graphicsInfo->paletteTag <= OBJ_EVENT_PAL_TAG_JIRACHI))
+          && graphicsInfo->paletteTag <= OBJ_EVENT_PAL_TAG_HOENN_FLANNERY))
         {
             u8 acePalSlot;
             LoadObjectEventPalette(graphicsInfo->paletteTag);
