@@ -153,3 +153,7 @@ VermilionCity_Text_OfficerJennyPostBattle::
     .string "Stay safe out there, CHAMPION.\p"
     .string "If you ever want a rematch, you\n"
     .string "know where to find me.$"
+
+VermilionCity_Text_OfficerJennyRematchAsk::
+    .string "Back for another round,\n"
+    .string "CHAMPION? Want a rematch?$"

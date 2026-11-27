@@ -272,6 +272,24 @@ VermilionCity_EventScript_OfficerJenny::
 	end
 
 VermilionCity_EventScript_OfficerJennyBattle::
+	goto_if_defeated TRAINER_OFFICER_JENNY, VermilionCity_EventScript_OfficerJennyRematch
+VermilionCity_EventScript_OfficerJennyFight::
 	trainerbattle_single TRAINER_OFFICER_JENNY, VermilionCity_Text_OfficerJennyIntro, VermilionCity_Text_OfficerJennyDefeat
 	msgbox VermilionCity_Text_OfficerJennyPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+@ Reforged: she offers a rematch every time you talk to her after the first win.
+VermilionCity_EventScript_OfficerJennyRematch::
+	lock
+	faceplayer
+	msgbox VermilionCity_Text_OfficerJennyRematchAsk, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, VermilionCity_EventScript_OfficerJennyNoRematch
+	cleartrainerflag TRAINER_OFFICER_JENNY
+	release
+	goto VermilionCity_EventScript_OfficerJennyFight
+	end
+
+VermilionCity_EventScript_OfficerJennyNoRematch::
+	msgbox VermilionCity_Text_OfficerJennyPostBattle
+	release
 	end
