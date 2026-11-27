@@ -166,6 +166,14 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_HoennBrawly;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_HoennRoxanne;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_HoennWallace;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_HoennFlannery;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_JohtoFalkner;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_JohtoBugsy;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_JohtoWhitney;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_JohtoMorty;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_JohtoChuck;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_JohtoJasmine;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_JohtoPryce;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_JohtoClair;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Gengar;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Machamp;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Dragonite;
@@ -355,6 +363,14 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_HOENN_ROXANNE] = &gObjectEventGraphicsInfo_HoennRoxanne,
     [OBJ_EVENT_GFX_HOENN_WALLACE] = &gObjectEventGraphicsInfo_HoennWallace,
     [OBJ_EVENT_GFX_HOENN_FLANNERY] = &gObjectEventGraphicsInfo_HoennFlannery,
+    [OBJ_EVENT_GFX_JOHTO_FALKNER] = &gObjectEventGraphicsInfo_JohtoFalkner,
+    [OBJ_EVENT_GFX_JOHTO_BUGSY] = &gObjectEventGraphicsInfo_JohtoBugsy,
+    [OBJ_EVENT_GFX_JOHTO_WHITNEY] = &gObjectEventGraphicsInfo_JohtoWhitney,
+    [OBJ_EVENT_GFX_JOHTO_MORTY] = &gObjectEventGraphicsInfo_JohtoMorty,
+    [OBJ_EVENT_GFX_JOHTO_CHUCK] = &gObjectEventGraphicsInfo_JohtoChuck,
+    [OBJ_EVENT_GFX_JOHTO_JASMINE] = &gObjectEventGraphicsInfo_JohtoJasmine,
+    [OBJ_EVENT_GFX_JOHTO_PRYCE] = &gObjectEventGraphicsInfo_JohtoPryce,
+    [OBJ_EVENT_GFX_JOHTO_CLAIR] = &gObjectEventGraphicsInfo_JohtoClair,
     [OBJ_EVENT_GFX_GENGAR] = &gObjectEventGraphicsInfo_Gengar,
     [OBJ_EVENT_GFX_MACHAMP] = &gObjectEventGraphicsInfo_Machamp,
     [OBJ_EVENT_GFX_DRAGONITE] = &gObjectEventGraphicsInfo_Dragonite,

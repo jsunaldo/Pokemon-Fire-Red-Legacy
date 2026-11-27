@@ -486,6 +486,14 @@ static const u8 gInitialMovementTypeFacingDirections[MOVEMENT_TYPES_COUNT] = {
 #define OBJ_EVENT_PAL_TAG_HOENN_ROXANNE 0x114F // own palette, loaded via the ace hook
 #define OBJ_EVENT_PAL_TAG_HOENN_WALLACE 0x1150 // own palette, loaded via the ace hook
 #define OBJ_EVENT_PAL_TAG_HOENN_FLANNERY 0x1151 // own palette, loaded via the ace hook
+#define OBJ_EVENT_PAL_TAG_JOHTO_FALKNER 0x1152 // own palette, ace hook
+#define OBJ_EVENT_PAL_TAG_JOHTO_BUGSY 0x1153 // own palette, ace hook
+#define OBJ_EVENT_PAL_TAG_JOHTO_WHITNEY 0x1154 // own palette, ace hook
+#define OBJ_EVENT_PAL_TAG_JOHTO_MORTY 0x1155 // own palette, ace hook
+#define OBJ_EVENT_PAL_TAG_JOHTO_CHUCK 0x1156 // own palette, ace hook
+#define OBJ_EVENT_PAL_TAG_JOHTO_JASMINE 0x1157 // own palette, ace hook
+#define OBJ_EVENT_PAL_TAG_JOHTO_PRYCE 0x1158 // own palette, ace hook
+#define OBJ_EVENT_PAL_TAG_JOHTO_CLAIR 0x1159 // own palette, ace hook
 #define OBJ_EVENT_PAL_TAG_GENGAR 0x1130
 #define OBJ_EVENT_PAL_TAG_MACHAMP 0x1131
 #define OBJ_EVENT_PAL_TAG_DRAGONITE 0x1132
@@ -555,6 +563,14 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_HoennRoxanne, OBJ_EVENT_PAL_TAG_HOENN_ROXANNE},
     {gObjectEventPal_HoennWallace, OBJ_EVENT_PAL_TAG_HOENN_WALLACE},
     {gObjectEventPal_HoennFlannery, OBJ_EVENT_PAL_TAG_HOENN_FLANNERY},
+    {gObjectEventPal_JohtoFalkner, OBJ_EVENT_PAL_TAG_JOHTO_FALKNER},
+    {gObjectEventPal_JohtoBugsy, OBJ_EVENT_PAL_TAG_JOHTO_BUGSY},
+    {gObjectEventPal_JohtoWhitney, OBJ_EVENT_PAL_TAG_JOHTO_WHITNEY},
+    {gObjectEventPal_JohtoMorty, OBJ_EVENT_PAL_TAG_JOHTO_MORTY},
+    {gObjectEventPal_JohtoChuck, OBJ_EVENT_PAL_TAG_JOHTO_CHUCK},
+    {gObjectEventPal_JohtoJasmine, OBJ_EVENT_PAL_TAG_JOHTO_JASMINE},
+    {gObjectEventPal_JohtoPryce, OBJ_EVENT_PAL_TAG_JOHTO_PRYCE},
+    {gObjectEventPal_JohtoClair, OBJ_EVENT_PAL_TAG_JOHTO_CLAIR},
     {gObjectEventPal_Gengar, OBJ_EVENT_PAL_TAG_GENGAR},
     {gObjectEventPal_Machamp, OBJ_EVENT_PAL_TAG_MACHAMP},
     {gObjectEventPal_Dragonite, OBJ_EVENT_PAL_TAG_DRAGONITE},
@@ -1667,7 +1683,7 @@ static u8 TrySetupObjectEventSprite(const struct ObjectEventTemplate *objectEven
     // slot would show the wrong colors. Load it into a free (non-reserved) sprite
     // palette slot and point the sprite there so it shows its real colors.
     if (graphicsInfo->paletteTag >= OBJ_EVENT_PAL_TAG_GENGAR
-     && graphicsInfo->paletteTag <= OBJ_EVENT_PAL_TAG_HOENN_FLANNERY)
+     && graphicsInfo->paletteTag <= OBJ_EVENT_PAL_TAG_JOHTO_CLAIR)
     {
         u8 acePalSlot;
         LoadObjectEventPalette(graphicsInfo->paletteTag);
@@ -2025,7 +2041,7 @@ static void SpawnObjectEventOnReturnToField(u8 objectEventId, s16 x, s16 y)
         if ((graphicsInfo->paletteTag >= OBJ_EVENT_PAL_TAG_GENGAR
           && graphicsInfo->paletteTag <= OBJ_EVENT_PAL_TAG_JANINE)
          || (graphicsInfo->paletteTag >= OBJ_EVENT_PAL_TAG_GROUDON
-          && graphicsInfo->paletteTag <= OBJ_EVENT_PAL_TAG_HOENN_FLANNERY))
+          && graphicsInfo->paletteTag <= OBJ_EVENT_PAL_TAG_JOHTO_CLAIR))
         {
             u8 acePalSlot;
             LoadObjectEventPalette(graphicsInfo->paletteTag);

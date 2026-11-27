@@ -192,7 +192,16 @@
 #define OBJ_EVENT_GFX_JANINE                   183 // FRLG Legacy: YL Officer Jenny overworld sprite
 #define OBJ_EVENT_GFX_FOLLOWER_POKEMON_LARGE   184 // following Pokémon with 64x64 frames (Lugia, Wailord...)
 
-#define NUM_OBJ_EVENT_GFX     185
+#define OBJ_EVENT_GFX_JOHTO_FALKNER          185
+#define OBJ_EVENT_GFX_JOHTO_BUGSY            186
+#define OBJ_EVENT_GFX_JOHTO_WHITNEY          187
+#define OBJ_EVENT_GFX_JOHTO_MORTY            188
+#define OBJ_EVENT_GFX_JOHTO_CHUCK            189
+#define OBJ_EVENT_GFX_JOHTO_JASMINE          190
+#define OBJ_EVENT_GFX_JOHTO_PRYCE            191
+#define OBJ_EVENT_GFX_JOHTO_CLAIR            192
+
+#define NUM_OBJ_EVENT_GFX     193
 
 // These are dynamic object gfx ids.
 // They correspond with the values of the VAR_OBJ_GFX_ID_X vars.
