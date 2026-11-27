@@ -48,7 +48,7 @@ SevenIsland_TanobyRuins_DilfordChamber_EventScript_HideLegend_REGIROCK::
 	return
 
 SevenIsland_TanobyRuins_DilfordChamber_EventScript_DoHideLegend_REGIROCK::
-	removeobject LOCALID_LEGEND_REGIROCK
+	setflag FLAG_TEMP_1F
 	return
 
 SevenIsland_TanobyRuins_DilfordChamber_Text_Legend_REGIROCK::

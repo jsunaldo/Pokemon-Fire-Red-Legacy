@@ -126,7 +126,7 @@ FiveIsland_ResortGorgeous_EventScript_HideLegend_LATIAS::
 	return
 
 FiveIsland_ResortGorgeous_EventScript_DoHideLegend_LATIAS::
-	removeobject LOCALID_LEGEND_LATIAS
+	setflag FLAG_TEMP_1F
 	return
 
 FiveIsland_ResortGorgeous_EventScript_HideLegend_LATIOS::
@@ -134,5 +134,5 @@ FiveIsland_ResortGorgeous_EventScript_HideLegend_LATIOS::
 	return
 
 FiveIsland_ResortGorgeous_EventScript_DoHideLegend_LATIOS::
-	removeobject LOCALID_LEGEND_LATIOS
+	setflag FLAG_TEMP_1E
 	return

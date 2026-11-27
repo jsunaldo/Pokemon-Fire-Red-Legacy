@@ -1071,9 +1071,6 @@ static bool8 PrintAllOnCardFront(void)
     case 6:
         PrintHardModeOnCard();
         break;
-    case 7:
-        PrintRandomizerOnCard();
-        break;
     default:
         sTrainerCardDataPtr->printState = 0;
         return TRUE;
@@ -1103,6 +1100,7 @@ static bool8 PrintAllOnCardBack(void)
         break;
     case 5:
         PrintUnionStringOnCard();
+        PrintRandomizerOnCard();
         break;
     case 6:
         PrintPokemonIconsOnCard();
@@ -1242,23 +1240,25 @@ static void PrintTimeOnCard(void)
     AddTextPrinterParameterized3(1, sTrainerCardFontIds[1], sTrainerCardTimeMinutesXPositions[sTrainerCardDataPtr->cardType], sTrainerCardTimeMinutesYPositions[sTrainerCardDataPtr->cardType], sTrainerCardTextColors, TEXT_SKIP_DRAW, buffer);
 }
 
-// FireRed Legacy: show the chosen difficulty on the player's own card front.
+// FireRed Legacy: show the chosen difficulty on the player's own card front,
+// in the empty row under the name (the bottom rows belong to the badge strip).
 static void PrintHardModeOnCard(void)
 {
     static const u8 sText_HardMode[] = _("HARD MODE");
 
     if (!sTrainerCardDataPtr->isLink && FlagGet(FLAG_HARD_MODE))
-        AddTextPrinterParameterized3(1, sTrainerCardFontIds[1], 20, 104, sTrainerCardTextColors, TEXT_SKIP_DRAW, sText_HardMode);
+        AddTextPrinterParameterized3(1, sTrainerCardFontIds[1], 20, 42, sTrainerCardTextColors, TEXT_SKIP_DRAW, sText_HardMode);
 }
 
-// FireRed Legacy: show the randomizer seed + settings on the player's own card
-// front, so a randomized save is identifiable at a glance. Settings are shown
+// FireRed Legacy: show the randomizer seed + settings on the back of the
+// player's own card, in the first stat row the link records leave empty
+// (the front has no free row: the badge strip owns the bottom). Settings are shown
 // as letters: W wild, T trainers, B bosses, G gifts, L legendary statics,
 // I items, E every slot rolled separately, S similar-BST, A legendaries anywhere,
 // then the allowed gens (e.g. "13") when the gen filter excludes any.
 static void PrintRandomizerOnCard(void)
 {
-    static const u8 sText_Random[] = _("RANDOM ");
+    static const u8 sText_Random[] = _("RANDOMIZER");
     static const u8 sSettingLetters[] = _("WTBGLIESA");
     static const u16 sSettingBits[] =
     {
@@ -1268,12 +1268,13 @@ static void PrintRandomizerOnCard(void)
     u8 buffer[32];
     u8 *end;
     u32 seed, settings, i;
+    u8 y;
 
     if (!sTrainerCardDataPtr->isLink && Randomizer_IsActive())
     {
         seed = Randomizer_GetSeed();
         settings = VarGet(VAR_RANDOMIZER_SETTINGS);
-        end = StringCopy(buffer, sText_Random);
+        end = buffer;
         // ConvertIntToHexStringN takes an s32 and mangles values >= 0x80000000,
         // so print the seed as two 16-bit halves.
         end = ConvertIntToHexStringN(end, seed >> 16, STR_CONV_MODE_LEADING_ZEROS, 4);
@@ -1296,7 +1297,18 @@ static void PrintRandomizerOnCard(void)
                 *end++ = CHAR_3;
         }
         *end = EOS;
-        AddTextPrinterParameterized3(1, sTrainerCardFontIds[1], 20, 116, sTrainerCardTextColors, TEXT_SKIP_DRAW, buffer);
+        if (!sTrainerCardDataPtr->hasLinkResults)
+            y = 51;
+        else if (!sTrainerCardDataPtr->hasTrades)
+            y = 67;
+        else if (sTrainerCardDataPtr->cardType == CARD_TYPE_RSE || !sTrainerCardDataPtr->trainerCard.unionRoomNum)
+            y = 83;
+        else if (sTrainerCardDataPtr->cardType == CARD_TYPE_RSE || !sTrainerCardDataPtr->trainerCard.berryCrushPoints)
+            y = 99;
+        else
+            return;
+        AddTextPrinterParameterized3(1, sTrainerCardFontIds[1], sTrainerCardHofDebutXPositions[sTrainerCardDataPtr->cardType], y, sTrainerCardTextColors, TEXT_SKIP_DRAW, sText_Random);
+        AddTextPrinterParameterized3(1, sTrainerCardFontIds[1], 216 - GetStringWidth(sTrainerCardFontIds[1], buffer, 0), y, sTrainerCardStatColors, TEXT_SKIP_DRAW, buffer);
     }
 }
 

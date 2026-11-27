@@ -48,7 +48,7 @@ SevenIsland_TanobyRuins_ScufibChamber_EventScript_HideLegend_REGISTEEL::
 	return
 
 SevenIsland_TanobyRuins_ScufibChamber_EventScript_DoHideLegend_REGISTEEL::
-	removeobject LOCALID_LEGEND_REGISTEEL
+	setflag FLAG_TEMP_1F
 	return
 
 SevenIsland_TanobyRuins_ScufibChamber_Text_Legend_REGISTEEL::

@@ -111,5 +111,5 @@ FiveIsland_WaterLabyrinth_EventScript_HideLegend_KYOGRE::
 	return
 
 FiveIsland_WaterLabyrinth_EventScript_DoHideLegend_KYOGRE::
-	removeobject LOCALID_LEGEND_KYOGRE
+	setflag FLAG_TEMP_1F
 	return

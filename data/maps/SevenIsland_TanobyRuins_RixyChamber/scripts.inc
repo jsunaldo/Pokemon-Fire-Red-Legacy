@@ -48,7 +48,7 @@ SevenIsland_TanobyRuins_RixyChamber_EventScript_HideLegend_REGICE::
 	return
 
 SevenIsland_TanobyRuins_RixyChamber_EventScript_DoHideLegend_REGICE::
-	removeobject LOCALID_LEGEND_REGICE
+	setflag FLAG_TEMP_1F
 	return
 
 SevenIsland_TanobyRuins_RixyChamber_Text_Legend_REGICE::

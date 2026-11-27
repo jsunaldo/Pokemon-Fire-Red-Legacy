@@ -48,7 +48,7 @@ SevenIsland_TanobyRuins_ViapoisChamber_EventScript_HideLegend_JIRACHI::
 	return
 
 SevenIsland_TanobyRuins_ViapoisChamber_EventScript_DoHideLegend_JIRACHI::
-	removeobject LOCALID_LEGEND_JIRACHI
+	setflag FLAG_TEMP_1F
 	return
 
 SevenIsland_TanobyRuins_ViapoisChamber_Text_Legend_JIRACHI::

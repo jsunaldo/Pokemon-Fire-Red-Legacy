@@ -469,15 +469,15 @@ static const u8 gInitialMovementTypeFacingDirections[MOVEMENT_TYPES_COUNT] = {
 #define OBJ_EVENT_PAL_TAG_RS_MOVING_BOX               0x1112
 #define OBJ_EVENT_PAL_TAG_METEORITE                   0x1113
 #define OBJ_EVENT_PAL_TAG_SEAGALLOP                   0x1114
-#define OBJ_EVENT_PAL_TAG_GROUDON 0x1115
-#define OBJ_EVENT_PAL_TAG_KYOGRE 0x1116
-#define OBJ_EVENT_PAL_TAG_RAYQUAZA 0x1117
-#define OBJ_EVENT_PAL_TAG_REGIROCK 0x1118
-#define OBJ_EVENT_PAL_TAG_REGICE 0x1119
-#define OBJ_EVENT_PAL_TAG_REGISTEEL 0x111A
-#define OBJ_EVENT_PAL_TAG_LATIAS 0x111B
-#define OBJ_EVENT_PAL_TAG_LATIOS 0x111C
-#define OBJ_EVENT_PAL_TAG_JIRACHI 0x111D
+#define OBJ_EVENT_PAL_TAG_GROUDON 0x1141 // own palette, loaded via the ace hook
+#define OBJ_EVENT_PAL_TAG_KYOGRE 0x1142 // own palette, loaded via the ace hook
+#define OBJ_EVENT_PAL_TAG_RAYQUAZA 0x1143 // own palette, loaded via the ace hook
+#define OBJ_EVENT_PAL_TAG_REGIROCK 0x1144 // own palette, loaded via the ace hook
+#define OBJ_EVENT_PAL_TAG_REGICE 0x1145 // own palette, loaded via the ace hook
+#define OBJ_EVENT_PAL_TAG_REGISTEEL 0x1146 // own palette, loaded via the ace hook
+#define OBJ_EVENT_PAL_TAG_LATIAS 0x1147 // own palette, loaded via the ace hook
+#define OBJ_EVENT_PAL_TAG_LATIOS 0x1148 // own palette, loaded via the ace hook
+#define OBJ_EVENT_PAL_TAG_JIRACHI 0x1149 // own palette, loaded via the ace hook
 #define OBJ_EVENT_PAL_TAG_HOENN_WINONA 0x1120
 #define OBJ_EVENT_PAL_TAG_HOENN_WATTSON 0x1121
 #define OBJ_EVENT_PAL_TAG_HOENN_NORMAN 0x1122
@@ -540,7 +540,7 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Seagallop,               OBJ_EVENT_PAL_TAG_SEAGALLOP},
     {gObjectEventPal_Groudon, OBJ_EVENT_PAL_TAG_GROUDON},
     {gObjectEventPal_Kyogre, OBJ_EVENT_PAL_TAG_KYOGRE},
-    {gObjectEventPal_Rayquaza, OBJ_EVENT_PAL_TAG_RAYQUAZA},
+    {sFollowerPal_Rayquaza, OBJ_EVENT_PAL_TAG_RAYQUAZA},
     {gObjectEventPal_Regirock, OBJ_EVENT_PAL_TAG_REGIROCK},
     {gObjectEventPal_Regice, OBJ_EVENT_PAL_TAG_REGICE},
     {gObjectEventPal_Registeel, OBJ_EVENT_PAL_TAG_REGISTEEL},
@@ -1667,7 +1667,7 @@ static u8 TrySetupObjectEventSprite(const struct ObjectEventTemplate *objectEven
     // slot would show the wrong colors. Load it into a free (non-reserved) sprite
     // palette slot and point the sprite there so it shows its real colors.
     if (graphicsInfo->paletteTag >= OBJ_EVENT_PAL_TAG_GENGAR
-     && graphicsInfo->paletteTag <= OBJ_EVENT_PAL_TAG_FOLLOWER)
+     && graphicsInfo->paletteTag <= OBJ_EVENT_PAL_TAG_JIRACHI)
     {
         u8 acePalSlot;
         LoadObjectEventPalette(graphicsInfo->paletteTag);
@@ -2022,8 +2022,10 @@ static void SpawnObjectEventOnReturnToField(u8 objectEventId, s16 x, s16 y)
         // FRLG Legacy: reload the ace's unique palette when returning to the field
         // (e.g. after a battle), otherwise the sprite reverts to a generic NPC
         // palette until the map is fully reloaded. Mirrors TrySetupObjectEventSprite.
-        if (graphicsInfo->paletteTag >= OBJ_EVENT_PAL_TAG_GENGAR
-         && graphicsInfo->paletteTag <= OBJ_EVENT_PAL_TAG_JANINE)
+        if ((graphicsInfo->paletteTag >= OBJ_EVENT_PAL_TAG_GENGAR
+          && graphicsInfo->paletteTag <= OBJ_EVENT_PAL_TAG_JANINE)
+         || (graphicsInfo->paletteTag >= OBJ_EVENT_PAL_TAG_GROUDON
+          && graphicsInfo->paletteTag <= OBJ_EVENT_PAL_TAG_JIRACHI))
         {
             u8 acePalSlot;
             LoadObjectEventPalette(graphicsInfo->paletteTag);

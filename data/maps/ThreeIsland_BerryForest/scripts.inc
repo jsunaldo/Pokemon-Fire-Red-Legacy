@@ -104,5 +104,5 @@ ThreeIsland_BerryForest_EventScript_HideLegend_CELEBI::
 	return
 
 ThreeIsland_BerryForest_EventScript_DoHideLegend_CELEBI::
-	removeobject LOCALID_LEGEND_CELEBI
+	setflag FLAG_TEMP_1F
 	return

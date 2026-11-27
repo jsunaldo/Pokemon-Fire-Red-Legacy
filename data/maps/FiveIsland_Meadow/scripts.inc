@@ -96,5 +96,5 @@ FiveIsland_Meadow_EventScript_HideLegend_RAIKOU::
 	return
 
 FiveIsland_Meadow_EventScript_DoHideLegend_RAIKOU::
-	removeobject LOCALID_LEGEND_RAIKOU
+	setflag FLAG_TEMP_1F
 	return

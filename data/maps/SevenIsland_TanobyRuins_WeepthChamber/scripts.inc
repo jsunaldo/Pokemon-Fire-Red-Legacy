@@ -48,7 +48,7 @@ SevenIsland_TanobyRuins_WeepthChamber_EventScript_HideLegend_RAYQUAZA::
 	return
 
 SevenIsland_TanobyRuins_WeepthChamber_EventScript_DoHideLegend_RAYQUAZA::
-	removeobject LOCALID_LEGEND_RAYQUAZA
+	setflag FLAG_TEMP_1F
 	return
 
 SevenIsland_TanobyRuins_WeepthChamber_Text_Legend_RAYQUAZA::

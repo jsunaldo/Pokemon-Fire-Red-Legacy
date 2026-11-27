@@ -88,5 +88,5 @@ SixIsland_RuinValley_EventScript_HideLegend_GROUDON::
 	return
 
 SixIsland_RuinValley_EventScript_DoHideLegend_GROUDON::
-	removeobject LOCALID_LEGEND_GROUDON
+	setflag FLAG_TEMP_1F
 	return

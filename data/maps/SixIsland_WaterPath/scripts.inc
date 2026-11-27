@@ -55,5 +55,5 @@ SixIsland_WaterPath_EventScript_HideLegend_SUICUNE::
 	return
 
 SixIsland_WaterPath_EventScript_DoHideLegend_SUICUNE::
-	removeobject LOCALID_LEGEND_SUICUNE
+	setflag FLAG_TEMP_1F
 	return

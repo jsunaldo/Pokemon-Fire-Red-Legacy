@@ -51,5 +51,5 @@ SevenIsland_SevaultCanyon_EventScript_HideLegend_ENTEI::
 	return
 
 SevenIsland_SevaultCanyon_EventScript_DoHideLegend_ENTEI::
-	removeobject LOCALID_LEGEND_ENTEI
+	setflag FLAG_TEMP_1F
 	return
