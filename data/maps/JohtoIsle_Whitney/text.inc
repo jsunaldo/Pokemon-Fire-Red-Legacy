@@ -40,3 +40,15 @@ JohtoIsle_Whitney_Text_HoennNORMANAfter::
 
 JohtoIsle_Whitney_Text_HoennNORMANPostBattle::
 	.string "Strength is earned one battle\nat a time. Keep earning it.$"
+
+JohtoIsle_Whitney_Text_CrownRematchAsk::
+    .string "You beat the final LEAGUE!\n"
+    .string "Want to face my full-power team,\l"
+    .string "every POKéMON at Lv. 100?$"
+
+JohtoIsle_Whitney_Text_CrownRematchNo::
+    .string "Come back when you're ready.$"
+
+JohtoIsle_Whitney_Text_CrownRematchDone::
+    .string "Incredible. You truly are the\n"
+    .string "strongest trainer around.$"

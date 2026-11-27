@@ -19,6 +19,7 @@ JohtoIsle_Clair_EventScript_LeaderDefeated::
 	end
 
 JohtoIsle_Clair_EventScript_LeaderPostBattle::
+	goto_if_set FLAG_E4_TIER3_CLEARED, JohtoIsle_Clair_EventScript_LeaderRematch100
 	call JohtoIsle_Clair_EventScript_TryClearCircuit
 	msgbox JohtoIsle_Clair_Text_LeaderPostBattle, MSGBOX_DEFAULT
 	release
@@ -66,6 +67,7 @@ JohtoIsle_Clair_EventScript_HoennFLANNERYDefeated::
 	end
 
 JohtoIsle_Clair_EventScript_HoennFLANNERYPost::
+	goto_if_set FLAG_E4_TIER3_CLEARED, JohtoIsle_Clair_EventScript_HoennFLANNERYRematch100
 	call JohtoIsle_Clair_EventScript_TryClearCircuit
 	msgbox JohtoIsle_Clair_Text_HoennFLANNERYPostBattle, MSGBOX_DEFAULT
 	release
@@ -96,3 +98,35 @@ JohtoIsle_Clair_EventScript_SetCircuitCleared::
 	clearflag FLAG_KANTO_REMATCH_BLAINE
 	clearflag FLAG_KANTO_REMATCH_GIOVANNI
 	return
+
+@ Reforged: after the final League, every Crown Isles leader rematches at Lv 100
+@ (levels set in battle_main.c). Own continue script so the first-win side
+@ effects (circuit progress) never re-run.
+JohtoIsle_Clair_EventScript_LeaderRematch100::
+	msgbox JohtoIsle_Clair_Text_CrownRematchAsk, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, JohtoIsle_Clair_EventScript_CrownRematchNo
+	cleartrainerflag TRAINER_JOHTO_CLAIR
+	trainerbattle_single TRAINER_JOHTO_CLAIR, JohtoIsle_Clair_Text_LeaderIntro, JohtoIsle_Clair_Text_LeaderDefeat, JohtoIsle_Clair_EventScript_CrownRematchDone
+	release
+	end
+
+@ Reforged: after the final League, every Crown Isles leader rematches at Lv 100
+@ (levels set in battle_main.c). Own continue script so the first-win side
+@ effects (circuit progress) never re-run.
+JohtoIsle_Clair_EventScript_HoennFLANNERYRematch100::
+	msgbox JohtoIsle_Clair_Text_CrownRematchAsk, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, JohtoIsle_Clair_EventScript_CrownRematchNo
+	cleartrainerflag TRAINER_HOENN_FLANNERY
+	trainerbattle_single TRAINER_HOENN_FLANNERY, JohtoIsle_Clair_Text_HoennFLANNERYIntro, JohtoIsle_Clair_Text_HoennFLANNERYDefeat, JohtoIsle_Clair_EventScript_CrownRematchDone
+	release
+	end
+
+JohtoIsle_Clair_EventScript_CrownRematchNo::
+	msgbox JohtoIsle_Clair_Text_CrownRematchNo
+	release
+	end
+
+JohtoIsle_Clair_EventScript_CrownRematchDone::
+	msgbox JohtoIsle_Clair_Text_CrownRematchDone
+	release
+	end

@@ -75,6 +75,7 @@ PokemonLeague_ChampionsRoom_EventScript_EnterRoom::
 	specialvar VAR_RESULT, GetActualStarterSpecies
 	bufferspeciesname STR_VAR_1, VAR_RESULT
 	msgbox PokemonLeague_ChampionsRoom_Text_OakCongratulations
+	call PokemonLeague_ChampionsRoom_EventScript_OakNextChallenge
 	applymovement LOCALID_CHAMPIONS_ROOM_PROF_OAK, Common_Movement_WalkInPlaceFasterRight
 	applymovement LOCALID_CHAMPIONS_ROOM_RIVAL, Common_Movement_WalkInPlaceFasterLeft
 	waitmovement 0
@@ -231,4 +232,17 @@ PokemonLeague_ChampionsRoom_Movement_RivalWatchOakEnter::
 PokemonLeague_ChampionsRoom_EventScript_Rematch3::
 	trainerbattle_no_intro TRAINER_CHAMPION_R3, PokemonLeague_ChampionsRoom_Text_Defeat
 	setflag FLAG_E4_TIER3_CLEARED
+	return
+
+@ Reforged: after a rematch win, Oak points the player at what opened next.
+@ Second-ever win (E4 rematch) -> the CROWN ISLES; final League -> Lv 100 rematches.
+PokemonLeague_ChampionsRoom_EventScript_OakNextChallenge::
+	goto_if_set FLAG_E4_TIER3_CLEARED, PokemonLeague_ChampionsRoom_EventScript_OakFinal
+	goto_if_set FLAG_JOHTO_CIRCUIT_CLEARED, EventScript_Return
+	goto_if_unset FLAG_E4_REMATCH_CLEARED, EventScript_Return
+	msgbox PokemonLeague_ChampionsRoom_Text_OakCrownIsles
+	return
+
+PokemonLeague_ChampionsRoom_EventScript_OakFinal::
+	msgbox PokemonLeague_ChampionsRoom_Text_OakFinalLeague
 	return

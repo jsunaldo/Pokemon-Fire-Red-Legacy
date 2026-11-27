@@ -43,3 +43,15 @@ JohtoIsle_Clair_Text_HoennFLANNERYPostBattle::
 
 JohtoIsle_Clair_Text_CircuitCleared::
 	.string "You've beaten every LEADER of\nthe JOHTO ISLES!\pWord of your strength will\nreach KANTO's GYMS and LEAGUE.\pSeek them out. They'll be\nready for you now.$"
+
+JohtoIsle_Clair_Text_CrownRematchAsk::
+    .string "You beat the final LEAGUE!\n"
+    .string "Want to face my full-power team,\l"
+    .string "every POKéMON at Lv. 100?$"
+
+JohtoIsle_Clair_Text_CrownRematchNo::
+    .string "Come back when you're ready.$"
+
+JohtoIsle_Clair_Text_CrownRematchDone::
+    .string "Incredible. You truly are the\n"
+    .string "strongest trainer around.$"

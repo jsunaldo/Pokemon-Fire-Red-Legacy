@@ -40,3 +40,15 @@ JohtoIsle_Falkner_Text_HoennWINONAAfter::
 
 JohtoIsle_Falkner_Text_HoennWINONAPostBattle::
 	.string "Watch the clouds with me a\nwhile. ALTARIA loves it here.$"
+
+JohtoIsle_Falkner_Text_CrownRematchAsk::
+    .string "You beat the final LEAGUE!\n"
+    .string "Want to face my full-power team,\l"
+    .string "every POKéMON at Lv. 100?$"
+
+JohtoIsle_Falkner_Text_CrownRematchNo::
+    .string "Come back when you're ready.$"
+
+JohtoIsle_Falkner_Text_CrownRematchDone::
+    .string "Incredible. You truly are the\n"
+    .string "strongest trainer around.$"

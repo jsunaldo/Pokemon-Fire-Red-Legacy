@@ -40,3 +40,15 @@ JohtoIsle_Morty_Text_HoennTATELIZAAfter::
 
 JohtoIsle_Morty_Text_HoennTATELIZAPostBattle::
 	.string "TATE: Come battle us again!\nLIZA: ...we'll be ready!$"
+
+JohtoIsle_Morty_Text_CrownRematchAsk::
+    .string "You beat the final LEAGUE!\n"
+    .string "Want to face my full-power team,\l"
+    .string "every POKéMON at Lv. 100?$"
+
+JohtoIsle_Morty_Text_CrownRematchNo::
+    .string "Come back when you're ready.$"
+
+JohtoIsle_Morty_Text_CrownRematchDone::
+    .string "Incredible. You truly are the\n"
+    .string "strongest trainer around.$"

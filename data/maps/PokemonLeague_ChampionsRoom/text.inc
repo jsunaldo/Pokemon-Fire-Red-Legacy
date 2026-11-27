@@ -111,3 +111,24 @@ PokemonLeague_ChampionsRoom_Text_RivalBenchedEevee::
 	.string "scratch. No handouts, no crutch!\p"
 	.string "Beat THIS team, and I'll admit\n"
 	.string "you've earned that title!$"
+
+PokemonLeague_ChampionsRoom_Text_OakCrownIsles::
+    .string "OAK: {PLAYER}, news of your win\n"
+    .string "has already crossed the sea!\p"
+    .string "Sixteen GYM LEADERS from JOHTO\n"
+    .string "and HOENN have gathered on the\l"
+    .string "CROWN ISLES to test a CHAMPION.\p"
+    .string "The SEAGALLOP captain can sail\n"
+    .string "you there now.\p"
+    .string "Clear all eight isles, and the\n"
+    .string "KANTO LEADERS will want a third\l"
+    .string "round with you!$"
+
+PokemonLeague_ChampionsRoom_Text_OakFinalLeague::
+    .string "OAK: No trainer alive can match\n"
+    .string "you now, {PLAYER}!\p"
+    .string "Every GYM LEADER, the ELITE FOUR\n"
+    .string "and the CHAMPION will now battle\l"
+    .string "you with full teams at Lv. 100.\p"
+    .string "The CROWN ISLES leaders too.\n"
+    .string "Go show them what you've got!$"

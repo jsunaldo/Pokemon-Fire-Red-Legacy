@@ -40,3 +40,15 @@ JohtoIsle_Pryce_Text_HoennWALLACEAfter::
 
 JohtoIsle_Pryce_Text_HoennWALLACEPostBattle::
 	.string "Water and ice, flowing as one.\nGLACIER suits my POKéMON.$"
+
+JohtoIsle_Pryce_Text_CrownRematchAsk::
+    .string "You beat the final LEAGUE!\n"
+    .string "Want to face my full-power team,\l"
+    .string "every POKéMON at Lv. 100?$"
+
+JohtoIsle_Pryce_Text_CrownRematchNo::
+    .string "Come back when you're ready.$"
+
+JohtoIsle_Pryce_Text_CrownRematchDone::
+    .string "Incredible. You truly are the\n"
+    .string "strongest trainer around.$"

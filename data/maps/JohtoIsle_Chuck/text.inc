@@ -40,3 +40,15 @@ JohtoIsle_Chuck_Text_HoennBRAWLYAfter::
 
 JohtoIsle_Chuck_Text_HoennBRAWLYPostBattle::
 	.string "Big swells out here today.\nCome ride them with me!$"
+
+JohtoIsle_Chuck_Text_CrownRematchAsk::
+    .string "You beat the final LEAGUE!\n"
+    .string "Want to face my full-power team,\l"
+    .string "every POKéMON at Lv. 100?$"
+
+JohtoIsle_Chuck_Text_CrownRematchNo::
+    .string "Come back when you're ready.$"
+
+JohtoIsle_Chuck_Text_CrownRematchDone::
+    .string "Incredible. You truly are the\n"
+    .string "strongest trainer around.$"

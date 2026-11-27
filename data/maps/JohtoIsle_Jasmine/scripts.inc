@@ -18,6 +18,7 @@ JohtoIsle_Jasmine_EventScript_LeaderDefeated::
 	end
 
 JohtoIsle_Jasmine_EventScript_LeaderPostBattle::
+	goto_if_set FLAG_E4_TIER3_CLEARED, JohtoIsle_Jasmine_EventScript_LeaderRematch100
 	msgbox JohtoIsle_Jasmine_Text_LeaderPostBattle, MSGBOX_DEFAULT
 	release
 	end
@@ -73,6 +74,39 @@ JohtoIsle_Jasmine_EventScript_LeaderPostBattleDefeated::
 	end
 
 JohtoIsle_Jasmine_EventScript_HoennROXANNEPost::
+	goto_if_set FLAG_E4_TIER3_CLEARED, JohtoIsle_Jasmine_EventScript_HoennROXANNERematch100
 	msgbox JohtoIsle_Jasmine_Text_HoennROXANNEPostBattle, MSGBOX_DEFAULT
+	release
+	end
+
+@ Reforged: after the final League, every Crown Isles leader rematches at Lv 100
+@ (levels set in battle_main.c). Own continue script so the first-win side
+@ effects (circuit progress) never re-run.
+JohtoIsle_Jasmine_EventScript_LeaderRematch100::
+	msgbox JohtoIsle_Jasmine_Text_CrownRematchAsk, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, JohtoIsle_Jasmine_EventScript_CrownRematchNo
+	cleartrainerflag TRAINER_JOHTO_JASMINE
+	trainerbattle_single TRAINER_JOHTO_JASMINE, JohtoIsle_Jasmine_Text_LeaderIntro, JohtoIsle_Jasmine_Text_LeaderDefeat, JohtoIsle_Jasmine_EventScript_CrownRematchDone
+	release
+	end
+
+@ Reforged: after the final League, every Crown Isles leader rematches at Lv 100
+@ (levels set in battle_main.c). Own continue script so the first-win side
+@ effects (circuit progress) never re-run.
+JohtoIsle_Jasmine_EventScript_HoennROXANNERematch100::
+	msgbox JohtoIsle_Jasmine_Text_CrownRematchAsk, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, JohtoIsle_Jasmine_EventScript_CrownRematchNo
+	cleartrainerflag TRAINER_HOENN_ROXANNE
+	trainerbattle_single TRAINER_HOENN_ROXANNE, JohtoIsle_Jasmine_Text_HoennROXANNEIntro, JohtoIsle_Jasmine_Text_HoennROXANNEDefeat, JohtoIsle_Jasmine_EventScript_CrownRematchDone
+	release
+	end
+
+JohtoIsle_Jasmine_EventScript_CrownRematchNo::
+	msgbox JohtoIsle_Jasmine_Text_CrownRematchNo
+	release
+	end
+
+JohtoIsle_Jasmine_EventScript_CrownRematchDone::
+	msgbox JohtoIsle_Jasmine_Text_CrownRematchDone
 	release
 	end
