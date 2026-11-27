@@ -3798,11 +3798,51 @@ static bool32 IsCeladonDeptStoreMapsec(u16 mapsec)
     return TRUE;
 }
 
+// Reforged: the Johto Isles use MAPSEC_SPECIAL_AREA, which has no name entry
+// (the lookup ran past the table into "CELADON DEPT."). Name each isle.
+static const u8 *GetJohtoIsleName(void)
+{
+    static const u8 sSkyreach[] = _("SKYREACH ISLE");
+    static const u8 sChitin[] = _("CHITIN ISLE");
+    static const u8 sMeadowmoo[] = _("MEADOWMOO ISLE");
+    static const u8 sHollow[] = _("HOLLOW ISLE");
+    static const u8 sIronfist[] = _("IRONFIST ISLE");
+    static const u8 sFoundry[] = _("FOUNDRY ISLE");
+    static const u8 sGlacier[] = _("GLACIER ISLE");
+    static const u8 sWyrmspire[] = _("WYRMSPIRE ISLE");
+    static const struct { u16 map; const u8 *name; } sIsles[] = {
+        {MAP_JOHTO_ISLE_FALKNER, sSkyreach}, {MAP_JOHTO_ISLE_BUGSY, sChitin},
+        {MAP_JOHTO_ISLE_WHITNEY, sMeadowmoo}, {MAP_JOHTO_ISLE_MORTY, sHollow},
+        {MAP_JOHTO_ISLE_CHUCK, sIronfist}, {MAP_JOHTO_ISLE_JASMINE, sFoundry},
+        {MAP_JOHTO_ISLE_PRYCE, sGlacier}, {MAP_JOHTO_ISLE_CLAIR, sWyrmspire},
+    };
+    u16 here = (gSaveBlock1Ptr->location.mapGroup << 8) | gSaveBlock1Ptr->location.mapNum;
+    u32 i;
+
+    for (i = 0; i < NELEMS(sIsles); i++)
+    {
+        if (sIsles[i].map == here)
+            return sIsles[i].name;
+    }
+    return NULL;
+}
+
 u8 *GetMapName(u8 *dst0, u16 mapsec, u16 fill)
 {
     u8 *dst;
     u16 i;
     u16 idx;
+    if (mapsec == MAPSEC_SPECIAL_AREA && sRegionMap == NULL && GetJohtoIsleName() != NULL)
+    {
+        dst = StringCopy(dst0, GetJohtoIsleName());
+        if (fill != 0)
+        {
+            for (i = dst - dst0; i < fill; i++)
+                *dst++ = CHAR_SPACE;
+            *dst = EOS;
+        }
+        return dst;
+    }
     if ((idx = mapsec - KANTO_MAPSEC_START) < MAPSEC_NONE - KANTO_MAPSEC_START)
     {
         if (IsCeladonDeptStoreMapsec(mapsec) == TRUE)

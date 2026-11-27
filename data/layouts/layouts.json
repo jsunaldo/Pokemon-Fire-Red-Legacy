@@ -4414,8 +4414,8 @@
     {
       "id": "LAYOUT_JOHTO_ISLE_FALKNER",
       "name": "JohtoIsle_Falkner_Layout",
-      "width": 24,
-      "height": 40,
+      "width": 30,
+      "height": 42,
       "border_width": 2,
       "border_height": 2,
       "primary_tileset": "gTileset_General",
