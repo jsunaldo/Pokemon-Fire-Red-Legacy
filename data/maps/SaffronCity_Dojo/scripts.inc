@@ -149,7 +149,13 @@ SaffronCity_Dojo_EventScript_GiveBrickPiece::
 	msgbox SaffronCity_Dojo_Text_TakeBrickPiece
 	checkitemspace ITEM_BRICK_PIECE
 	goto_if_eq VAR_RESULT, FALSE, SaffronCity_Dojo_EventScript_NoRoomForBrickPiece
+	checkitemspace ITEM_MACHO_BRACE
+	goto_if_eq VAR_RESULT, FALSE, SaffronCity_Dojo_EventScript_NoRoomForBrickPiece
+	checkitemspace ITEM_BLACK_BELT
+	goto_if_eq VAR_RESULT, FALSE, SaffronCity_Dojo_EventScript_NoRoomForBrickPiece
 	giveitem_msg SaffronCity_Dojo_Text_ReceivedBrickPiece, ITEM_BRICK_PIECE
+	giveitem_msg SaffronCity_Dojo_Text_ReceivedMachoBrace, ITEM_MACHO_BRACE
+	giveitem_msg SaffronCity_Dojo_Text_ReceivedBlackBelt, ITEM_BLACK_BELT
 	setflag FLAG_GOT_BRICK_PIECE
 	msgbox SaffronCity_Dojo_Text_BrickPieceExplain
 	release

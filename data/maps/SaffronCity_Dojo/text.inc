@@ -104,16 +104,24 @@ SaffronCity_Dojo_Text_FightingDojo::
 SaffronCity_Dojo_Text_TakeBrickPiece::
 	.string "You've honored our DOJO with\n"
 	.string "your strength.\p"
-	.string "Take this BRICK PIECE as proof\n"
-	.string "of your training!$"
+	.string "Take these three treasures as\n"
+	.string "proof of your training!$"
 
 SaffronCity_Dojo_Text_ReceivedBrickPiece::
 	.string "{PLAYER} received a BRICK PIECE!$"
 
+SaffronCity_Dojo_Text_ReceivedMachoBrace::
+	.string "{PLAYER} received a MACHO BRACE!$"
+
+SaffronCity_Dojo_Text_ReceivedBlackBelt::
+	.string "{PLAYER} received a BLACK BELT!$"
+
 SaffronCity_Dojo_Text_BrickPieceExplain::
-	.string "They say a fighter that masters\n"
-	.string "balance can use it to reach a\l"
-	.string "new fighting style!$"
+	.string "A young TYROGUE chooses its path\n"
+	.string "with these.\p"
+	.string "The BRICK PIECE makes HITMONTOP,\n"
+	.string "the MACHO BRACE makes HITMONLEE,\l"
+	.string "and the BLACK BELT, HITMONCHAN!$"
 
 SaffronCity_Dojo_Text_NoRoomForBrickPiece::
 	.string "Hone your BAG as you would your\n"

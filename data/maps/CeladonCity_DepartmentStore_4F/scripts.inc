@@ -43,6 +43,9 @@ CeladonCity_DepartmentStore_4F_Items::
 	.2byte ITEM_UP_GRADE
 	.2byte ITEM_DEEP_SEA_TOOTH
 	.2byte ITEM_DEEP_SEA_SCALE
+	.2byte ITEM_BRICK_PIECE
+	.2byte ITEM_MACHO_BRACE
+	.2byte ITEM_BLACK_BELT
 	.2byte ITEM_NONE
 	release
 	end
