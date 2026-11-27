@@ -2,7 +2,33 @@ CeladonCity_Restaurant_MapScripts::
 	.byte 0
 
 CeladonCity_Restaurant_EventScript_Chef::
-	msgbox CeladonCity_Restaurant_Text_TakingBreakRightNow, MSGBOX_NPC
+	lock
+	faceplayer
+	@ Reforged: after you beat ERIKA, the chef hands over LEFTOVERS once
+	goto_if_unset FLAG_DEFEATED_ERIKA, CeladonCity_Restaurant_EventScript_ChefOnBreak
+	goto_if_set FLAG_GOT_RESTAURANT_LEFTOVERS, CeladonCity_Restaurant_EventScript_ChefAfterGift
+	msgbox CeladonCity_Restaurant_Text_ChefBeatErika
+	checkitemspace ITEM_LEFTOVERS
+	goto_if_eq VAR_RESULT, FALSE, CeladonCity_Restaurant_EventScript_ChefNoRoom
+	giveitem_msg CeladonCity_Restaurant_Text_ReceivedLeftovers, ITEM_LEFTOVERS
+	setflag FLAG_GOT_RESTAURANT_LEFTOVERS
+	msgbox CeladonCity_Restaurant_Text_ChefLeftoversExplain
+	release
+	end
+
+CeladonCity_Restaurant_EventScript_ChefOnBreak::
+	msgbox CeladonCity_Restaurant_Text_TakingBreakRightNow
+	release
+	end
+
+CeladonCity_Restaurant_EventScript_ChefAfterGift::
+	msgbox CeladonCity_Restaurant_Text_ChefLeftoversExplain
+	release
+	end
+
+CeladonCity_Restaurant_EventScript_ChefNoRoom::
+	msgbox CeladonCity_Restaurant_Text_ChefNoRoom
+	release
 	end
 
 CeladonCity_Restaurant_EventScript_Woman::

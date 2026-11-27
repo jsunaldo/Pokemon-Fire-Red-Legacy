@@ -1,4 +1,5 @@
 Route12_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, Route12_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, Route12_OnResume
 	.byte 0
 
@@ -8,6 +9,7 @@ Route12_OnResume::
 
 Route12_EventScript_TryRemoveSnorlax::
 	removeobject VAR_LAST_TALKED
+	call Route12_EventScript_ShowLeftovers
 	return
 
 Route12_EventScript_Snorlax::
@@ -56,4 +58,33 @@ Route12_EventScript_RouteSign::
 
 Route12_EventScript_FishingSign::
 	msgbox Route12_Text_SportfishingArea, MSGBOX_SIGN
+	end
+
+Route12_OnTransition::
+	call Route12_EventScript_HideLeftovers
+	end
+
+@ Reforged: the Leftovers Snorlax leaves behind are a visible item ball on the
+@ tile where it slept (was a hidden "underfoot" item). FLAG_TEMP_1F hides the
+@ ball while Snorlax is there or once it's been picked up.
+Route12_EventScript_HideLeftovers::
+	goto_if_unset FLAG_HIDE_ROUTE_12_SNORLAX, Route12_EventScript_DoHideLeftovers
+	goto_if_set FLAG_HIDDEN_ITEM_ROUTE12_LEFTOVERS, Route12_EventScript_DoHideLeftovers
+	return
+
+Route12_EventScript_DoHideLeftovers::
+	setflag FLAG_TEMP_1F
+	return
+
+Route12_EventScript_ShowLeftovers::
+	goto_if_set FLAG_HIDDEN_ITEM_ROUTE12_LEFTOVERS, EventScript_Return
+	clearflag FLAG_TEMP_1F
+	addobject LOCALID_ROUTE12_LEFTOVERS
+	return
+
+Route12_EventScript_Leftovers::
+	finditem ITEM_LEFTOVERS
+	goto_if_unset FLAG_TEMP_1F, Route12_EventScript_LeftoversEnd
+	setflag FLAG_HIDDEN_ITEM_ROUTE12_LEFTOVERS
+Route12_EventScript_LeftoversEnd::
 	end

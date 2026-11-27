@@ -10,9 +10,11 @@ Route16_OnResume::
 
 Route16_EventScript_RemoveSnorlax::
 	removeobject VAR_LAST_TALKED
+	call Route16_EventScript_ShowLeftovers
 	return
 
 Route16_OnTransition::
+	call Route16_EventScript_HideLeftovers
 	call_if_eq VAR_MAP_SCENE_ROUTE16, 1, Route16_OnTransitionCyclingRoad
 	end
 
@@ -73,4 +75,29 @@ Route16_EventScript_CyclingRoadSign::
 
 Route16_EventScript_RouteSign::
 	msgbox Route16_Text_RouteSign, MSGBOX_SIGN
+	end
+
+@ Reforged: the Leftovers Snorlax leaves behind are a visible item ball on the
+@ tile where it slept (was a hidden "underfoot" item). FLAG_TEMP_1F hides the
+@ ball while Snorlax is there or once it's been picked up.
+Route16_EventScript_HideLeftovers::
+	goto_if_unset FLAG_HIDE_ROUTE_16_SNORLAX, Route16_EventScript_DoHideLeftovers
+	goto_if_set FLAG_HIDDEN_ITEM_ROUTE16_LEFTOVERS, Route16_EventScript_DoHideLeftovers
+	return
+
+Route16_EventScript_DoHideLeftovers::
+	setflag FLAG_TEMP_1F
+	return
+
+Route16_EventScript_ShowLeftovers::
+	goto_if_set FLAG_HIDDEN_ITEM_ROUTE16_LEFTOVERS, EventScript_Return
+	clearflag FLAG_TEMP_1F
+	addobject LOCALID_ROUTE16_LEFTOVERS
+	return
+
+Route16_EventScript_Leftovers::
+	finditem ITEM_LEFTOVERS
+	goto_if_unset FLAG_TEMP_1F, Route16_EventScript_LeftoversEnd
+	setflag FLAG_HIDDEN_ITEM_ROUTE16_LEFTOVERS
+Route16_EventScript_LeftoversEnd::
 	end

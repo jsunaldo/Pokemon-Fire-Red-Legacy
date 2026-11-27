@@ -35,3 +35,20 @@ CeladonCity_Restaurant_Text_ThoughtIdWinItBack::
     .string "I always thought I was going to\n"
     .string "win it back…$"
 
+CeladonCity_Restaurant_Text_ChefBeatErika::
+    .string "You beat ERIKA? She eats here\n"
+    .string "every week!\p"
+    .string "Here, take these. Our LEFTOVERS\n"
+    .string "are too good to waste!$"
+
+CeladonCity_Restaurant_Text_ReceivedLeftovers::
+    .string "{PLAYER} received LEFTOVERS!$"
+
+CeladonCity_Restaurant_Text_ChefLeftoversExplain::
+    .string "A POKéMON holding LEFTOVERS nibbles\n"
+    .string "on them in battle to restore\l"
+    .string "a little HP every turn.$"
+
+CeladonCity_Restaurant_Text_ChefNoRoom::
+    .string "Your BAG is full! Make some room\n"
+    .string "and come back for them.$"
