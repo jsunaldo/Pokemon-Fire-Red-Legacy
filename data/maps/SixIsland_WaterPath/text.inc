@@ -101,5 +101,3 @@ SixIsland_WaterPath_Text_RouteSign::
     .string "Leads to RUIN VALLEY$"
 
 
-SixIsland_WaterPath_Text_Legend_SUICUNE::
-	.string "Suicune!$"

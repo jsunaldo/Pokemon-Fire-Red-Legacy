@@ -1,4 +1,5 @@
 FiveIsland_MemorialPillar_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, FiveIsland_MemorialPillar_OnTransition
 	.byte 0
 
 FiveIsland_MemorialPillar_EventScript_MemorialMan::
@@ -82,3 +83,51 @@ FiveIsland_MemorialPillar_EventScript_MemorialLemonadeAlreadyPlaced::
 	msgbox FiveIsland_MemorialPillar_Text_HereLiesTectonix
 	releaseall
 	end
+
+FiveIsland_MemorialPillar_OnTransition::
+	call FiveIsland_MemorialPillar_EventScript_HideLegend_JIRACHI
+	end
+
+FiveIsland_MemorialPillar_EventScript_Legend_JIRACHI::
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
+	lock
+	faceplayer
+	goto_if_eq VAR_LEGEND_CAUGHT_12, 1, FiveIsland_MemorialPillar_EventScript_LegendGone_JIRACHI
+	waitse
+	playmoncry SPECIES_JIRACHI, CRY_MODE_ENCOUNTER
+	message FiveIsland_MemorialPillar_Text_Legend_JIRACHI
+	waitmessage
+	waitmoncry
+	delay 20
+	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
+	waitbuttonpress
+	setwildbattle SPECIES_JIRACHI, 50
+	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	special StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, FiveIsland_MemorialPillar_EventScript_LegendDone_JIRACHI
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, FiveIsland_MemorialPillar_EventScript_LegendDone_JIRACHI
+	release
+	end
+
+FiveIsland_MemorialPillar_EventScript_LegendDone_JIRACHI::
+	setvar VAR_LEGEND_CAUGHT_12, 1
+	removeobject LOCALID_LEGEND_JIRACHI
+	release
+	end
+
+FiveIsland_MemorialPillar_EventScript_LegendGone_JIRACHI::
+	removeobject LOCALID_LEGEND_JIRACHI
+	release
+	end
+
+FiveIsland_MemorialPillar_EventScript_HideLegend_JIRACHI::
+	goto_if_eq VAR_LEGEND_CAUGHT_12, 1, FiveIsland_MemorialPillar_EventScript_DoHideLegend_JIRACHI
+	return
+
+FiveIsland_MemorialPillar_EventScript_DoHideLegend_JIRACHI::
+	setflag FLAG_TEMP_1F
+	return

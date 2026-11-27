@@ -92,8 +92,3 @@ FiveIsland_ResortGorgeous_Text_SelphysHouse::
     .string "SELPHY'S HOUSE$"
 
 
-FiveIsland_ResortGorgeous_Text_Legend_LATIAS::
-	.string "Latias!$"
-
-FiveIsland_ResortGorgeous_Text_Legend_LATIOS::
-	.string "Latios!$"

@@ -16,3 +16,8 @@ OneIsland_TreasureBeach_Text_GoodThingsWashUpOnBeach::
     .string "That's why I often come here for\n"
     .string "some beachcombing.$"
 
+OneIsland_TreasureBeach_Text_Legend_LATIAS::
+	.string "Latias!$"
+
+OneIsland_TreasureBeach_Text_Legend_LATIOS::
+	.string "Latios!$"

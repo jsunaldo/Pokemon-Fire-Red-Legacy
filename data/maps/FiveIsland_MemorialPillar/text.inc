@@ -97,3 +97,5 @@ FiveIsland_MemorialPillar_Text_HereLiesTectonix::
     .string "“Here lies TECTONIX” is engraved\n"
     .string "on a boulder.$"
 
+FiveIsland_MemorialPillar_Text_Legend_JIRACHI::
+	.string "Jirachi!$"

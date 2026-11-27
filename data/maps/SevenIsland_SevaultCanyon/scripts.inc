@@ -7,49 +7,49 @@ SevenIsland_SevaultCanyon_EventScript_RouteSign::
 	end
 
 SevenIsland_SevaultCanyon_OnTransition::
-	call SevenIsland_SevaultCanyon_EventScript_HideLegend_ENTEI
+	call SevenIsland_SevaultCanyon_EventScript_HideLegend_RAYQUAZA
 	end
 
-SevenIsland_SevaultCanyon_EventScript_Legend_ENTEI::
+SevenIsland_SevaultCanyon_EventScript_Legend_RAYQUAZA::
 	goto_if_questlog EventScript_ReleaseEnd
 	special QuestLog_CutRecording
 	lock
 	faceplayer
-	goto_if_eq VAR_LEGEND_CAUGHT_01, 1, SevenIsland_SevaultCanyon_EventScript_LegendGone_ENTEI
+	goto_if_eq VAR_LEGEND_CAUGHT_09, 1, SevenIsland_SevaultCanyon_EventScript_LegendGone_RAYQUAZA
 	waitse
-	playmoncry SPECIES_ENTEI, CRY_MODE_ENCOUNTER
-	message SevenIsland_SevaultCanyon_Text_Legend_ENTEI
+	playmoncry SPECIES_RAYQUAZA, CRY_MODE_ENCOUNTER
+	message SevenIsland_SevaultCanyon_Text_Legend_RAYQUAZA
 	waitmessage
 	waitmoncry
 	delay 20
 	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
 	waitbuttonpress
-	setwildbattle SPECIES_ENTEI, 50
+	setwildbattle SPECIES_RAYQUAZA, 60
 	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
 	special StartLegendaryBattle
 	waitstate
 	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
 	specialvar VAR_RESULT, GetBattleOutcome
-	goto_if_eq VAR_RESULT, B_OUTCOME_WON, SevenIsland_SevaultCanyon_EventScript_LegendDone_ENTEI
-	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, SevenIsland_SevaultCanyon_EventScript_LegendDone_ENTEI
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, SevenIsland_SevaultCanyon_EventScript_LegendDone_RAYQUAZA
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, SevenIsland_SevaultCanyon_EventScript_LegendDone_RAYQUAZA
 	release
 	end
 
-SevenIsland_SevaultCanyon_EventScript_LegendDone_ENTEI::
-	setvar VAR_LEGEND_CAUGHT_01, 1
-	removeobject LOCALID_LEGEND_ENTEI
+SevenIsland_SevaultCanyon_EventScript_LegendDone_RAYQUAZA::
+	setvar VAR_LEGEND_CAUGHT_09, 1
+	removeobject LOCALID_LEGEND_RAYQUAZA
 	release
 	end
 
-SevenIsland_SevaultCanyon_EventScript_LegendGone_ENTEI::
-	removeobject LOCALID_LEGEND_ENTEI
+SevenIsland_SevaultCanyon_EventScript_LegendGone_RAYQUAZA::
+	removeobject LOCALID_LEGEND_RAYQUAZA
 	release
 	end
 
-SevenIsland_SevaultCanyon_EventScript_HideLegend_ENTEI::
-	goto_if_eq VAR_LEGEND_CAUGHT_01, 1, SevenIsland_SevaultCanyon_EventScript_DoHideLegend_ENTEI
+SevenIsland_SevaultCanyon_EventScript_HideLegend_RAYQUAZA::
+	goto_if_eq VAR_LEGEND_CAUGHT_09, 1, SevenIsland_SevaultCanyon_EventScript_DoHideLegend_RAYQUAZA
 	return
 
-SevenIsland_SevaultCanyon_EventScript_DoHideLegend_ENTEI::
+SevenIsland_SevaultCanyon_EventScript_DoHideLegend_RAYQUAZA::
 	setflag FLAG_TEMP_1F
 	return

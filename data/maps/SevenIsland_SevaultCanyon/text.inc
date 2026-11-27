@@ -129,5 +129,5 @@ SevenIsland_SevaultCanyon_Text_BrunoTrainedWithBrawly::
     .string "He trained with a fellow by the\l"
     .string "name of BRAWLY before.$"
 
-SevenIsland_SevaultCanyon_Text_Legend_ENTEI::
-	.string "Entei!$"
+SevenIsland_SevaultCanyon_Text_Legend_RAYQUAZA::
+	.string "Rayquaza!$"

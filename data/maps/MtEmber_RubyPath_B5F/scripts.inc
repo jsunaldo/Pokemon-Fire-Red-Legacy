@@ -1,4 +1,5 @@
 MtEmber_RubyPath_B5F_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, MtEmber_RubyPath_B5F_OnTransition
 	.byte 0
 
 MtEmber_RubyPath_B5F_EventScript_BrailleMessage::
@@ -15,3 +16,56 @@ MtEmber_RubyPath_B5F_EventScript_BrailleMessage::
 	waitbuttonpress
 	releaseall
 	end
+
+MtEmber_RubyPath_B5F_OnTransition::
+	call MtEmber_RubyPath_B5F_EventScript_HideLegend_GROUDON
+	end
+
+MtEmber_RubyPath_B5F_EventScript_Legend_GROUDON::
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
+	lock
+	faceplayer
+	goto_if_eq VAR_LEGEND_CAUGHT_08, 1, MtEmber_RubyPath_B5F_EventScript_LegendGone_GROUDON
+	waitse
+	playmoncry SPECIES_GROUDON, CRY_MODE_ENCOUNTER
+	message MtEmber_RubyPath_B5F_Text_Legend_GROUDON
+	waitmessage
+	waitmoncry
+	delay 20
+	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
+	waitbuttonpress
+	setwildbattle SPECIES_GROUDON, 60
+	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	special StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, MtEmber_RubyPath_B5F_EventScript_LegendDone_GROUDON
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, MtEmber_RubyPath_B5F_EventScript_LegendDone_GROUDON
+	release
+	end
+
+MtEmber_RubyPath_B5F_EventScript_LegendDone_GROUDON::
+	setvar VAR_LEGEND_CAUGHT_08, 1
+	removeobject LOCALID_LEGEND_GROUDON
+	release
+	end
+
+MtEmber_RubyPath_B5F_EventScript_LegendGone_GROUDON::
+	removeobject LOCALID_LEGEND_GROUDON
+	release
+	end
+
+MtEmber_RubyPath_B5F_EventScript_HideLegend_GROUDON::
+	goto_if_unset FLAG_SYS_GAME_CLEAR, MtEmber_RubyPath_B5F_EventScript_DoHideLegend_GROUDON
+	goto_if_unset FLAG_SYS_GAME_CLEAR, MtEmber_RubyPath_B5F_EventScript_DoHideLegend_GROUDON
+	goto_if_eq VAR_LEGEND_CAUGHT_08, 1, MtEmber_RubyPath_B5F_EventScript_DoHideLegend_GROUDON
+	return
+
+MtEmber_RubyPath_B5F_EventScript_DoHideLegend_GROUDON::
+	setflag FLAG_TEMP_1F
+	return
+
+MtEmber_RubyPath_B5F_Text_Legend_GROUDON::
+	.string "Groudon!$"

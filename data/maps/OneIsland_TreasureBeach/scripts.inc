@@ -1,6 +1,104 @@
 OneIsland_TreasureBeach_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, OneIsland_TreasureBeach_OnTransition
 	.byte 0
 
 OneIsland_TreasureBeach_EventScript_Boy::
 	msgbox OneIsland_TreasureBeach_Text_GoodThingsWashUpOnBeach, MSGBOX_NPC
 	end
+
+OneIsland_TreasureBeach_OnTransition::
+	call OneIsland_TreasureBeach_EventScript_HideLegend_LATIOS
+	call OneIsland_TreasureBeach_EventScript_HideLegend_LATIAS
+	end
+
+OneIsland_TreasureBeach_EventScript_Legend_LATIAS::
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
+	lock
+	faceplayer
+	goto_if_eq VAR_LEGEND_CAUGHT_10, 1, OneIsland_TreasureBeach_EventScript_LegendGone_LATIAS
+	waitse
+	playmoncry SPECIES_LATIAS, CRY_MODE_ENCOUNTER
+	message OneIsland_TreasureBeach_Text_Legend_LATIAS
+	waitmessage
+	waitmoncry
+	delay 20
+	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
+	waitbuttonpress
+	setwildbattle SPECIES_LATIAS, 50
+	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	special StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, OneIsland_TreasureBeach_EventScript_LegendDone_LATIAS
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, OneIsland_TreasureBeach_EventScript_LegendDone_LATIAS
+	release
+	end
+
+OneIsland_TreasureBeach_EventScript_LegendDone_LATIAS::
+	setvar VAR_LEGEND_CAUGHT_10, 1
+	removeobject LOCALID_LEGEND_LATIAS
+	release
+	end
+
+OneIsland_TreasureBeach_EventScript_LegendGone_LATIAS::
+	removeobject LOCALID_LEGEND_LATIAS
+	release
+	end
+
+OneIsland_TreasureBeach_EventScript_HideLegend_LATIAS::
+	goto_if_unset FLAG_SYS_GAME_CLEAR, OneIsland_TreasureBeach_EventScript_DoHideLegend_LATIAS
+	goto_if_unset FLAG_SYS_GAME_CLEAR, OneIsland_TreasureBeach_EventScript_DoHideLegend_LATIAS
+	goto_if_eq VAR_LEGEND_CAUGHT_10, 1, OneIsland_TreasureBeach_EventScript_DoHideLegend_LATIAS
+	return
+
+OneIsland_TreasureBeach_EventScript_DoHideLegend_LATIAS::
+	setflag FLAG_TEMP_1F
+	return
+
+OneIsland_TreasureBeach_EventScript_Legend_LATIOS::
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
+	lock
+	faceplayer
+	goto_if_eq VAR_LEGEND_CAUGHT_11, 1, OneIsland_TreasureBeach_EventScript_LegendGone_LATIOS
+	waitse
+	playmoncry SPECIES_LATIOS, CRY_MODE_ENCOUNTER
+	message OneIsland_TreasureBeach_Text_Legend_LATIOS
+	waitmessage
+	waitmoncry
+	delay 20
+	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
+	waitbuttonpress
+	setwildbattle SPECIES_LATIOS, 50
+	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	special StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, OneIsland_TreasureBeach_EventScript_LegendDone_LATIOS
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, OneIsland_TreasureBeach_EventScript_LegendDone_LATIOS
+	release
+	end
+
+OneIsland_TreasureBeach_EventScript_LegendDone_LATIOS::
+	setvar VAR_LEGEND_CAUGHT_11, 1
+	removeobject LOCALID_LEGEND_LATIOS
+	release
+	end
+
+OneIsland_TreasureBeach_EventScript_LegendGone_LATIOS::
+	removeobject LOCALID_LEGEND_LATIOS
+	release
+	end
+
+OneIsland_TreasureBeach_EventScript_HideLegend_LATIOS::
+	goto_if_unset FLAG_SYS_GAME_CLEAR, OneIsland_TreasureBeach_EventScript_DoHideLegend_LATIOS
+	goto_if_unset FLAG_SYS_GAME_CLEAR, OneIsland_TreasureBeach_EventScript_DoHideLegend_LATIOS
+	goto_if_eq VAR_LEGEND_CAUGHT_11, 1, OneIsland_TreasureBeach_EventScript_DoHideLegend_LATIOS
+	return
+
+OneIsland_TreasureBeach_EventScript_DoHideLegend_LATIOS::
+	setflag FLAG_TEMP_1E
+	return
