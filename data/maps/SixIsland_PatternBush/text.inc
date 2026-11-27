@@ -154,3 +154,10 @@ SixIsland_PatternBush_Text_LaytonPostBattle::
     .string "What could be the cause of such\n"
     .string "a phenomenon?$"
 
+
+SixIsland_PatternBush_Text_NincadaHint::
+    .string "Did you know? NINCADA can leave\n"
+    .string "its old shell behind!\p"
+    .string "If there's an open spot in your\n"
+    .string "party when it evolves, the empty\l"
+    .string "shell joins you as SHEDINJA!$"

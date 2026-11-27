@@ -76,3 +76,8 @@ SixIsland_PatternBush_EventScript_Layton::
 	trainerbattle_single TRAINER_RUIN_MANIAC_LAYTON, SixIsland_PatternBush_Text_LaytonIntro, SixIsland_PatternBush_Text_LaytonDefeat
 	msgbox SixIsland_PatternBush_Text_LaytonPostBattle, MSGBOX_AUTOCLOSE
 	end
+
+@ Reforged: explains how to get Shedinja
+SixIsland_PatternBush_EventScript_NincadaHint::
+	msgbox SixIsland_PatternBush_Text_NincadaHint, MSGBOX_NPC
+	end
