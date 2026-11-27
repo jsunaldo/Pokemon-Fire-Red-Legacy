@@ -4815,7 +4815,9 @@ static void Task_LearnedMove(u8 taskId)
     if (learnMoveMethod == LEARN_VIA_TMHM)
     {
         AdjustFriendship(mon, FRIENDSHIP_EVENT_LEARN_TMHM);
-        if (item < ITEM_HM01)
+        // Reforged: replacing a move with a TM follows the REUSABLE TMS
+        // setting too (only the empty-slot path checked it before)
+        if (item < ITEM_HM01 && (VarGet(VAR_RANDOMIZER_SETTINGS) & RANDO_F_SINGLE_USE_TMS))
             RemoveBagItem(item, 1);
     }
     GetMonNickname(mon, gStringVar1);
