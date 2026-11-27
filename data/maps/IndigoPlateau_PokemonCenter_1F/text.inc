@@ -18,9 +18,20 @@ IndigoPlateau_PokemonCenter_1F_Text_LoreleiIsAbsentClosedForTimeBeing::
     .string "I am so sorry, but you've wasted\n"
     .string "your time coming here.\p"
     .string "LORELEI of the ELITE FOUR is\n"
-    .string "absent, you see.\p"
-    .string "As a result, the POKéMON LEAGUE is\n"
-    .string "closed for the time being.$"
+    .string "away on the SEVII ISLANDS, so the\l"
+    .string "POKéMON LEAGUE is closed for now.\p"
+    .string "Even once she returns, the ELITE\n"
+    .string "FOUR only face a CHAMPION who has\l"
+    .string "beaten all eight KANTO GYM LEADERS\l"
+    .string "again in a rematch.$"
+
+IndigoPlateau_PokemonCenter_1F_Text_RematchGymsFirst::
+    .string "The ELITE FOUR are ready for a\n"
+    .string "rematch, but they only face a\l"
+    .string "CHAMPION who still rules KANTO.\p"
+    .string "Beat all eight GYM LEADERS again\n"
+    .string "in a rematch first.\p"
+    .string "So far you've beaten {STR_VAR_1} of 8.$"
 
 IndigoPlateau_PokemonCenter_1F_Text_AgathaWhuppedUs::
     .string "AGATHA's GHOST-type POKéMON are\n"

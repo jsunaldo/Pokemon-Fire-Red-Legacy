@@ -19,8 +19,7 @@ IndigoPlateau_PokemonCenter_1F_EventScript_DoorGuard::
 	faceplayer
 	specialvar VAR_RESULT, IsNationalDexPostgame
 	goto_if_eq VAR_RESULT, TRUE, IndigoPlateau_PokemonCenter_1F_EventScript_CheckSeviiIslandComplete
-	msgbox IndigoPlateau_PokemonCenter_1F_Text_FaceEliteFourGoodLuck
-	release
+	goto IndigoPlateau_PokemonCenter_1F_EventScript_SeviiIslandComplete
 	end
 
 IndigoPlateau_PokemonCenter_1F_EventScript_CheckSeviiIslandComplete::
@@ -29,7 +28,31 @@ IndigoPlateau_PokemonCenter_1F_EventScript_CheckSeviiIslandComplete::
 	release
 	end
 
+@ Reforged: after you're CHAMPION, the ELITE FOUR rematch only opens once all
+@ eight KANTO GYM LEADERS are re-beaten (Lorelei's RematchGate). Say so here,
+@ with a count, so nobody walks to Lorelei's room to find out.
 IndigoPlateau_PokemonCenter_1F_EventScript_SeviiIslandComplete::
+	goto_if_unset FLAG_SYS_GAME_CLEAR, IndigoPlateau_PokemonCenter_1F_EventScript_GoodLuck
+	setvar VAR_0x8004, 0
+	call_if_set FLAG_KANTO_REMATCH_BROCK, IndigoPlateau_PokemonCenter_1F_EventScript_AddGym
+	call_if_set FLAG_KANTO_REMATCH_MISTY, IndigoPlateau_PokemonCenter_1F_EventScript_AddGym
+	call_if_set FLAG_KANTO_REMATCH_LT_SURGE, IndigoPlateau_PokemonCenter_1F_EventScript_AddGym
+	call_if_set FLAG_KANTO_REMATCH_ERIKA, IndigoPlateau_PokemonCenter_1F_EventScript_AddGym
+	call_if_set FLAG_KANTO_REMATCH_KOGA, IndigoPlateau_PokemonCenter_1F_EventScript_AddGym
+	call_if_set FLAG_KANTO_REMATCH_SABRINA, IndigoPlateau_PokemonCenter_1F_EventScript_AddGym
+	call_if_set FLAG_KANTO_REMATCH_BLAINE, IndigoPlateau_PokemonCenter_1F_EventScript_AddGym
+	call_if_set FLAG_KANTO_REMATCH_GIOVANNI, IndigoPlateau_PokemonCenter_1F_EventScript_AddGym
+	goto_if_eq VAR_0x8004, 8, IndigoPlateau_PokemonCenter_1F_EventScript_GoodLuck
+	buffernumberstring STR_VAR_1, VAR_0x8004
+	msgbox IndigoPlateau_PokemonCenter_1F_Text_RematchGymsFirst
+	release
+	end
+
+IndigoPlateau_PokemonCenter_1F_EventScript_AddGym::
+	addvar VAR_0x8004, 1
+	return
+
+IndigoPlateau_PokemonCenter_1F_EventScript_GoodLuck::
 	msgbox IndigoPlateau_PokemonCenter_1F_Text_FaceEliteFourGoodLuck
 	release
 	end
