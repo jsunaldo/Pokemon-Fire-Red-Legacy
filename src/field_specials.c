@@ -2146,6 +2146,14 @@ static const u8 sChampionRoomLightingTimers[] = {
      8
 };
 
+// Reforged: the Crown League's Champion room reuses the Champion room layout,
+// so it gets the Champion room's light cycle too.
+static bool8 IsChampionsRoomLighting(void)
+{
+    return (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_POKEMON_LEAGUE_CHAMPIONS_ROOM) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_POKEMON_LEAGUE_CHAMPIONS_ROOM))
+        || (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_CROWN_LEAGUE_STEVENS_ROOM) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_CROWN_LEAGUE_STEVENS_ROOM));
+}
+
 void DoPokemonLeagueLightingEffect(void)
 {
     u8 taskId = CreateTask(Task_RunPokemonLeagueLightingEffect, 8);
@@ -2156,7 +2164,7 @@ void DoPokemonLeagueLightingEffect(void)
     }
     else
     {
-        if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_POKEMON_LEAGUE_CHAMPIONS_ROOM) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_POKEMON_LEAGUE_CHAMPIONS_ROOM))
+        if (IsChampionsRoomLighting())
         {
             data[0] = sChampionRoomLightingTimers[0];
             data[2] = 8;
@@ -2186,7 +2194,7 @@ static void Task_RunPokemonLeagueLightingEffect(u8 taskId)
         if (++data[1] == data[2])
             data[1] = 0;
 
-        if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_POKEMON_LEAGUE_CHAMPIONS_ROOM) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_POKEMON_LEAGUE_CHAMPIONS_ROOM))
+        if (IsChampionsRoomLighting())
         {
             data[0] = sChampionRoomLightingTimers[data[1]];
             LoadPalette(sChampionRoomLightingPalettes[data[1]], BG_PLTT_ID(7), PLTT_SIZE_4BPP);
@@ -2205,7 +2213,7 @@ static void Task_CancelPokemonLeagueLightingEffect(u8 taskId)
     s16 *data = gTasks[taskId].data;
     if (FlagGet(FLAG_TEMP_4) != FALSE)
     {
-        if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_POKEMON_LEAGUE_CHAMPIONS_ROOM) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_POKEMON_LEAGUE_CHAMPIONS_ROOM))
+        if (IsChampionsRoomLighting())
             LoadPalette(sChampionRoomLightingPalettes[8], BG_PLTT_ID(7), PLTT_SIZE_4BPP);
         else
             LoadPalette(sEliteFourLightingPalettes[11], BG_PLTT_ID(7), PLTT_SIZE_4BPP);

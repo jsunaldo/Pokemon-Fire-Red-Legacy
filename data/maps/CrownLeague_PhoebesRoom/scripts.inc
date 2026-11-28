@@ -1,0 +1,70 @@
+CrownLeague_PhoebesRoom_MapScripts::
+	map_script MAP_SCRIPT_ON_RESUME, CrownLeague_PhoebesRoom_OnResume
+	map_script MAP_SCRIPT_ON_LOAD, CrownLeague_PhoebesRoom_OnLoad
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, CrownLeague_PhoebesRoom_OnWarp
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, CrownLeague_PhoebesRoom_OnFrame
+	.byte 0
+
+CrownLeague_PhoebesRoom_OnResume::
+	setvar VAR_0x8004, 1
+	call PokemonLeague_EventScript_DoLightingEffect
+	end
+
+CrownLeague_PhoebesRoom_OnWarp::
+	map_script_2 VAR_TEMP_1, 0, CrownLeague_PhoebesRoom_EventScript_TurnPlayerNorth
+	.2byte 0
+
+CrownLeague_PhoebesRoom_EventScript_TurnPlayerNorth::
+	turnobject LOCALID_PLAYER, DIR_NORTH
+	end
+
+CrownLeague_PhoebesRoom_OnFrame::
+	map_script_2 VAR_MAP_SCENE_POKEMON_LEAGUE, 11, CrownLeague_PhoebesRoom_EventScript_EnterRoom
+	.2byte 0
+
+CrownLeague_PhoebesRoom_OnLoad::
+	call_if_eq VAR_MAP_SCENE_POKEMON_LEAGUE, 20, CrownLeague_PhoebesRoom_EventScript_CloseEntry
+	call_if_eq VAR_MAP_SCENE_POKEMON_LEAGUE, 21, CrownLeague_PhoebesRoom_EventScript_SetDoorOpen
+	end
+
+CrownLeague_PhoebesRoom_EventScript_SetDoorOpen::
+	call CrownLeague_PhoebesRoom_EventScript_CloseEntry
+	call PokemonLeague_EventScript_SetDoorOpen
+	return
+
+CrownLeague_PhoebesRoom_EventScript_CloseEntry::
+	call PokemonLeague_EventScript_CloseEntry
+	return
+
+CrownLeague_PhoebesRoom_EventScript_EnterRoom::
+	lockall
+	applymovement LOCALID_PLAYER, Common_Movement_WalkUp5
+	waitmovement 0
+	setflag FLAG_TEMP_2
+	playse SE_UNLOCK
+	call CrownLeague_PhoebesRoom_EventScript_CloseEntry
+	special DrawWholeMapView
+	waitse
+	setvar VAR_MAP_SCENE_POKEMON_LEAGUE, 20
+	releaseall
+	end
+
+CrownLeague_PhoebesRoom_EventScript_Phoebe::
+	lock
+	faceplayer
+	goto_if_eq VAR_MAP_SCENE_POKEMON_LEAGUE, 21, CrownLeague_PhoebesRoom_EventScript_PostBattle
+	msgbox CrownLeague_PhoebesRoom_Text_Intro
+	setflag FLAG_TEMP_3
+	setflag FLAG_TEMP_5
+	trainerbattle_no_intro TRAINER_CROWN_PHOEBE, CrownLeague_PhoebesRoom_Text_Defeat
+	clearflag FLAG_TEMP_5
+	setvar VAR_MAP_SCENE_POKEMON_LEAGUE, 21
+	call PokemonLeague_EventScript_OpenDoor
+	msgbox CrownLeague_PhoebesRoom_Text_PostBattle
+	release
+	end
+
+CrownLeague_PhoebesRoom_EventScript_PostBattle::
+	msgbox CrownLeague_PhoebesRoom_Text_PostBattle
+	release
+	end

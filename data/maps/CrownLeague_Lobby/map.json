@@ -1,0 +1,97 @@
+{
+  "id": "MAP_CROWN_LEAGUE_LOBBY",
+  "name": "CrownLeague_Lobby",
+  "layout": "LAYOUT_INDIGO_PLATEAU_POKEMON_CENTER_1F",
+  "music": "MUS_GYM",
+  "region_map_section": "MAPSEC_WYRMSPIRE_ISLE",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": false,
+  "show_map_name": false,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_GYM",
+  "connections": null,
+  "object_events": [
+    {
+      "local_id": "LOCALID_CROWN_LOBBY_NURSE",
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_NURSE",
+      "x": 13,
+      "y": 10,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "CrownLeague_Lobby_EventScript_Nurse",
+      "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_CROWN_LOBBY_CLERK",
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_CLERK",
+      "x": 0,
+      "y": 7,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "CrownLeague_Lobby_EventScript_Clerk",
+      "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_CROWN_LOBBY_GUARD",
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_F",
+      "x": 5,
+      "y": 3,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "CrownLeague_Lobby_EventScript_Guard",
+      "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_CROWN_LOBBY_GUIDE",
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_GYM_GUY",
+      "x": 7,
+      "y": 14,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "CrownLeague_Lobby_EventScript_Guide",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 11,
+      "y": 16,
+      "elevation": 3,
+      "dest_map": "MAP_JOHTO_ISLE_CLAIR",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 4,
+      "y": 1,
+      "elevation": 3,
+      "dest_map": "MAP_CROWN_LEAGUE_SIDNEYS_ROOM",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": []
+}

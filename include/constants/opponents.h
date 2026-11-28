@@ -830,6 +830,14 @@
 #define TRAINER_LEADER_GIOVANNI_REMATCH2 TRAINER_RUNNING_TRIATHLETE_F
 #define TRAINER_LEADER_GIOVANNI_R3       TRAINER_SWIMMING_TRIATHLETE_M
 
+// Crown League (Wyrmspire): the Hoenn Elite Four + Champion Steven, Lv 100,
+// in five unused RSE leftover slots FR/LG never references.
+#define TRAINER_CROWN_SIDNEY             TRAINER_SWIMMING_TRIATHLETE_F
+#define TRAINER_CROWN_PHOEBE             TRAINER_DRAGON_TAMER
+#define TRAINER_CROWN_GLACIA             TRAINER_RS_BIRD_KEEPER
+#define TRAINER_CROWN_DRAKE              TRAINER_NINJA_BOY
+#define TRAINER_CROWN_STEVEN             TRAINER_BATTLE_GIRL
+
 #define NUM_TRAINERS                             767
 #define MAX_TRAINERS_COUNT                       768
 

@@ -313,3 +313,14 @@ const u16 gObjectEventPic_JohtoPryce[] = INCBIN_U16("graphics/object_events/pics
 const u16 gObjectEventPal_JohtoPryce[] = INCBIN_U16("graphics/object_events/palettes/johto_pryce.gbapal");
 const u16 gObjectEventPic_JohtoClair[] = INCBIN_U16("graphics/object_events/pics/people/johto_clair.4bpp");
 const u16 gObjectEventPal_JohtoClair[] = INCBIN_U16("graphics/object_events/palettes/johto_clair.gbapal");
+
+const u16 gObjectEventPic_CrownSidney[] = INCBIN_U16("graphics/object_events/pics/people/crown_sidney.4bpp");
+const u16 gObjectEventPal_CrownSidney[] = INCBIN_U16("graphics/object_events/palettes/crown_sidney.gbapal");
+const u16 gObjectEventPic_CrownPhoebe[] = INCBIN_U16("graphics/object_events/pics/people/crown_phoebe.4bpp");
+const u16 gObjectEventPal_CrownPhoebe[] = INCBIN_U16("graphics/object_events/palettes/crown_phoebe.gbapal");
+const u16 gObjectEventPic_CrownGlacia[] = INCBIN_U16("graphics/object_events/pics/people/crown_glacia.4bpp");
+const u16 gObjectEventPal_CrownGlacia[] = INCBIN_U16("graphics/object_events/palettes/crown_glacia.gbapal");
+const u16 gObjectEventPic_CrownDrake[] = INCBIN_U16("graphics/object_events/pics/people/crown_drake.4bpp");
+const u16 gObjectEventPal_CrownDrake[] = INCBIN_U16("graphics/object_events/palettes/crown_drake.gbapal");
+const u16 gObjectEventPic_CrownSteven[] = INCBIN_U16("graphics/object_events/pics/people/crown_steven.4bpp");
+const u16 gObjectEventPal_CrownSteven[] = INCBIN_U16("graphics/object_events/palettes/crown_steven.gbapal");

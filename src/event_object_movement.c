@@ -494,6 +494,11 @@ static const u8 gInitialMovementTypeFacingDirections[MOVEMENT_TYPES_COUNT] = {
 #define OBJ_EVENT_PAL_TAG_JOHTO_JASMINE 0x1157 // own palette, ace hook
 #define OBJ_EVENT_PAL_TAG_JOHTO_PRYCE 0x1158 // own palette, ace hook
 #define OBJ_EVENT_PAL_TAG_JOHTO_CLAIR 0x1159 // own palette, ace hook
+#define OBJ_EVENT_PAL_TAG_CROWN_SIDNEY 0x115A // own palette, ace hook
+#define OBJ_EVENT_PAL_TAG_CROWN_PHOEBE 0x115B // own palette, ace hook
+#define OBJ_EVENT_PAL_TAG_CROWN_GLACIA 0x115C // own palette, ace hook
+#define OBJ_EVENT_PAL_TAG_CROWN_DRAKE 0x115D // own palette, ace hook
+#define OBJ_EVENT_PAL_TAG_CROWN_STEVEN 0x115E // own palette, ace hook
 #define OBJ_EVENT_PAL_TAG_GENGAR 0x1130
 #define OBJ_EVENT_PAL_TAG_MACHAMP 0x1131
 #define OBJ_EVENT_PAL_TAG_DRAGONITE 0x1132
@@ -571,6 +576,11 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_JohtoJasmine, OBJ_EVENT_PAL_TAG_JOHTO_JASMINE},
     {gObjectEventPal_JohtoPryce, OBJ_EVENT_PAL_TAG_JOHTO_PRYCE},
     {gObjectEventPal_JohtoClair, OBJ_EVENT_PAL_TAG_JOHTO_CLAIR},
+    {gObjectEventPal_CrownSidney, OBJ_EVENT_PAL_TAG_CROWN_SIDNEY},
+    {gObjectEventPal_CrownPhoebe, OBJ_EVENT_PAL_TAG_CROWN_PHOEBE},
+    {gObjectEventPal_CrownGlacia, OBJ_EVENT_PAL_TAG_CROWN_GLACIA},
+    {gObjectEventPal_CrownDrake, OBJ_EVENT_PAL_TAG_CROWN_DRAKE},
+    {gObjectEventPal_CrownSteven, OBJ_EVENT_PAL_TAG_CROWN_STEVEN},
     {gObjectEventPal_Gengar, OBJ_EVENT_PAL_TAG_GENGAR},
     {gObjectEventPal_Machamp, OBJ_EVENT_PAL_TAG_MACHAMP},
     {gObjectEventPal_Dragonite, OBJ_EVENT_PAL_TAG_DRAGONITE},
@@ -1683,7 +1693,7 @@ static u8 TrySetupObjectEventSprite(const struct ObjectEventTemplate *objectEven
     // slot would show the wrong colors. Load it into a free (non-reserved) sprite
     // palette slot and point the sprite there so it shows its real colors.
     if (graphicsInfo->paletteTag >= OBJ_EVENT_PAL_TAG_GENGAR
-     && graphicsInfo->paletteTag <= OBJ_EVENT_PAL_TAG_JOHTO_CLAIR)
+     && graphicsInfo->paletteTag <= OBJ_EVENT_PAL_TAG_CROWN_STEVEN)
     {
         u8 acePalSlot;
         LoadObjectEventPalette(graphicsInfo->paletteTag);
@@ -2041,7 +2051,7 @@ static void SpawnObjectEventOnReturnToField(u8 objectEventId, s16 x, s16 y)
         if ((graphicsInfo->paletteTag >= OBJ_EVENT_PAL_TAG_GENGAR
           && graphicsInfo->paletteTag <= OBJ_EVENT_PAL_TAG_JANINE)
          || (graphicsInfo->paletteTag >= OBJ_EVENT_PAL_TAG_GROUDON
-          && graphicsInfo->paletteTag <= OBJ_EVENT_PAL_TAG_JOHTO_CLAIR))
+          && graphicsInfo->paletteTag <= OBJ_EVENT_PAL_TAG_CROWN_STEVEN))
         {
             u8 acePalSlot;
             LoadObjectEventPalette(graphicsInfo->paletteTag);

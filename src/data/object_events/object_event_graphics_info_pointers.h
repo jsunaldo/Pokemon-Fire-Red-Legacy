@@ -174,6 +174,11 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_JohtoChuck;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_JohtoJasmine;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_JohtoPryce;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_JohtoClair;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_CrownSidney;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_CrownPhoebe;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_CrownGlacia;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_CrownDrake;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_CrownSteven;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Gengar;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Machamp;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Dragonite;
@@ -371,6 +376,11 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_JOHTO_JASMINE] = &gObjectEventGraphicsInfo_JohtoJasmine,
     [OBJ_EVENT_GFX_JOHTO_PRYCE] = &gObjectEventGraphicsInfo_JohtoPryce,
     [OBJ_EVENT_GFX_JOHTO_CLAIR] = &gObjectEventGraphicsInfo_JohtoClair,
+    [OBJ_EVENT_GFX_CROWN_SIDNEY] = &gObjectEventGraphicsInfo_CrownSidney,
+    [OBJ_EVENT_GFX_CROWN_PHOEBE] = &gObjectEventGraphicsInfo_CrownPhoebe,
+    [OBJ_EVENT_GFX_CROWN_GLACIA] = &gObjectEventGraphicsInfo_CrownGlacia,
+    [OBJ_EVENT_GFX_CROWN_DRAKE] = &gObjectEventGraphicsInfo_CrownDrake,
+    [OBJ_EVENT_GFX_CROWN_STEVEN] = &gObjectEventGraphicsInfo_CrownSteven,
     [OBJ_EVENT_GFX_GENGAR] = &gObjectEventGraphicsInfo_Gengar,
     [OBJ_EVENT_GFX_MACHAMP] = &gObjectEventGraphicsInfo_Machamp,
     [OBJ_EVENT_GFX_DRAGONITE] = &gObjectEventGraphicsInfo_Dragonite,

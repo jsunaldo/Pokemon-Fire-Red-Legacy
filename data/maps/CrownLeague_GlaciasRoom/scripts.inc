@@ -1,0 +1,70 @@
+CrownLeague_GlaciasRoom_MapScripts::
+	map_script MAP_SCRIPT_ON_RESUME, CrownLeague_GlaciasRoom_OnResume
+	map_script MAP_SCRIPT_ON_LOAD, CrownLeague_GlaciasRoom_OnLoad
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, CrownLeague_GlaciasRoom_OnWarp
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, CrownLeague_GlaciasRoom_OnFrame
+	.byte 0
+
+CrownLeague_GlaciasRoom_OnResume::
+	setvar VAR_0x8004, 2
+	call PokemonLeague_EventScript_DoLightingEffect
+	end
+
+CrownLeague_GlaciasRoom_OnWarp::
+	map_script_2 VAR_TEMP_1, 0, CrownLeague_GlaciasRoom_EventScript_TurnPlayerNorth
+	.2byte 0
+
+CrownLeague_GlaciasRoom_EventScript_TurnPlayerNorth::
+	turnobject LOCALID_PLAYER, DIR_NORTH
+	end
+
+CrownLeague_GlaciasRoom_OnFrame::
+	map_script_2 VAR_MAP_SCENE_POKEMON_LEAGUE, 21, CrownLeague_GlaciasRoom_EventScript_EnterRoom
+	.2byte 0
+
+CrownLeague_GlaciasRoom_OnLoad::
+	call_if_eq VAR_MAP_SCENE_POKEMON_LEAGUE, 30, CrownLeague_GlaciasRoom_EventScript_CloseEntry
+	call_if_eq VAR_MAP_SCENE_POKEMON_LEAGUE, 31, CrownLeague_GlaciasRoom_EventScript_SetDoorOpen
+	end
+
+CrownLeague_GlaciasRoom_EventScript_SetDoorOpen::
+	call CrownLeague_GlaciasRoom_EventScript_CloseEntry
+	call PokemonLeague_EventScript_SetDoorOpen
+	return
+
+CrownLeague_GlaciasRoom_EventScript_CloseEntry::
+	call PokemonLeague_EventScript_CloseEntry
+	return
+
+CrownLeague_GlaciasRoom_EventScript_EnterRoom::
+	lockall
+	applymovement LOCALID_PLAYER, Common_Movement_WalkUp5
+	waitmovement 0
+	setflag FLAG_TEMP_2
+	playse SE_UNLOCK
+	call CrownLeague_GlaciasRoom_EventScript_CloseEntry
+	special DrawWholeMapView
+	waitse
+	setvar VAR_MAP_SCENE_POKEMON_LEAGUE, 30
+	releaseall
+	end
+
+CrownLeague_GlaciasRoom_EventScript_Glacia::
+	lock
+	faceplayer
+	goto_if_eq VAR_MAP_SCENE_POKEMON_LEAGUE, 31, CrownLeague_GlaciasRoom_EventScript_PostBattle
+	msgbox CrownLeague_GlaciasRoom_Text_Intro
+	setflag FLAG_TEMP_3
+	setflag FLAG_TEMP_5
+	trainerbattle_no_intro TRAINER_CROWN_GLACIA, CrownLeague_GlaciasRoom_Text_Defeat
+	clearflag FLAG_TEMP_5
+	setvar VAR_MAP_SCENE_POKEMON_LEAGUE, 31
+	call PokemonLeague_EventScript_OpenDoor
+	msgbox CrownLeague_GlaciasRoom_Text_PostBattle
+	release
+	end
+
+CrownLeague_GlaciasRoom_EventScript_PostBattle::
+	msgbox CrownLeague_GlaciasRoom_Text_PostBattle
+	release
+	end

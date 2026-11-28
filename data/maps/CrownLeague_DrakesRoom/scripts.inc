@@ -1,0 +1,70 @@
+CrownLeague_DrakesRoom_MapScripts::
+	map_script MAP_SCRIPT_ON_RESUME, CrownLeague_DrakesRoom_OnResume
+	map_script MAP_SCRIPT_ON_LOAD, CrownLeague_DrakesRoom_OnLoad
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, CrownLeague_DrakesRoom_OnWarp
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, CrownLeague_DrakesRoom_OnFrame
+	.byte 0
+
+CrownLeague_DrakesRoom_OnResume::
+	setvar VAR_0x8004, 3
+	call PokemonLeague_EventScript_DoLightingEffect
+	end
+
+CrownLeague_DrakesRoom_OnWarp::
+	map_script_2 VAR_TEMP_1, 0, CrownLeague_DrakesRoom_EventScript_TurnPlayerNorth
+	.2byte 0
+
+CrownLeague_DrakesRoom_EventScript_TurnPlayerNorth::
+	turnobject LOCALID_PLAYER, DIR_NORTH
+	end
+
+CrownLeague_DrakesRoom_OnFrame::
+	map_script_2 VAR_MAP_SCENE_POKEMON_LEAGUE, 31, CrownLeague_DrakesRoom_EventScript_EnterRoom
+	.2byte 0
+
+CrownLeague_DrakesRoom_OnLoad::
+	call_if_eq VAR_MAP_SCENE_POKEMON_LEAGUE, 40, CrownLeague_DrakesRoom_EventScript_CloseEntry
+	call_if_eq VAR_MAP_SCENE_POKEMON_LEAGUE, 41, CrownLeague_DrakesRoom_EventScript_SetDoorOpen
+	end
+
+CrownLeague_DrakesRoom_EventScript_SetDoorOpen::
+	call CrownLeague_DrakesRoom_EventScript_CloseEntry
+	call PokemonLeague_EventScript_SetDoorOpenLance
+	return
+
+CrownLeague_DrakesRoom_EventScript_CloseEntry::
+	call PokemonLeague_LancesRoom_EventScript_SetEntryClosed
+	return
+
+CrownLeague_DrakesRoom_EventScript_EnterRoom::
+	lockall
+	applymovement LOCALID_PLAYER, PokemonLeague_LancesRoom_Movement_WalkThroughCorridor
+	waitmovement 0
+	setflag FLAG_TEMP_2
+	playse SE_UNLOCK
+	call CrownLeague_DrakesRoom_EventScript_CloseEntry
+	special DrawWholeMapView
+	waitse
+	setvar VAR_MAP_SCENE_POKEMON_LEAGUE, 40
+	releaseall
+	end
+
+CrownLeague_DrakesRoom_EventScript_Drake::
+	lock
+	faceplayer
+	goto_if_eq VAR_MAP_SCENE_POKEMON_LEAGUE, 41, CrownLeague_DrakesRoom_EventScript_PostBattle
+	msgbox CrownLeague_DrakesRoom_Text_Intro
+	setflag FLAG_TEMP_3
+	setflag FLAG_TEMP_5
+	trainerbattle_no_intro TRAINER_CROWN_DRAKE, CrownLeague_DrakesRoom_Text_Defeat
+	clearflag FLAG_TEMP_5
+	setvar VAR_MAP_SCENE_POKEMON_LEAGUE, 41
+	call PokemonLeague_EventScript_OpenDoorLance
+	msgbox CrownLeague_DrakesRoom_Text_PostBattle
+	release
+	end
+
+CrownLeague_DrakesRoom_EventScript_PostBattle::
+	msgbox CrownLeague_DrakesRoom_Text_PostBattle
+	release
+	end

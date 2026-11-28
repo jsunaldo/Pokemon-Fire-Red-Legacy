@@ -244,7 +244,13 @@
     "JohtoIsle_Chuck",
     "JohtoIsle_Jasmine",
     "JohtoIsle_Pryce",
-    "JohtoIsle_Clair"
+    "JohtoIsle_Clair",
+    "CrownLeague_Lobby",
+    "CrownLeague_SidneysRoom",
+    "CrownLeague_PhoebesRoom",
+    "CrownLeague_GlaciasRoom",
+    "CrownLeague_DrakesRoom",
+    "CrownLeague_StevensRoom"
   ],
   "gMapGroup_TownsAndRoutes": [
     "PalletTown",

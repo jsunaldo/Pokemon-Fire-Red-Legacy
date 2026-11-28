@@ -17,6 +17,9 @@
 #include "scanline_effect.h"
 #include "event_object_movement.h"
 #include "constants/songs.h"
+#include "battle.h"
+#include "data.h"
+#include "constants/opponents.h"
 
 #define PALTAG_UNUSED_MUGSHOT 0x100A
 
@@ -365,6 +368,17 @@ static const u8 sMugshotsTrainerPicIDsTable[MUGSHOTS_COUNT] =
     [MUGSHOT_LANCE]   = TRAINER_PIC_ELITE_FOUR_LANCE,
     [MUGSHOT_BLUE]    = TRAINER_PIC_CHAMPION_RIVAL,
 };
+
+// Reforged: the Crown League's Hoenn Elite Four and Champion Steven use the
+// Champion's (B_TRANSITION_BLUE) mugshot slide with their own battle pic.
+static u8 GetMugshotTrainerPic(u8 mugshotId)
+{
+    if (mugshotId == MUGSHOT_BLUE
+     && gTrainerBattleOpponent_A >= TRAINER_CROWN_SIDNEY
+     && gTrainerBattleOpponent_A <= TRAINER_CROWN_STEVEN)
+        return gTrainers[gTrainerBattleOpponent_A].trainerPic;
+    return sMugshotsTrainerPicIDsTable[mugshotId];
+}
 
 static const s16 sMugshotsOpponentRotationScales[MUGSHOTS_COUNT][2] =
 {
@@ -2153,7 +2167,7 @@ static void Mugshots_CreateTrainerPics(struct Task *task)
 
     gReservedSpritePaletteCount = 10;
     mugshotId = task->tMugshotId;
-    task->tOpponentSpriteId = CreateTrainerSprite(sMugshotsTrainerPicIDsTable[mugshotId],
+    task->tOpponentSpriteId = CreateTrainerSprite(GetMugshotTrainerPic(mugshotId),
                                                   sMugshotsOpponentCoords[mugshotId][0] - 32,
                                                   sMugshotsOpponentCoords[mugshotId][1] + 42,
                                                   0, gDecompressionBuffer);

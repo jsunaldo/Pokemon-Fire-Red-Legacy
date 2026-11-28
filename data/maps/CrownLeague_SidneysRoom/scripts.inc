@@ -1,0 +1,70 @@
+CrownLeague_SidneysRoom_MapScripts::
+	map_script MAP_SCRIPT_ON_RESUME, CrownLeague_SidneysRoom_OnResume
+	map_script MAP_SCRIPT_ON_LOAD, CrownLeague_SidneysRoom_OnLoad
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, CrownLeague_SidneysRoom_OnWarp
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, CrownLeague_SidneysRoom_OnFrame
+	.byte 0
+
+CrownLeague_SidneysRoom_OnResume::
+	setvar VAR_0x8004, 0
+	call PokemonLeague_EventScript_DoLightingEffect
+	end
+
+CrownLeague_SidneysRoom_OnWarp::
+	map_script_2 VAR_TEMP_1, 0, CrownLeague_SidneysRoom_EventScript_TurnPlayerNorth
+	.2byte 0
+
+CrownLeague_SidneysRoom_EventScript_TurnPlayerNorth::
+	turnobject LOCALID_PLAYER, DIR_NORTH
+	end
+
+CrownLeague_SidneysRoom_OnFrame::
+	map_script_2 VAR_MAP_SCENE_POKEMON_LEAGUE, 0, CrownLeague_SidneysRoom_EventScript_EnterRoom
+	.2byte 0
+
+CrownLeague_SidneysRoom_OnLoad::
+	call_if_eq VAR_MAP_SCENE_POKEMON_LEAGUE, 10, CrownLeague_SidneysRoom_EventScript_CloseEntry
+	call_if_eq VAR_MAP_SCENE_POKEMON_LEAGUE, 11, CrownLeague_SidneysRoom_EventScript_SetDoorOpen
+	end
+
+CrownLeague_SidneysRoom_EventScript_SetDoorOpen::
+	call CrownLeague_SidneysRoom_EventScript_CloseEntry
+	call PokemonLeague_EventScript_SetDoorOpen
+	return
+
+CrownLeague_SidneysRoom_EventScript_CloseEntry::
+	call PokemonLeague_EventScript_CloseEntry
+	return
+
+CrownLeague_SidneysRoom_EventScript_EnterRoom::
+	lockall
+	applymovement LOCALID_PLAYER, Common_Movement_WalkUp5
+	waitmovement 0
+	setflag FLAG_TEMP_2
+	playse SE_UNLOCK
+	call CrownLeague_SidneysRoom_EventScript_CloseEntry
+	special DrawWholeMapView
+	waitse
+	setvar VAR_MAP_SCENE_POKEMON_LEAGUE, 10
+	releaseall
+	end
+
+CrownLeague_SidneysRoom_EventScript_Sidney::
+	lock
+	faceplayer
+	goto_if_eq VAR_MAP_SCENE_POKEMON_LEAGUE, 11, CrownLeague_SidneysRoom_EventScript_PostBattle
+	msgbox CrownLeague_SidneysRoom_Text_Intro
+	setflag FLAG_TEMP_3
+	setflag FLAG_TEMP_5
+	trainerbattle_no_intro TRAINER_CROWN_SIDNEY, CrownLeague_SidneysRoom_Text_Defeat
+	clearflag FLAG_TEMP_5
+	setvar VAR_MAP_SCENE_POKEMON_LEAGUE, 11
+	call PokemonLeague_EventScript_OpenDoor
+	msgbox CrownLeague_SidneysRoom_Text_PostBattle
+	release
+	end
+
+CrownLeague_SidneysRoom_EventScript_PostBattle::
+	msgbox CrownLeague_SidneysRoom_Text_PostBattle
+	release
+	end

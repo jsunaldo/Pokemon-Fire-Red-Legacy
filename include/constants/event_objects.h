@@ -201,7 +201,13 @@
 #define OBJ_EVENT_GFX_JOHTO_PRYCE            191
 #define OBJ_EVENT_GFX_JOHTO_CLAIR            192
 
-#define NUM_OBJ_EVENT_GFX     193
+#define OBJ_EVENT_GFX_CROWN_SIDNEY           193
+#define OBJ_EVENT_GFX_CROWN_PHOEBE           194
+#define OBJ_EVENT_GFX_CROWN_GLACIA           195
+#define OBJ_EVENT_GFX_CROWN_DRAKE            196
+#define OBJ_EVENT_GFX_CROWN_STEVEN           197
+
+#define NUM_OBJ_EVENT_GFX     198
 
 // These are dynamic object gfx ids.
 // They correspond with the values of the VAR_OBJ_GFX_ID_X vars.
