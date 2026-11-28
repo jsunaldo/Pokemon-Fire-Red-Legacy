@@ -1,0 +1,142 @@
+HollowIsle_BurnedTower_B1F_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, HollowIsle_BurnedTower_B1F_OnTransition
+	.byte 0
+
+HollowIsle_BurnedTower_B1F_OnTransition::
+	call HollowIsle_BurnedTower_B1F_EventScript_HideLegend_RAIKOU
+	call HollowIsle_BurnedTower_B1F_EventScript_HideLegend_ENTEI
+	call HollowIsle_BurnedTower_B1F_EventScript_HideLegend_SUICUNE
+	end
+
+HollowIsle_BurnedTower_B1F_EventScript_Legend_RAIKOU::
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
+	lock
+	faceplayer
+	goto_if_eq VAR_LEGEND_CAUGHT_00, 1, HollowIsle_BurnedTower_B1F_EventScript_LegendGone_RAIKOU
+	waitse
+	playmoncry SPECIES_RAIKOU, CRY_MODE_ENCOUNTER
+	message HollowIsle_BurnedTower_B1F_Text_Legend_RAIKOU
+	waitmessage
+	waitmoncry
+	delay 20
+	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
+	waitbuttonpress
+	setwildbattle SPECIES_RAIKOU, 50
+	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	special StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, HollowIsle_BurnedTower_B1F_EventScript_LegendDone_RAIKOU
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, HollowIsle_BurnedTower_B1F_EventScript_LegendDone_RAIKOU
+	release
+	end
+
+HollowIsle_BurnedTower_B1F_EventScript_LegendDone_RAIKOU::
+	setvar VAR_LEGEND_CAUGHT_00, 1
+	removeobject LOCALID_LEGEND_RAIKOU
+	release
+	end
+
+HollowIsle_BurnedTower_B1F_EventScript_LegendGone_RAIKOU::
+	removeobject LOCALID_LEGEND_RAIKOU
+	release
+	end
+
+HollowIsle_BurnedTower_B1F_EventScript_HideLegend_RAIKOU::
+	goto_if_eq VAR_LEGEND_CAUGHT_00, 1, HollowIsle_BurnedTower_B1F_EventScript_DoHideLegend_RAIKOU
+	return
+
+HollowIsle_BurnedTower_B1F_EventScript_DoHideLegend_RAIKOU::
+	setflag FLAG_TEMP_1D
+	return
+
+HollowIsle_BurnedTower_B1F_EventScript_Legend_ENTEI::
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
+	lock
+	faceplayer
+	goto_if_eq VAR_LEGEND_CAUGHT_01, 1, HollowIsle_BurnedTower_B1F_EventScript_LegendGone_ENTEI
+	waitse
+	playmoncry SPECIES_ENTEI, CRY_MODE_ENCOUNTER
+	message HollowIsle_BurnedTower_B1F_Text_Legend_ENTEI
+	waitmessage
+	waitmoncry
+	delay 20
+	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
+	waitbuttonpress
+	setwildbattle SPECIES_ENTEI, 50
+	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	special StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, HollowIsle_BurnedTower_B1F_EventScript_LegendDone_ENTEI
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, HollowIsle_BurnedTower_B1F_EventScript_LegendDone_ENTEI
+	release
+	end
+
+HollowIsle_BurnedTower_B1F_EventScript_LegendDone_ENTEI::
+	setvar VAR_LEGEND_CAUGHT_01, 1
+	removeobject LOCALID_LEGEND_ENTEI
+	release
+	end
+
+HollowIsle_BurnedTower_B1F_EventScript_LegendGone_ENTEI::
+	removeobject LOCALID_LEGEND_ENTEI
+	release
+	end
+
+HollowIsle_BurnedTower_B1F_EventScript_HideLegend_ENTEI::
+	goto_if_eq VAR_LEGEND_CAUGHT_01, 1, HollowIsle_BurnedTower_B1F_EventScript_DoHideLegend_ENTEI
+	return
+
+HollowIsle_BurnedTower_B1F_EventScript_DoHideLegend_ENTEI::
+	setflag FLAG_TEMP_1E
+	return
+
+HollowIsle_BurnedTower_B1F_EventScript_Legend_SUICUNE::
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
+	lock
+	faceplayer
+	goto_if_eq VAR_LEGEND_CAUGHT_02, 1, HollowIsle_BurnedTower_B1F_EventScript_LegendGone_SUICUNE
+	waitse
+	playmoncry SPECIES_SUICUNE, CRY_MODE_ENCOUNTER
+	message HollowIsle_BurnedTower_B1F_Text_Legend_SUICUNE
+	waitmessage
+	waitmoncry
+	delay 20
+	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
+	waitbuttonpress
+	setwildbattle SPECIES_SUICUNE, 50
+	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	special StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, HollowIsle_BurnedTower_B1F_EventScript_LegendDone_SUICUNE
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, HollowIsle_BurnedTower_B1F_EventScript_LegendDone_SUICUNE
+	release
+	end
+
+HollowIsle_BurnedTower_B1F_EventScript_LegendDone_SUICUNE::
+	setvar VAR_LEGEND_CAUGHT_02, 1
+	removeobject LOCALID_LEGEND_SUICUNE
+	release
+	end
+
+HollowIsle_BurnedTower_B1F_EventScript_LegendGone_SUICUNE::
+	removeobject LOCALID_LEGEND_SUICUNE
+	release
+	end
+
+HollowIsle_BurnedTower_B1F_EventScript_HideLegend_SUICUNE::
+	goto_if_eq VAR_LEGEND_CAUGHT_02, 1, HollowIsle_BurnedTower_B1F_EventScript_DoHideLegend_SUICUNE
+	return
+
+HollowIsle_BurnedTower_B1F_EventScript_DoHideLegend_SUICUNE::
+	setflag FLAG_TEMP_1F
+	return
+

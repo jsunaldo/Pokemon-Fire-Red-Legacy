@@ -26053,6 +26053,505 @@
               }
             ]
           }
+        },
+        {
+          "map": "MAP_HOLLOW_ISLE_BURNED_TOWER_1F",
+          "base_label": "sHollowIsleBurnedTower1F_FireRed",
+          "land_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_RATICATE"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_MAGMAR"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_MUK"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_RAPIDASH"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_GOLBAT"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_HAUNTER"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_MAGCARGO"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_HOUNDOUR"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_KOFFING"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_GROWLITHE"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_TORKOAL"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_MAGMAR"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_HOLLOW_ISLE_BURNED_TOWER_B1F",
+          "base_label": "sHollowIsleBurnedTowerB1F_FireRed",
+          "land_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_MAGMAR"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_GOLBAT"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_MUK"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_RATICATE"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_MAGCARGO"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_HAUNTER"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_RAPIDASH"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_HOUNDOUR"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_MURKROW"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_SLUGMA"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_TORKOAL"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_GROWLITHE"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_HOLLOW_ISLE_BELL_TOWER_1F",
+          "base_label": "sHollowIsleBellTower1F_FireRed",
+          "land_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_HAUNTER"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_NOCTOWL"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_MISDREAVUS"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_XATU"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_HYPNO"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_MURKROW"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_KADABRA"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_GIRAFARIG"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_NATU"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_GASTLY"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_CHIMECHO"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_GENGAR"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_HOLLOW_ISLE_BELL_TOWER_2F",
+          "base_label": "sHollowIsleBellTower2F_FireRed",
+          "land_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 59,
+                "max_level": 62,
+                "species": "SPECIES_HAUNTER"
+              },
+              {
+                "min_level": 59,
+                "max_level": 62,
+                "species": "SPECIES_XATU"
+              },
+              {
+                "min_level": 59,
+                "max_level": 62,
+                "species": "SPECIES_NOCTOWL"
+              },
+              {
+                "min_level": 59,
+                "max_level": 62,
+                "species": "SPECIES_MISDREAVUS"
+              },
+              {
+                "min_level": 59,
+                "max_level": 62,
+                "species": "SPECIES_MURKROW"
+              },
+              {
+                "min_level": 59,
+                "max_level": 62,
+                "species": "SPECIES_HYPNO"
+              },
+              {
+                "min_level": 59,
+                "max_level": 62,
+                "species": "SPECIES_GENGAR"
+              },
+              {
+                "min_level": 59,
+                "max_level": 62,
+                "species": "SPECIES_KADABRA"
+              },
+              {
+                "min_level": 59,
+                "max_level": 62,
+                "species": "SPECIES_GIRAFARIG"
+              },
+              {
+                "min_level": 59,
+                "max_level": 62,
+                "species": "SPECIES_NATU"
+              },
+              {
+                "min_level": 59,
+                "max_level": 62,
+                "species": "SPECIES_CHIMECHO"
+              },
+              {
+                "min_level": 59,
+                "max_level": 62,
+                "species": "SPECIES_GENGAR"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_IRONFIST_ISLE_WHIRL_CAVE_1F",
+          "base_label": "sIronfistIsleWhirlCave1F_FireRed",
+          "land_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_GOLBAT"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_KINGLER"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_SEEL"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_SLOWBRO"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_DEWGONG"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_GRAVELER"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_SLOWPOKE"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_KRABBY"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_ONIX"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_ZUBAT"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_SNEASEL"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_GOLEM"
+              }
+            ]
+          },
+          "water_mons": {
+            "encounter_rate": 4,
+            "mons": [
+              {
+                "min_level": 56,
+                "max_level": 60,
+                "species": "SPECIES_SEEL"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_DEWGONG"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_SLOWBRO"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_SEADRA"
+              },
+              {
+                "min_level": 60,
+                "max_level": 62,
+                "species": "SPECIES_KINGDRA"
+              }
+            ]
+          },
+          "fishing_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 15,
+                "max_level": 20,
+                "species": "SPECIES_MAGIKARP"
+              },
+              {
+                "min_level": 15,
+                "max_level": 25,
+                "species": "SPECIES_HORSEA"
+              },
+              {
+                "min_level": 30,
+                "max_level": 40,
+                "species": "SPECIES_SHELLDER"
+              },
+              {
+                "min_level": 35,
+                "max_level": 45,
+                "species": "SPECIES_KRABBY"
+              },
+              {
+                "min_level": 40,
+                "max_level": 50,
+                "species": "SPECIES_HORSEA"
+              },
+              {
+                "min_level": 52,
+                "max_level": 60,
+                "species": "SPECIES_SEADRA"
+              },
+              {
+                "min_level": 54,
+                "max_level": 62,
+                "species": "SPECIES_KINGLER"
+              },
+              {
+                "min_level": 54,
+                "max_level": 62,
+                "species": "SPECIES_CLOYSTER"
+              },
+              {
+                "min_level": 56,
+                "max_level": 62,
+                "species": "SPECIES_GYARADOS"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_KINGDRA"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_CHITIN_ISLE_WOODS",
+          "base_label": "sChitinIsleWoods_FireRed",
+          "land_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_BUTTERFREE"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_BEEDRILL"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_PARASECT"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_VENOMOTH"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_NOCTOWL"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_FORRETRESS"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_ARIADOS"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_LEDIAN"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_HERACROSS"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_SCYTHER"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_SHROOMISH"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_BRELOOM"
+              }
+            ]
+          }
         }
       ]
     }

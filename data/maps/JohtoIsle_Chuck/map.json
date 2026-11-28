@@ -61,7 +61,22 @@
       "flag": "0"
     }
   ],
-  "warp_events": [],
+  "warp_events": [
+    {
+      "x": 20,
+      "y": 14,
+      "elevation": 0,
+      "dest_map": "MAP_IRONFIST_ISLE_WHIRL_CAVE_1F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 10,
+      "y": 33,
+      "elevation": 0,
+      "dest_map": "MAP_IRONFIST_ISLE_HOUSE",
+      "dest_warp_id": "0"
+    }
+  ],
   "coord_events": [],
   "bg_events": []
 }

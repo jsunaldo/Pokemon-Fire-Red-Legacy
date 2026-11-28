@@ -838,6 +838,12 @@
 #define TRAINER_CROWN_DRAKE              TRAINER_NINJA_BOY
 #define TRAINER_CROWN_STEVEN             TRAINER_BATTLE_GIRL
 
+// Crown Isles phase 2 trainers: Burned Tower, Bell Tower, Whirl Cave, Chitin Woods
+#define TRAINER_CROWN_BURGLAR_DASH        TRAINER_PARASOL_LADY // Crown Isles phase 2 (unused RS slot)
+#define TRAINER_CROWN_CHANNELER_AGNES     TRAINER_RS_SWIMMER_F // Crown Isles phase 2 (unused RS slot)
+#define TRAINER_CROWN_FISHERMAN_HANK      TRAINER_RS_PICNICKER // Crown Isles phase 2 (unused RS slot)
+#define TRAINER_CROWN_BUG_CATCHER_RICK    TRAINER_RS_TWINS // Crown Isles phase 2 (unused RS slot)
+
 #define NUM_TRAINERS                             767
 #define MAX_TRAINERS_COUNT                       768
 

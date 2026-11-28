@@ -1,0 +1,26 @@
+ChitinIsle_ForestGate_MapScripts::
+	.byte 0
+
+ChitinIsle_ForestGate_EventScript_BugCatcher::
+	lock
+	faceplayer
+	goto_if_set FLAG_GOT_CHITIN_SILVER_POWDER, ChitinIsle_ForestGate_EventScript_BugCatcherAfter
+	msgbox ChitinIsle_ForestGate_Text_BugCatcherGift
+	checkitemspace ITEM_SILVER_POWDER
+	goto_if_eq VAR_RESULT, FALSE, ChitinIsle_ForestGate_EventScript_BugCatcherNoRoom
+	giveitem_msg ChitinIsle_ForestGate_Text_BugCatcherReceived, ITEM_SILVER_POWDER
+	setflag FLAG_GOT_CHITIN_SILVER_POWDER
+	msgbox ChitinIsle_ForestGate_Text_BugCatcherAfter
+	release
+	end
+
+ChitinIsle_ForestGate_EventScript_BugCatcherAfter::
+	msgbox ChitinIsle_ForestGate_Text_BugCatcherAfter
+	release
+	end
+
+ChitinIsle_ForestGate_EventScript_BugCatcherNoRoom::
+	msgbox ChitinIsle_ForestGate_Text_BugCatcherNoRoom
+	release
+	end
+

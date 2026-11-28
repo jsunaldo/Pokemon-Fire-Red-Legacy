@@ -42,5 +42,3 @@ ThreeIsland_BerryForest_Text_BewareWildBerryLovingMons::
     .string "POKéMON!$"
 
 
-ThreeIsland_BerryForest_Text_Legend_CELEBI::
-	.string "Celebi!$"

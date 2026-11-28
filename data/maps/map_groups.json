@@ -250,7 +250,18 @@
     "CrownLeague_PhoebesRoom",
     "CrownLeague_GlaciasRoom",
     "CrownLeague_DrakesRoom",
-    "CrownLeague_StevensRoom"
+    "CrownLeague_StevensRoom",
+    "HollowIsle_BurnedTower_1F",
+    "HollowIsle_BurnedTower_B1F",
+    "HollowIsle_BellTower_1F",
+    "HollowIsle_BellTower_2F",
+    "HollowIsle_BellTower_Roof",
+    "HollowIsle_House",
+    "IronfistIsle_WhirlCave_1F",
+    "IronfistIsle_WhirlCave_B1F",
+    "IronfistIsle_House",
+    "ChitinIsle_ForestGate",
+    "ChitinIsle_Woods"
   ],
   "gMapGroup_TownsAndRoutes": [
     "PalletTown",

@@ -4506,6 +4506,54 @@
       "secondary_tileset": "gTileset_SeviiIslands67",
       "border_filepath": "data/layouts/JohtoIsle_Clair/border.bin",
       "blockdata_filepath": "data/layouts/JohtoIsle_Clair/map.bin"
+    },
+    {
+      "id": "LAYOUT_HOLLOW_ISLE_BURNED_TOWER_1_F",
+      "name": "HollowIsle_BurnedTower_1F_Layout",
+      "width": 38,
+      "height": 35,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_PokemonMansion",
+      "border_filepath": "data/layouts/HollowIsle_BurnedTower_1F/border.bin",
+      "blockdata_filepath": "data/layouts/HollowIsle_BurnedTower_1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_HOLLOW_ISLE_BURNED_TOWER_B1_F",
+      "name": "HollowIsle_BurnedTower_B1F_Layout",
+      "width": 38,
+      "height": 35,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_PokemonMansion",
+      "border_filepath": "data/layouts/HollowIsle_BurnedTower_B1F/border.bin",
+      "blockdata_filepath": "data/layouts/HollowIsle_BurnedTower_B1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_IRONFIST_ISLE_WHIRL_CAVE_1_F",
+      "name": "IronfistIsle_WhirlCave_1F_Layout",
+      "width": 40,
+      "height": 23,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_CeruleanCave",
+      "border_filepath": "data/layouts/IronfistIsle_WhirlCave_1F/border.bin",
+      "blockdata_filepath": "data/layouts/IronfistIsle_WhirlCave_1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_CHITIN_ISLE_WOODS",
+      "name": "ChitinIsle_Woods_Layout",
+      "width": 42,
+      "height": 30,
+      "border_width": 3,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_ViridianForest",
+      "border_filepath": "data/layouts/ChitinIsle_Woods/border.bin",
+      "blockdata_filepath": "data/layouts/ChitinIsle_Woods/map.bin"
     }
   ]
 }

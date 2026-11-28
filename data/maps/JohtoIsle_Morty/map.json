@@ -61,7 +61,29 @@
       "flag": "0"
     }
   ],
-  "warp_events": [],
+  "warp_events": [
+    {
+      "x": 14,
+      "y": 6,
+      "elevation": 0,
+      "dest_map": "MAP_HOLLOW_ISLE_BURNED_TOWER_1F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 24,
+      "y": 20,
+      "elevation": 0,
+      "dest_map": "MAP_HOLLOW_ISLE_BELL_TOWER_1F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 13,
+      "y": 22,
+      "elevation": 0,
+      "dest_map": "MAP_HOLLOW_ISLE_HOUSE",
+      "dest_warp_id": "0"
+    }
+  ],
   "coord_events": [],
   "bg_events": []
 }

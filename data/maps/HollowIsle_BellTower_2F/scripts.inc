@@ -1,0 +1,8 @@
+HollowIsle_BellTower_2F_MapScripts::
+	.byte 0
+
+HollowIsle_BellTower_2F_EventScript_Agnes::
+	trainerbattle_single TRAINER_CROWN_CHANNELER_AGNES, HollowIsle_BellTower_2F_Text_AgnesIntro, HollowIsle_BellTower_2F_Text_AgnesDefeat
+	msgbox HollowIsle_BellTower_2F_Text_AgnesPostBattle, MSGBOX_AUTOCLOSE
+	end
+

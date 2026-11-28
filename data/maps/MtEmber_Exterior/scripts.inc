@@ -4,7 +4,6 @@ MtEmber_Exterior_MapScripts::
 	.byte 0
 
 MtEmber_Exterior_OnTransition::
-	call MtEmber_Exterior_EventScript_HideLegend_ENTEI
 	setworldmapflag FLAG_WORLD_MAP_MT_EMBER_EXTERIOR
 	call_if_eq VAR_MAP_SCENE_MT_EMBER_EXTERIOR, 2, MtEmber_Exterior_EventScript_RocketsFaceDown
 	end
@@ -123,47 +122,3 @@ MtEmber_Exterior_EventScript_Jocelyn::
 	msgbox MtEmber_Exterior_Text_JocelynPostBattle, MSGBOX_AUTOCLOSE
 	end
 
-MtEmber_Exterior_EventScript_Legend_ENTEI::
-	goto_if_questlog EventScript_ReleaseEnd
-	special QuestLog_CutRecording
-	lock
-	faceplayer
-	goto_if_eq VAR_LEGEND_CAUGHT_01, 1, MtEmber_Exterior_EventScript_LegendGone_ENTEI
-	waitse
-	playmoncry SPECIES_ENTEI, CRY_MODE_ENCOUNTER
-	message MtEmber_Exterior_Text_Legend_ENTEI
-	waitmessage
-	waitmoncry
-	delay 20
-	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
-	waitbuttonpress
-	setwildbattle SPECIES_ENTEI, 50
-	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
-	special StartLegendaryBattle
-	waitstate
-	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
-	specialvar VAR_RESULT, GetBattleOutcome
-	goto_if_eq VAR_RESULT, B_OUTCOME_WON, MtEmber_Exterior_EventScript_LegendDone_ENTEI
-	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, MtEmber_Exterior_EventScript_LegendDone_ENTEI
-	release
-	end
-
-MtEmber_Exterior_EventScript_LegendDone_ENTEI::
-	setvar VAR_LEGEND_CAUGHT_01, 1
-	removeobject LOCALID_LEGEND_ENTEI
-	release
-	end
-
-MtEmber_Exterior_EventScript_LegendGone_ENTEI::
-	removeobject LOCALID_LEGEND_ENTEI
-	release
-	end
-
-MtEmber_Exterior_EventScript_HideLegend_ENTEI::
-	goto_if_unset FLAG_SYS_GAME_CLEAR, MtEmber_Exterior_EventScript_DoHideLegend_ENTEI
-	goto_if_eq VAR_LEGEND_CAUGHT_01, 1, MtEmber_Exterior_EventScript_DoHideLegend_ENTEI
-	return
-
-MtEmber_Exterior_EventScript_DoHideLegend_ENTEI::
-	setflag FLAG_TEMP_1F
-	return

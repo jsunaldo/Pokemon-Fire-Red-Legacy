@@ -206,8 +206,11 @@
 #define FLAG_0x0B1               0x0B1
 #define FLAG_CROWN_LEAGUE_CLEARED FLAG_0x0B1  // Reforged: beat Champion STEVEN in the Crown League (Wyrmspire)
 #define FLAG_0x0B2               0x0B2
+#define FLAG_GOT_HOLLOW_SPELL_TAG FLAG_0x0B2  // Reforged: Hollow Isle house: SPELL TAG
 #define FLAG_0x0B3               0x0B3
+#define FLAG_GOT_IRONFIST_FOCUS_BAND FLAG_0x0B3  // Reforged: Ironfist Isle house: FOCUS BAND
 #define FLAG_0x0B4               0x0B4
+#define FLAG_GOT_CHITIN_SILVER_POWDER FLAG_0x0B4  // Reforged: Chitin Isle forest gate: SILVER POWDER
 #define FLAG_0x0B5               0x0B5
 #define FLAG_0x0B6               0x0B6
 #define FLAG_0x0B7               0x0B7

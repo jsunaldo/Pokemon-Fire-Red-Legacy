@@ -1,0 +1,73 @@
+{
+  "id": "MAP_HOLLOW_ISLE_BURNED_TOWER_1F",
+  "name": "HollowIsle_BurnedTower_1F",
+  "layout": "LAYOUT_HOLLOW_ISLE_BURNED_TOWER_1_F",
+  "music": "MUS_POKE_MANSION",
+  "region_map_section": "MAPSEC_HOLLOW_ISLE",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": false,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_INDOOR_2",
+  "connections": null,
+  "object_events": [
+    {
+      "local_id": "LOCALID_BURNED_TOWER_DASH",
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_POKE_MANIAC",
+      "x": 22,
+      "y": 23,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "4",
+      "script": "HollowIsle_BurnedTower_1F_EventScript_Dash",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 8,
+      "y": 33,
+      "elevation": 3,
+      "dest_map": "MAP_JOHTO_ISLE_MORTY",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 7,
+      "y": 33,
+      "elevation": 3,
+      "dest_map": "MAP_JOHTO_ISLE_MORTY",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 9,
+      "y": 33,
+      "elevation": 3,
+      "dest_map": "MAP_JOHTO_ISLE_MORTY",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 25,
+      "y": 27,
+      "elevation": 3,
+      "dest_map": "MAP_HOLLOW_ISLE_BURNED_TOWER_B1F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 34,
+      "y": 33,
+      "elevation": 3,
+      "dest_map": "MAP_JOHTO_ISLE_MORTY",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": []
+}

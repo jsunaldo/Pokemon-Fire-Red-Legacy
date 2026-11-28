@@ -1,0 +1,8 @@
+HollowIsle_BurnedTower_1F_MapScripts::
+	.byte 0
+
+HollowIsle_BurnedTower_1F_EventScript_Dash::
+	trainerbattle_single TRAINER_CROWN_BURGLAR_DASH, HollowIsle_BurnedTower_1F_Text_DashIntro, HollowIsle_BurnedTower_1F_Text_DashDefeat
+	msgbox HollowIsle_BurnedTower_1F_Text_DashPostBattle, MSGBOX_AUTOCLOSE
+	end
+

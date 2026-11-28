@@ -1,0 +1,8 @@
+IronfistIsle_WhirlCave_1F_MapScripts::
+	.byte 0
+
+IronfistIsle_WhirlCave_1F_EventScript_Hank::
+	trainerbattle_single TRAINER_CROWN_FISHERMAN_HANK, IronfistIsle_WhirlCave_1F_Text_HankIntro, IronfistIsle_WhirlCave_1F_Text_HankDefeat
+	msgbox IronfistIsle_WhirlCave_1F_Text_HankPostBattle, MSGBOX_AUTOCLOSE
+	end
+

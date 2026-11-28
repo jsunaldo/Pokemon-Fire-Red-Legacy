@@ -254,10 +254,79 @@ static const struct TrainerMonItemCustomMoves sParty_CrownSteven[] = {
         .moves = {MOVE_EARTHQUAKE, MOVE_PSYCHIC, MOVE_METEOR_MASH, MOVE_FIRE_PUNCH},
     },
 };
-static const struct TrainerMonNoItemDefaultMoves sParty_ParasolLady[] = {DUMMY_TRAINER_MON};
-static const struct TrainerMonNoItemDefaultMoves sParty_RSSwimmerF[] = {DUMMY_TRAINER_MON};
-static const struct TrainerMonNoItemDefaultMoves sParty_RSPicnicker[] = {DUMMY_TRAINER_MON};
-static const struct TrainerMonNoItemDefaultMoves sParty_RSTwins[] = {DUMMY_TRAINER_MON};
+static const struct TrainerMonNoItemDefaultMoves sParty_ParasolLady[] = {
+    {
+        .iv = 100,
+        .lvl = 60,
+        .species = SPECIES_RAPIDASH,
+    },
+    {
+        .iv = 100,
+        .lvl = 60,
+        .species = SPECIES_MAGMAR,
+    },
+    {
+        .iv = 100,
+        .lvl = 61,
+        .species = SPECIES_NINETALES,
+    },
+};
+static const struct TrainerMonNoItemDefaultMoves sParty_RSSwimmerF[] = {
+    {
+        .iv = 100,
+        .lvl = 60,
+        .species = SPECIES_MISDREAVUS,
+    },
+    {
+        .iv = 100,
+        .lvl = 60,
+        .species = SPECIES_HAUNTER,
+    },
+    {
+        .iv = 100,
+        .lvl = 62,
+        .species = SPECIES_GENGAR,
+    },
+};
+static const struct TrainerMonNoItemDefaultMoves sParty_RSPicnicker[] = {
+    {
+        .iv = 100,
+        .lvl = 60,
+        .species = SPECIES_KINGLER,
+    },
+    {
+        .iv = 100,
+        .lvl = 60,
+        .species = SPECIES_SEADRA,
+    },
+    {
+        .iv = 100,
+        .lvl = 61,
+        .species = SPECIES_LANTURN,
+    },
+    {
+        .iv = 100,
+        .lvl = 61,
+        .species = SPECIES_OCTILLERY,
+    },
+};
+static const struct TrainerMonNoItemDefaultMoves sParty_RSTwins[] = {
+    {
+        .iv = 100,
+        .lvl = 60,
+        .species = SPECIES_SCYTHER,
+    },
+    {
+        .iv = 100,
+        .lvl = 60,
+        .species = SPECIES_PINSIR,
+    },
+    {
+        .iv = 100,
+        .lvl = 61,
+        .species = SPECIES_HERACROSS,
+    },
+};
 static const struct TrainerMonNoItemDefaultMoves sParty_RSSailor[] = {DUMMY_TRAINER_MON};
 static const struct TrainerMonNoItemDefaultMoves sParty_BoarderM[] = {DUMMY_TRAINER_MON};
 static const struct TrainerMonNoItemDefaultMoves sParty_BoarderF[] = {DUMMY_TRAINER_MON};

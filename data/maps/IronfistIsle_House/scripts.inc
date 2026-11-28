@@ -1,0 +1,26 @@
+IronfistIsle_House_MapScripts::
+	.byte 0
+
+IronfistIsle_House_EventScript_BlackBelt::
+	lock
+	faceplayer
+	goto_if_set FLAG_GOT_IRONFIST_FOCUS_BAND, IronfistIsle_House_EventScript_BlackBeltAfter
+	msgbox IronfistIsle_House_Text_BlackBeltGift
+	checkitemspace ITEM_FOCUS_BAND
+	goto_if_eq VAR_RESULT, FALSE, IronfistIsle_House_EventScript_BlackBeltNoRoom
+	giveitem_msg IronfistIsle_House_Text_BlackBeltReceived, ITEM_FOCUS_BAND
+	setflag FLAG_GOT_IRONFIST_FOCUS_BAND
+	msgbox IronfistIsle_House_Text_BlackBeltAfter
+	release
+	end
+
+IronfistIsle_House_EventScript_BlackBeltAfter::
+	msgbox IronfistIsle_House_Text_BlackBeltAfter
+	release
+	end
+
+IronfistIsle_House_EventScript_BlackBeltNoRoom::
+	msgbox IronfistIsle_House_Text_BlackBeltNoRoom
+	release
+	end
+

@@ -142,5 +142,3 @@ MtEmber_Exterior_Text_JocelynPostBattle::
     .string "The way you battle, it reminds me\n"
     .string "of the guy who dumped me…$"
 
-MtEmber_Exterior_Text_Legend_ENTEI::
-	.string "Entei!$"
