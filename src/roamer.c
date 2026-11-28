@@ -119,10 +119,13 @@ void CreateInitialRoamerMon(void)
     sRoamerLocation[MAP_NUM] = sRoamerLocations[Random() % NUM_LOCATION_SETS][0];
 }
 
+// Reforged: the roaming beast is disabled. The three beasts live in the Hollow
+// Isle Burned Tower, so the vanilla roamer would hand out a second copy.
+// InitRoamer just clears the data, and IsRoamerAt is always FALSE so a roamer
+// already active in an older save never appears (no encounters, no Dex marker).
 void InitRoamer(void)
 {
     ClearRoamerData();
-    CreateInitialRoamerMon();
 }
 
 void UpdateLocationHistoryForRoamer(void)
@@ -199,6 +202,7 @@ void RoamerMove(void)
 
 bool8 IsRoamerAt(u8 mapGroup, u8 mapNum)
 {
+    return FALSE;
     if (ROAMER->active && mapGroup == sRoamerLocation[MAP_GRP] && mapNum == sRoamerLocation[MAP_NUM])
         return TRUE;
     else
@@ -260,6 +264,7 @@ void GetRoamerLocation(u8 *mapGroup, u8 *mapNum)
 
 u16 GetRoamerLocationMapSectionId(void)
 {
+    return MAPSEC_NONE;
     if (!ROAMER->active)
         return MAPSEC_NONE;
     return Overworld_GetMapHeaderByGroupAndId(sRoamerLocation[MAP_GRP], sRoamerLocation[MAP_NUM])->regionMapSectionId;
