@@ -1,0 +1,26 @@
+WyrmspireIsle_House_MapScripts::
+	.byte 0
+
+WyrmspireIsle_House_EventScript_Elder::
+	lock
+	faceplayer
+	goto_if_set FLAG_GOT_WYRMSPIRE_DRAGON_FANG, WyrmspireIsle_House_EventScript_ElderAfter
+	msgbox WyrmspireIsle_House_Text_ElderGift
+	checkitemspace ITEM_DRAGON_FANG
+	goto_if_eq VAR_RESULT, FALSE, WyrmspireIsle_House_EventScript_ElderNoRoom
+	giveitem_msg WyrmspireIsle_House_Text_ElderReceived, ITEM_DRAGON_FANG
+	setflag FLAG_GOT_WYRMSPIRE_DRAGON_FANG
+	msgbox WyrmspireIsle_House_Text_ElderAfter
+	release
+	end
+
+WyrmspireIsle_House_EventScript_ElderAfter::
+	msgbox WyrmspireIsle_House_Text_ElderAfter
+	release
+	end
+
+WyrmspireIsle_House_EventScript_ElderNoRoom::
+	msgbox WyrmspireIsle_House_Text_ElderNoRoom
+	release
+	end
+

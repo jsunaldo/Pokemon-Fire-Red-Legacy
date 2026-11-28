@@ -1,0 +1,8 @@
+MeadowmooIsle_MoomooCave_MapScripts::
+	.byte 0
+
+MeadowmooIsle_MoomooCave_EventScript_Molly::
+	trainerbattle_single TRAINER_CROWN_RANGER_MOLLY, MeadowmooIsle_MoomooCave_Text_MollyIntro, MeadowmooIsle_MoomooCave_Text_MollyDefeat
+	msgbox MeadowmooIsle_MoomooCave_Text_MollyPostBattle, MSGBOX_AUTOCLOSE
+	end
+

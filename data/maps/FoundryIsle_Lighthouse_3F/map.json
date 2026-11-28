@@ -1,0 +1,45 @@
+{
+  "id": "MAP_FOUNDRY_ISLE_LIGHTHOUSE_3F",
+  "name": "FoundryIsle_Lighthouse_3F",
+  "layout": "LAYOUT_FOUNDRY_ISLE_LIGHTHOUSE_3_F",
+  "music": "MUS_SILPH",
+  "region_map_section": "MAPSEC_FOUNDRY_ISLE",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": false,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_INDOOR_2",
+  "connections": null,
+  "object_events": [
+    {
+      "local_id": "LOCALID_LIGHTHOUSE_GUS",
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_WORKER_M",
+      "x": 9,
+      "y": 4,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "FoundryIsle_Lighthouse_3F_EventScript_Gus",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 3,
+      "y": 3,
+      "elevation": 0,
+      "dest_map": "MAP_FOUNDRY_ISLE_LIGHTHOUSE_2F",
+      "dest_warp_id": "1"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": []
+}

@@ -327,10 +327,84 @@ static const struct TrainerMonNoItemDefaultMoves sParty_RSTwins[] = {
         .species = SPECIES_HERACROSS,
     },
 };
-static const struct TrainerMonNoItemDefaultMoves sParty_RSSailor[] = {DUMMY_TRAINER_MON};
-static const struct TrainerMonNoItemDefaultMoves sParty_BoarderM[] = {DUMMY_TRAINER_MON};
-static const struct TrainerMonNoItemDefaultMoves sParty_BoarderF[] = {DUMMY_TRAINER_MON};
-static const struct TrainerMonNoItemDefaultMoves sParty_Collector[] = {DUMMY_TRAINER_MON};
+static const struct TrainerMonNoItemDefaultMoves sParty_RSSailor[] = {
+    {
+        .iv = 100,
+        .lvl = 60,
+        .species = SPECIES_PIDGEOT,
+    },
+    {
+        .iv = 100,
+        .lvl = 60,
+        .species = SPECIES_SKARMORY,
+    },
+    {
+        .iv = 100,
+        .lvl = 61,
+        .species = SPECIES_NOCTOWL,
+    },
+    {
+        .iv = 100,
+        .lvl = 61,
+        .species = SPECIES_FEAROW,
+    },
+};
+static const struct TrainerMonNoItemDefaultMoves sParty_BoarderM[] = {
+    {
+        .iv = 100,
+        .lvl = 60,
+        .species = SPECIES_MILTANK,
+    },
+    {
+        .iv = 100,
+        .lvl = 60,
+        .species = SPECIES_TAUROS,
+    },
+    {
+        .iv = 100,
+        .lvl = 61,
+        .species = SPECIES_DONPHAN,
+    },
+};
+static const struct TrainerMonNoItemDefaultMoves sParty_BoarderF[] = {
+    {
+        .iv = 100,
+        .lvl = 60,
+        .species = SPECIES_MAGNETON,
+    },
+    {
+        .iv = 100,
+        .lvl = 60,
+        .species = SPECIES_ELECTRODE,
+    },
+    {
+        .iv = 100,
+        .lvl = 62,
+        .species = SPECIES_AMPHAROS,
+    },
+};
+static const struct TrainerMonNoItemDefaultMoves sParty_Collector[] = {
+    {
+        .iv = 100,
+        .lvl = 60,
+        .species = SPECIES_DEWGONG,
+    },
+    {
+        .iv = 100,
+        .lvl = 60,
+        .species = SPECIES_PILOSWINE,
+    },
+    {
+        .iv = 100,
+        .lvl = 61,
+        .species = SPECIES_JYNX,
+    },
+    {
+        .iv = 100,
+        .lvl = 62,
+        .species = SPECIES_LAPRAS,
+    },
+};
 static const struct TrainerMonNoItemDefaultMoves sParty_Wally[] = {DUMMY_TRAINER_MON};
 static const struct TrainerMonNoItemDefaultMoves sParty_Brendan[] = {DUMMY_TRAINER_MON};
 static const struct TrainerMonNoItemDefaultMoves sParty_Brendan2[] = {DUMMY_TRAINER_MON};
@@ -338,7 +412,23 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Brendan3[] = {DUMMY_TRAI
 static const struct TrainerMonNoItemDefaultMoves sParty_May[] = {DUMMY_TRAINER_MON};
 static const struct TrainerMonNoItemDefaultMoves sParty_May2[] = {DUMMY_TRAINER_MON};
 static const struct TrainerMonNoItemDefaultMoves sParty_May3[] = {DUMMY_TRAINER_MON};
-static const struct TrainerMonNoItemDefaultMoves sParty_RSPkmnBreederM[] = {DUMMY_TRAINER_MON};
+static const struct TrainerMonNoItemDefaultMoves sParty_RSPkmnBreederM[] = {
+    {
+        .iv = 100,
+        .lvl = 60,
+        .species = SPECIES_SEADRA,
+    },
+    {
+        .iv = 100,
+        .lvl = 61,
+        .species = SPECIES_DRAGONAIR,
+    },
+    {
+        .iv = 100,
+        .lvl = 62,
+        .species = SPECIES_KINGDRA,
+    },
+};
 static const struct TrainerMonNoItemDefaultMoves sParty_RSPkmnBreederF[] = {DUMMY_TRAINER_MON};
 static const struct TrainerMonNoItemDefaultMoves sParty_RSPkmnRangerM[] = {DUMMY_TRAINER_MON_IV};
 static const struct TrainerMonNoItemDefaultMoves sParty_RSPkmnRangerF[] = {DUMMY_TRAINER_MON_IV};

@@ -1,0 +1,26 @@
+MeadowmooIsle_House_MapScripts::
+	.byte 0
+
+MeadowmooIsle_House_EventScript_Rancher::
+	lock
+	faceplayer
+	goto_if_set FLAG_GOT_MEADOWMOO_SHELL_BELL, MeadowmooIsle_House_EventScript_RancherAfter
+	msgbox MeadowmooIsle_House_Text_RancherGift
+	checkitemspace ITEM_SHELL_BELL
+	goto_if_eq VAR_RESULT, FALSE, MeadowmooIsle_House_EventScript_RancherNoRoom
+	giveitem_msg MeadowmooIsle_House_Text_RancherReceived, ITEM_SHELL_BELL
+	setflag FLAG_GOT_MEADOWMOO_SHELL_BELL
+	msgbox MeadowmooIsle_House_Text_RancherAfter
+	release
+	end
+
+MeadowmooIsle_House_EventScript_RancherAfter::
+	msgbox MeadowmooIsle_House_Text_RancherAfter
+	release
+	end
+
+MeadowmooIsle_House_EventScript_RancherNoRoom::
+	msgbox MeadowmooIsle_House_Text_RancherNoRoom
+	release
+	end
+

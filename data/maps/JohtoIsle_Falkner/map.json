@@ -61,7 +61,22 @@
       "flag": "0"
     }
   ],
-  "warp_events": [],
+  "warp_events": [
+    {
+      "x": 12,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_SKYREACH_ISLE_GALE_CAVE_1F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 9,
+      "y": 30,
+      "elevation": 0,
+      "dest_map": "MAP_SKYREACH_ISLE_HOUSE",
+      "dest_warp_id": "1"
+    }
+  ],
   "coord_events": [],
   "bg_events": []
 }

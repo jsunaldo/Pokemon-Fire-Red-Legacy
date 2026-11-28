@@ -1,0 +1,8 @@
+GlacierIsle_GlacierPath_B1F_MapScripts::
+	.byte 0
+
+GlacierIsle_GlacierPath_B1F_EventScript_Faye::
+	trainerbattle_single TRAINER_CROWN_COOLTRAINER_FAYE, GlacierIsle_GlacierPath_B1F_Text_FayeIntro, GlacierIsle_GlacierPath_B1F_Text_FayeDefeat
+	msgbox GlacierIsle_GlacierPath_B1F_Text_FayePostBattle, MSGBOX_AUTOCLOSE
+	end
+

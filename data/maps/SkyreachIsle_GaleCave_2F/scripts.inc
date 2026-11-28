@@ -1,0 +1,8 @@
+SkyreachIsle_GaleCave_2F_MapScripts::
+	.byte 0
+
+SkyreachIsle_GaleCave_2F_EventScript_Percy::
+	trainerbattle_single TRAINER_CROWN_BIRD_KEEPER_PERCY, SkyreachIsle_GaleCave_2F_Text_PercyIntro, SkyreachIsle_GaleCave_2F_Text_PercyDefeat
+	msgbox SkyreachIsle_GaleCave_2F_Text_PercyPostBattle, MSGBOX_AUTOCLOSE
+	end
+

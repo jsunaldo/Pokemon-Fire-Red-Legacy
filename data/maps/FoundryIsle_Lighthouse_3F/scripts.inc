@@ -1,0 +1,8 @@
+FoundryIsle_Lighthouse_3F_MapScripts::
+	.byte 0
+
+FoundryIsle_Lighthouse_3F_EventScript_Gus::
+	trainerbattle_single TRAINER_CROWN_ENGINEER_GUS, FoundryIsle_Lighthouse_3F_Text_GusIntro, FoundryIsle_Lighthouse_3F_Text_GusDefeat
+	msgbox FoundryIsle_Lighthouse_3F_Text_GusPostBattle, MSGBOX_AUTOCLOSE
+	end
+

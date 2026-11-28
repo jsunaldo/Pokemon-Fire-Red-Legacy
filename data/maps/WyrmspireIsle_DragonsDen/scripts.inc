@@ -1,0 +1,8 @@
+WyrmspireIsle_DragonsDen_MapScripts::
+	.byte 0
+
+WyrmspireIsle_DragonsDen_EventScript_Kane::
+	trainerbattle_single TRAINER_CROWN_DRAGON_TAMER_KANE, WyrmspireIsle_DragonsDen_Text_KaneIntro, WyrmspireIsle_DragonsDen_Text_KaneDefeat
+	msgbox WyrmspireIsle_DragonsDen_Text_KanePostBattle, MSGBOX_AUTOCLOSE
+	end
+

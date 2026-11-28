@@ -68,6 +68,20 @@
       "elevation": 3,
       "dest_map": "MAP_CROWN_LEAGUE_LOBBY",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 11,
+      "y": 22,
+      "elevation": 0,
+      "dest_map": "MAP_WYRMSPIRE_ISLE_DRAGONS_DEN",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 20,
+      "y": 14,
+      "elevation": 0,
+      "dest_map": "MAP_WYRMSPIRE_ISLE_HOUSE",
+      "dest_warp_id": "1"
     }
   ],
   "coord_events": [],

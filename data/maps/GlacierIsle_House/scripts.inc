@@ -1,0 +1,26 @@
+GlacierIsle_House_MapScripts::
+	.byte 0
+
+GlacierIsle_House_EventScript_Hermit::
+	lock
+	faceplayer
+	goto_if_set FLAG_GOT_GLACIER_BRIGHT_POWDER, GlacierIsle_House_EventScript_HermitAfter
+	msgbox GlacierIsle_House_Text_HermitGift
+	checkitemspace ITEM_BRIGHT_POWDER
+	goto_if_eq VAR_RESULT, FALSE, GlacierIsle_House_EventScript_HermitNoRoom
+	giveitem_msg GlacierIsle_House_Text_HermitReceived, ITEM_BRIGHT_POWDER
+	setflag FLAG_GOT_GLACIER_BRIGHT_POWDER
+	msgbox GlacierIsle_House_Text_HermitAfter
+	release
+	end
+
+GlacierIsle_House_EventScript_HermitAfter::
+	msgbox GlacierIsle_House_Text_HermitAfter
+	release
+	end
+
+GlacierIsle_House_EventScript_HermitNoRoom::
+	msgbox GlacierIsle_House_Text_HermitNoRoom
+	release
+	end
+

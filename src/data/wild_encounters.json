@@ -26552,6 +26552,797 @@
               }
             ]
           }
+        },
+        {
+          "map": "MAP_SKYREACH_ISLE_GALE_CAVE_1F",
+          "base_label": "sSkyreachIsleGaleCave1F_FireRed",
+          "land_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_GOLBAT"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_NOCTOWL"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_FEAROW"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_GRAVELER"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_PIDGEOT"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_DODRIO"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_SKARMORY"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_GLIGAR"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_XATU"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_MURKROW"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_SWELLOW"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_ALTARIA"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_SKYREACH_ISLE_GALE_CAVE_2F",
+          "base_label": "sSkyreachIsleGaleCave2F_FireRed",
+          "land_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_PIDGEOT"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_SKARMORY"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_FEAROW"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_NOCTOWL"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_GOLBAT"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_DODRIO"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_XATU"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_GLIGAR"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_GOLEM"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_ALTARIA"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_SWELLOW"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_AERODACTYL"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_MEADOWMOO_ISLE_MOOMOO_CAVE",
+          "base_label": "sMeadowmooIsleMoomooCave_FireRed",
+          "land_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_DUGTRIO"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_SANDSLASH"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_MILTANK"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_TAUROS"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_MAROWAK"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_DONPHAN"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_GRAVELER"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_RHYDON"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_NIDOQUEEN"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_NIDOKING"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_STANTLER"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_KANGASKHAN"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_FOUNDRY_ISLE_LIGHTHOUSE_1F",
+          "base_label": "sFoundryIsleLighthouse1F_FireRed",
+          "land_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_MAGNEMITE"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_MAGNETON"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_FLAAFFY"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_ELECTABUZZ"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_ELECTRODE"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_MAREEP"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_RAICHU"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_SKARMORY"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_MANECTRIC"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_AMPHAROS"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_STEELIX"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_VOLTORB"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_FOUNDRY_ISLE_LIGHTHOUSE_2F",
+          "base_label": "sFoundryIsleLighthouse2F_FireRed",
+          "land_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_MAGNETON"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_FLAAFFY"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_ELECTABUZZ"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_ELECTRODE"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_AMPHAROS"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_SKARMORY"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_RAICHU"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_STEELIX"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_MANECTRIC"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_MAGNEMITE"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_VOLTORB"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_AMPHAROS"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_FOUNDRY_ISLE_LIGHTHOUSE_3F",
+          "base_label": "sFoundryIsleLighthouse3F_FireRed",
+          "land_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 59,
+                "max_level": 62,
+                "species": "SPECIES_AMPHAROS"
+              },
+              {
+                "min_level": 59,
+                "max_level": 62,
+                "species": "SPECIES_MAGNETON"
+              },
+              {
+                "min_level": 59,
+                "max_level": 62,
+                "species": "SPECIES_ELECTABUZZ"
+              },
+              {
+                "min_level": 59,
+                "max_level": 62,
+                "species": "SPECIES_ELECTRODE"
+              },
+              {
+                "min_level": 59,
+                "max_level": 62,
+                "species": "SPECIES_SKARMORY"
+              },
+              {
+                "min_level": 59,
+                "max_level": 62,
+                "species": "SPECIES_STEELIX"
+              },
+              {
+                "min_level": 59,
+                "max_level": 62,
+                "species": "SPECIES_FLAAFFY"
+              },
+              {
+                "min_level": 59,
+                "max_level": 62,
+                "species": "SPECIES_RAICHU"
+              },
+              {
+                "min_level": 59,
+                "max_level": 62,
+                "species": "SPECIES_MANECTRIC"
+              },
+              {
+                "min_level": 59,
+                "max_level": 62,
+                "species": "SPECIES_MAGNETON"
+              },
+              {
+                "min_level": 59,
+                "max_level": 62,
+                "species": "SPECIES_VOLTORB"
+              },
+              {
+                "min_level": 59,
+                "max_level": 62,
+                "species": "SPECIES_AMPHAROS"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_GLACIER_ISLE_GLACIER_PATH_1F",
+          "base_label": "sGlacierIsleGlacierPath1F_FireRed",
+          "land_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_PILOSWINE"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_SNEASEL"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_JYNX"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_DELIBIRD"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_GOLBAT"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_DEWGONG"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_SWINUB"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_SEEL"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_GLALIE"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_SNORUNT"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_CLOYSTER"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_SNEASEL"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_GLACIER_ISLE_GLACIER_PATH_B1F",
+          "base_label": "sGlacierIsleGlacierPathB1F_FireRed",
+          "land_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_PILOSWINE"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_SNEASEL"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_JYNX"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_DEWGONG"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_DELIBIRD"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_GOLBAT"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_CLOYSTER"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_SEEL"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_GLALIE"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_SWINUB"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_SEALEO"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_SNEASEL"
+              }
+            ]
+          },
+          "water_mons": {
+            "encounter_rate": 4,
+            "mons": [
+              {
+                "min_level": 56,
+                "max_level": 60,
+                "species": "SPECIES_SEEL"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_DEWGONG"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_SEALEO"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_CLOYSTER"
+              },
+              {
+                "min_level": 60,
+                "max_level": 62,
+                "species": "SPECIES_LAPRAS"
+              }
+            ]
+          },
+          "fishing_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 15,
+                "max_level": 20,
+                "species": "SPECIES_MAGIKARP"
+              },
+              {
+                "min_level": 15,
+                "max_level": 20,
+                "species": "SPECIES_SHELLDER"
+              },
+              {
+                "min_level": 30,
+                "max_level": 40,
+                "species": "SPECIES_SHELLDER"
+              },
+              {
+                "min_level": 30,
+                "max_level": 40,
+                "species": "SPECIES_SEEL"
+              },
+              {
+                "min_level": 35,
+                "max_level": 45,
+                "species": "SPECIES_KRABBY"
+              },
+              {
+                "min_level": 52,
+                "max_level": 60,
+                "species": "SPECIES_CLOYSTER"
+              },
+              {
+                "min_level": 54,
+                "max_level": 62,
+                "species": "SPECIES_DEWGONG"
+              },
+              {
+                "min_level": 54,
+                "max_level": 62,
+                "species": "SPECIES_KINGLER"
+              },
+              {
+                "min_level": 56,
+                "max_level": 62,
+                "species": "SPECIES_GYARADOS"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_LAPRAS"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_WYRMSPIRE_ISLE_DRAGONS_DEN",
+          "base_label": "sWyrmspireIsleDragonsDen_FireRed",
+          "land_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_GOLBAT"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_GRAVELER"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_DRATINI"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_ONIX"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_GOLDUCK"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_DRAGONAIR"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_SHELGON"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_ALTARIA"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_BAGON"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_STEELIX"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_DRAGONAIR"
+              },
+              {
+                "min_level": 57,
+                "max_level": 61,
+                "species": "SPECIES_DRAGONITE"
+              }
+            ]
+          },
+          "water_mons": {
+            "encounter_rate": 4,
+            "mons": [
+              {
+                "min_level": 56,
+                "max_level": 60,
+                "species": "SPECIES_DRATINI"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_DRAGONAIR"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_SEADRA"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_GYARADOS"
+              },
+              {
+                "min_level": 60,
+                "max_level": 62,
+                "species": "SPECIES_KINGDRA"
+              }
+            ]
+          },
+          "fishing_mons": {
+            "encounter_rate": 10,
+            "mons": [
+              {
+                "min_level": 15,
+                "max_level": 20,
+                "species": "SPECIES_MAGIKARP"
+              },
+              {
+                "min_level": 15,
+                "max_level": 20,
+                "species": "SPECIES_MAGIKARP"
+              },
+              {
+                "min_level": 30,
+                "max_level": 40,
+                "species": "SPECIES_MAGIKARP"
+              },
+              {
+                "min_level": 30,
+                "max_level": 40,
+                "species": "SPECIES_DRATINI"
+              },
+              {
+                "min_level": 30,
+                "max_level": 40,
+                "species": "SPECIES_HORSEA"
+              },
+              {
+                "min_level": 52,
+                "max_level": 60,
+                "species": "SPECIES_DRAGONAIR"
+              },
+              {
+                "min_level": 54,
+                "max_level": 62,
+                "species": "SPECIES_SEADRA"
+              },
+              {
+                "min_level": 54,
+                "max_level": 62,
+                "species": "SPECIES_GYARADOS"
+              },
+              {
+                "min_level": 50,
+                "max_level": 56,
+                "species": "SPECIES_DRATINI"
+              },
+              {
+                "min_level": 58,
+                "max_level": 62,
+                "species": "SPECIES_KINGDRA"
+              }
+            ]
+          }
         }
       ]
     }

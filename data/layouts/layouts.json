@@ -4554,6 +4554,114 @@
       "secondary_tileset": "gTileset_ViridianForest",
       "border_filepath": "data/layouts/ChitinIsle_Woods/border.bin",
       "blockdata_filepath": "data/layouts/ChitinIsle_Woods/map.bin"
+    },
+    {
+      "id": "LAYOUT_SKYREACH_ISLE_GALE_CAVE_1_F",
+      "name": "SkyreachIsle_GaleCave_1F_Layout",
+      "width": 28,
+      "height": 22,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_RockTunnel",
+      "border_filepath": "data/layouts/SkyreachIsle_GaleCave_1F/border.bin",
+      "blockdata_filepath": "data/layouts/SkyreachIsle_GaleCave_1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_SKYREACH_ISLE_GALE_CAVE_2_F",
+      "name": "SkyreachIsle_GaleCave_2F_Layout",
+      "width": 26,
+      "height": 17,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_RockTunnel",
+      "border_filepath": "data/layouts/SkyreachIsle_GaleCave_2F/border.bin",
+      "blockdata_filepath": "data/layouts/SkyreachIsle_GaleCave_2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_MEADOWMOO_ISLE_MOOMOO_CAVE",
+      "name": "MeadowmooIsle_MoomooCave_Layout",
+      "width": 30,
+      "height": 18,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_DiglettsCave",
+      "border_filepath": "data/layouts/MeadowmooIsle_MoomooCave/border.bin",
+      "blockdata_filepath": "data/layouts/MeadowmooIsle_MoomooCave/map.bin"
+    },
+    {
+      "id": "LAYOUT_FOUNDRY_ISLE_LIGHTHOUSE_1_F",
+      "name": "FoundryIsle_Lighthouse_1F_Layout",
+      "width": 18,
+      "height": 15,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_PowerPlant",
+      "border_filepath": "data/layouts/FoundryIsle_Lighthouse_1F/border.bin",
+      "blockdata_filepath": "data/layouts/FoundryIsle_Lighthouse_1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_FOUNDRY_ISLE_LIGHTHOUSE_2_F",
+      "name": "FoundryIsle_Lighthouse_2F_Layout",
+      "width": 18,
+      "height": 15,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_PowerPlant",
+      "border_filepath": "data/layouts/FoundryIsle_Lighthouse_2F/border.bin",
+      "blockdata_filepath": "data/layouts/FoundryIsle_Lighthouse_2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_FOUNDRY_ISLE_LIGHTHOUSE_3_F",
+      "name": "FoundryIsle_Lighthouse_3F_Layout",
+      "width": 18,
+      "height": 12,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_PowerPlant",
+      "border_filepath": "data/layouts/FoundryIsle_Lighthouse_3F/border.bin",
+      "blockdata_filepath": "data/layouts/FoundryIsle_Lighthouse_3F/map.bin"
+    },
+    {
+      "id": "LAYOUT_GLACIER_ISLE_GLACIER_PATH_1_F",
+      "name": "GlacierIsle_GlacierPath_1F_Layout",
+      "width": 28,
+      "height": 19,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_SeafoamIslands",
+      "border_filepath": "data/layouts/GlacierIsle_GlacierPath_1F/border.bin",
+      "blockdata_filepath": "data/layouts/GlacierIsle_GlacierPath_1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_GLACIER_ISLE_GLACIER_PATH_B1_F",
+      "name": "GlacierIsle_GlacierPath_B1F_Layout",
+      "width": 30,
+      "height": 17,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_SeafoamIslands",
+      "border_filepath": "data/layouts/GlacierIsle_GlacierPath_B1F/border.bin",
+      "blockdata_filepath": "data/layouts/GlacierIsle_GlacierPath_B1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_WYRMSPIRE_ISLE_DRAGONS_DEN",
+      "name": "WyrmspireIsle_DragonsDen_Layout",
+      "width": 32,
+      "height": 19,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_CeruleanCave",
+      "border_filepath": "data/layouts/WyrmspireIsle_DragonsDen/border.bin",
+      "blockdata_filepath": "data/layouts/WyrmspireIsle_DragonsDen/map.bin"
     }
   ]
 }

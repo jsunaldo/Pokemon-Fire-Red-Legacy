@@ -212,10 +212,15 @@
 #define FLAG_0x0B4               0x0B4
 #define FLAG_GOT_CHITIN_SILVER_POWDER FLAG_0x0B4  // Reforged: Chitin Isle forest gate: SILVER POWDER
 #define FLAG_0x0B5               0x0B5
+#define FLAG_GOT_SKYREACH_SHARP_BEAK FLAG_0x0B5  // Reforged: Skyreach Isle house: SHARP BEAK
 #define FLAG_0x0B6               0x0B6
+#define FLAG_GOT_MEADOWMOO_SHELL_BELL FLAG_0x0B6  // Reforged: Meadowmoo Isle house: SHELL BELL
 #define FLAG_0x0B7               0x0B7
+#define FLAG_GOT_FOUNDRY_MAGNET FLAG_0x0B7  // Reforged: Foundry Isle house: MAGNET
 #define FLAG_0x0B8               0x0B8
+#define FLAG_GOT_GLACIER_BRIGHT_POWDER FLAG_0x0B8  // Reforged: Glacier Isle hut: BRIGHTPOWDER
 #define FLAG_0x0B9               0x0B9
+#define FLAG_GOT_WYRMSPIRE_DRAGON_FANG FLAG_0x0B9  // Reforged: Wyrmspire Isle house: DRAGON FANG
 #define FLAG_0x0BA               0x0BA
 #define FLAG_0x0BB               0x0BB
 #define FLAG_0x0BC               0x0BC

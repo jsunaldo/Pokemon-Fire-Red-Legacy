@@ -61,7 +61,22 @@
       "flag": "0"
     }
   ],
-  "warp_events": [],
+  "warp_events": [
+    {
+      "x": 26,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_MEADOWMOO_ISLE_MOOMOO_CAVE",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 13,
+      "y": 16,
+      "elevation": 0,
+      "dest_map": "MAP_MEADOWMOO_ISLE_HOUSE",
+      "dest_warp_id": "0"
+    }
+  ],
   "coord_events": [],
   "bg_events": []
 }

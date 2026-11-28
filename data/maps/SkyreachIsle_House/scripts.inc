@@ -1,0 +1,26 @@
+SkyreachIsle_House_MapScripts::
+	.byte 0
+
+SkyreachIsle_House_EventScript_Falconer::
+	lock
+	faceplayer
+	goto_if_set FLAG_GOT_SKYREACH_SHARP_BEAK, SkyreachIsle_House_EventScript_FalconerAfter
+	msgbox SkyreachIsle_House_Text_FalconerGift
+	checkitemspace ITEM_SHARP_BEAK
+	goto_if_eq VAR_RESULT, FALSE, SkyreachIsle_House_EventScript_FalconerNoRoom
+	giveitem_msg SkyreachIsle_House_Text_FalconerReceived, ITEM_SHARP_BEAK
+	setflag FLAG_GOT_SKYREACH_SHARP_BEAK
+	msgbox SkyreachIsle_House_Text_FalconerAfter
+	release
+	end
+
+SkyreachIsle_House_EventScript_FalconerAfter::
+	msgbox SkyreachIsle_House_Text_FalconerAfter
+	release
+	end
+
+SkyreachIsle_House_EventScript_FalconerNoRoom::
+	msgbox SkyreachIsle_House_Text_FalconerNoRoom
+	release
+	end
+

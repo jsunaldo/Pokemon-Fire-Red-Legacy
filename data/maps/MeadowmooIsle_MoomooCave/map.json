@@ -1,0 +1,45 @@
+{
+  "id": "MAP_MEADOWMOO_ISLE_MOOMOO_CAVE",
+  "name": "MeadowmooIsle_MoomooCave",
+  "layout": "LAYOUT_MEADOWMOO_ISLE_MOOMOO_CAVE",
+  "music": "MUS_SEVII_CAVE",
+  "region_map_section": "MAPSEC_MEADOWMOO_ISLE",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": false,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": false,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [
+    {
+      "local_id": "LOCALID_MOOMOO_CAVE_MOLLY",
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
+      "x": 15,
+      "y": 9,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "4",
+      "script": "MeadowmooIsle_MoomooCave_EventScript_Molly",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 13,
+      "y": 16,
+      "elevation": 0,
+      "dest_map": "MAP_JOHTO_ISLE_WHITNEY",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": []
+}

@@ -1,0 +1,45 @@
+{
+  "id": "MAP_SKYREACH_ISLE_GALE_CAVE_2F",
+  "name": "SkyreachIsle_GaleCave_2F",
+  "layout": "LAYOUT_SKYREACH_ISLE_GALE_CAVE_2_F",
+  "music": "MUS_MT_MOON",
+  "region_map_section": "MAPSEC_SKYREACH_ISLE",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": false,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": false,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [
+    {
+      "local_id": "LOCALID_GALE_CAVE_PERCY",
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_ROCKER",
+      "x": 19,
+      "y": 9,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "4",
+      "script": "SkyreachIsle_GaleCave_2F_EventScript_Percy",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 10,
+      "y": 6,
+      "elevation": 0,
+      "dest_map": "MAP_SKYREACH_ISLE_GALE_CAVE_1F",
+      "dest_warp_id": "1"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": []
+}

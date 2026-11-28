@@ -261,7 +261,21 @@
     "IronfistIsle_WhirlCave_B1F",
     "IronfistIsle_House",
     "ChitinIsle_ForestGate",
-    "ChitinIsle_Woods"
+    "ChitinIsle_Woods",
+    "SkyreachIsle_GaleCave_1F",
+    "SkyreachIsle_GaleCave_2F",
+    "SkyreachIsle_House",
+    "MeadowmooIsle_MoomooCave",
+    "MeadowmooIsle_House",
+    "FoundryIsle_Lighthouse_1F",
+    "FoundryIsle_Lighthouse_2F",
+    "FoundryIsle_Lighthouse_3F",
+    "FoundryIsle_House",
+    "GlacierIsle_GlacierPath_1F",
+    "GlacierIsle_GlacierPath_B1F",
+    "GlacierIsle_House",
+    "WyrmspireIsle_DragonsDen",
+    "WyrmspireIsle_House"
   ],
   "gMapGroup_TownsAndRoutes": [
     "PalletTown",
